@@ -4,19 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2be48f36-62e0-45df-812c-c4d57fbb8bcb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/EnumeracionesVariablesTriage/Conciencia.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/EnumeracionesVariablesTriage/EstadoMental.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/EnumeracionesVariablesTriage/Pulso.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/EnumeracionesVariablesTriage/Respiracion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jpa-buddy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
+    <list default="true" id="2be48f36-62e0-45df-812c-c4d57fbb8bcb" name="Changes" comment="Creada estructura del proyecto. Creadas enumeraciones para las variables asociadas a los triages.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/Enum/LugarAtencion.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/Persona.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
     </list>
-    <list id="5495b357-c03f-43c4-9f5f-8e9476d3c286" name="Changes by gasto" comment="" />
-    <list id="f44f6abf-2230-4823-9904-6ada8b3582b4" name="Changes by Jesús Ksa" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,8 +17,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -49,7 +41,8 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/Administrador/Desktop/JavaFX biblioteca/biblioteca"
+    "last_opened_file_path": "C:/Users/Administrador/Desktop/JavaFX biblioteca/biblioteca",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
 }]]></component>
   <component name="RunManager">
@@ -81,6 +74,19 @@
       <option name="presentableId" value="Default" />
       <updated>1696195343775</updated>
     </task>
+    <task id="LOCAL-00001" summary="Creada estructura del proyecto. Creadas enumeraciones para las variables asociadas a los triages.">
+      <option name="closed" value="true" />
+      <created>1696197092268</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1696197092268</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Creada estructura del proyecto. Creadas enumeraciones para las variables asociadas a los triages." />
+    <option name="LAST_COMMIT_MESSAGE" value="Creada estructura del proyecto. Creadas enumeraciones para las variables asociadas a los triages." />
   </component>
 </project>
