@@ -3,6 +3,7 @@ package model;
 import lombok.*;
 
 @Getter
+@Setter
 @NoArgsConstructor
 @ToString
 @EqualsAndHashCode

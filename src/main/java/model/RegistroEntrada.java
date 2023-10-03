@@ -12,6 +12,7 @@ import java.time.LocalTime;
 @EqualsAndHashCode
 
 public class RegistroEntrada {
+    private Long idRegistroEntrada;
     private LocalDate fecha;
     private LocalTime hora;
     private String descripcion;
