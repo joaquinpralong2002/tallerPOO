@@ -4,10 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2be48f36-62e0-45df-812c-c4d57fbb8bcb" name="Changes" comment="Creada estructura del proyecto. Creadas enumeraciones para las variables asociadas a los triages.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/Enum/LugarAtencion.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/Persona.java" afterDir="false" />
+    <list default="true" id="2be48f36-62e0-45df-812c-c4d57fbb8bcb" name="Changes" comment="Creadas varias clases.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/Registro.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/Usuario.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Paciente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Paciente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Persona.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Persona.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/ResultadoDiagnostico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/ResultadoDiagnostico.java" afterDir="false" />
+    </list>
+    <list id="3dae41b7-95e6-4ed8-b1d4-e80e0d868870" name="Changes by Ema Bozzo" comment="" />
+    <list id="b7222474-db8d-4b9d-9d1f-c3a32a0624b0" name="Changes by gasto" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Paciente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Paciente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/RegistroEntrada.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/RegistroEntrada.java" afterDir="false" />
+    </list>
+    <list id="6ebf943e-b08c-4c1e-acd0-a3f23c759dc2" name="Changes by Jesús Ksa" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Funcionario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Funcionario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/FuncionarioAdministrativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/FuncionarioAdministrativo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/RegistroEntrada.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/RegistroEntrada.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/ResultadoDiagnostico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/ResultadoDiagnostico.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,6 +32,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -25,9 +40,51 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 5
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "joaquinpralong2002"
+  }
 }]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="c568b0e7-f7a3-4bf1-855d-5f70312358f2" />
+        <option name="url" value="https://github.com/joaquinpralong2002/tallerPOO.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/main/java/model/RegistroEntrada.java">
+      <ranges>
+        <range start1="2" end1="5" start2="2" end2="3" changelist="b7222474-db8d-4b9d-9d1f-c3a32a0624b0" />
+        <range start1="7" end1="8" start2="5" end2="5" changelist="b7222474-db8d-4b9d-9d1f-c3a32a0624b0" />
+        <range start1="11" end1="12" start2="8" end2="9" changelist="b7222474-db8d-4b9d-9d1f-c3a32a0624b0" />
+        <range start1="13" end1="13" start2="10" end2="13" changelist="b7222474-db8d-4b9d-9d1f-c3a32a0624b0" />
+        <range start1="14" end1="14" start2="14" end2="15" changelist="6ebf943e-b08c-4c1e-acd0-a3f23c759dc2" />
+        <range start1="18" end1="18" start2="19" end2="87" changelist="b7222474-db8d-4b9d-9d1f-c3a32a0624b0" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/model/ResultadoDiagnostico.java">
+      <ranges>
+        <range start1="5" end1="5" start2="5" end2="6" changelist="6ebf943e-b08c-4c1e-acd0-a3f23c759dc2" />
+        <range start1="10" end1="10" start2="11" end2="12" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
+        <range start1="21" end1="22" start2="23" end2="23" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/model/Paciente.java">
+      <ranges>
+        <range start1="14" end1="14" start2="14" end2="15" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
+        <range start1="15" end1="15" start2="16" end2="17" changelist="b7222474-db8d-4b9d-9d1f-c3a32a0624b0" />
+        <range start1="16" end1="16" start2="18" end2="20" changelist="b7222474-db8d-4b9d-9d1f-c3a32a0624b0" />
+        <range start1="32" end1="34" start2="36" end2="59" changelist="b7222474-db8d-4b9d-9d1f-c3a32a0624b0" />
+        <range start1="36" end1="36" start2="61" end2="64" changelist="b7222474-db8d-4b9d-9d1f-c3a32a0624b0" />
+      </ranges>
+    </file>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="2WB9vsBYnBFjwHhIC0kCzN0y7CL" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -42,6 +99,9 @@
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "git-widget-placeholder": "main",
     "last_opened_file_path": "C:/Users/Administrador/Desktop/JavaFX biblioteca/biblioteca",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.lookFeel"
   }
 }]]></component>
@@ -82,11 +142,31 @@
       <option name="project" value="LOCAL" />
       <updated>1696197092268</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Creadas varias clases.">
+      <option name="closed" value="true" />
+      <created>1696200243698</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1696200243698</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Creada estructura del proyecto. Creadas enumeraciones para las variables asociadas a los triages." />
-    <option name="LAST_COMMIT_MESSAGE" value="Creada estructura del proyecto. Creadas enumeraciones para las variables asociadas a los triages." />
+    <MESSAGE value="Creadas varias clases." />
+    <option name="LAST_COMMIT_MESSAGE" value="Creadas varias clases." />
   </component>
 </project>

@@ -3,11 +3,13 @@ package model;
 import lombok.*;
 
 @Getter
+@Setter
 @NoArgsConstructor
 @ToString
 @EqualsAndHashCode
 
 public class ResultadoDiagnostico {
+    private Long idResultadoDiagnostico;
     private String descripcion;
     private Paciente paciente;
 
@@ -19,5 +21,4 @@ public class ResultadoDiagnostico {
         this.descripcion = descripcion;
         this.paciente = paciente;
     }
-
 }
