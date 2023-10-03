@@ -12,6 +12,7 @@ import java.util.List;
 @EqualsAndHashCode
 
 public class Paciente extends Persona{
+    private Long idPaciente;
     private Persona personaContacto;
     private List<ResultadoDiagnostico> resultadosDiagnosticos;
 
