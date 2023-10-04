@@ -16,7 +16,7 @@ public class Sector {
 
     private List<Funcionario> funcionarios;
 
-    Sector(String nombre){
+    public Sector(String nombre){
         this.nombre = nombre;
     }
 

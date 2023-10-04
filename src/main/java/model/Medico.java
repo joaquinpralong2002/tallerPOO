@@ -74,6 +74,10 @@ public class Medico extends Funcionario implements CapacitadoTriage{
 
     @Override
     public ColorTriage realizarTriage(Paciente p) {
+        //asignarle el RegistroEntrada que se tomo
+        //crear triage, pasarle todos los parametros del triage que vendran de la ventana, asignarle el paciente y el q realizo el triage
+        //asignarle al paciente p el triage
+        //asignarle al medico el triage
         return null;
     }
 
