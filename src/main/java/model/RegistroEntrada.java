@@ -24,14 +24,14 @@ public class RegistroEntrada {
     private FuncionarioAdministrativo funcionarioAdministrativo;
 
     //constructor con atributos popios de la clase
-    public RegistroEntrada(LocalDate fecha, LocalTime hora, String descripcion) {
+    public RegistroEntrada(String descripcion) {
         this.fecha = LocalDate.now();
         this.hora = LocalTime.now();
         this.descripcion = descripcion;
     }
 
     //constructor con atributo Asignacion agregado
-    public RegistroEntrada(LocalDate fecha, LocalTime hora, String descripcion, Asignacion asignacion) {
+    public RegistroEntrada(String descripcion, Asignacion asignacion) {
         this.fecha = LocalDate.now();
         this.hora = LocalTime.now();
         this.descripcion = descripcion;
@@ -39,7 +39,7 @@ public class RegistroEntrada {
     }
 
     //constructor con atributo Paciente agregado
-    public RegistroEntrada(LocalDate fecha, LocalTime hora, String descripcion, Asignacion asignacion,
+    public RegistroEntrada(String descripcion, Asignacion asignacion,
                            Paciente paciente) {
         this.fecha = LocalDate.now();
         this.hora = LocalTime.now();
@@ -49,7 +49,7 @@ public class RegistroEntrada {
     }
 
     //constructor con atributo BoxAtencion agregado
-    public RegistroEntrada(LocalDate fecha, LocalTime hora, String descripcion,Asignacion asignacion,
+    public RegistroEntrada(String descripcion,Asignacion asignacion,
                            Paciente paciente, BoxAtencion boxAtencion) {
         this.fecha = LocalDate.now();
         this.hora = LocalTime.now();
@@ -60,7 +60,7 @@ public class RegistroEntrada {
     }
 
     //constructor con atributo Triage agregado
-    public RegistroEntrada(LocalDate fecha, LocalTime hora, String descripcion,Asignacion asignacion,
+    public RegistroEntrada(String descripcion,Asignacion asignacion,
                            Paciente paciente, BoxAtencion boxAtencion, Triage triage) {
         this.fecha = LocalDate.now();
         this.hora = LocalTime.now();
@@ -72,7 +72,7 @@ public class RegistroEntrada {
     }
 
     //constructor con atributo FuncionarioAdministrativo agregado
-    public RegistroEntrada(LocalDate fecha, LocalTime hora, String descripcion,Asignacion asignacion,
+    public RegistroEntrada(String descripcion,Asignacion asignacion,
                            Paciente paciente, BoxAtencion boxAtencion, Triage triage,
                            FuncionarioAdministrativo funcionarioAdministrativo) {
         this.fecha = LocalDate.now();
@@ -86,13 +86,11 @@ public class RegistroEntrada {
     }
 
     //constructor de Inicio (fecha, hora, descripcion, paciente, funcionario)
-    public  RegistroEntrada(LocalDate fecha, LocalTime hora, String descripcion, Paciente paciente,FuncionarioAdministrativo funcionarioAdministrativo){
+    public  RegistroEntrada(String descripcion, Paciente paciente, FuncionarioAdministrativo funcionarioAdministrativo){
         this.fecha = LocalDate.now();
         this.hora = LocalTime.now();
         this.descripcion = descripcion;
         this.paciente = paciente;
         this.funcionarioAdministrativo = funcionarioAdministrativo;
     }
-
-
 }

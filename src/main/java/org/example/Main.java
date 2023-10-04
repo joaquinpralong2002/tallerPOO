@@ -26,7 +26,7 @@ public class Main {
                 null);
 
         //pone los datos en la ventana, los datos del registro tambien (fecha,hora y descripcion), y le da al boton crear registro
-        f1.RealizarRegistroEntrada(p1,LocalDate.now(), LocalTime.now(),"dolor cabeza");
+        f1.RealizarRegistroEntrada(p1,"dolor cabeza");
 
         //Ahora un medico o enfermero X lo llama para realizar el triage, ya esta en la ventana del programa para realizar el triage
         Especialidad ep = new Especialidad("Cardiologia Clinica",LocalDate.of(2014,5,11));
