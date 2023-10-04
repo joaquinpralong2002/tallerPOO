@@ -25,12 +25,6 @@ public class Asignacion {
         this.hora = hora;
     }
 
-    public Asignacion(LocalDate fecha, LocalTime hora, BoxAtencion boxAtencion) {
-        this.fecha = fecha;
-        this.hora = hora;
-        this.boxAtencion = boxAtencion;
-    }
-
     public Asignacion(LocalDate fecha, LocalTime hora, BoxAtencion boxAtencion,
                       RegistroEntrada registroEntrada) {
         this.fecha = fecha;

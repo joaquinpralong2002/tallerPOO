@@ -19,6 +19,7 @@ public class Paciente extends Persona{
     private List<RegistroEntrada> registrosEntradas;
     private List<Registro> registros;
 
+    //sugerir cambiar tipo de persona de contacto a int q sea un numero de telefono
     public Paciente(String nombreApellido, LocalDate fechaNacimiento, String domicilio, int DNI,
                     int telefonoFijo, long telefonoCelular, EstadoCivil estadoCivil, String correo,
                     Persona personaContacto) {
@@ -51,7 +52,6 @@ public class Paciente extends Persona{
         this.personaContacto = personaContacto;
         this.resultadosDiagnosticos = resultadosDiagnosticos;
         this.registrosEntradas = registrosEntradas;
-        this.registros = registros;
         this.registros = registros;
     }
 
