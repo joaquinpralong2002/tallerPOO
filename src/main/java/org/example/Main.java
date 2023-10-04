@@ -29,7 +29,9 @@ public class Main {
         f1.RealizarRegistroEntrada(p1,"dolor cabeza");
 
         //Ahora un medico o enfermero X lo llama para realizar el triage, ya esta en la ventana del programa para realizar el triage
+        Universidad universidad = new Universidad("Uner");
         Especialidad ep = new Especialidad("Cardiologia Clinica",LocalDate.of(2014,5,11));
+        ep.setUniversidad(universidad);
         Medico m1 = new Medico("Pepito Moreno",
                 LocalDate.of(1987,2,20),
                 "sasffas",
@@ -40,12 +42,13 @@ public class Main {
                 "dsac",
                 null,
                 new Sector("Cardiologia"),
-                "1a2b3c4d5e",
-                null);
+                "1a2b3c4d5e");
         m1.agregarEspecializacion(ep);
 
+        System.out.println(m1);
+
         //empieza a hacerles las preguntas y seleccionarlas en la ventana y le da al boton de crear triage
-        m1.realizarTriage(p1);
+        m1.realizarTriage(p1.getRegistrosEntradas().get(0));
         //si el que realizo el triage cambia el resultado setear el motivo y el color nuevo
 
         //ponele q el mismo medico va a atender ese paciente, el medico vera una lista de pacientes en la ventana y va a decidir atenderlo

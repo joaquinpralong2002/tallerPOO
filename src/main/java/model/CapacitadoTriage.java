@@ -6,10 +6,10 @@ public interface CapacitadoTriage {
 
     /**
      * Metodo que realiza un Triage en base al paciente otorgado por paramentro
-     * @param p de tipo Paciente
+     * @param e de tipo RegistroEntrada
      * @return Devuelve un triage de tipo ColorTriage
      */
-    public ColorTriage realizarTriage(Paciente p);
+    public ColorTriage realizarTriage(RegistroEntrada e);
 
     /**
      * Metodo que modifica el color de un triage ya realizado

@@ -3,6 +3,7 @@ package model;
 import lombok.*;
 import model.Enum.ColorTriage;
 import model.Enum.EstadoCivil;
+import model.Login.Usuario;
 
 import java.time.LocalDate;
 
@@ -22,7 +23,7 @@ public class Enfermero extends Funcionario implements CapacitadoTriage{
     }
 
     @Override
-    public ColorTriage realizarTriage(Paciente p) {
+    public ColorTriage realizarTriage(RegistroEntrada r) {
         return null;
     }
 

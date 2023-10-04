@@ -2,6 +2,7 @@ package model;
 import lombok.*;
 import model.Enum.ColorTriage;
 import model.Enum.EstadoCivil;
+import model.Login.Usuario;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -19,9 +20,10 @@ public class Medico extends Funcionario implements CapacitadoTriage{
 
     private String numMatricula;
 
-    private List<Especialidad> especializaciones;
+    private List<Especialidad> especializaciones = new ArrayList<>();
     private List<BoxAtencion> boxesAtencion = new LinkedList<>();
 
+    private List<Triage> triagesRealizados = new LinkedList<>();
     Medico(String matricula){
         this.numMatricula = matricula;
     }
@@ -38,6 +40,14 @@ public class Medico extends Funcionario implements CapacitadoTriage{
               DNI, telefonoFijo, telefonoCelular, estadoCivil, correo, usuario, sector);
         this.numMatricula = numMatricula;
         this.especializaciones = especializaciones;
+    }
+
+    public Medico(String nombreApellido, LocalDate fechaNacimiento, String domicilio, int DNI,
+                  int telefonoFijo, long telefonoCelular, EstadoCivil estadoCivil, String correo,
+                  Usuario usuario, Sector sector, String numMatricula) {
+        super(nombreApellido, fechaNacimiento, domicilio,
+                DNI, telefonoFijo, telefonoCelular, estadoCivil, correo, usuario, sector);
+        this.numMatricula = numMatricula;
     }
 
     /**
@@ -73,11 +83,16 @@ public class Medico extends Funcionario implements CapacitadoTriage{
     }
 
     @Override
-    public ColorTriage realizarTriage(Paciente p) {
+    public ColorTriage realizarTriage(RegistroEntrada r) {
         //asignarle el RegistroEntrada que se tomo
         //crear triage, pasarle todos los parametros del triage que vendran de la ventana, asignarle el paciente y el q realizo el triage
         //asignarle al paciente p el triage
         //asignarle al medico el triage
+
+        Triage triage = new Triage();
+        triage.getColorTriageRecomendado();
+        r.setTriage(triage);
+        this.triagesRealizados.add(triage);
         return null;
     }
 

@@ -1,6 +1,8 @@
-package model;
+package model.Login;
 
 import lombok.*;
+import model.Funcionario;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -111,9 +113,6 @@ public class Usuario {
         } else return false;
     }
 
-    public void setRol(Rol r){
-        this.roles.add(r);
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -126,5 +125,9 @@ public class Usuario {
     @Override
     public int hashCode() {
         return Objects.hash(nombreUsuario);
+    }
+
+    void setRol(Rol l){
+        if(!roles.contains(l)) roles.add(l);
     }
 }

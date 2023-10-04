@@ -1,7 +1,11 @@
-package model;
+package model.Login;
 
 import lombok.*;
 import model.Enum.EstadoCivil;
+import model.FuncionarioAdministrativo;
+import model.Login.Rol;
+import model.Login.Usuario;
+import model.Sector;
 
 import java.time.LocalDate;
 
@@ -10,7 +14,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @ToString
 @EqualsAndHashCode
-public class AdministradorSistemas extends FuncionarioAdministrativo{
+public class AdministradorSistemas extends FuncionarioAdministrativo {
     private Long idAdministradorSistemas;
 
     public AdministradorSistemas(String nombreApellido, LocalDate fechaNacimiento, String domicilio, int DNI, int telefonoFijo, long telefonoCelular, EstadoCivil estadoCivil, String correo, Usuario usuario, Sector sector) {

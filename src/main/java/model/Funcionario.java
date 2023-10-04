@@ -1,6 +1,7 @@
 package model;
 import lombok.*;
 import model.Enum.EstadoCivil;
+import model.Login.Usuario;
 
 import java.time.LocalDate;
 
