@@ -23,7 +23,7 @@ public class Enfermero extends Funcionario implements CapacitadoTriage{
     }
 
     @Override
-    public ColorTriage realizarTriage(Paciente p) {
+    public ColorTriage realizarTriage(RegistroEntrada r) {
         return null;
     }
 

@@ -48,7 +48,7 @@ public class Main {
         System.out.println(m1);
 
         //empieza a hacerles las preguntas y seleccionarlas en la ventana y le da al boton de crear triage
-        m1.realizarTriage(p1);
+        m1.realizarTriage(p1.getRegistrosEntradas().get(0));
         //si el que realizo el triage cambia el resultado setear el motivo y el color nuevo
 
         //ponele q el mismo medico va a atender ese paciente, el medico vera una lista de pacientes en la ventana y va a decidir atenderlo
