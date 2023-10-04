@@ -22,8 +22,8 @@ public class FuncionarioAdministrativo extends Funcionario{
 
     }
 
-    public void RealizarRegistroEntrada(Paciente p, LocalDate fecha, LocalTime hora,String descripcion){
-        RegistroEntrada r = new RegistroEntrada(fecha,hora,descripcion,p,this);
+    public void RealizarRegistroEntrada(Paciente p,String descripcion){
+        RegistroEntrada r = new RegistroEntrada(descripcion,p,this);
         this.registrosEntradas.add(r);
         p.agregarRegistroEntrada(r);
     }
