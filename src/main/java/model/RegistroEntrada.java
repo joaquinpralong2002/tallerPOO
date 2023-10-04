@@ -85,5 +85,14 @@ public class RegistroEntrada {
         this.funcionarioAdministrativo = funcionarioAdministrativo;
     }
 
+    //constructor de Inicio (fecha, hora, descripcion, paciente, funcionario)
+    public  RegistroEntrada(LocalDate fecha, LocalTime hora, String descripcion, Paciente paciente,FuncionarioAdministrativo funcionarioAdministrativo){
+        this.fecha = fecha;
+        this.hora = hora;
+        this.descripcion = descripcion;
+        this.paciente = paciente;
+        this.funcionarioAdministrativo = funcionarioAdministrativo;
+    }
+
 
 }
