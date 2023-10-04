@@ -1,10 +1,11 @@
 package model;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 import lombok.*;
 import model.Enum.EstadoCivil;
+import model.Login.Usuario;
 
 @Getter
 @Setter
@@ -14,7 +15,7 @@ import model.Enum.EstadoCivil;
 
 public class FuncionarioAdministrativo extends Funcionario{
     private Long idFuncionarioAdministrativo;
-    private List<RegistroEntrada> registrosEntradas;
+    private List<RegistroEntrada> registrosEntradas = new ArrayList<>();
 
 
     public FuncionarioAdministrativo(String nombreApellido, LocalDate fechaNacimiento, String domicilio, int DNI, int telefonoFijo, long telefonoCelular, EstadoCivil estadoCivil, String correo, Usuario usuario, Sector sector) {

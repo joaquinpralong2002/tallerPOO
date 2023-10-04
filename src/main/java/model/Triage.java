@@ -5,6 +5,8 @@ import model.Enum.ColorTriage;
 
 import lombok.*;
 
+import java.awt.*;
+
 @NoArgsConstructor
 @Getter
 @Setter
@@ -64,4 +66,21 @@ public class Triage{
         this.registroEntrada = registroEntrada;
     }
 
+    public ColorTriage getColorTriageRecomendado() {
+        int suma = respiracion.getValor() + pulso.getValor() + estadoMental.getValor() + conciencia.getValor() + dolorPecho.getValor() +
+                lesionGrave.getValor() + edad.getValor() + fiebre.getValor() + vomito.getValor() + dolorAbdominal.getValor() +
+                signoShock.getValor() + lesionesLeves.getValor() + sangrado.getValor();
+        if(suma >= 15){
+            this.colorTriageRecomendado = ColorTriage.Rojo;
+        } else if (suma >= 10 && suma <=14) {
+            this.colorTriageRecomendado = ColorTriage.Naranja;
+        } else if (suma >= 5 && suma <=9) {
+            this.colorTriageRecomendado = ColorTriage.Amarrillo;
+        } else if (suma > 0 && suma <=4) {
+            this.colorTriageRecomendado = ColorTriage.Verde;
+        } else {
+            this.colorTriageRecomendado = ColorTriage.Azul;
+        }
+        return colorTriageRecomendado;
+    }
 }

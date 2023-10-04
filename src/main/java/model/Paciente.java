@@ -3,6 +3,7 @@ import lombok.*;
 import model.Enum.EstadoCivil;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -16,7 +17,7 @@ public class Paciente extends Persona{
     private Persona personaContacto;
 
     private List<ResultadoDiagnostico> resultadosDiagnosticos;
-    private List<RegistroEntrada> registrosEntradas;
+    private List<RegistroEntrada> registrosEntradas = new ArrayList<>();
     private List<Registro> registros;
 
     public Paciente(String nombreApellido, LocalDate fechaNacimiento, String domicilio, int DNI,
