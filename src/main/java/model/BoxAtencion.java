@@ -25,32 +25,16 @@ public class BoxAtencion {
         this.capacidad = capacidad;
         this.disponible = disponible;
     }
-
-    public BoxAtencion(int numero, int capacidad, boolean disponible, Asignacion asignacion) {
-        this.numero = numero;
-        this.capacidad = capacidad;
-        this.disponible = disponible;
-        this.asignacion = asignacion;
-    }
-
-    public BoxAtencion(int numero, int capacidad, boolean disponible, Asignacion asignacion,
-                       List<RegistroEntrada> registrosEntradas) {
-        this.numero = numero;
-        this.capacidad = capacidad;
-        this.disponible = disponible;
-        this.asignacion = asignacion;
-        this.registrosEntradas = registrosEntradas;
-    }
-
-    public BoxAtencion(int numero, int capacidad, boolean disponible, Asignacion asignacion,
-                       List<RegistroEntrada> registrosEntradas, Medico medico) {
-        this.numero = numero;
-        this.capacidad = capacidad;
-        this.disponible = disponible;
-        this.asignacion = asignacion;
-        this.registrosEntradas = registrosEntradas;
-        this.medico = medico;
-    }
+//Sugerir borrar los primeros  3 atributos
+//    public BoxAtencion(int numero, int capacidad, boolean disponible, Asignacion asignacion,
+//                       List<RegistroEntrada> registrosEntradas, Medico medico) {
+//        this.numero = numero;
+//        this.capacidad = capacidad;
+//        this.disponible = disponible;
+//        this.asignacion = asignacion;
+//        this.registrosEntradas = registrosEntradas;
+//        this.medico = medico;
+//    }
 
     public void agregarEntrada(RegistroEntrada registro){
         registrosEntradas.add(registro);
