@@ -66,21 +66,33 @@ public class Triage{
         this.registroEntrada = registroEntrada;
     }
 
-    public ColorTriage getColorTriageRecomendado() {
+    public void calcularColorTriageRecomendado(){
         int suma = respiracion.getValor() + pulso.getValor() + estadoMental.getValor() + conciencia.getValor() + dolorPecho.getValor() +
                 lesionGrave.getValor() + edad.getValor() + fiebre.getValor() + vomito.getValor() + dolorAbdominal.getValor() +
                 signoShock.getValor() + lesionesLeves.getValor() + sangrado.getValor();
         if(suma >= 15){
             this.colorTriageRecomendado = ColorTriage.Rojo;
-        } else if (suma >= 10 && suma <=14) {
+        } else if (suma >= 10 && suma <= 14) {
             this.colorTriageRecomendado = ColorTriage.Naranja;
-        } else if (suma >= 5 && suma <=9) {
+        } else if (suma >= 5 && suma <= 9) {
             this.colorTriageRecomendado = ColorTriage.Amarrillo;
-        } else if (suma > 0 && suma <=4) {
+        } else if (suma > 0 && suma <= 4) {
             this.colorTriageRecomendado = ColorTriage.Verde;
         } else {
             this.colorTriageRecomendado = ColorTriage.Azul;
         }
-        return colorTriageRecomendado;
     }
+
+
+    public boolean modificarColorTriageFinal(ColorTriage colorFinal, String motivo){
+        if(colorFinal.getValor() - colorTriageRecomendado.getValor() <= 2){
+            this.colorTriageFinal = colorFinal;
+            this.motivoCambioTriage = motivo;
+            return true;
+        } else {
+            System.out.println("No se puede asignar un color de triage que tenga dos niveles de diferencia con el recomendado por el sistema.");
+            return false;
+        }
+    }
+
 }

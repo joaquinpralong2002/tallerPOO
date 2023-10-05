@@ -4,13 +4,13 @@ import lombok.*;
 import model.Enum.LugarAtencion;
 
 @Getter
-@Setter
 @NoArgsConstructor
 @ToString
 @EqualsAndHashCode
 public class Registro {
     private Long idRegistro;
     private LugarAtencion lugarAtencion;
+
     private Paciente paciente;
     private Medico medico;
 
@@ -19,7 +19,4 @@ public class Registro {
         this.paciente = paciente;
         this.medico = medico;
     }
-
-
-
 }

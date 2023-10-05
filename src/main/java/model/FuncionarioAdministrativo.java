@@ -18,6 +18,7 @@ public class FuncionarioAdministrativo extends Funcionario{
     private List<RegistroEntrada> registrosEntradas = new ArrayList<>();
 
 
+
     public FuncionarioAdministrativo(String nombreApellido, LocalDate fechaNacimiento, String domicilio, int DNI, int telefonoFijo, long telefonoCelular, EstadoCivil estadoCivil, String correo, Usuario usuario, Sector sector) {
         super(nombreApellido, fechaNacimiento, domicilio, DNI, telefonoFijo, telefonoCelular, estadoCivil, correo, usuario, sector);
 
@@ -28,7 +29,20 @@ public class FuncionarioAdministrativo extends Funcionario{
         this.registrosEntradas.add(r);
         p.agregarRegistroEntrada(r);
     }
-    //public List<Paciente> pacientesMasConsultas(LocalDate fecha1, LocalDate fecha2){}
+
+    public List<Paciente> pacientesMasConsultas(LocalDate fecha1, LocalDate fecha2){
+        List<Paciente> pacientes = new ArrayList<Paciente>();
+        while (registrosEntradas.iterator().hasNext()){
+            RegistroEntrada r = registrosEntradas.iterator().next();
+            if(r.getFecha().equals(fecha1)
+                    || r.getFecha().isBefore(fecha2)
+                    || r.getFecha().isAfter(fecha1)
+                    || r.getFecha().equals(fecha2)){
+            }
+        }
+        return null;
+    }
+
 
 
 }

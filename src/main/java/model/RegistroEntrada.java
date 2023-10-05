@@ -6,7 +6,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Getter
-@Setter
 @NoArgsConstructor
 @ToString
 @EqualsAndHashCode
@@ -92,5 +91,9 @@ public class RegistroEntrada {
         this.descripcion = descripcion;
         this.paciente = paciente;
         this.funcionarioAdministrativo = funcionarioAdministrativo;
+    }
+
+    public void setTriage(Triage triage){
+        this.triage = triage;
     }
 }
