@@ -1,5 +1,6 @@
 package model;
 
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
@@ -10,13 +11,18 @@ import java.util.Objects;
 @NoArgsConstructor
 @ToString
 
+@Entity
 public class BoxAtencion {
     //El id de está clase será el número de box.
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int numero;
     private int capacidad;
     private boolean disponible;
 
+    @OneToOne(mappedBy = "Box")
     private Asignacion asignacion;
+
+    @OneToOne(mappedBy = "Boxes")
     private List<RegistroEntrada> registrosEntradas;
     private Medico medico;
 

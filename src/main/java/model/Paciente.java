@@ -1,4 +1,5 @@
 package model;
+import jakarta.persistence.*;
 import lombok.*;
 import model.Enum.EstadoCivil;
 
@@ -9,28 +10,34 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString
-@EqualsAndHashCode
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
 
 public class Paciente extends Persona{
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPaciente;
-    private Persona personaContacto;
+    private String personaContacto;
 
+    @OneToMany(mappedBy = "paciente")
     private List<ResultadoDiagnostico> resultadosDiagnosticos;
+
+    @OneToMany(mappedBy = "paciente")
     private List<RegistroEntrada> registrosEntradas = new ArrayList<>();
+
+    @OneToMany(mappedBy = "paciente")
     private List<Registro> registros;
 
     //sugerir cambiar tipo de persona de contacto a int q sea un numero de telefono
     public Paciente(String nombreApellido, LocalDate fechaNacimiento, String domicilio, int DNI,
                     int telefonoFijo, long telefonoCelular, EstadoCivil estadoCivil, String correo,
-                    Persona personaContacto) {
+                    String personaContacto) {
         super(nombreApellido, fechaNacimiento, domicilio, DNI, telefonoFijo, telefonoCelular, estadoCivil, correo);
         this.personaContacto = personaContacto;
     }
 
     public Paciente(String nombreApellido, LocalDate fechaNacimiento, String domicilio, int DNI,
                     int telefonoFijo, long telefonoCelular, EstadoCivil estadoCivil, String correo,
-                    Persona personaContacto, List<ResultadoDiagnostico> resultadosDiagnosticos) {
+                    String personaContacto, List<ResultadoDiagnostico> resultadosDiagnosticos) {
         super(nombreApellido, fechaNacimiento, domicilio, DNI, telefonoFijo, telefonoCelular, estadoCivil, correo);
         this.personaContacto = personaContacto;
         this.resultadosDiagnosticos = resultadosDiagnosticos;
@@ -38,7 +45,7 @@ public class Paciente extends Persona{
 
     public Paciente(String nombreApellido, LocalDate fechaNacimiento, String domicilio, int DNI,
                     int telefonoFijo, long telefonoCelular, EstadoCivil estadoCivil, String correo,
-                    Persona personaContacto, List<ResultadoDiagnostico> resultadosDiagnosticos, List<RegistroEntrada> registrosEntradas) {
+                    String personaContacto, List<ResultadoDiagnostico> resultadosDiagnosticos, List<RegistroEntrada> registrosEntradas) {
         super(nombreApellido, fechaNacimiento, domicilio, DNI, telefonoFijo, telefonoCelular, estadoCivil, correo);
         this.personaContacto = personaContacto;
         this.resultadosDiagnosticos = resultadosDiagnosticos;
@@ -47,7 +54,7 @@ public class Paciente extends Persona{
 
     public Paciente(String nombreApellido, LocalDate fechaNacimiento, String domicilio, int DNI,
                     int telefonoFijo, long telefonoCelular, EstadoCivil estadoCivil, String correo,
-                    Persona personaContacto, List<ResultadoDiagnostico> resultadosDiagnosticos,
+                    String personaContacto, List<ResultadoDiagnostico> resultadosDiagnosticos,
                     List<RegistroEntrada> registrosEntradas, List<Registro> registros) {
         super(nombreApellido, fechaNacimiento, domicilio, DNI, telefonoFijo, telefonoCelular, estadoCivil, correo);
         this.personaContacto = personaContacto;

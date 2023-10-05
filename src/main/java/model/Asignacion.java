@@ -1,5 +1,6 @@
 package model;
 
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -12,12 +13,18 @@ import java.util.List;
 @ToString
 @EqualsAndHashCode
 
+@Entity
 public class Asignacion {
+
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idAsignacion;
     private LocalDate fecha;
     private LocalTime hora;
 
+
     private BoxAtencion boxAtencion;
+
+    @OneToOne(optional = false, fetch = FetchType.LAZY)
     private RegistroEntrada registroEntrada;
 
     public Asignacion(LocalDate fecha, LocalTime hora) {
