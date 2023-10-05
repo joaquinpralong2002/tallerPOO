@@ -20,6 +20,8 @@ public class Paciente extends Persona{
 
     @OneToMany(mappedBy = "paciente")
     private List<ResultadoDiagnostico> resultadosDiagnosticos;
+
+    @OneToMany(mappedBy = "paciente")
     private List<RegistroEntrada> registrosEntradas = new ArrayList<>();
 
     @OneToMany(mappedBy = "paciente")
