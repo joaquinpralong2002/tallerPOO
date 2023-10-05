@@ -2,6 +2,8 @@ package org.example;
 import model.*;
 import model.Enum.EstadoCivil;
 import model.EnumeracionesVariablesTriage.Respiracion;
+import org.hibernate.SessionFactory;
+import util.GlobalSessionFactory;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -10,10 +12,8 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-
-
-
-
+        GlobalSessionFactory gsf = new GlobalSessionFactory();
+        gsf.InitGlobalSessionFactory(args[0], args[1], args[2]);
 
 
         //Pensa como: el funcionario entra al sistema, llega una persona y en la ventana donde crea el registro
