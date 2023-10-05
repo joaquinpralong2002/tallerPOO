@@ -1,5 +1,6 @@
 package model;
 
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -10,14 +11,21 @@ import java.time.LocalTime;
 @ToString
 @EqualsAndHashCode
 
+@Entity
 public class RegistroEntrada {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idRegistroEntrada;
     private LocalDate fecha;
     private LocalTime hora;
     private String descripcion;
 
+    @OneToOne(mappedBy = "RegistroEntrada")
     private Asignacion asignacion;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     private Paciente paciente;
+
     private BoxAtencion boxAtencion;
     private Triage triage;
     private FuncionarioAdministrativo funcionarioAdministrativo;

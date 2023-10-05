@@ -1,5 +1,6 @@
 package model.Login;
 
+import jakarta.persistence.*;
 import lombok.*;
 import model.Funcionario;
 
@@ -10,30 +11,39 @@ import java.util.Objects;
 @Setter
 @NoArgsConstructor
 @ToString
-@EqualsAndHashCode
+
+@Entity
 public class Usuario {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUsuario;
+
     private String nombreUsuario;
-    private String contraseña;
+    private String contrasenia;
+
+    @OneToOne(mappedBy = "usuario")
     private Funcionario funcionario;
+
+    @ManyToMany(mappedBy = "usuarios")
     private List<Rol> roles;
 
-    public Usuario(String nombreUsuario, String contraseña, Funcionario funcionario, List<Rol> roles) {
+    public Usuario(String nombreUsuario, String contrasenia, Funcionario funcionario, List<Rol> roles) {
         this.nombreUsuario = nombreUsuario;
-        this.contraseña = contraseña;
+        this.contrasenia = contrasenia;
         this.funcionario = funcionario;
         this.roles = roles;
     }
 
-    public Usuario(String nombreUsuario, String contraseña, List<Rol> roles) {
+    public Usuario(String nombreUsuario, String contrasenia, List<Rol> roles) {
         this.nombreUsuario = nombreUsuario;
-        this.contraseña = contraseña;
+        this.contrasenia = contrasenia;
         this.roles = roles;
     }
 
-    public Usuario(String nombreUsuario, String contraseña, Funcionario funcionario) {
+    public Usuario(String nombreUsuario, String contrasenia, Funcionario funcionario) {
         this.nombreUsuario = nombreUsuario;
-        this.contraseña = contraseña;
+        this.contrasenia = contrasenia;
         this.funcionario = funcionario;
     }
 
@@ -44,12 +54,12 @@ public class Usuario {
      * @param contraseña
      * @return
      */
-    public boolean setContraseña(String contraseña) {
+    public boolean setContrasenia(String contraseña) {
         if (contraseña.length() >= 8 &&
                 contieneLetraMayuscula(contraseña) &&
                 contieneLetraMinuscula(contraseña) &&
                 contieneSimbolo(contraseña)) {
-            this.contraseña = contraseña;
+            this.contrasenia = contraseña;
             return true;
         } else {
             return false;

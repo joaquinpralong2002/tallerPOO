@@ -1,6 +1,7 @@
 package model;
 
 import lombok.*;
+import jakarta.persistence.*;
 
 @Getter
 @Setter
@@ -11,6 +12,9 @@ import lombok.*;
 public class ResultadoDiagnostico {
     private Long idResultadoDiagnostico;
     private String descripcion;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idPaciente")
     private Paciente paciente;
 
     public ResultadoDiagnostico(String descripcion){
