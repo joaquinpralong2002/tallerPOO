@@ -13,8 +13,8 @@ public interface CapacitadoTriage {
 
     /**
      * Metodo que modifica el color de un triage ya realizado
-     * @param p de tipo Paciente, sirve para saber el triage que se le va a cambiar el color
+     * @param t de tipo Triage, sirve para saber el triage que se le va a cambiar el color
      * @param motivo De tipo String, sirve para almacenar el motivo por el cual el color del triage fue modificado
      */
-    public void cambiarColorTriage(Paciente p, String motivo);
+    public void cambiarColorTriage(Triage t, ColorTriage c, String motivo);
 }

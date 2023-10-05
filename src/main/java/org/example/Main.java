@@ -11,6 +11,11 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
 
+
+
+
+
+
         //Pensa como: el funcionario entra al sistema, llega una persona y en la ventana donde crea el registro
         FuncionarioAdministrativo f1 = new FuncionarioAdministrativo();
 
