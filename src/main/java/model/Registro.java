@@ -1,5 +1,8 @@
 package model;
 
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.*;
 import model.Enum.LugarAtencion;
 
@@ -11,6 +14,8 @@ public class Registro {
     private Long idRegistro;
     private LugarAtencion lugarAtencion;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idPaciente")
     private Paciente paciente;
     private Medico medico;
 

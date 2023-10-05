@@ -3,22 +3,29 @@ package model;
 import java.time.LocalDate;
 import java.util.Objects;
 
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.MappedSuperclass;
 import lombok.*;
 import model.Enum.EstadoCivil;
+import org.hibernate.annotations.NaturalId;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @ToString
 
+@MappedSuperclass
 public class Persona {
     private Long idPersona;
     private String nombreApellido;
     private LocalDate fechaNacimiento;
     private String domicilio;
+    @NaturalId
     private int DNI;
     private int telefonoFijo;
     private long telefonoCelular;
+    @Enumerated(EnumType.STRING)
     private EstadoCivil estadoCivil;
     private String correo;
 

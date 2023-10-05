@@ -18,6 +18,8 @@ public class Asignacion {
     private LocalTime hora;
 
     private BoxAtencion boxAtencion;
+
+    @OneToOne(optional = false, fetch = FetchType.LAZY)
     private RegistroEntrada registroEntrada;
 
     public Asignacion(LocalDate fecha, LocalTime hora) {
