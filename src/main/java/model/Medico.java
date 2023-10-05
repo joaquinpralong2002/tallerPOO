@@ -1,4 +1,8 @@
 package model;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.*;
 import model.Enum.ColorTriage;
 import model.Enum.EstadoCivil;
@@ -15,8 +19,11 @@ import java.util.List;
 @Setter
 @ToString
 
+@Entity
 public class Medico extends Funcionario implements CapacitadoTriage{
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idMedico;
 
     private String numMatricula;

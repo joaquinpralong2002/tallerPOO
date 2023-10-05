@@ -1,5 +1,9 @@
 package model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.*;
 import model.Enum.ColorTriage;
 import model.Enum.EstadoCivil;
@@ -14,12 +18,16 @@ import java.util.List;
 @NoArgsConstructor
 @ToString
 
-
+@Entity
 public class Enfermero extends Funcionario implements CapacitadoTriage{
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idEnfermero;
+
     private List<Triage>triagesRealizados;
 
+    //constructor
     public Enfermero(String nombreApellido, LocalDate fechaNacimiento, String domicilio,
                      int DNI, int telefonoFijo, long telefonoCelular, EstadoCivil estadoCivil,
                      String correo, Usuario usuario, Sector sector) {
@@ -27,6 +35,11 @@ public class Enfermero extends Funcionario implements CapacitadoTriage{
         triagesRealizados = new LinkedList<>();
     }
 
+
+    /**
+     * @param r de tipo RegistroEntrada
+     * @return
+     */
     @Override
     public ColorTriage realizarTriage(RegistroEntrada r) {
         Triage triage = new Triage();

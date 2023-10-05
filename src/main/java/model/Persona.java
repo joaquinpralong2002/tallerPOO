@@ -17,7 +17,7 @@ import org.hibernate.annotations.NaturalId;
 
 @MappedSuperclass
 public class Persona {
-    private Long idPersona;
+
     private String nombreApellido;
     private LocalDate fechaNacimiento;
     private String domicilio;

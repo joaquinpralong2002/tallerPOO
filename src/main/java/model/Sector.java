@@ -10,13 +10,17 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode
 
+@Entity
 public class Sector {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idSector;
 
     private String nombre;
 
+    @OneToOne(mappedBy = "sector")
     private List<Funcionario> funcionarios;
 
     public Sector(String nombre){

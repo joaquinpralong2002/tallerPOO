@@ -1,7 +1,8 @@
 package model.Login;
 
+import jakarta.persistence.*;
 import lombok.*;
-import model.Login.Usuario;
+
 
 import java.util.List;
 import java.util.Objects;
@@ -10,10 +11,17 @@ import java.util.Objects;
 @Setter
 @NoArgsConstructor
 @ToString
-@EqualsAndHashCode
+
+@Entity
 public class Rol {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUsuario;
+
     private String nombre;
+
+    @ManyToMany(mappedBy = "roles")
     private List<Usuario> usuarios;
 
     @Override

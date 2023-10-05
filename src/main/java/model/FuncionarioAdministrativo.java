@@ -3,6 +3,11 @@ package model;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.*;
 import model.Enum.EstadoCivil;
 import model.Login.Usuario;
@@ -13,8 +18,13 @@ import model.Login.Usuario;
 @ToString
 @EqualsAndHashCode
 
+@Entity
 public class FuncionarioAdministrativo extends Funcionario{
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idFuncionarioAdministrativo;
+
     private List<RegistroEntrada> registrosEntradas = new ArrayList<>();
 
 

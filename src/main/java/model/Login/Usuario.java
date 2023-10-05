@@ -1,5 +1,6 @@
 package model.Login;
 
+import jakarta.persistence.*;
 import lombok.*;
 import model.Funcionario;
 
@@ -10,12 +11,21 @@ import java.util.Objects;
 @Setter
 @NoArgsConstructor
 @ToString
-@EqualsAndHashCode
+
+@Entity
 public class Usuario {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUsuario;
+
     private String nombreUsuario;
-    private String contraseña;
+    private String contrasenia;
+
+    @OneToOne(mappedBy = "usuario")
     private Funcionario funcionario;
+
+    @ManyToMany(mappedBy = "usuarios")
     private List<Rol> roles;
 
     public Usuario(String nombreUsuario, String contrasenia, Funcionario funcionario, List<Rol> roles) {

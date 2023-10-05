@@ -1,17 +1,17 @@
 package org.example;
 import model.*;
-import model.Enum.EstadoCivil;
-import model.EnumeracionesVariablesTriage.Respiracion;
-import org.hibernate.SessionFactory;
+import model.Enum.*;
+import model.EnumeracionesVariablesTriage.*;
+import model.Login.*;
+
 import util.GlobalSessionFactory;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class Main {
     public static void main(String[] args) {
+
         GlobalSessionFactory gsf = new GlobalSessionFactory();
         gsf.InitGlobalSessionFactory(args[0], args[1], args[2]);
 
