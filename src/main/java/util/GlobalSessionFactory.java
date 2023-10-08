@@ -24,7 +24,7 @@ public class GlobalSessionFactory {
                 .addAnnotatedClass(FuncionarioAdministrativo.class)
                 .addAnnotatedClass(Medico.class)
                 .addAnnotatedClass(Paciente.class)
-                .addAnnotatedClass(String.class)
+                .addAnnotatedClass(Persona.class)
                 .addAnnotatedClass(Registro.class)
                 .addAnnotatedClass(RegistroEntrada.class)
                 .addAnnotatedClass(ResultadoDiagnostico.class)

@@ -1,8 +1,5 @@
 package model;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 import model.Enum.ColorTriage;
 import model.Enum.EstadoCivil;
@@ -29,6 +26,8 @@ public class Medico extends Funcionario implements CapacitadoTriage{
     private String numMatricula;
 
     private List<Especialidad> especializaciones = new ArrayList<>();
+
+    @OneToMany(mappedBy = "medico")
     private List<BoxAtencion> boxesAtencion = new LinkedList<>();
     private List<Triage> triagesRealizados = new LinkedList<>();
 

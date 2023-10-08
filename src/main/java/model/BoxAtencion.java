@@ -13,17 +13,21 @@ import java.util.Objects;
 
 @Entity
 public class BoxAtencion {
+
     //El id de está clase será el número de box.
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int numero;
     private int capacidad;
     private boolean disponible;
 
-    @OneToOne(mappedBy = "Box")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "asignacion_id")
     private Asignacion asignacion;
 
-    @OneToOne(mappedBy = "Boxes")
+    @OneToMany(mappedBy = "boxAtencion")
     private List<RegistroEntrada> registrosEntradas;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     private Medico medico;
 
     public BoxAtencion(int numero, int capacidad, boolean disponible) {

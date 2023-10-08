@@ -4,10 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 import model.Enum.EstadoCivil;
 import model.Login.Usuario;
@@ -25,6 +22,7 @@ public class FuncionarioAdministrativo extends Funcionario{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idFuncionarioAdministrativo;
 
+    @OneToMany(mappedBy = "funcionarioAdministrativo")
     private List<RegistroEntrada> registrosEntradas = new ArrayList<>();
 
 
