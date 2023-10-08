@@ -26,8 +26,12 @@ public class RegistroEntrada {
     @ManyToOne(fetch = FetchType.LAZY)
     private Paciente paciente;
 
+    @ManyToOne(fetch = FetchType.LAZY)
     private BoxAtencion boxAtencion;
+
     private Triage triage;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     private FuncionarioAdministrativo funcionarioAdministrativo;
 
     //constructor con atributos popios de la clase
