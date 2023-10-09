@@ -1,9 +1,6 @@
 package model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 import model.Enum.ColorTriage;
 import model.Enum.EstadoCivil;
@@ -25,6 +22,7 @@ public class Enfermero extends Funcionario implements CapacitadoTriage{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idEnfermero;
 
+    @OneToMany(mappedBy = "triagiadorEnfermero", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Triage>triagesRealizados;
 
     //constructor
