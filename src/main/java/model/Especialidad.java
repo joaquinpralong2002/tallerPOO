@@ -12,6 +12,7 @@ import java.time.LocalDate;
 @ToString
 @EqualsAndHashCode
 
+@Entity
 public class Especialidad {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,6 +25,8 @@ public class Especialidad {
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "idUniversidad")
     private Universidad universidad;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Medico medico;
 
     public Especialidad(String nombre, LocalDate fecha) {

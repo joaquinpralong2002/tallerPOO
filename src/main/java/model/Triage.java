@@ -1,5 +1,6 @@
 package model;
 
+import jakarta.persistence.*;
 import model.EnumeracionesVariablesTriage.*;
 import model.Enum.ColorTriage;
 
@@ -11,37 +12,75 @@ import lombok.*;
 @ToString
 @EqualsAndHashCode
 
+@Entity
 public class Triage{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idTriage;
+
+    @Enumerated(EnumType.STRING)
     private Respiracion respiracion;
+
+    @Enumerated(EnumType.STRING)
     private Pulso pulso;
     private int vaLorPulso;
+
+    @Enumerated(EnumType.STRING)
     private EstadoMental estadoMental;
+
+    @Enumerated(EnumType.STRING)
     private Conciencia conciencia;
+
+    @Enumerated(EnumType.STRING)
     private DolorPecho dolorPecho;
+
+    @Enumerated(EnumType.STRING)
     private LecionesGraves lesionGrave;
+
+    @Enumerated(EnumType.STRING)
     private Edad edad;
     private int valorEdad;
+
+    @Enumerated(EnumType.STRING)
     private Fiebre fiebre;
     private float valorFiebre;
+
+    @Enumerated(EnumType.STRING)
     private Vomitos vomito;
+
+    @Enumerated(EnumType.STRING)
     private DolorAbdominal dolorAbdominal;
+
+    @Enumerated(EnumType.STRING)
     private SignoShock signoShock;
+
+    @Enumerated(EnumType.STRING)
     private LesionLeve lesionesLeves;
+
+    @Enumerated(EnumType.STRING)
     private Sangrado sangrado;
+
+    @Enumerated(EnumType.STRING)
     private ColorTriage colorTriageRecomendado;
+
+    @Enumerated(EnumType.STRING)
     private ColorTriage colorTriageFinal;
     private String motivoCambioTriage;
+
+    @OneToOne(mappedBy = "triage", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private RegistroEntrada registroEntrada;
-    private Medico triagiadorMec;
-    private Enfermero triagiadorEnf;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Medico triagiadorMedico;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Enfermero triagiadorEnfermero;
 
     public Triage(Respiracion respiracion, Pulso pulso, int vaLorPulso,
                   EstadoMental estadoMental, Conciencia conciencia, DolorPecho dolorPecho,
                   LecionesGraves lesionGrave, Edad edad, int valorEdad, Fiebre fiebre,
                   float valorFiebre, Vomitos vomito, DolorAbdominal dolorAbdominal, SignoShock signoShock,
-                  LesionLeve lesionesLeves, Sangrado sangrado, ColorTriage colorTriageRecomendado,
-                  ColorTriage colorTriageFinal, String motivoCambioTriage, RegistroEntrada registroEntrada) {
+                  LesionLeve lesionesLeves, Sangrado sangrado) {
         this.respiracion = respiracion;
         this.pulso = pulso;
         this.vaLorPulso = vaLorPulso;
@@ -58,10 +97,6 @@ public class Triage{
         this.signoShock = signoShock;
         this.lesionesLeves = lesionesLeves;
         this.sangrado = sangrado;
-        this.colorTriageRecomendado = colorTriageRecomendado;
-        this.colorTriageFinal = colorTriageFinal;
-        this.motivoCambioTriage = motivoCambioTriage;
-        this.registroEntrada = registroEntrada;
     }
 
     public void calcularColorTriageRecomendado(){

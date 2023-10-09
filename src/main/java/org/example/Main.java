@@ -7,6 +7,7 @@ import model.Login.*;
 import util.GlobalSessionFactory;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 
 public class Main {
@@ -37,6 +38,7 @@ public class Main {
         //Ahora un medico o enfermero X lo llama para realizar el triage, ya esta en la ventana del programa para realizar el triage
         Universidad universidad = new Universidad("Uner");
         Especialidad ep = new Especialidad("Cardiologia Clinica",LocalDate.of(2014,5,11));
+        BoxAtencion box1 = new BoxAtencion(1,2,true);
         ep.setUniversidad(universidad);
         Medico m1 = new Medico("Pepito Moreno",
                 LocalDate.of(1987,2,20),

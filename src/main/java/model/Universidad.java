@@ -1,6 +1,8 @@
 package model;
 
+import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.NaturalId;
 
 import java.util.List;
 
@@ -10,13 +12,17 @@ import java.util.List;
 @ToString
 @EqualsAndHashCode
 
+@Entity
 public class Universidad {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUniversidad;
 
     @NaturalId
     private String nombre;
 
+    @OneToMany(mappedBy = "universidad", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Especialidad> especializaciones;
 
     public Universidad(String nombre){

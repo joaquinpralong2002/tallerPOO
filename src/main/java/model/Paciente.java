@@ -13,6 +13,7 @@ import java.util.List;
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 
+@Entity
 public class Paciente extends Persona{
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPaciente;

@@ -7,6 +7,7 @@ import model.EnumeracionesVariablesTriage.*;
 import model.Login.Usuario;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -25,10 +26,13 @@ public class Medico extends Funcionario implements CapacitadoTriage{
 
     private String numMatricula;
 
+    @OneToMany(mappedBy = "medico", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Especialidad> especializaciones = new ArrayList<>();
 
-    @OneToMany(mappedBy = "medico")
+    @OneToMany(mappedBy = "medico", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<BoxAtencion> boxesAtencion = new LinkedList<>();
+
+    @OneToMany(mappedBy = "triagiadorMedico", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Triage> triagesRealizados = new LinkedList<>();
 
     Medico(String matricula){
@@ -119,6 +123,14 @@ public class Medico extends Funcionario implements CapacitadoTriage{
     @Override
     public void cambiarColorTriage(Triage triage, ColorTriage color, String motivo) {
         triage.modificarColorTriageFinal(color, motivo);
+    }
+
+    public void atenderPaciente(Paciente p, BoxAtencion box, RegistroEntrada reg){
+        Asignacion asig = new Asignacion(LocalDate.now(), LocalTime.now(),box,reg);
+        box.agregarEntrada(reg);
+        box.setAsignacion(asig);
+        box.setMedico(this);
+        box.setDisponible(false);
     }
 
     public int cantidadPacientesAtendidos(LocalDate fecha1, LocalDate fecha2){
