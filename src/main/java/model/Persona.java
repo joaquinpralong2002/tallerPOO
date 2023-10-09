@@ -14,7 +14,7 @@ import org.hibernate.annotations.NaturalId;
 @ToString
 
 @MappedSuperclass
-public class Persona {
+public abstract class Persona {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombreApellido;

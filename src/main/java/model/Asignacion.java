@@ -28,10 +28,6 @@ public class Asignacion {
     @JoinColumn(name = "idAsignacion")
     private RegistroEntrada registroEntrada;
 
-    public Asignacion(LocalDate fecha, LocalTime hora) {
-        this.fecha = fecha;
-        this.hora = hora;
-    }
 
     public Asignacion(BoxAtencion boxAtencion,
                       RegistroEntrada registroEntrada) {
