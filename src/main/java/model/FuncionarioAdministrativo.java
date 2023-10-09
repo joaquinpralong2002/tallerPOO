@@ -18,9 +18,6 @@ import model.Login.Usuario;
 @Entity
 public class FuncionarioAdministrativo extends Funcionario{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idFuncionarioAdministrativo;
 
     @OneToMany(mappedBy = "funcionarioAdministrativo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<RegistroEntrada> registrosEntradas = new ArrayList<>();

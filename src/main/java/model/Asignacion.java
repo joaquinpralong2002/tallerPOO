@@ -33,10 +33,10 @@ public class Asignacion {
         this.hora = hora;
     }
 
-    public Asignacion(LocalDate fecha, LocalTime hora, BoxAtencion boxAtencion,
+    public Asignacion(BoxAtencion boxAtencion,
                       RegistroEntrada registroEntrada) {
-        this.fecha = fecha;
-        this.hora = hora;
+        this.fecha = LocalDate.now();
+        this.hora = LocalTime.now();
         this.boxAtencion = boxAtencion;
         this.registroEntrada = registroEntrada;
     }

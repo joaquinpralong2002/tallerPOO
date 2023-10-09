@@ -17,12 +17,20 @@ public class Rol {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idUsuario;
+    private Long idRol;
 
     private String nombre;
 
     @ManyToMany(mappedBy = "roles")
     private List<Usuario> usuarios;
+
+    public Rol(String nombre){
+        this.nombre = nombre;
+    }
+    public Rol(String nombre, List<Usuario> usuarios) {
+        this.nombre = nombre;
+        this.usuarios = usuarios;
+    }
 
     @Override
     public boolean equals(Object o) {

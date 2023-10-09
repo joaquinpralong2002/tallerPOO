@@ -9,7 +9,9 @@ import jakarta.persistence.*;
 @ToString
 @EqualsAndHashCode
 
+@Entity
 public class ResultadoDiagnostico {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idResultadoDiagnostico;
     private String descripcion;
 

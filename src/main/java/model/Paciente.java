@@ -15,8 +15,6 @@ import java.util.List;
 
 @Entity
 public class Paciente extends Persona{
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idPaciente;
     private String personaContacto;
 
     @OneToMany(mappedBy = "paciente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

@@ -34,6 +34,12 @@ public class Especialidad {
         this.fecha = fecha;
     }
 
+    public Especialidad(String nombre, LocalDate fecha, Universidad universidad) {
+        this.nombre = nombre;
+        this.fecha = fecha;
+        this.universidad = universidad;
+    }
+
     public Especialidad(String nombre, LocalDate fecha, Universidad universidad, Medico medico) {
         this.nombre = nombre;
         this.fecha = fecha;

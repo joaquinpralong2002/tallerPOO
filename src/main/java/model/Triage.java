@@ -67,7 +67,7 @@ public class Triage{
     private ColorTriage colorTriageFinal;
     private String motivoCambioTriage;
 
-    @OneToOne(mappedBy = "triage", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne
     private RegistroEntrada registroEntrada;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

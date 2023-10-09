@@ -18,10 +18,6 @@ import java.util.List;
 @Entity
 public class Enfermero extends Funcionario implements CapacitadoTriage{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idEnfermero;
-
     @OneToMany(mappedBy = "triagiadorEnfermero", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Triage>triagesRealizados;
 
