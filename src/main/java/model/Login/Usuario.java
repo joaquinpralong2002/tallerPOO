@@ -28,6 +28,11 @@ public class Usuario {
     @ManyToMany(mappedBy = "usuarios")
     private List<Rol> roles;
 
+    public Usuario(String nombreUsuario, String contrasenia) {
+        this.nombreUsuario = nombreUsuario;
+        this.contrasenia = contrasenia;
+    }
+
     public Usuario(String nombreUsuario, String contrasenia, Funcionario funcionario, List<Rol> roles) {
         this.nombreUsuario = nombreUsuario;
         this.contrasenia = contrasenia;

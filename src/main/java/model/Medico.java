@@ -19,15 +19,11 @@ import java.util.List;
 
 @Entity
 public class Medico extends Funcionario implements CapacitadoTriage{
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idMedico;
-
     private String numMatricula;
 
+
     @OneToMany(mappedBy = "medico", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Especialidad> especializaciones = new ArrayList<>();
+    private List<Especialidad> especializaciones;
 
     @OneToMany(mappedBy = "medico", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<BoxAtencion> boxesAtencion = new LinkedList<>();
@@ -39,14 +35,9 @@ public class Medico extends Funcionario implements CapacitadoTriage{
         this.numMatricula = matricula;
     }
 
-    Medico(String matricula, List<Especialidad> e){
-        this.numMatricula = matricula;
-        this.especializaciones = e;
-    }
-
     public Medico(String nombreApellido, LocalDate fechaNacimiento, String domicilio, int DNI,
                   int telefonoFijo, long telefonoCelular, EstadoCivil estadoCivil, String correo,
-                  Usuario usuario, Sector sector, String numMatricula, ArrayList<Especialidad> especializaciones) {
+                  Usuario usuario, Sector sector, String numMatricula, List<Especialidad> especializaciones) {
         super(nombreApellido, fechaNacimiento, domicilio,
               DNI, telefonoFijo, telefonoCelular, estadoCivil, correo, usuario, sector);
         this.numMatricula = numMatricula;
@@ -126,7 +117,7 @@ public class Medico extends Funcionario implements CapacitadoTriage{
     }
 
     public void atenderPaciente(Paciente p, BoxAtencion box, RegistroEntrada reg){
-        Asignacion asig = new Asignacion(LocalDate.now(), LocalTime.now(),box,reg);
+        Asignacion asig = new Asignacion(box,reg);
         box.agregarEntrada(reg);
         box.setAsignacion(asig);
         box.setMedico(this);

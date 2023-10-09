@@ -29,7 +29,7 @@ public class RegistroEntrada {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private BoxAtencion boxAtencion;
 
-    @OneToOne(mappedBy = "registroEntrada", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "registroEntrada", cascade = CascadeType.ALL)
     private Triage triage;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

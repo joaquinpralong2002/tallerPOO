@@ -20,7 +20,7 @@ public class Sector {
 
     private String nombre;
 
-    @OneToOne(mappedBy = "sector", fetch = FetchType.LAZY)
+    @OneToMany
     private List<Funcionario> funcionarios;
 
     public Sector(String nombre){

@@ -16,10 +16,6 @@ import java.time.LocalDate;
 @Entity
 public class Funcionario extends Persona{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idFuncionario;
-
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Usuario usuario;
 
