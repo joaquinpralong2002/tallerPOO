@@ -19,14 +19,15 @@ public class Paciente extends Persona{
     private Long idPaciente;
     private String personaContacto;
 
-    @OneToMany(mappedBy = "paciente")
+    @OneToMany(mappedBy = "paciente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<ResultadoDiagnostico> resultadosDiagnosticos;
 
-    @OneToMany(mappedBy = "paciente")
+    @OneToMany(mappedBy = "paciente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<RegistroEntrada> registrosEntradas = new ArrayList<>();
 
-    @OneToMany(mappedBy = "paciente")
+    @OneToMany(mappedBy = "paciente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Registro> registros;
+
 
     //sugerir cambiar tipo de persona de contacto a int q sea un numero de telefono
     public Paciente(String nombreApellido, LocalDate fechaNacimiento, String domicilio, int DNI,
@@ -71,5 +72,7 @@ public class Paciente extends Persona{
     public void agregarRegistroEntrada(RegistroEntrada registro){
         registrosEntradas.add(registro);
     }
+
+    public void agregarRegistros(Registro registro){registros.add(registro);}
 
 }
