@@ -3,9 +3,9 @@ import jakarta.persistence.*;
 import lombok.*;
 import model.Enum.ColorTriage;
 import model.Enum.EstadoCivil;
+import model.EnumeracionesVariablesTriage.*;
 import model.Login.Usuario;
 
-import java.awt.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -103,7 +103,7 @@ public class Medico extends Funcionario implements CapacitadoTriage{
         //asignarle al paciente p el triage
         //asignarle al medico el triage
 
-        Triage triage = new Triage();
+        Triage triage = new Triage(Respiracion.Normal, Pulso.Normal, 80, EstadoMental.Normal, Conciencia.Consciente, DolorPecho.NoPresnte, LecionesGraves.NoPresentes, Edad.NinioAnciano, 85, Fiebre.Moderada, (float)38.5, Vomitos.SinVomito, DolorAbdominal.NoPresente, SignoShock.NoPresente, LesionLeve.NoPresente, Sangrado.NoPresente);
         triage.calcularColorTriageRecomendado();
         r.setTriage(triage);
         this.triagesRealizados.add(triage);

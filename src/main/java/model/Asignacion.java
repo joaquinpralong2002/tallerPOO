@@ -21,11 +21,11 @@ public class Asignacion {
     private LocalDate fecha;
     private LocalTime hora;
 
-    @OneToOne(mappedBy = "asignacion")
+    @OneToOne(mappedBy = "asignacion", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private BoxAtencion boxAtencion;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "registroE_id")
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "idAsignacion")
     private RegistroEntrada registroEntrada;
 
     public Asignacion(LocalDate fecha, LocalTime hora) {

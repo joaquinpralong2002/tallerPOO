@@ -3,6 +3,7 @@ package model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -15,17 +16,18 @@ import java.util.Objects;
 public class BoxAtencion {
 
     //El id de está clase será el número de box.
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int numero;
     private int capacidad;
     private boolean disponible;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "asignacion_id")
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "idAsignacion")
     private Asignacion asignacion;
 
-    @OneToMany(mappedBy = "boxAtencion")
-    private List<RegistroEntrada> registrosEntradas;
+    @OneToMany(mappedBy = "boxAtencion", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<RegistroEntrada> registrosEntradas = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Medico medico;

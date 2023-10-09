@@ -1,6 +1,8 @@
 package model;
 
+import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.NaturalId;
 
 import java.time.LocalDate;
 
@@ -12,11 +14,15 @@ import java.time.LocalDate;
 
 public class Especialidad {
 
-    private Long idEspecializacion;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idEspecialidad;
 
+    @NaturalId
     private String nombre;
     private LocalDate fecha;
 
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "idUniversidad")
     private Universidad universidad;
     private Medico medico;
 

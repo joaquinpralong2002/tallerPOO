@@ -20,18 +20,19 @@ public class RegistroEntrada {
     private LocalTime hora;
     private String descripcion;
 
-    @OneToOne(mappedBy = "RegistroEntrada")
+    @OneToOne(mappedBy = "registroEntrada", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Asignacion asignacion;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Paciente paciente;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private BoxAtencion boxAtencion;
 
+    @OneToOne(mappedBy = "registroEntrada", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Triage triage;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private FuncionarioAdministrativo funcionarioAdministrativo;
 
     //constructor con atributos popios de la clase

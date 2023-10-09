@@ -22,7 +22,7 @@ public class FuncionarioAdministrativo extends Funcionario{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idFuncionarioAdministrativo;
 
-    @OneToMany(mappedBy = "funcionarioAdministrativo")
+    @OneToMany(mappedBy = "funcionarioAdministrativo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<RegistroEntrada> registrosEntradas = new ArrayList<>();
 
 
