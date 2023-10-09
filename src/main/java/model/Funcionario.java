@@ -20,13 +20,11 @@ public class Funcionario extends Persona{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idFuncionario;
 
-
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Usuario usuario;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Sector sector;
-
 
     //constructor
     public Funcionario(String nombreApellido, LocalDate fechaNacimiento, String domicilio,
@@ -38,6 +36,4 @@ public class Funcionario extends Persona{
         this.usuario = usuario;
         this.sector = sector;
     }
-
-
 }

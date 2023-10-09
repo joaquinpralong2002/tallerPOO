@@ -11,9 +11,10 @@ import java.time.LocalDate;
 
 public class Main {
     public static void main(String[] args) {
-
-        GlobalSessionFactory gsf = new GlobalSessionFactory();
-        gsf.InitGlobalSessionFactory(args[0], args[1], args[2]);
+        
+        //objetos ramdom pa probar
+        Asignacion asignacion1 = new Asignacion(LocalDate.now(), LocalTime.now());
+        Enfermero enf1 = new Enfermero();
 
 
         //Pensa como: el funcionario entra al sistema, llega una persona y en la ventana donde crea el registro
@@ -57,6 +58,20 @@ public class Main {
         //si el que realizo el triage cambia el resultado setear el motivo y el color nuevo
 
         //ponele q el mismo medico va a atender ese paciente, el medico vera una lista de pacientes en la ventana y va a decidir atenderlo
-        //se enviara a un administrativo que el medico quiere atender a tal paciente y se pasan todos los registros, selecciona y asigna un box disponible
+        m1.atenderPaciente(p1, box1,p1.getRegistrosEntradas().get(0));
+
+
+
+        GlobalSessionFactory gsf = new GlobalSessionFactory();
+        //gsf.InitGlobalSessionFactory(args[0], args[1], args[2]);
+        gsf.InitGlobalSessionFactory("usuario","basededatostallerpoo123","jdbc:mysql://localhost:3306/tallerdb", "org.hibernate.dialect.MySQLDialect");
+        gsf.getSessionFactory().inTransaction(session -> {
+            session.persist(f1);
+            session.persist(p1);
+            session.persist(universidad);
+            session.persist(ep);
+            session.persist(box1);
+            session.persist(m1);
+        });
     }
 }

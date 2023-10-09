@@ -3,9 +3,7 @@ package model;
 import java.time.LocalDate;
 import java.util.Objects;
 
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.*;
 import lombok.*;
 import model.Enum.EstadoCivil;
 import org.hibernate.annotations.NaturalId;
@@ -17,7 +15,8 @@ import org.hibernate.annotations.NaturalId;
 
 @MappedSuperclass
 public class Persona {
-
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String nombreApellido;
     private LocalDate fechaNacimiento;
     private String domicilio;

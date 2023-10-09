@@ -14,6 +14,7 @@ public class Universidad {
 
     private Long idUniversidad;
 
+    @NaturalId
     private String nombre;
 
     private List<Especialidad> especializaciones;

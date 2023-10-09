@@ -13,7 +13,7 @@ import static java.lang.Boolean.TRUE;
 @Getter
 public class GlobalSessionFactory {
     private SessionFactory sessionFactory;
-    public void InitGlobalSessionFactory(String usuario, String contraseña, String url){
+    public void InitGlobalSessionFactory(String usuario, String contraseña, String url, String dialecto){
         this.sessionFactory = new Configuration()
                 //Clases mapeadas
                 .addAnnotatedClass(Asignacion.class)
@@ -32,13 +32,13 @@ public class GlobalSessionFactory {
                 .addAnnotatedClass(Triage.class)
                 .addAnnotatedClass(Universidad.class)
                 //url
-                .setProperty(AvailableSettings.JAKARTA_JDBC_URL, url)
+                .setProperty(AvailableSettings.URL, url)
                 // Credenciales
-                .setProperty(AvailableSettings.JAKARTA_JDBC_USER, usuario)
-                .setProperty(AvailableSettings.JAKARTA_JDBC_PASSWORD, contraseña)
+                .setProperty(AvailableSettings.USER, usuario)
+                .setProperty(AvailableSettings.PASS, contraseña)
+                .setProperty(AvailableSettings.DIALECT, dialecto)
+                .setProperty(AvailableSettings.DRIVER, "com.mysql.cj.jdbc.Driver")
                 // Automatic schema export
-                .setProperty(AvailableSettings.JAKARTA_HBM2DDL_DATABASE_ACTION,
-                        Action.SPEC_ACTION_DROP_AND_CREATE)
                 // SQL logging
                 .setProperty(AvailableSettings.SHOW_SQL, TRUE.toString())
                 .setProperty(AvailableSettings.FORMAT_SQL, TRUE.toString())

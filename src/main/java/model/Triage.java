@@ -5,8 +5,6 @@ import model.Enum.ColorTriage;
 
 import lombok.*;
 
-import java.awt.*;
-
 @NoArgsConstructor
 @Getter
 @Setter
