@@ -13,7 +13,7 @@ public class ResultadoDiagnostico {
     private Long idResultadoDiagnostico;
     private String descripcion;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "idPaciente")
     private Paciente paciente;
 
