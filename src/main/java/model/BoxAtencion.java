@@ -3,9 +3,7 @@ package model;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Getter
 @Setter
@@ -17,25 +15,21 @@ public class BoxAtencion {
 
     //El id de está clase será el número de box.
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int numero;
     private int capacidad;
     private boolean disponible;
 
-    @OneToOne(mappedBy = "registroEntrada", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Asignacion asignacion;
 
-    @OneToMany(mappedBy = "boxAtencion", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<RegistroEntrada> registrosEntradas;
-
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Medico medico;
 
-    public BoxAtencion(int numero, int capacidad, boolean disponible) {
-        this.numero = numero;
+    @OneToMany(mappedBy = "boxAtencion", orphanRemoval = true)
+    private Set<Asignacion> asignaciones = new LinkedHashSet<>();
+
+    public BoxAtencion(int capacidad, boolean disponible) {
         this.capacidad = capacidad;
         this.disponible = disponible;
-        registrosEntradas = new ArrayList<>();
     }
 //Sugerir borrar los primeros  3 atributos
 //    public BoxAtencion(int numero, int capacidad, boolean disponible, Asignacion asignacion,
@@ -48,8 +42,9 @@ public class BoxAtencion {
 //        this.medico = medico;
 //    }
 
-    public void agregarEntrada(RegistroEntrada registro){
-        registrosEntradas.add(registro);
+
+    public void agregarAsignacion(Asignacion asignacion){
+        this.asignaciones.add(asignacion);
     }
 
     @Override
