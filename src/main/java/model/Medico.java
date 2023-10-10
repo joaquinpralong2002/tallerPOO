@@ -30,9 +30,7 @@ public class Medico extends Funcionario implements CapacitadoTriage{
     @OneToMany(mappedBy = "triagiadorMedico", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Triage> triagesRealizados;
 
-    Medico(String matricula){
-        this.numMatricula = matricula;
-    }
+
 
     public Medico(String nombreApellido, LocalDate fechaNacimiento, String domicilio, int DNI,
                   int telefonoFijo, long telefonoCelular, EstadoCivil estadoCivil, String correo,

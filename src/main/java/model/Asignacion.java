@@ -21,7 +21,7 @@ public class Asignacion {
     private LocalDate fecha;
     private LocalTime hora;
 
-    @OneToOne(mappedBy = "asignacion", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private BoxAtencion boxAtencion;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
