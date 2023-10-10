@@ -19,7 +19,8 @@ import java.util.List;
 public class Enfermero extends Funcionario implements CapacitadoTriage{
 
     @OneToMany(mappedBy = "triagiadorEnfermero", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Triage>triagesRealizados;
+    private List<Triage> triagesRealizados;
+
 
     //constructor
     public Enfermero(String nombreApellido, LocalDate fechaNacimiento, String domicilio,

@@ -24,7 +24,7 @@ public class Medico extends Funcionario implements CapacitadoTriage{
     @OneToMany(mappedBy = "medico", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Especialidad> especializaciones;
 
-    @OneToMany(mappedBy = "medico", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "medico", fetch = FetchType.LAZY)
     private List<BoxAtencion> boxesAtencion;
 
     @OneToMany(mappedBy = "triagiadorMedico", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -119,9 +119,8 @@ public class Medico extends Funcionario implements CapacitadoTriage{
     }
 
     public void atenderPaciente(Paciente p, BoxAtencion box, RegistroEntrada reg){
-        Asignacion asig = new Asignacion(box,reg);
-        box.agregarEntrada(reg);
-        box.setAsignacion(asig);
+        Asignacion asig = new Asignacion(reg, box);
+        box.agregarAsignacion(asig);
         box.setMedico(this);
         box.setDisponible(false);
     }

@@ -97,10 +97,10 @@ public class Main {
         funAdmin.RealizarRegistroEntrada(paciente,"Dolor de cabeza y fiebre");
 
         //*********Box de atencion por defecto del hospital*********
-        BoxAtencion boxAtencion = new BoxAtencion(1,30,true);
+        BoxAtencion boxAtencion = new BoxAtencion(30,true);
 
         //*********Registro de la asignacion hacia el box de atencion*********
-        Asignacion asignacion = new Asignacion(boxAtencion, funAdmin.getRegistrosEntradas().get(0));
+        Asignacion asignacion = new Asignacion(funAdmin.getRegistrosEntradas().get(0), boxAtencion);
 
         //*******************CREACION DEL MEDICO******************************
         //*******************MEDICOOOOOOO***********************************
@@ -169,6 +169,7 @@ public class Main {
                 .setProperty(AvailableSettings.SHOW_SQL, TRUE.toString())
                 .setProperty(AvailableSettings.FORMAT_SQL, TRUE.toString())
                 .setProperty(AvailableSettings.HIGHLIGHT_SQL, TRUE.toString())
+                .setProperty(AvailableSettings.HBM2DDL_AUTO, "create-drop")
                 // Creación de SessionFactory
                 .buildSessionFactory();
         //GlobalSessionFactory gsf = new GlobalSessionFactory();
@@ -182,14 +183,10 @@ public class Main {
             session.persist(sector);
             session.persist(funAdmin);
             session.persist(funAdmin.getRegistrosEntradas().get(0));
-            session.persist(asignacion);
             session.persist(rolMedico);
             session.persist(usuarioMedico);
             session.persist(sectorMedico);
             session.persist(universidadMedico);
-            session.persist(especialidad);
-            session.persist(medico);
-            session.persist(registro);
             session.persist(resultadoDiagnostico);
         });
     }

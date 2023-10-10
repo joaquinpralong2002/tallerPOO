@@ -2,6 +2,7 @@ package model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -20,20 +21,23 @@ public class RegistroEntrada {
     private LocalTime hora;
     private String descripcion;
 
-    @OneToOne(mappedBy = "registroEntrada", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Asignacion asignacion;
+
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Paciente paciente;
-
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private BoxAtencion boxAtencion;
 
     @OneToOne(mappedBy = "registroEntrada", cascade = CascadeType.ALL)
     private Triage triage;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private FuncionarioAdministrativo funcionarioAdministrativo;
+
+    @OneToOne(mappedBy = "registroEntrada", optional = false, orphanRemoval = true)
+    private Asignacion asignacion;
+
+    public void setAsignacion(Asignacion asignacion) {
+        this.asignacion = asignacion;
+    }
 
     //constructor con atributos popios de la clase
     public RegistroEntrada(String descripcion) {
@@ -60,39 +64,26 @@ public class RegistroEntrada {
         this.paciente = paciente;
     }
 
-    //constructor con atributo BoxAtencion agregado
-    public RegistroEntrada(String descripcion,Asignacion asignacion,
-                           Paciente paciente, BoxAtencion boxAtencion) {
-        this.fecha = LocalDate.now();
-        this.hora = LocalTime.now();
-        this.descripcion = descripcion;
-        this.asignacion = asignacion;
-        this.paciente = paciente;
-        this.boxAtencion = boxAtencion;
-    }
-
     //constructor con atributo Triage agregado
     public RegistroEntrada(String descripcion,Asignacion asignacion,
-                           Paciente paciente, BoxAtencion boxAtencion, Triage triage) {
+                           Paciente paciente, Triage triage) {
         this.fecha = LocalDate.now();
         this.hora = LocalTime.now();
         this.descripcion = descripcion;
         this.asignacion = asignacion;
         this.paciente = paciente;
-        this.boxAtencion = boxAtencion;
         this.triage = triage;
     }
 
     //constructor con atributo FuncionarioAdministrativo agregado
     public RegistroEntrada(String descripcion,Asignacion asignacion,
-                           Paciente paciente, BoxAtencion boxAtencion, Triage triage,
+                           Paciente paciente, Triage triage,
                            FuncionarioAdministrativo funcionarioAdministrativo) {
         this.fecha = LocalDate.now();
         this.hora = LocalTime.now();
         this.descripcion = descripcion;
         this.asignacion = asignacion;
         this.paciente = paciente;
-        this.boxAtencion = boxAtencion;
         this.triage = triage;
         this.funcionarioAdministrativo = funcionarioAdministrativo;
     }
