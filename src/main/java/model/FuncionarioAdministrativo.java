@@ -20,13 +20,13 @@ public class FuncionarioAdministrativo extends Funcionario{
 
 
     @OneToMany(mappedBy = "funcionarioAdministrativo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<RegistroEntrada> registrosEntradas = new ArrayList<>();
+    private List<RegistroEntrada> registrosEntradas;
 
 
 
     public FuncionarioAdministrativo(String nombreApellido, LocalDate fechaNacimiento, String domicilio, int DNI, int telefonoFijo, long telefonoCelular, EstadoCivil estadoCivil, String correo, Usuario usuario, Sector sector) {
         super(nombreApellido, fechaNacimiento, domicilio, DNI, telefonoFijo, telefonoCelular, estadoCivil, correo, usuario, sector);
-
+        registrosEntradas = new ArrayList<>();
     }
 
     public void RealizarRegistroEntrada(Paciente p,String descripcion){

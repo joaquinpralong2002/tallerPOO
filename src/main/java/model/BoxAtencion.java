@@ -22,20 +22,20 @@ public class BoxAtencion {
     private int capacidad;
     private boolean disponible;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "idAsignacion")
+    @OneToOne(mappedBy = "registroEntrada", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Asignacion asignacion;
 
     @OneToMany(mappedBy = "boxAtencion", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<RegistroEntrada> registrosEntradas = new ArrayList<>();
+    private List<RegistroEntrada> registrosEntradas;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Medico medico;
 
     public BoxAtencion(int numero, int capacidad, boolean disponible) {
         this.numero = numero;
         this.capacidad = capacidad;
         this.disponible = disponible;
+        registrosEntradas = new ArrayList<>();
     }
 //Sugerir borrar los primeros  3 atributos
 //    public BoxAtencion(int numero, int capacidad, boolean disponible, Asignacion asignacion,

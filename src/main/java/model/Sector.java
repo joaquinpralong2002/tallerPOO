@@ -20,7 +20,7 @@ public class Sector {
 
     private String nombre;
 
-    @OneToMany
+    @OneToMany(mappedBy = "sector")
     private List<Funcionario> funcionarios;
 
     public Sector(String nombre){

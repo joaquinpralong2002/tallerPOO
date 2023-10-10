@@ -4,13 +4,13 @@ import jakarta.persistence.*;
 import lombok.*;
 import model.Funcionario;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString
 
 @Entity
 public class Usuario {
@@ -25,12 +25,18 @@ public class Usuario {
     @OneToOne(mappedBy = "usuario")
     private Funcionario funcionario;
 
-    @ManyToMany(mappedBy = "usuarios")
+    @ManyToMany
+    @JoinTable(
+            name = "usuarios_roles",
+            joinColumns = @JoinColumn(name = "idUsuario"),
+            inverseJoinColumns = @JoinColumn(name = "idRol")
+    )
     private List<Rol> roles;
 
     public Usuario(String nombreUsuario, String contrasenia) {
         this.nombreUsuario = nombreUsuario;
         this.contrasenia = contrasenia;
+        this.roles = new ArrayList<>();
     }
 
     public Usuario(String nombreUsuario, String contrasenia, Funcionario funcionario, List<Rol> roles) {
@@ -50,6 +56,7 @@ public class Usuario {
         this.nombreUsuario = nombreUsuario;
         this.contrasenia = contrasenia;
         this.funcionario = funcionario;
+        this.roles = new ArrayList<>();
     }
 
 
@@ -144,5 +151,13 @@ public class Usuario {
 
     void setRol(Rol l){
         if(!roles.contains(l)) roles.add(l);
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "nombreUsuario='" + nombreUsuario + '\'' +
+                ", contrasenia='" + contrasenia + '\'' +
+                '}';
     }
 }
