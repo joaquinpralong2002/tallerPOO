@@ -22,11 +22,9 @@ public class Registro {
     private LugarAtencion lugarAtencion;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "idPaciente")
     private Paciente paciente;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "idMedico")
     private Medico medico;
 
     public Registro(LugarAtencion lugarAtencion, Paciente paciente, Medico medico){

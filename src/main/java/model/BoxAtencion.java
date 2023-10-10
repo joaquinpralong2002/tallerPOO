@@ -27,7 +27,7 @@ public class BoxAtencion {
     private Asignacion asignacion;
 
     @OneToMany(mappedBy = "boxAtencion", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<RegistroEntrada> registrosEntradas = new ArrayList<>();
+    private List<RegistroEntrada> registrosEntradas;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Medico medico;
@@ -36,6 +36,7 @@ public class BoxAtencion {
         this.numero = numero;
         this.capacidad = capacidad;
         this.disponible = disponible;
+        registrosEntradas = new ArrayList<>();
     }
 //Sugerir borrar los primeros  3 atributos
 //    public BoxAtencion(int numero, int capacidad, boolean disponible, Asignacion asignacion,

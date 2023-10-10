@@ -10,7 +10,6 @@ import java.util.Objects;
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString
 
 @Entity
 public class Rol {
@@ -43,5 +42,12 @@ public class Rol {
     @Override
     public int hashCode() {
         return Objects.hash(nombre);
+    }
+
+    @Override
+    public String toString() {
+        return "Rol{" +
+                "nombre='" + nombre + '\'' +
+                '}';
     }
 }

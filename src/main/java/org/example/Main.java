@@ -72,6 +72,7 @@ public class Main {
         m1.atenderPaciente(p1, box1,p1.getRegistrosEntradas().get(0));
         */
 
+
         //*********Tomando datos del paciente************
         Paciente paciente = new Paciente("Juan Pérez",LocalDate.of(1975,11,3),"Sargento Rodriguez",20113654,
                 4259761,3454698743L,EstadoCivil.Casado,"juancitoperez@gmail.com"
@@ -93,13 +94,13 @@ public class Main {
         ,"Rocamora 91",31598762,42698756,3454169865L,EstadoCivil.Soltero,"danielitalop@hotmail.com",usuario, sector);
 
         //*********Registro de entrada del funcionario administrativo al paciente*********
-        RegistroEntrada registroEntrada = new RegistroEntrada("Dolor de cabeza y fiebre");
+        funAdmin.RealizarRegistroEntrada(paciente,"Dolor de cabeza y fiebre");
 
         //*********Box de atencion por defecto del hospital*********
         BoxAtencion boxAtencion = new BoxAtencion(1,30,true);
 
         //*********Registro de la asignacion hacia el box de atencion*********
-        Asignacion asignacion = new Asignacion(boxAtencion, registroEntrada);
+        Asignacion asignacion = new Asignacion(boxAtencion, funAdmin.getRegistrosEntradas().get(0));
 
         //*******************CREACION DEL MEDICO******************************
         //*******************MEDICOOOOOOO***********************************
@@ -123,15 +124,18 @@ public class Main {
                 11054332, 3455321243L, EstadoCivil.Casado, "juancarlosramirez@gmail.com",usuarioMedico, sectorMedico,
                 "123456789", List.of(especialidad));
 
+        medico.agregarBox(boxAtencion);
+
         especialidad.setMedico(medico);
         sectorMedico.setFuncionarios(List.of(medico));
 
-        medico.realizarTriage(registroEntrada);
+        medico.realizarTriage(funAdmin.getRegistrosEntradas().get(0));
 
         Registro registro = new Registro(LugarAtencion.Consultorio,paciente,medico);
 
         ResultadoDiagnostico resultadoDiagnostico = new ResultadoDiagnostico("Dolor de cabeza y fiebre",paciente);
 
+        System.out.println(medico.toString());
 
         SessionFactory sessionFactory = new Configuration()
                 //Clases mapeadas
@@ -171,13 +175,13 @@ public class Main {
         //gsf.InitGlobalSessionFactory(args[0], args[1], args[2]);
         //gsf.InitGlobalSessionFactory("usuario","basededatostallerpoo123","jdbc:mysql://localhost:3306/tallerdb", "org.hibernate.dialect.MySQLDialect");
         sessionFactory.inTransaction(session -> {
+            session.persist(boxAtencion);
             session.persist(paciente);
             session.persist(rol);
             session.persist(usuario);
             session.persist(sector);
             session.persist(funAdmin);
-            session.persist(registroEntrada);
-            session.persist(boxAtencion);
+            session.persist(funAdmin.getRegistrosEntradas().get(0));
             session.persist(asignacion);
             session.persist(rolMedico);
             session.persist(usuarioMedico);

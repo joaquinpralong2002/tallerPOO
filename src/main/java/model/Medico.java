@@ -15,7 +15,6 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
 
 @Entity
 public class Medico extends Funcionario implements CapacitadoTriage{
@@ -26,10 +25,10 @@ public class Medico extends Funcionario implements CapacitadoTriage{
     private List<Especialidad> especializaciones;
 
     @OneToMany(mappedBy = "medico", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<BoxAtencion> boxesAtencion = new LinkedList<>();
+    private List<BoxAtencion> boxesAtencion;
 
     @OneToMany(mappedBy = "triagiadorMedico", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Triage> triagesRealizados = new LinkedList<>();
+    private List<Triage> triagesRealizados;
 
     Medico(String matricula){
         this.numMatricula = matricula;
@@ -42,6 +41,8 @@ public class Medico extends Funcionario implements CapacitadoTriage{
               DNI, telefonoFijo, telefonoCelular, estadoCivil, correo, usuario, sector);
         this.numMatricula = numMatricula;
         this.especializaciones = especializaciones;
+        this.boxesAtencion = new LinkedList<>();
+        this.triagesRealizados = new LinkedList<>();
     }
 
     public Medico(String nombreApellido, LocalDate fechaNacimiento, String domicilio, int DNI,
@@ -50,6 +51,9 @@ public class Medico extends Funcionario implements CapacitadoTriage{
         super(nombreApellido, fechaNacimiento, domicilio,
                 DNI, telefonoFijo, telefonoCelular, estadoCivil, correo, usuario, sector);
         this.numMatricula = numMatricula;
+        this.especializaciones = new ArrayList<>();
+        this.boxesAtencion = new LinkedList<>();
+        this.triagesRealizados = new LinkedList<>();
     }
 
     /**
@@ -138,4 +142,10 @@ public class Medico extends Funcionario implements CapacitadoTriage{
         return 0;
     }
 
+    @Override
+    public String toString() {
+        return "Medico{" +
+                "numMatricula='" + numMatricula + '\'' +
+                '}';
+    }
 }

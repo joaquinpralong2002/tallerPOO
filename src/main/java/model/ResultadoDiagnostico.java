@@ -16,7 +16,6 @@ public class ResultadoDiagnostico {
     private String descripcion;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "idPaciente")
     private Paciente paciente;
 
     public ResultadoDiagnostico(String descripcion){

@@ -21,7 +21,7 @@ public class Paciente extends Persona{
     private List<ResultadoDiagnostico> resultadosDiagnosticos;
 
     @OneToMany(mappedBy = "paciente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<RegistroEntrada> registrosEntradas = new ArrayList<>();
+    private List<RegistroEntrada> registrosEntradas;
 
     @OneToMany(mappedBy = "paciente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Registro> registros;
@@ -33,6 +33,9 @@ public class Paciente extends Persona{
                     String personaContacto) {
         super(nombreApellido, fechaNacimiento, domicilio, DNI, telefonoFijo, telefonoCelular, estadoCivil, correo);
         this.personaContacto = personaContacto;
+        this.resultadosDiagnosticos = new ArrayList<>();
+        this.registrosEntradas = new ArrayList<>();
+        this.registros = new ArrayList<>();
     }
 
     public Paciente(String nombreApellido, LocalDate fechaNacimiento, String domicilio, int DNI,
@@ -41,6 +44,8 @@ public class Paciente extends Persona{
         super(nombreApellido, fechaNacimiento, domicilio, DNI, telefonoFijo, telefonoCelular, estadoCivil, correo);
         this.personaContacto = personaContacto;
         this.resultadosDiagnosticos = resultadosDiagnosticos;
+        this.registrosEntradas = new ArrayList<>();
+        this.registros = new ArrayList<>();
     }
 
     public Paciente(String nombreApellido, LocalDate fechaNacimiento, String domicilio, int DNI,
@@ -50,6 +55,7 @@ public class Paciente extends Persona{
         this.personaContacto = personaContacto;
         this.resultadosDiagnosticos = resultadosDiagnosticos;
         this.registrosEntradas = registrosEntradas;
+        this.registros = new ArrayList<>();
     }
 
     public Paciente(String nombreApellido, LocalDate fechaNacimiento, String domicilio, int DNI,
