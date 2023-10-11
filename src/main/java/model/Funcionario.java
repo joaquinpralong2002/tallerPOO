@@ -15,11 +15,14 @@ import java.time.LocalDate;
 
 @Entity
 public class Funcionario extends Persona{
-
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ToString.Exclude
+    @OneToOne(cascade = CascadeType.ALL, optional = false, orphanRemoval = true)
+    @JoinColumn(name = "idUsuario", nullable = false, unique = true)
     private Usuario usuario;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ToString.Exclude
+    @ManyToOne(cascade = CascadeType.ALL, optional = false)
+    @JoinColumn(name = "idSector", nullable = false)
     private Sector sector;
 
     //constructor

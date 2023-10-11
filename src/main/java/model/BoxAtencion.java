@@ -15,7 +15,6 @@ public class BoxAtencion {
 
     //El id de está clase será el número de box.
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int numero;
     private int capacidad;
     private boolean disponible;
@@ -27,7 +26,8 @@ public class BoxAtencion {
     @OneToMany(mappedBy = "boxAtencion", orphanRemoval = true)
     private Set<Asignacion> asignaciones = new LinkedHashSet<>();
 
-    public BoxAtencion(int capacidad, boolean disponible) {
+    public BoxAtencion(int numero, int capacidad, boolean disponible) {
+        this.numero = numero;
         this.capacidad = capacidad;
         this.disponible = disponible;
     }

@@ -2,7 +2,9 @@ package model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -19,14 +21,11 @@ import model.Login.Usuario;
 public class FuncionarioAdministrativo extends Funcionario{
 
 
-    @OneToMany(mappedBy = "funcionarioAdministrativo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<RegistroEntrada> registrosEntradas;
-
-
+    @OneToMany(mappedBy = "funcionariosAdministrativo", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<RegistroEntrada> registrosEntradas = new ArrayList<>();
 
     public FuncionarioAdministrativo(String nombreApellido, LocalDate fechaNacimiento, String domicilio, int DNI, int telefonoFijo, long telefonoCelular, EstadoCivil estadoCivil, String correo, Usuario usuario, Sector sector) {
         super(nombreApellido, fechaNacimiento, domicilio, DNI, telefonoFijo, telefonoCelular, estadoCivil, correo, usuario, sector);
-        registrosEntradas = new ArrayList<>();
     }
 
     public void RealizarRegistroEntrada(Paciente p,String descripcion){

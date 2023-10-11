@@ -4,9 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import model.Funcionario;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Getter
 @Setter
@@ -22,41 +20,35 @@ public class Usuario {
     private String nombreUsuario;
     private String contrasenia;
 
-    @OneToOne(mappedBy = "usuario")
-    private Funcionario funcionario;
-
-    @ManyToMany
-    @JoinTable(
-            name = "usuarios_roles",
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+    @JoinTable(name = "Usuarios_roles",
             joinColumns = @JoinColumn(name = "idUsuario"),
-            inverseJoinColumns = @JoinColumn(name = "idRol")
-    )
-    private List<Rol> roles;
+            inverseJoinColumns = @JoinColumn(name = "idRol"))
+    private Set<Rol> roles = new LinkedHashSet<>();
+
+    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, optional = false, orphanRemoval = true)
+    private Funcionario funcionario;
 
     public Usuario(String nombreUsuario, String contrasenia) {
         this.nombreUsuario = nombreUsuario;
         this.contrasenia = contrasenia;
-        this.roles = new ArrayList<>();
     }
 
     public Usuario(String nombreUsuario, String contrasenia, Funcionario funcionario, List<Rol> roles) {
         this.nombreUsuario = nombreUsuario;
         this.contrasenia = contrasenia;
         this.funcionario = funcionario;
-        this.roles = roles;
     }
 
     public Usuario(String nombreUsuario, String contrasenia, List<Rol> roles) {
         this.nombreUsuario = nombreUsuario;
         this.contrasenia = contrasenia;
-        this.roles = roles;
     }
 
     public Usuario(String nombreUsuario, String contrasenia, Funcionario funcionario) {
         this.nombreUsuario = nombreUsuario;
         this.contrasenia = contrasenia;
         this.funcionario = funcionario;
-        this.roles = new ArrayList<>();
     }
 
 

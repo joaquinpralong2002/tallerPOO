@@ -4,8 +4,10 @@ import jakarta.persistence.*;
 import lombok.*;
 
 
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -20,13 +22,14 @@ public class Rol {
 
     private String nombre;
 
-    @ManyToMany(mappedBy = "roles")
-    private List<Usuario> usuarios;
+    @ManyToMany(mappedBy = "roles", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+    private Set<Usuario> usuarios = new LinkedHashSet<>();
+
 
     public Rol(String nombre){
         this.nombre = nombre;
     }
-    public Rol(String nombre, List<Usuario> usuarios) {
+    public Rol(String nombre, Set<Usuario> usuarios) {
         this.nombre = nombre;
         this.usuarios = usuarios;
     }
