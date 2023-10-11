@@ -20,7 +20,7 @@ public class GlobalSessionFactory {
     private static SessionFactory sessionFactory;
 
     public void InitGlobalSessionFactory(String usuario, String contraseña, String url, String dialecto){
-        this.sessionFactory = new Configuration()
+        sessionFactory = new Configuration()
                 //Clases mapeadas
                 .addAnnotatedClass(AdministradorSistemas.class)
                 .addAnnotatedClass(Rol.class)
