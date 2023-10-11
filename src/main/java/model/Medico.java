@@ -20,17 +20,14 @@ import java.util.List;
 public class Medico extends Funcionario implements CapacitadoTriage{
     private String numMatricula;
 
-
     @OneToMany(mappedBy = "medico", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Especialidad> especializaciones;
 
-    @OneToMany(mappedBy = "medico", fetch = FetchType.LAZY)
-    private List<BoxAtencion> boxesAtencion;
+    @OneToMany(mappedBy = "medico", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<BoxAtencion> boxesAtencion = new ArrayList<>();
 
-    @OneToMany(mappedBy = "triagiadorMedico", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Triage> triagesRealizados;
-
-
+    @OneToMany(mappedBy = "medico", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Triage> triagesRealizados = new ArrayList<>();
 
     public Medico(String nombreApellido, LocalDate fechaNacimiento, String domicilio, int DNI,
                   int telefonoFijo, long telefonoCelular, EstadoCivil estadoCivil, String correo,
@@ -40,7 +37,6 @@ public class Medico extends Funcionario implements CapacitadoTriage{
         this.numMatricula = numMatricula;
         this.especializaciones = especializaciones;
         this.boxesAtencion = new LinkedList<>();
-        this.triagesRealizados = new LinkedList<>();
     }
 
     public Medico(String nombreApellido, LocalDate fechaNacimiento, String domicilio, int DNI,
@@ -51,7 +47,6 @@ public class Medico extends Funcionario implements CapacitadoTriage{
         this.numMatricula = numMatricula;
         this.especializaciones = new ArrayList<>();
         this.boxesAtencion = new LinkedList<>();
-        this.triagesRealizados = new LinkedList<>();
     }
 
     /**
@@ -102,6 +97,7 @@ public class Medico extends Funcionario implements CapacitadoTriage{
 
         Triage triage = new Triage(Respiracion.Normal, Pulso.Normal, 80, EstadoMental.Normal, Conciencia.Consciente, DolorPecho.NoPresnte, LecionesGraves.NoPresentes, Edad.NinioAnciano, 85, Fiebre.Moderada, (float)38.5, Vomitos.SinVomito, DolorAbdominal.NoPresente, SignoShock.NoPresente, LesionLeve.NoPresente, Sangrado.NoPresente);
         triage.calcularColorTriageRecomendado();
+        triage.setMedico(this);
         r.setTriage(triage);
         this.triagesRealizados.add(triage);
         return triage.getColorTriageRecomendado();
