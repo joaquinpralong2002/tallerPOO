@@ -119,7 +119,7 @@ public class Main {
         Especialidad especialidad = new Especialidad("Ninguna",LocalDate.of(1999,4,1),universidadMedico);
 
         //Creacion del medico
-        Medico medico = new Medico("Ramirez Juan", LocalDate.of(1955,03,21),"La ferre",11345433,
+        Medico medico = new Medico("Ramirez Juan", LocalDate.of(1955,3,21),"La ferre",11345433,
                 11054332, 3455321243L, EstadoCivil.Casado, "juancarlosramirez@gmail.com",usuarioMedico, sectorMedico,
                 "123456789", List.of(especialidad));
 
