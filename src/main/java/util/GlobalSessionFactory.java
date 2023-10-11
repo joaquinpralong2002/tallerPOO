@@ -13,7 +13,7 @@ import org.hibernate.tool.schema.Action;
 import static java.lang.Boolean.TRUE;
 
 
-@Getter
+
 public class GlobalSessionFactory {
 
     @Getter
