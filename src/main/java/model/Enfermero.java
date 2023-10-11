@@ -39,6 +39,7 @@ public class Enfermero extends Funcionario implements CapacitadoTriage{
         Triage triage = new Triage();
         triage.calcularColorTriageRecomendado();
         triage.setEnfermero(this);
+        triage.setRegistroEntrada(r);
         r.setTriage(triage);
         this.triagesRealizados.add(triage);
         return triage.getColorTriageRecomendado();

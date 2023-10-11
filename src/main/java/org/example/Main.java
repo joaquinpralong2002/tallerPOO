@@ -100,8 +100,6 @@ public class Main {
         //*********Box de atencion por defecto del hospital*********
         BoxAtencion boxAtencion = new BoxAtencion(1,30,true);
 
-        //*********Registro de la asignacion hacia el box de atencion*********
-        Asignacion asignacion = new Asignacion(funAdmin.getRegistrosEntradas().get(0), boxAtencion);
 
         //*******************CREACION DEL MEDICO******************************
         //*******************MEDICOOOOOOO***********************************

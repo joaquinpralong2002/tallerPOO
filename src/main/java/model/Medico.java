@@ -98,6 +98,7 @@ public class Medico extends Funcionario implements CapacitadoTriage{
         Triage triage = new Triage(Respiracion.Normal, Pulso.Normal, 80, EstadoMental.Normal, Conciencia.Consciente, DolorPecho.NoPresnte, LecionesGraves.NoPresentes, Edad.NinioAnciano, 85, Fiebre.Moderada, (float)38.5, Vomitos.SinVomito, DolorAbdominal.NoPresente, SignoShock.NoPresente, LesionLeve.NoPresente, Sangrado.NoPresente);
         triage.calcularColorTriageRecomendado();
         triage.setMedico(this);
+        triage.setRegistroEntrada(r);
         r.setTriage(triage);
         this.triagesRealizados.add(triage);
         return triage.getColorTriageRecomendado();

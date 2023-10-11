@@ -31,6 +31,7 @@ public class FuncionarioAdministrativo extends Funcionario{
     public void RealizarRegistroEntrada(Paciente p,String descripcion){
         RegistroEntrada r = new RegistroEntrada(descripcion,p,this);
         this.registrosEntradas.add(r);
+        asignacionBox(r);
         p.agregarRegistroEntrada(r);
     }
 
@@ -47,6 +48,14 @@ public class FuncionarioAdministrativo extends Funcionario{
         return null;
     }
 
-
+    private void asignacionBox(RegistroEntrada registroEntrada){
+        Asignacion asignacion = null;
+        while(BoxAtencion.boxesAtencion.iterator().hasNext() && asignacion == null){
+            BoxAtencion box = BoxAtencion.boxesAtencion.iterator().next();
+            if(box.isDisponible()) {
+                asignacion = new Asignacion(registroEntrada, box);
+            }
+        }
+    }
 
 }
