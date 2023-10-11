@@ -26,8 +26,7 @@ public class RegistroEntrada {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Paciente paciente;
 
-    @OneToOne(mappedBy = "registroEntrada", cascade = CascadeType.ALL)
-    private Triage triage;
+
 
     @ToString.Exclude
     @ManyToOne(cascade = CascadeType.ALL)
@@ -37,10 +36,12 @@ public class RegistroEntrada {
     @OneToOne(mappedBy = "registroEntrada", optional = false, orphanRemoval = true)
     private Asignacion asignacion;
 
+    @OneToOne(mappedBy = "registroEntrada", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Triage triage;
+
     public void setFuncionariosAdministrativo(FuncionarioAdministrativo funcionariosAdministrativo) {
         this.funcionariosAdministrativo = funcionariosAdministrativo;
     }
-
 
     public void setAsignacion(Asignacion asignacion) {
         this.asignacion = asignacion;

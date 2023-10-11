@@ -21,13 +21,18 @@ public class Registro {
     @Enumerated(EnumType.STRING)
     private LugarAtencion lugarAtencion;
 
-
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ToString.Exclude
+    @OneToOne(cascade = CascadeType.ALL, optional = false, orphanRemoval = true)
+    @JoinColumn(name = "idMedico", nullable = false)
     private Medico medico;
 
     @ManyToOne(cascade = CascadeType.ALL, optional = false)
     @JoinColumn(name = "idPaciente", nullable = false)
     private Paciente paciente;
+
+    public void setMedico(Medico medico) {
+        this.medico = medico;
+    }
 
     public void setPaciente(Paciente paciente) {
         this.paciente = paciente;

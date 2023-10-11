@@ -7,6 +7,7 @@ import model.Enum.EstadoCivil;
 import model.Login.Usuario;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -17,17 +18,15 @@ import java.util.List;
 
 @Entity
 public class Enfermero extends Funcionario implements CapacitadoTriage{
-
-    @OneToMany(mappedBy = "triagiadorEnfermero", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Triage> triagesRealizados;
-
+    @ToString.Exclude
+    @OneToMany(mappedBy = "enfermero", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Triage> triagesRealizados = new ArrayList<>();
 
     //constructor
     public Enfermero(String nombreApellido, LocalDate fechaNacimiento, String domicilio,
                      int DNI, int telefonoFijo, long telefonoCelular, EstadoCivil estadoCivil,
                      String correo, Usuario usuario, Sector sector) {
         super(nombreApellido, fechaNacimiento, domicilio, DNI, telefonoFijo, telefonoCelular, estadoCivil, correo, usuario,sector);
-        triagesRealizados = new LinkedList<>();
     }
 
 
@@ -39,6 +38,7 @@ public class Enfermero extends Funcionario implements CapacitadoTriage{
     public ColorTriage realizarTriage(RegistroEntrada r) {
         Triage triage = new Triage();
         triage.calcularColorTriageRecomendado();
+        triage.setEnfermero(this);
         r.setTriage(triage);
         this.triagesRealizados.add(triage);
         return triage.getColorTriageRecomendado();

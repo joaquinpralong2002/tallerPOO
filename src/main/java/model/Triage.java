@@ -67,14 +67,19 @@ public class Triage{
     private ColorTriage colorTriageFinal;
     private String motivoCambioTriage;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ToString.Exclude
+    @OneToOne(cascade = CascadeType.ALL, optional = true, orphanRemoval = true)
+    @JoinColumn(name = "idRegistroEntrada", nullable = true)
     private RegistroEntrada registroEntrada;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Medico triagiadorMedico;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "idMedico")
+    private Medico medico;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Enfermero triagiadorEnfermero;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "idEnfermero")
+    private Enfermero enfermero;
+
 
     public Triage(Respiracion respiracion, Pulso pulso, int vaLorPulso,
                   EstadoMental estadoMental, Conciencia conciencia, DolorPecho dolorPecho,

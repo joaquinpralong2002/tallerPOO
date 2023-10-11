@@ -20,11 +20,13 @@ public class BoxAtencion {
     private boolean disponible;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Medico medico;
-
     @OneToMany(mappedBy = "boxAtencion", orphanRemoval = true)
     private Set<Asignacion> asignaciones = new LinkedHashSet<>();
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "idMedico")
+    private Medico medico;
+
 
     public BoxAtencion(int numero, int capacidad, boolean disponible) {
         this.numero = numero;
