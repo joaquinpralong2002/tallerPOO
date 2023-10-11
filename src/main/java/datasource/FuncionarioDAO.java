@@ -1,29 +1,27 @@
 package datasource;
 
-import model.*;
-import org.hibernate.Session;
+import datasource.interfaces.GenericoDAO;
+import model.Funcionario;
+import org.hibernate.SessionFactory;
 import util.GlobalSessionFactory;
 
-import jakarta.persistence.*;
-import org.hibernate.SessionFactory;
+import java.util.List;
 
-public class FuncionarioDAO {
+public class FuncionarioDAO implements GenericoDAO<Funcionario> {
 
-    private SessionFactory sf;
+    private SessionFactory sessionFactory;
 
     public FuncionarioDAO(){
-        sf = GlobalSessionFactory.getSessionFactory();
+        this.sessionFactory = GlobalSessionFactory.getSessionFactory();
     }
 
-    public Funcionario obtener(Long idFuncionario){
-        try(Session session = sf.openSession()){
-            Funcionario f = session.get(Funcionario.class, idFuncionario);
-            return f;
-        }
+    @Override
+    public Funcionario obtener(Long id) {
+        return null;
     }
 
-    public void actualizar(Funcionario f){
-
+    @Override
+    public List<Funcionario> obtenerTodos() {
+        return null;
     }
-
 }

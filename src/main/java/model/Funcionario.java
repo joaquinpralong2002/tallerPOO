@@ -35,4 +35,6 @@ public class Funcionario extends Persona{
         this.usuario = usuario;
         this.sector = sector;
     }
+
+
 }

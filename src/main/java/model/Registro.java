@@ -13,7 +13,7 @@ import model.Enum.LugarAtencion;
 @EqualsAndHashCode
 
 @Entity
-public class Registro {
+public class    Registro {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idRegistro;
