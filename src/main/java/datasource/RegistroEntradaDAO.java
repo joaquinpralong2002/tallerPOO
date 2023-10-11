@@ -1,62 +1,48 @@
 package datasource;
 
+import datasource.interfaces.GenericoDAO;
 import model.RegistroEntrada;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import util.GlobalSessionFactory;
 
-public class RegistroEntradaDAO {
+import java.time.LocalDate;
+import java.util.List;
+
+public class RegistroEntradaDAO implements GenericoDAO<RegistroEntrada> {
         private SessionFactory sessionFactory;
 
         public RegistroEntradaDAO(){
                 this.sessionFactory = GlobalSessionFactory.getSessionFactory();
         }
 
-        public void agregar(RegistroEntrada registroEntrada) {
+
+        public List<RegistroEntrada> obtenerPorFecha(LocalDate fecha){
                 Session session = sessionFactory.openSession();
                 Transaction transaction = session.beginTransaction();
-                session.save(registroEntrada);
+                String query = "SELECT registroEntrada FROM RegistroEntrada registroEntrada WHERE registroEntrada.fecha = :fecha";
+                List<RegistroEntrada> registrosEntrada = session.createQuery(query).setParameter("fecha", fecha)
+                        .getResultList();
                 transaction.commit();
                 session.close();
+                return registrosEntrada;
         }
-        public RegistroEntrada obtener(Long id){
+
+        @Override
+        public RegistroEntrada obtener(Long id) {
                 Session session = sessionFactory.openSession();
                 RegistroEntrada registroEntrada = session.get(RegistroEntrada.class, id);
                 session.close();
                 return registroEntrada;
         }
 
-        public RegistroEntrada obtenerPorFecha(Long id){
+        @Override
+        public List<RegistroEntrada> obtenerTodos() {
                 Session session = sessionFactory.openSession();
-                RegistroEntrada registroEntrada = session.get(RegistroEntrada.class, id);
+                String query = "SELECT registroEntrada FROM RegistroEntrada registroEntrada";
+                List<RegistroEntrada> registrosEntrada = session.createQuery(query).getResultList();
                 session.close();
-                return registroEntrada;
+                return registrosEntrada;
         }
-
-
-        public void actualizar(RegistroEntrada registroEntrada) {
-                Session session = sessionFactory.openSession();
-                Transaction transaction = session.beginTransaction();
-                session.update(registroEntrada);
-                transaction.commit();
-                session.close();
-        }
-
-        public void borrar(RegistroEntrada registroEntrada) {
-                Session session = sessionFactory.openSession();
-                Transaction transaction = session.beginTransaction();
-                session.delete(registroEntrada);
-                transaction.commit();
-                session.close();
-        }
-
-        
-
-
-
-
-
-
-
 }
