@@ -5,7 +5,9 @@ import model.Enum.EstadoCivil;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -17,15 +19,16 @@ import java.util.List;
 public class Paciente extends Persona{
     private String personaContacto;
 
-    @OneToMany(mappedBy = "paciente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<ResultadoDiagnostico> resultadosDiagnosticos;
+    @ToString.Exclude
+    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ResultadoDiagnostico> resultadosDiagnosticos = new ArrayList<>();
 
     @OneToMany(mappedBy = "paciente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<RegistroEntrada> registrosEntradas;
 
-    @OneToMany(mappedBy = "paciente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Registro> registros;
-
+    @ToString.Exclude
+    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Registro> registros = new LinkedHashSet<>();
 
     //sugerir cambiar tipo de persona de contacto a int q sea un numero de telefono
     public Paciente(String nombreApellido, LocalDate fechaNacimiento, String domicilio, int DNI,
@@ -35,7 +38,6 @@ public class Paciente extends Persona{
         this.personaContacto = personaContacto;
         this.resultadosDiagnosticos = new ArrayList<>();
         this.registrosEntradas = new ArrayList<>();
-        this.registros = new ArrayList<>();
     }
 
     public Paciente(String nombreApellido, LocalDate fechaNacimiento, String domicilio, int DNI,
@@ -45,7 +47,6 @@ public class Paciente extends Persona{
         this.personaContacto = personaContacto;
         this.resultadosDiagnosticos = resultadosDiagnosticos;
         this.registrosEntradas = new ArrayList<>();
-        this.registros = new ArrayList<>();
     }
 
     public Paciente(String nombreApellido, LocalDate fechaNacimiento, String domicilio, int DNI,
@@ -55,7 +56,6 @@ public class Paciente extends Persona{
         this.personaContacto = personaContacto;
         this.resultadosDiagnosticos = resultadosDiagnosticos;
         this.registrosEntradas = registrosEntradas;
-        this.registros = new ArrayList<>();
     }
 
     public Paciente(String nombreApellido, LocalDate fechaNacimiento, String domicilio, int DNI,
@@ -66,7 +66,6 @@ public class Paciente extends Persona{
         this.personaContacto = personaContacto;
         this.resultadosDiagnosticos = resultadosDiagnosticos;
         this.registrosEntradas = registrosEntradas;
-        this.registros = registros;
     }
 
     public void agregarResultadoDiagnostico(ResultadoDiagnostico resultado){

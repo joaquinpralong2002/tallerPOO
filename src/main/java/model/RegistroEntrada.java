@@ -29,11 +29,18 @@ public class RegistroEntrada {
     @OneToOne(mappedBy = "registroEntrada", cascade = CascadeType.ALL)
     private Triage triage;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private FuncionarioAdministrativo funcionarioAdministrativo;
+    @ToString.Exclude
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id")
+    private FuncionarioAdministrativo funcionariosAdministrativo;
 
     @OneToOne(mappedBy = "registroEntrada", optional = false, orphanRemoval = true)
     private Asignacion asignacion;
+
+    public void setFuncionariosAdministrativo(FuncionarioAdministrativo funcionariosAdministrativo) {
+        this.funcionariosAdministrativo = funcionariosAdministrativo;
+    }
+
 
     public void setAsignacion(Asignacion asignacion) {
         this.asignacion = asignacion;
@@ -85,7 +92,7 @@ public class RegistroEntrada {
         this.asignacion = asignacion;
         this.paciente = paciente;
         this.triage = triage;
-        this.funcionarioAdministrativo = funcionarioAdministrativo;
+        this.funcionariosAdministrativo = funcionarioAdministrativo;
     }
 
     //constructor de Inicio (fecha, hora, descripcion, paciente, funcionario)
@@ -94,7 +101,7 @@ public class RegistroEntrada {
         this.hora = LocalTime.now();
         this.descripcion = descripcion;
         this.paciente = paciente;
-        this.funcionarioAdministrativo = funcionarioAdministrativo;
+        this.funcionariosAdministrativo = funcionarioAdministrativo;
     }
 
     public void setTriage(Triage triage){

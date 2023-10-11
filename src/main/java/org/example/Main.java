@@ -13,6 +13,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import static java.lang.Boolean.TRUE;
 
@@ -83,8 +84,8 @@ public class Main {
 
         //*********Usuario del Funcionario y seter del rol*********
         Usuario usuario = new Usuario("danielalopez","perrochichuA8€");
-        rol.setUsuarios(List.of(usuario));
-        usuario.setRoles(List.of(rol));
+        rol.setUsuarios(Set.of(usuario));
+        usuario.setRoles(Set.of(rol));
 
         //*********Sector al cual pertenece el funcionario*********
         Sector sector = new Sector("Administración");
@@ -97,7 +98,7 @@ public class Main {
         funAdmin.RealizarRegistroEntrada(paciente,"Dolor de cabeza y fiebre");
 
         //*********Box de atencion por defecto del hospital*********
-        BoxAtencion boxAtencion = new BoxAtencion(30,true);
+        BoxAtencion boxAtencion = new BoxAtencion(1,30,true);
 
         //*********Registro de la asignacion hacia el box de atencion*********
         Asignacion asignacion = new Asignacion(funAdmin.getRegistrosEntradas().get(0), boxAtencion);
@@ -107,8 +108,8 @@ public class Main {
         Rol rolMedico = new Rol("Medico");
 
         Usuario usuarioMedico = new Usuario("juancarlosramirez@gmail.com","juancito01&");
-        rolMedico.setUsuarios(List.of(usuarioMedico));
-        usuarioMedico.setRoles(List.of(rolMedico));
+        rolMedico.setUsuarios(Set.of(usuarioMedico));
+        usuarioMedico.setRoles(Set.of(rolMedico));
 
         //Sector al cual pertenece el medico
         Sector sectorMedico = new Sector("Incisiones");
@@ -127,7 +128,7 @@ public class Main {
         medico.agregarBox(boxAtencion);
 
         especialidad.setMedico(medico);
-        sectorMedico.setFuncionarios(List.of(medico));
+        sectorMedico.setFuncionarios(Set.of(medico));
 
         medico.realizarTriage(funAdmin.getRegistrosEntradas().get(0));
 

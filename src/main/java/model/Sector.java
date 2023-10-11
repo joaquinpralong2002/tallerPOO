@@ -1,7 +1,9 @@
 package model;
 
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -20,8 +22,8 @@ public class Sector {
 
     private String nombre;
 
-    @OneToMany(mappedBy = "sector")
-    private List<Funcionario> funcionarios;
+    @OneToMany(mappedBy = "sector", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Funcionario> funcionarios = new LinkedHashSet<>();
 
     public Sector(String nombre){
         this.nombre = nombre;
