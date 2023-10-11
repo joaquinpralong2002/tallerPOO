@@ -23,11 +23,6 @@ public class RegistroEntrada {
 
 
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Paciente paciente;
-
-
-
     @ToString.Exclude
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id")
@@ -38,6 +33,14 @@ public class RegistroEntrada {
 
     @OneToOne(mappedBy = "registroEntrada", cascade = CascadeType.ALL, orphanRemoval = true)
     private Triage triage;
+
+    @ManyToOne(cascade = CascadeType.ALL, optional = false)
+    @JoinColumn(name = "idPaciente", nullable = false)
+    private Paciente paciente;
+
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
+    }
 
     public void setFuncionariosAdministrativo(FuncionarioAdministrativo funcionariosAdministrativo) {
         this.funcionariosAdministrativo = funcionariosAdministrativo;
