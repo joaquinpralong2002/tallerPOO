@@ -29,20 +29,20 @@ public class Medico extends Funcionario implements CapacitadoTriage{
     @OneToMany(mappedBy = "medico", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Triage> triagesRealizados = new ArrayList<>();
 
-    public Medico(String nombreApellido, LocalDate fechaNacimiento, String domicilio, int DNI,
+    public Medico(String nombre, String apellido, LocalDate fechaNacimiento, String domicilio, int DNI,
                   int telefonoFijo, long telefonoCelular, EstadoCivil estadoCivil, String correo,
                   Usuario usuario, Sector sector, String numMatricula, List<Especialidad> especializaciones) {
-        super(nombreApellido, fechaNacimiento, domicilio,
+        super(nombre, apellido, fechaNacimiento, domicilio,
               DNI, telefonoFijo, telefonoCelular, estadoCivil, correo, usuario, sector);
         this.numMatricula = numMatricula;
         this.especializaciones = especializaciones;
         this.boxesAtencion = new LinkedList<>();
     }
 
-    public Medico(String nombreApellido, LocalDate fechaNacimiento, String domicilio, int DNI,
+    public Medico(String nombre, String apellido, LocalDate fechaNacimiento, String domicilio, int DNI,
                   int telefonoFijo, long telefonoCelular, EstadoCivil estadoCivil, String correo,
                   Usuario usuario, Sector sector, String numMatricula) {
-        super(nombreApellido, fechaNacimiento, domicilio,
+        super(nombre, apellido, fechaNacimiento, domicilio,
                 DNI, telefonoFijo, telefonoCelular, estadoCivil, correo, usuario, sector);
         this.numMatricula = numMatricula;
         this.especializaciones = new ArrayList<>();

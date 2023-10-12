@@ -17,7 +17,8 @@ import org.hibernate.annotations.NaturalId;
 public class Persona {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nombreApellido;
+    private String nombre;
+    private String apellido;
     private LocalDate fechaNacimiento;
     private String domicilio;
     @NaturalId
@@ -28,9 +29,10 @@ public class Persona {
     private EstadoCivil estadoCivil;
     private String correo;
 
-    public Persona(String nombreApellido, LocalDate fechaNacimiento, String domicilio,
+    public Persona(String nombre, String apellido, LocalDate fechaNacimiento, String domicilio,
                    int DNI, int telefonoFijo, long telefonoCelular, EstadoCivil estadoCivil, String correo) {
-        this.nombreApellido = nombreApellido;
+        this.nombre = nombre;
+        this.apellido = apellido;
         this.fechaNacimiento = fechaNacimiento;
         this.domicilio = domicilio;
         this.DNI = DNI;
