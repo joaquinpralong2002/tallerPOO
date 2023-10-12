@@ -2,7 +2,6 @@ package datasource;
 import datasource.interfaces.GenericoDAO;
 import model.*;
 
-
 import org.example.Main;
 import org.hibernate.*;
 import util.GlobalSessionFactory;
