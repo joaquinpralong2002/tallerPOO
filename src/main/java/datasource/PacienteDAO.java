@@ -33,6 +33,27 @@ public class PacienteDAO implements GenericoDAO<Paciente> {
     }
     //********************************************************************
 
+    //REVISAR POR LAS DUDAS...
 
+    public Paciente obtenerPorNombreYApellido(String nombre, String apellido) {
+        Session session = sessionFactory.openSession();
+        String query = "SELECT paciente FROM Paciente paciente WHERE paciente.nombre = :nombre and paciente.apellido = :apellido";
+        Paciente paciente = session.createQuery(query, Paciente.class)
+                .setParameter("nombre", nombre)
+                .setParameter("apellido", apellido)
+                .getSingleResult();
+        session.close();
+        return paciente;
+    }
+
+    public Paciente obtenerPorDni(String dni) {
+        Session session = sessionFactory.openSession();
+        String query = "SELECT paciente FROM Paciente paciente WHERE paciente.dni = :dni";
+        Paciente paciente = session.createQuery(query, Paciente.class)
+                .setParameter("dni", dni)
+                .getSingleResult();
+        session.close();
+        return paciente;
+    }
 
 }
