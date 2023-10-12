@@ -1,6 +1,8 @@
 package datasource;
 
 import datasource.interfaces.GenericoDAO;
+import model.FuncionarioAdministrativo;
+import model.Paciente;
 import model.RegistroEntrada;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -17,18 +19,6 @@ public class RegistroEntradaDAO implements GenericoDAO<RegistroEntrada> {
                 this.sessionFactory = GlobalSessionFactory.getSessionFactory();
         }
 
-
-        public List<RegistroEntrada> obtenerPorFecha(LocalDate fecha){
-                Session session = sessionFactory.openSession();
-                Transaction transaction = session.beginTransaction();
-                String query = "SELECT registroEntrada FROM RegistroEntrada registroEntrada WHERE registroEntrada.fecha = :fecha";
-                List<RegistroEntrada> registrosEntrada = session.createQuery(query).setParameter("fecha", fecha)
-                        .getResultList();
-                transaction.commit();
-                session.close();
-                return registrosEntrada;
-        }
-
         @Override
         public RegistroEntrada obtener(Long id) {
                 Session session = sessionFactory.openSession();
@@ -41,8 +31,18 @@ public class RegistroEntradaDAO implements GenericoDAO<RegistroEntrada> {
         public List<RegistroEntrada> obtenerTodos() {
                 Session session = sessionFactory.openSession();
                 String query = "SELECT registroEntrada FROM RegistroEntrada registroEntrada";
-                List<RegistroEntrada> registrosEntrada = session.createQuery(query).getResultList();
+                List<RegistroEntrada> registrosEntrada = session.createQuery(query, RegistroEntrada.class).getResultList();
                 session.close();
                 return registrosEntrada;
         }
+
+        public List<RegistroEntrada> obtenerPorFecha(LocalDate fecha){
+                Session session = sessionFactory.openSession();
+                String query = "SELECT registroEntrada FROM RegistroEntrada registroEntrada WHERE registroEntrada.fecha = :fecha";
+                List<RegistroEntrada> registrosEntrada = session.createQuery(query,RegistroEntrada.class)
+                        .setParameter("fecha", fecha).getResultList();
+                session.close();
+                return registrosEntrada;
+        }
+
 }

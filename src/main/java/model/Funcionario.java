@@ -26,11 +26,11 @@ public class Funcionario extends Persona{
     private Sector sector;
 
     //constructor
-    public Funcionario(String nombreApellido, LocalDate fechaNacimiento, String domicilio,
+    public Funcionario(String nombre,String apellido, LocalDate fechaNacimiento, String domicilio,
                        int DNI, int telefonoFijo, long telefonoCelular, EstadoCivil estadoCivil,
                        String correo, Usuario usuario, Sector sector) {
 
-        super(nombreApellido, fechaNacimiento, domicilio,
+        super(nombre, apellido, fechaNacimiento, domicilio,
               DNI, telefonoFijo, telefonoCelular, estadoCivil, correo);
         this.usuario = usuario;
         this.sector = sector;

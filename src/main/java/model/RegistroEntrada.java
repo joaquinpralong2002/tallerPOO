@@ -22,7 +22,6 @@ public class RegistroEntrada {
     private String descripcion;
 
 
-
     @ToString.Exclude
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id")

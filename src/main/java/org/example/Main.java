@@ -75,7 +75,7 @@ public class Main {
 
 
         //*********Tomando datos del paciente************
-        Paciente paciente = new Paciente("Juan Pérez",LocalDate.of(1975,11,3),"Sargento Rodriguez",20113654,
+        Paciente paciente = new Paciente("Juan" ,"Pérez",LocalDate.of(1975,11,3),"Sargento Rodriguez",20113654,
                 4259761,3454698743L,EstadoCivil.Casado,"juancitoperez@gmail.com"
         ,"Pepe Sand");
 
@@ -91,7 +91,7 @@ public class Main {
         Sector sector = new Sector("Administración");
 
         //*********Funcionario Administrativo que toma los datos del paciente*********
-        FuncionarioAdministrativo funAdmin = new FuncionarioAdministrativo("Daniela López",LocalDate.of(1980,3,2)
+        FuncionarioAdministrativo funAdmin = new FuncionarioAdministrativo("Daniela", "López",LocalDate.of(1980,3,2)
         ,"Rocamora 91",31598762,42698756,3454169865L,EstadoCivil.Soltero,"danielitalop@hotmail.com",usuario, sector);
 
         //*********Registro de entrada del funcionario administrativo al paciente*********
@@ -119,7 +119,7 @@ public class Main {
         Especialidad especialidad = new Especialidad("Ninguna",LocalDate.of(1999,4,1),universidadMedico);
 
         //Creacion del medico
-        Medico medico = new Medico("Ramirez Juan", LocalDate.of(1955,3,21),"La ferre",11345433,
+        Medico medico = new Medico("Ramirez","Juan", LocalDate.of(1955,3,21),"La ferre",11345433,
                 11054332, 3455321243L, EstadoCivil.Casado, "juancarlosramirez@gmail.com",usuarioMedico, sectorMedico,
                 "123456789", List.of(especialidad));
 
