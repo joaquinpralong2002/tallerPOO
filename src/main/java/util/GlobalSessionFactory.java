@@ -2,13 +2,12 @@ package util;
 
 import lombok.Getter;
 import model.Login.AdministradorSistemas;
-import model.Login.Rol;
 import model.Login.Usuario;
+import model.Login.Rol;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AvailableSettings;
 import org.hibernate.cfg.Configuration;
 import model.*;
-import org.hibernate.tool.schema.Action;
 
 import static java.lang.Boolean.TRUE;
 
@@ -19,7 +18,7 @@ public class GlobalSessionFactory {
     @Getter
     private static SessionFactory sessionFactory;
 
-    public void InitGlobalSessionFactory(String usuario, String contraseña, String url, String dialecto){
+    public void InitGlobalSessionFactory(){
         sessionFactory = new Configuration()
                 //Clases mapeadas
                 .addAnnotatedClass(AdministradorSistemas.class)

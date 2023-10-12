@@ -2,10 +2,11 @@ package model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 
+import datasource.AsignacionDAO;
+import datasource.BoxAtencionDAO;
+import datasource.RegistroEntradaDAO;
 import jakarta.persistence.*;
 import lombok.*;
 import model.Enum.EstadoCivil;
@@ -30,6 +31,8 @@ public class FuncionarioAdministrativo extends Funcionario{
 
     public void RealizarRegistroEntrada(Paciente p,String descripcion){
         RegistroEntrada r = new RegistroEntrada(descripcion,p,this);
+        RegistroEntradaDAO registroEntradaDAO = new RegistroEntradaDAO();
+        registroEntradaDAO.agregar(r);
         this.registrosEntradas.add(r);
         asignacionBox(r);
         p.agregarRegistroEntrada(r);
@@ -50,12 +53,14 @@ public class FuncionarioAdministrativo extends Funcionario{
 
     private void asignacionBox(RegistroEntrada registroEntrada){
         Asignacion asignacion = null;
-        while(BoxAtencion.boxesAtencion.iterator().hasNext() && asignacion == null){
-            BoxAtencion box = BoxAtencion.boxesAtencion.iterator().next();
-            if(box.isDisponible()) {
-                asignacion = new Asignacion(registroEntrada, box);
-            }
+        BoxAtencionDAO boxAtencionDAO = new BoxAtencionDAO();
+        List<BoxAtencion> boxesDisponibles = boxAtencionDAO.obtenerTodosDisponibles();
+        if(!boxesDisponibles.isEmpty()){
+            System.out.println("Entra al if");
+            asignacion = new Asignacion(registroEntrada, boxesDisponibles.get(0));
+            AsignacionDAO asignacionDAO = new AsignacionDAO();
+            asignacionDAO.agregar(asignacion);
         }
+        else System.out.println("No hay box de atención disponibles.");
     }
-
 }

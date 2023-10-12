@@ -2,6 +2,8 @@ package model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import model.Asignacion;
+import model.Medico;
 
 import java.util.*;
 

@@ -28,7 +28,7 @@ public class PacienteDAO implements GenericoDAO<Paciente> {
     public List<Paciente> obtenerTodos() {
         Session session = sessionFactory.openSession();
         String query = "SELECT paciente FROM Paciente paciente";
-        List<Paciente> paciente = session.createQuery(query).getResultList();
+        List<Paciente> paciente = session.createQuery(query, Paciente.class).getResultList();
         session.close();
         return paciente;
     }
