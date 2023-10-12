@@ -6,11 +6,12 @@ import model.Enum.ColorTriage;
 
 import lombok.*;
 
+import java.util.Objects;
+
 @NoArgsConstructor
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode
 
 @Entity
 public class Triage{
@@ -133,4 +134,16 @@ public class Triage{
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Triage triage = (Triage) o;
+        return Objects.equals(idTriage, triage.idTriage);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idTriage);
+    }
 }
