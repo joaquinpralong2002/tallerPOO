@@ -23,10 +23,10 @@ public class Enfermero extends Funcionario implements CapacitadoTriage{
     private List<Triage> triagesRealizados = new ArrayList<>();
 
     //constructor
-    public Enfermero(String nombreApellido, LocalDate fechaNacimiento, String domicilio,
+    public Enfermero(String nombre, String apellido, LocalDate fechaNacimiento, String domicilio,
                      int DNI, int telefonoFijo, long telefonoCelular, EstadoCivil estadoCivil,
                      String correo, Usuario usuario, Sector sector) {
-        super(nombreApellido, fechaNacimiento, domicilio, DNI, telefonoFijo, telefonoCelular, estadoCivil, correo, usuario,sector);
+        super(nombre, apellido, fechaNacimiento, domicilio, DNI, telefonoFijo, telefonoCelular, estadoCivil, correo, usuario,sector);
     }
 
 
