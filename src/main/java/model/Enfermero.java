@@ -6,6 +6,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import model.Enum.ColorTriage;
 import model.Enum.EstadoCivil;
+import model.Enum.LugarAtencion;
+import model.EnumeracionesVariablesTriage.*;
 import model.Login.Usuario;
 
 import java.time.LocalDate;
@@ -33,7 +35,23 @@ public class Enfermero extends Funcionario implements CapacitadoTriage{
 
 
     /**
-     * @param r de tipo RegistroEntrada
+     * Metodo encargado de
+     * @param respiracion
+     * @param pulso
+     * @param valorPulso
+     * @param estadoMental
+     * @param conciencia
+     * @param dolorPecho
+     * @param lecionesGraves
+     * @param edad
+     * @param valorEdad
+     * @param fiebre
+     * @param valorFiebre
+     * @param vomitos
+     * @param dolorAbdominal
+     * @param signoShock
+     * @param lesionLeve
+     * @param sangrado
      * @return
      */
     @Override

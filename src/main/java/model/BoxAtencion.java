@@ -3,13 +3,14 @@ package model;
 import jakarta.persistence.*;
 import lombok.*;
 import model.Asignacion;
+import model.Enum.LugarAtencion;
 import model.Medico;
 
 import java.util.*;
 
+@NoArgsConstructor
 @Getter
 @Setter
-@NoArgsConstructor
 @ToString
 
 @Entity
@@ -21,15 +22,19 @@ public class BoxAtencion {
     private int capacidad;
     private boolean disponible;
 
+    @Enumerated(EnumType.STRING)
+    private LugarAtencion lugarAtencion;
 
     @OneToMany(mappedBy = "boxAtencion", orphanRemoval = true)
+    @ToString.Exclude
     private Set<Asignacion> asignaciones = new LinkedHashSet<>();
 
     @OneToOne(mappedBy = "boxAtencion", cascade = CascadeType.ALL, orphanRemoval = true)
     private Medico medico;
 
 
-    public BoxAtencion(int numero, int capacidad, boolean disponible) {
+    public BoxAtencion(LugarAtencion lugarAtencion, int numero, int capacidad, boolean disponible) {
+        this.lugarAtencion = lugarAtencion;
         this.numero = numero;
         this.capacidad = capacidad;
         this.disponible = disponible;

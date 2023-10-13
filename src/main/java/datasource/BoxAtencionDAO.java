@@ -34,6 +34,10 @@ public class BoxAtencionDAO implements GenericoDAO<BoxAtencion> {
         return boxesAtencion;
     }
 
+    /**
+     * Metodo para solicitar todos los boxes disponibles, de todas las areas
+     * @return Lista de tipo BoxAtencion
+     */
     public List<BoxAtencion> obtenerTodosDisponibles() {
         Session session = sessionFactory.openSession();
         String query = "SELECT boxAtencion FROM BoxAtencion boxAtencion WHERE boxAtencion.disponible = true";
