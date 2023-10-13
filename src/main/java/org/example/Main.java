@@ -35,7 +35,7 @@ public class Main {
         ResultadoDiagnosticoDAO resultadoDiagnosticoDAO = new ResultadoDiagnosticoDAO();
 
         //Se crea un box de atención
-        BoxAtencion boxAtencion = new BoxAtencion(1,30,true);
+        BoxAtencion boxAtencion = new BoxAtencion(LugarAtencion.Consultorio,1,30,true);
         boxAtencionDAO.agregar(boxAtencion);
 
         //Creación de un paciente.
