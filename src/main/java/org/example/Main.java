@@ -95,6 +95,7 @@ public class Main {
                 "123456789", List.of(especialidad));
         medicoDAO.agregar(medico);
 
+        medico.atenderPaciente(paciente, boxAtencion, paciente.getRegistrosEntradas().get(paciente.getRegistrosEntradas().size() - 1));
         medico.agregarBox(boxAtencion);
 
         especialidad.setMedico(medico);

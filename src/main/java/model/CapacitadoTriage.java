@@ -1,6 +1,7 @@
 package model;
 
 import model.Enum.ColorTriage;
+import model.EnumeracionesVariablesTriage.*;
 
 public interface CapacitadoTriage {
 

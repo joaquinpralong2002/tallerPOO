@@ -15,8 +15,6 @@ import java.util.*;
 @Entity
 public class BoxAtencion {
 
-    protected static List<BoxAtencion> boxesAtencion = new ArrayList<>();
-
     //El id de está clase será el número de box.
     @Id
     private int numero;
@@ -27,8 +25,7 @@ public class BoxAtencion {
     @OneToMany(mappedBy = "boxAtencion", orphanRemoval = true)
     private Set<Asignacion> asignaciones = new LinkedHashSet<>();
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idMedico")
+    @OneToOne(mappedBy = "boxAtencion", cascade = CascadeType.ALL, orphanRemoval = true)
     private Medico medico;
 
 
@@ -36,7 +33,6 @@ public class BoxAtencion {
         this.numero = numero;
         this.capacidad = capacidad;
         this.disponible = disponible;
-        boxesAtencion.add(this);
     }
 //Sugerir borrar los primeros  3 atributos
 //    public BoxAtencion(int numero, int capacidad, boolean disponible, Asignacion asignacion,

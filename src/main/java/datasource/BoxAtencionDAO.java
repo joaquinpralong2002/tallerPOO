@@ -2,6 +2,7 @@ package datasource;
 
 import datasource.interfaces.GenericoDAO;
 import model.BoxAtencion;
+import model.Enum.LugarAtencion;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import util.GlobalSessionFactory;
@@ -39,5 +40,33 @@ public class BoxAtencionDAO implements GenericoDAO<BoxAtencion> {
         List<BoxAtencion> boxesAtencionDisponibles = session.createQuery(query, BoxAtencion.class).getResultList();
         session.close();
         return boxesAtencionDisponibles;
+    }
+
+    /**
+     * Metodo para solicitar un box de atencion segun su area
+     * @param lugarAtencion enum que puede ser Consultorio, Emergencia, Internaciones
+     * @return de tipo BoxAtencion
+     */
+    public BoxAtencion obtenerDisponible(LugarAtencion lugarAtencion){
+        Session session = sessionFactory.openSession();
+        String query = "SELECT box FROM BoxAtencion box WHERE box.lugarAtencion = :lugarAtencion";
+        BoxAtencion boxAtencion = session.createQuery(query, BoxAtencion.class)
+                .setParameter("lugarAtencion", lugarAtencion).getSingleResult();
+        session.close();
+        return boxAtencion;
+    }
+
+    /**
+     * Metodo para solicitar una lista de boxes de atencion segun su area
+     * @param lugarAtencion enum que puede ser Consultorio, Emergencia, Internaciones
+     * @return de tipo List<BoxAtencion>
+     */
+    public BoxAtencion obtenerDisponibles(LugarAtencion lugarAtencion){
+        Session session = sessionFactory.openSession();
+        String query = "SELECT box FROM BoxAtencion box WHERE box.lugarAtencion = :lugarAtencion";
+        BoxAtencion boxAtencion = session.createQuery(query, BoxAtencion.class)
+                .setParameter("lugarAtencion", lugarAtencion).getSingleResult();
+        session.close();
+        return boxAtencion;
     }
 }

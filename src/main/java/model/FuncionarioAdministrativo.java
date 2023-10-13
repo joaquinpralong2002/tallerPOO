@@ -29,12 +29,11 @@ public class FuncionarioAdministrativo extends Funcionario{
         super(nombre, apellido, fechaNacimiento, domicilio, DNI, telefonoFijo, telefonoCelular, estadoCivil, correo, usuario, sector);
     }
 
-    public void RealizarRegistroEntrada(Paciente p,String descripcion){
+    public void RealizarRegistroEntrada(Paciente p, String descripcion){
         RegistroEntrada r = new RegistroEntrada(descripcion,p,this);
         RegistroEntradaDAO registroEntradaDAO = new RegistroEntradaDAO();
         registroEntradaDAO.agregar(r);
         this.registrosEntradas.add(r);
-        asignacionBox(r);
         p.agregarRegistroEntrada(r);
     }
 
@@ -51,16 +50,4 @@ public class FuncionarioAdministrativo extends Funcionario{
         return null;
     }
 
-    private void asignacionBox(RegistroEntrada registroEntrada){
-        Asignacion asignacion = null;
-        BoxAtencionDAO boxAtencionDAO = new BoxAtencionDAO();
-        List<BoxAtencion> boxesDisponibles = boxAtencionDAO.obtenerTodosDisponibles();
-        if(!boxesDisponibles.isEmpty()){
-            System.out.println("Entra al if");
-            asignacion = new Asignacion(registroEntrada, boxesDisponibles.get(0));
-            AsignacionDAO asignacionDAO = new AsignacionDAO();
-            asignacionDAO.agregar(asignacion);
-        }
-        else System.out.println("No hay box de atención disponibles.");
-    }
 }
