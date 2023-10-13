@@ -4,10 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2be48f36-62e0-45df-812c-c4d57fbb8bcb" name="Changes" comment="Cambios." />
-    <list id="80c61710-6253-4e62-b023-78eb10cde8de" name="Changes by Ema Bozzo" comment="" />
-    <list id="acee7888-fa83-4808-b3d6-b398512e0ebe" name="Changes by gasto" comment="" />
-    <list id="6ebf943e-b08c-4c1e-acd0-a3f23c759dc2" name="Changes by Jesús Ksa" comment="Changes by Jesús Ksa" />
+    <list default="true" id="2be48f36-62e0-45df-812c-c4d57fbb8bcb" name="Changes" comment="Cambios.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/datasource/PacienteDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/datasource/PacienteDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/datasource/RegistroEntradaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/datasource/RegistroEntradaDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Paciente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Paciente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/RegistroEntrada.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/RegistroEntrada.java" afterDir="false" />
+    </list>
+    <list id="80c61710-6253-4e62-b023-78eb10cde8de" name="Changes by Ema Bozzo" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Medico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Medico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Persona.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Persona.java" afterDir="false" />
+    </list>
+    <list id="acee7888-fa83-4808-b3d6-b398512e0ebe" name="Changes by gasto" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/datasource/PacienteDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/datasource/PacienteDAO.java" afterDir="false" />
+    </list>
+    <list id="6ebf943e-b08c-4c1e-acd0-a3f23c759dc2" name="Changes by Jesús Ksa" comment="Changes by Jesús Ksa">
+      <change beforePath="$PROJECT_DIR$/src/main/java/datasource/FuncionarioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/datasource/FuncionarioDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Enfermero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Enfermero.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Funcionario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Funcionario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/FuncionarioAdministrativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/FuncionarioAdministrativo.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -46,6 +62,15 @@
   </component>
   <component name="JpbToolWindowState">
     <option name="isToolWindowVisible" value="false" />
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/main/java/datasource/PacienteDAO.java">
+      <ranges>
+        <range start1="5" end1="5" start2="5" end2="6" changelist="acee7888-fa83-4808-b3d6-b398512e0ebe" />
+        <range start1="35" end1="35" start2="36" end2="45" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
+        <range start1="36" end1="36" start2="46" end2="47" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
+      </ranges>
+    </file>
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5

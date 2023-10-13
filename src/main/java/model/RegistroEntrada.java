@@ -6,11 +6,11 @@ import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Objects;
 
 @Getter
 @NoArgsConstructor
 @ToString
-@EqualsAndHashCode
 
 @Entity
 public class RegistroEntrada {
@@ -109,5 +109,19 @@ public class RegistroEntrada {
 
     public void setTriage(Triage triage){
         this.triage = triage;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        RegistroEntrada that = (RegistroEntrada) o;
+        return Objects.equals(idRegistroEntrada, that.idRegistroEntrada);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idRegistroEntrada);
     }
 }

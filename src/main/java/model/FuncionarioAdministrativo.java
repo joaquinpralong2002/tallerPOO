@@ -2,10 +2,11 @@ package model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 
+import datasource.AsignacionDAO;
+import datasource.BoxAtencionDAO;
+import datasource.RegistroEntradaDAO;
 import jakarta.persistence.*;
 import lombok.*;
 import model.Enum.EstadoCivil;
@@ -28,10 +29,11 @@ public class FuncionarioAdministrativo extends Funcionario{
         super(nombre, apellido, fechaNacimiento, domicilio, DNI, telefonoFijo, telefonoCelular, estadoCivil, correo, usuario, sector);
     }
 
-    public void RealizarRegistroEntrada(Paciente p,String descripcion){
+    public void RealizarRegistroEntrada(Paciente p, String descripcion){
         RegistroEntrada r = new RegistroEntrada(descripcion,p,this);
+        RegistroEntradaDAO registroEntradaDAO = new RegistroEntradaDAO();
+        registroEntradaDAO.agregar(r);
         this.registrosEntradas.add(r);
-        asignacionBox(r);
         p.agregarRegistroEntrada(r);
     }
 
@@ -46,16 +48,6 @@ public class FuncionarioAdministrativo extends Funcionario{
             }
         }
         return null;
-    }
-
-    private void asignacionBox(RegistroEntrada registroEntrada){
-        Asignacion asignacion = null;
-        while(BoxAtencion.boxesAtencion.iterator().hasNext() && asignacion == null){
-            BoxAtencion box = BoxAtencion.boxesAtencion.iterator().next();
-            if(box.isDisponible()) {
-                asignacion = new Asignacion(registroEntrada, box);
-            }
-        }
     }
 
 }
