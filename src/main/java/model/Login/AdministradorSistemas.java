@@ -24,6 +24,11 @@ public class AdministradorSistemas extends FuncionarioAdministrativo {
         super(nombre, apellido, fechaNacimiento, domicilio, DNI, telefonoFijo, telefonoCelular, estadoCivil, correo, usuario, sector);
     }
 
+    /**
+     * Metodo para asignar un Rol a un Usuario.
+     * @param u el usuario al que se le asignara el rol
+     * @param r rol que se le va a asignar
+     */
     public void asignarRol(Usuario u, Rol r){
         u.setRol(r);
     }
