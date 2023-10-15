@@ -96,12 +96,12 @@ public class Main {
         medicoDAO.agregar(medico);
 
         medico.atenderPaciente(paciente, boxAtencion, paciente.getRegistrosEntradas().get(paciente.getRegistrosEntradas().size() - 1));
-        medico.agregarBox(boxAtencion);
+        //medico.agregarBox(boxAtencion);
 
         especialidad.setMedico(medico);
         sectorMedico.setFuncionarios(Set.of(medico));
 
-        medico.realizarTriage(funAdmin.getRegistrosEntradas().get(0));
+        //medico.realizarTriage(funAdmin.getRegistrosEntradas().get(0));
 
         Registro registro = new Registro(LugarAtencion.Consultorio,paciente,medico);
         registroDAO.agregar(registro);

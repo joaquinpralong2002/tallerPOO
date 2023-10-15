@@ -4,25 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2be48f36-62e0-45df-812c-c4d57fbb8bcb" name="Changes" comment="Implementados DAOS y cambio en el Main. Solucionado problema con Asignación.">
+    <list default="true" id="2be48f36-62e0-45df-812c-c4d57fbb8bcb" name="Changes" comment="Cambios.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/LoginController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/LoginApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/views/Login.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/datasource/BoxAtencionDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/datasource/BoxAtencionDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/BoxAtencion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/BoxAtencion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/CapacitadoTriage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/CapacitadoTriage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Enfermero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Enfermero.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/FuncionarioAdministrativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/FuncionarioAdministrativo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Medico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Medico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/datasource/UsuarioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/datasource/UsuarioDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Asignacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Asignacion.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/util/GlobalSessionFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/util/GlobalSessionFactory.java" afterDir="false" />
     </list>
-    <list id="7cf27e7a-e8ef-4e7b-8ea0-1add41df4e7f" name="Changes by Ema Bozzo" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/datasource/BoxAtencionDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/datasource/BoxAtencionDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/BoxAtencion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/BoxAtencion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/CapacitadoTriage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/CapacitadoTriage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Enfermero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Enfermero.java" afterDir="false" />
-    </list>
-    <list id="9d16d164-8f00-4786-a993-0260a1540d87" name="Changes by Jesús Ksa" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
-    </list>
+    <list id="7cf27e7a-e8ef-4e7b-8ea0-1add41df4e7f" name="Changes by Ema Bozzo" comment="Changes by Ema Bozzo" />
+    <list id="9d16d164-8f00-4786-a993-0260a1540d87" name="Changes by Jesús Ksa" comment="Changes by Jesús Ksa" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -62,52 +56,6 @@
   <component name="JpbToolWindowState">
     <option name="isToolWindowVisible" value="false" />
   </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/main/java/datasource/BoxAtencionDAO.java">
-      <ranges>
-        <range start1="4" end1="4" start2="4" end2="5" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
-        <range start1="35" end1="35" start2="36" end2="40" changelist="7cf27e7a-e8ef-4e7b-8ea0-1add41df4e7f" />
-        <range start1="42" end1="42" start2="47" end2="75" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/main/java/model/Enfermero.java">
-      <ranges>
-        <range start1="2" end1="2" start2="2" end2="4" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
-        <range start1="6" end1="6" start2="8" end2="10" changelist="7cf27e7a-e8ef-4e7b-8ea0-1add41df4e7f" />
-        <range start1="33" end1="34" start2="37" end2="54" changelist="7cf27e7a-e8ef-4e7b-8ea0-1add41df4e7f" />
-        <range start1="37" end1="39" start2="57" end2="63" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
-        <range start1="40" end1="45" start2="64" end2="65" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
-        <range start1="56" end1="56" start2="76" end2="114" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/main/java/model/BoxAtencion.java">
-      <ranges>
-        <range start1="5" end1="5" start2="5" end2="6" changelist="7cf27e7a-e8ef-4e7b-8ea0-1add41df4e7f" />
-        <range start1="9" end1="9" start2="10" end2="11" changelist="7cf27e7a-e8ef-4e7b-8ea0-1add41df4e7f" />
-        <range start1="11" end1="12" start2="13" end2="13" changelist="7cf27e7a-e8ef-4e7b-8ea0-1add41df4e7f" />
-        <range start1="17" end1="19" start2="18" end2="18" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
-        <range start1="25" end1="25" start2="24" end2="26" changelist="7cf27e7a-e8ef-4e7b-8ea0-1add41df4e7f" />
-        <range start1="27" end1="27" start2="28" end2="29" changelist="7cf27e7a-e8ef-4e7b-8ea0-1add41df4e7f" />
-        <range start1="29" end1="31" start2="31" end2="32" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
-        <range start1="34" end1="35" start2="35" end2="37" changelist="7cf27e7a-e8ef-4e7b-8ea0-1add41df4e7f" />
-        <range start1="38" end1="39" start2="40" end2="40" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/main/java/org/example/Main.java">
-      <ranges>
-        <range start1="37" end1="38" start2="37" end2="38" changelist="9d16d164-8f00-4786-a993-0260a1540d87" />
-        <range start1="97" end1="97" start2="97" end2="98" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/main/java/model/CapacitadoTriage.java">
-      <ranges>
-        <range start1="3" end1="3" start2="3" end2="4" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
-        <range start1="8" end1="9" start2="9" end2="10" changelist="7cf27e7a-e8ef-4e7b-8ea0-1add41df4e7f" />
-        <range start1="11" end1="12" start2="12" end2="16" changelist="7cf27e7a-e8ef-4e7b-8ea0-1add41df4e7f" />
-        <range start1="19" end1="19" start2="23" end2="28" changelist="7cf27e7a-e8ef-4e7b-8ea0-1add41df4e7f" />
-      </ranges>
-    </file>
-  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
 }</component>
@@ -131,7 +79,26 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Administrador\Documents\TallerPOO\tallerPOO\src\main\resources\images" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.LoginApplication">
+    <configuration name="LoginApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.example.LoginApplication" />
+      <module name="tallerPOO" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Users\Administrador\Downloads\openjfx-17.0.8_windows-x64_bin-sdk\javafx-sdk-17.0.8\lib&quot; --add-modules javafx.controls,javafx.fxml" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.Main" />
       <module name="tallerPOO" />
@@ -165,8 +132,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.LoginApplication" />
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.Recursividad" />
+      <item itemvalue="Application.recursivo" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.LoginApplication" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.Recursividad" />
         <item itemvalue="Application.recursivo" />
@@ -366,7 +340,31 @@
       <option name="project" value="LOCAL" />
       <updated>1697147746214</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Cambios.">
+      <option name="closed" value="true" />
+      <created>1697158194117</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1697158194117</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Changes by Ema Bozzo">
+      <option name="closed" value="true" />
+      <created>1697158204992</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1697158204992</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Changes by Jesús Ksa">
+      <option name="closed" value="true" />
+      <created>1697158216299</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1697158216299</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -389,10 +387,10 @@
     <MESSAGE value="Hay que modificar Id de la clase BoxAtencion, que no sea generado automáticamente." />
     <MESSAGE value="Revisadas algunas asociaciones." />
     <MESSAGE value="Revisadas más asociaciones." />
-    <MESSAGE value="Changes by Ema Bozzo" />
-    <MESSAGE value="Cambios." />
     <MESSAGE value="Changes by gasto" />
     <MESSAGE value="Implementados DAOS y cambio en el Main. Solucionado problema con Asignación." />
+    <MESSAGE value="Changes by Ema Bozzo" />
+    <MESSAGE value="Cambios." />
     <MESSAGE value="Changes by Jesús Ksa" />
     <option name="LAST_COMMIT_MESSAGE" value="Changes by Jesús Ksa" />
   </component>

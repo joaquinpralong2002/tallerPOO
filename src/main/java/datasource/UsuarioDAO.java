@@ -34,7 +34,7 @@ public class UsuarioDAO implements GenericoDAO<Usuario> {
     }
     //**************************************************************************
 
-    public Usuario ObtenerUsuarioPorNombre(String nombreUsuario){
+    public Usuario obtenerUsuarioPorNombre(String nombreUsuario){
         Session session = sessionFactory.openSession();
         String query = "SELECT usuario FROM Usuario usuario WHERE usuario.nombreUsuario = :nombreUsuario";
         Usuario usuario = session.createQuery(query, Usuario.class)
