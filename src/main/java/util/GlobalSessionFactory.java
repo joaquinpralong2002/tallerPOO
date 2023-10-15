@@ -11,13 +11,17 @@ import model.*;
 
 import static java.lang.Boolean.TRUE;
 
-
+/**
+ * Configuración de Hibernate
+ */
 
 public class GlobalSessionFactory {
 
     @Getter
     private static SessionFactory sessionFactory;
-
+    /**
+     * Inicializa la SessionFactory global de Hibernate.
+     */
     public void InitGlobalSessionFactory(){
         sessionFactory = new Configuration()
                 //Clases mapeadas

@@ -7,6 +7,14 @@ import jakarta.persistence.ManyToOne;
 import lombok.*;
 import model.Enum.LugarAtencion;
 
+import java.util.Objects;
+
+/**
+ * Clase que queda como Registro luego de que el paciente es atendido por el Médico, donde conserva el lugar de atención.
+ *
+ * Se relaciona con Paciente y Médico
+ */
+
 @Getter
 @NoArgsConstructor
 @ToString

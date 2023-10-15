@@ -8,6 +8,10 @@ import java.util.Set;
 import jakarta.persistence.*;
 import lombok.*;
 
+/**
+ * Clase destinada a asignar el sector a los distintos Funcionarios
+ */
+
 @NoArgsConstructor
 @Getter
 @Setter
