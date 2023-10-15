@@ -6,6 +6,9 @@ import model.Funcionario;
 
 import java.util.*;
 
+/**
+ * Clase que representa los usuarios de la aplicación.
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -53,10 +56,9 @@ public class Usuario {
 
 
     /**
-     * Método que controla que se cumplan ciertos criterios para la asignación de la contraseña a un usuario.
-     * Debe tener un largo de mínimo de 8 carácteres, contener minúsculas, mayúsculas y símbolos.
-     * @param contraseña
-     * @return
+     * Establece la contraseña del usuario
+     * @param contraseña La nueva contraseña del usuario.
+     * @return True si la contraseña se estableció correctamente, false en caso contrario.
      */
     public boolean setContrasenia(String contraseña) {
         if (contraseña.length() >= 8 &&
@@ -70,7 +72,7 @@ public class Usuario {
         }
     }
     /**
-     * Método que controla que la contraseña pasada por parámetro tenga mayúsculas
+     * Controla que la contraseña pasada por parámetro contenga mayúsculas
      * @param contraseña
      * @return
      */
@@ -84,7 +86,7 @@ public class Usuario {
     }
 
     /**
-     * Método que controla que la contraseña pasada por parámetro tenga minúsculas
+     * Controla que la contraseña pasada por parámetro contenga minúsculas
      * @param contraseña
      * @return
      */
@@ -98,7 +100,7 @@ public class Usuario {
     }
 
     /**
-     * Método que controla que la contraseña pasada por parámetro tenga símbolos
+     * Controla que la contraseña pasada por parámetro contenga símbolos
      * @param contraseña
      * @return
      */
@@ -114,11 +116,9 @@ public class Usuario {
 
 
     /**
-     * Método que controla que se cumplan ciertos criterios para la asignación del username a un usuario.
-     * Debe tener un largo de mínimo de 10 carácteres.
-     * (CUANDO SE IMPLEMENTE LA BASE DE DATOS, CONTROLAR QUE NO SEA REPETIDO EL NOMBRE)
-     * @param nombreUsuario
-     * @return
+     * Establece el nombre de usuario del médico.
+     * @param nombreUsuario El nuevo nombre de usuario del médico.
+     * @return True si el nombre de usuario se estableció correctamente, false en caso contrario.
      */
     public boolean setNombreUsuario(String nombreUsuario) {
         if(nombreUsuario.length() >= 10){

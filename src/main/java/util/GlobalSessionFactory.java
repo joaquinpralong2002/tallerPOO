@@ -51,7 +51,7 @@ public class GlobalSessionFactory {
                 .setProperty(AvailableSettings.SHOW_SQL, TRUE.toString())
                 .setProperty(AvailableSettings.FORMAT_SQL, TRUE.toString())
                 .setProperty(AvailableSettings.HIGHLIGHT_SQL, TRUE.toString())
-                .setProperty(AvailableSettings.HBM2DDL_AUTO, "update")
+                .setProperty(AvailableSettings.HBM2DDL_AUTO, "create-drop")
                 // Creación de SessionFactory
                 .buildSessionFactory();
     }

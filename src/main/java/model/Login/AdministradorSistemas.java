@@ -9,6 +9,10 @@ import model.Sector;
 
 import java.time.LocalDate;
 
+/**
+ * Clase que representa un Funcionario Administrativo del tipo Informatico.
+ */
+
 @Getter
 @Setter
 @NoArgsConstructor

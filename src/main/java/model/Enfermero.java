@@ -15,6 +15,9 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Clase que representa un Funcionario de tipo Enfermero, que implementa los métodos de la interfaz CapacitadoTriage.
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -33,31 +36,10 @@ public class Enfermero extends Funcionario implements CapacitadoTriage{
         super(nombre, apellido, fechaNacimiento, domicilio, DNI, telefonoFijo, telefonoCelular, estadoCivil, correo, usuario,sector);
     }
 
-
-    /**
-     * Metodo encargado de
-     * @param respiracion
-     * @param pulso
-     * @param valorPulso
-     * @param estadoMental
-     * @param conciencia
-     * @param dolorPecho
-     * @param lecionesGraves
-     * @param edad
-     * @param valorEdad
-     * @param fiebre
-     * @param valorFiebre
-     * @param vomitos
-     * @param dolorAbdominal
-     * @param signoShock
-     * @param lesionLeve
-     * @param sangrado
-     * @return
-     */
     @Override
     public Triage realizarTriage(Respiracion respiracion, Pulso pulso, int valorPulso, EstadoMental estadoMental,
                                       Conciencia conciencia, DolorPecho dolorPecho, LecionesGraves lecionesGraves, Edad edad,
-                                      int valorEdad, Fiebre fiebre, int valorFiebre, Vomitos vomitos, DolorAbdominal dolorAbdominal,
+                                      int valorEdad, Fiebre fiebre, float valorFiebre, Vomitos vomitos, DolorAbdominal dolorAbdominal,
                                       SignoShock signoShock, LesionLeve lesionLeve, Sangrado sangrado) {
         Triage triage = new Triage(respiracion, pulso, valorPulso, estadoMental, conciencia, dolorPecho, lecionesGraves, edad,
                 valorEdad, fiebre, valorFiebre, vomitos, dolorAbdominal, signoShock, lesionLeve, sangrado);
@@ -65,21 +47,16 @@ public class Enfermero extends Funcionario implements CapacitadoTriage{
         return triage;
     }
 
-    /**
-     * @param t de tipo Triage, sirve para saber el triage que se le va a cambiar el color
-     * @param color de tipo ColorTriage, el nuevo color que tendra el triage
-     * @param motivo De tipo String, sirve para almacenar el motivo por el cual el color del triage fue modificado
-     */
     @Override
-    public void cambiarColorTriage(Triage t, ColorTriage color, String motivo) {
-        t.modificarColorTriageFinal(color, motivo);
+    public void cambiarColorTriage(Triage triage, ColorTriage colorTriage, String motivo) {
+        triage.modificarColorTriageFinal(colorTriage, motivo);
     }
 
     @Override
-    public boolean confirmarTriage(RegistroEntrada r, Triage triage){
+    public boolean confirmarTriage(RegistroEntrada registroEntrada, Triage triage){
         triage.setEnfermero(this);
-        triage.setRegistroEntrada(r);
-        r.setTriage(triage);
+        triage.setRegistroEntrada(registroEntrada);
+        registroEntrada.setTriage(triage);
         this.triagesRealizados.add(triage);
 
         return true;

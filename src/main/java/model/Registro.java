@@ -13,7 +13,7 @@ import model.Enum.LugarAtencion;
 @EqualsAndHashCode
 
 @Entity
-public class    Registro {
+public class Registro {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idRegistro;
@@ -42,5 +42,18 @@ public class    Registro {
         this.lugarAtencion = lugarAtencion;
         this.paciente = paciente;
         this.medico = medico;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Registro registro = (Registro) o;
+        return Objects.equals(idRegistro, registro.idRegistro);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idRegistro);
     }
 }
