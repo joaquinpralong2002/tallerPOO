@@ -39,10 +39,6 @@ public class Asignacion {
     @JoinColumn(name = "numero", nullable = false, unique = true)
     private BoxAtencion boxAtencion;
 
-    /**
-     * @param registroEntrada Registro de entrada al que se le asociará un box de atención
-     * @param boxAtencion Box de atención al que se le asociará un registro de entrada
-     */
     public Asignacion(RegistroEntrada registroEntrada, BoxAtencion boxAtencion) {
         this.fecha = LocalDate.now();
         this.hora = LocalTime.now();

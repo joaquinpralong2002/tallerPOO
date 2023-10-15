@@ -8,6 +8,13 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Objects;
 
+/**
+ * Clase que registra al paciente al momento de ingresar al hospital.
+ * Luego de ser registrado, el médico y enfermero tienen acceso a esta clase para realizar el triage,
+ * como también asignar el Box de Atención correspondiente
+ *
+ * Posee una relación con Asignación, Box de Atención, Triage y FuncionarioAdministrativo
+ */
 @Getter
 @NoArgsConstructor
 @ToString
@@ -20,7 +27,6 @@ public class RegistroEntrada {
     private LocalDate fecha;
     private LocalTime hora;
     private String descripcion;
-
 
     @ToString.Exclude
     @ManyToOne(cascade = CascadeType.ALL)

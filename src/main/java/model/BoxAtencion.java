@@ -8,6 +8,10 @@ import model.Medico;
 
 import java.util.*;
 
+/**
+ * Clase que representa un box de atención, que posee un número asociado, una capacidad, y un booleano que indica si
+ * está disponible.
+ */
 @NoArgsConstructor
 @Getter
 @Setter
@@ -15,8 +19,6 @@ import java.util.*;
 
 @Entity
 public class BoxAtencion {
-
-    //El id de está clase será el número de box.
     @Id
     private int numero;
     private int capacidad;
@@ -38,21 +40,6 @@ public class BoxAtencion {
         this.numero = numero;
         this.capacidad = capacidad;
         this.disponible = disponible;
-    }
-//Sugerir borrar los primeros  3 atributos
-//    public BoxAtencion(int numero, int capacidad, boolean disponible, Asignacion asignacion,
-//                       List<RegistroEntrada> registrosEntradas, Medico medico) {
-//        this.numero = numero;
-//        this.capacidad = capacidad;
-//        this.disponible = disponible;
-//        this.asignacion = asignacion;
-//        this.registrosEntradas = registrosEntradas;
-//        this.medico = medico;
-//    }
-
-
-    public void agregarAsignacion(Asignacion asignacion){
-        this.asignaciones.add(asignacion);
     }
 
     @Override

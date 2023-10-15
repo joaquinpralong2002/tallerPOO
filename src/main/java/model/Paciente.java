@@ -9,6 +9,9 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Clase que representa a un Paciente.
+ */
 @Getter
 @Setter
 @NoArgsConstructor

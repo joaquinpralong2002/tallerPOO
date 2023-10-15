@@ -3,6 +3,12 @@ package model;
 import lombok.*;
 import jakarta.persistence.*;
 
+/**
+ * Clase que guarda el resultado del diagnóstico del paciente, otorgado por el médico
+ *
+ * Se relaciona solamente con Paciente
+ */
+
 @Getter
 @Setter
 @NoArgsConstructor

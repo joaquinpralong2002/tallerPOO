@@ -6,6 +6,9 @@ import org.hibernate.annotations.NaturalId;
 
 import java.time.LocalDate;
 
+/**
+ * Clase que representa especialidades de médicos.
+ */
 @NoArgsConstructor
 @Getter
 @Setter
@@ -46,5 +49,4 @@ public class Especialidad {
         this.universidad = universidad;
         this.medico = medico;
     }
-
 }
