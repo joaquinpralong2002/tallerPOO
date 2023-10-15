@@ -1,3 +1,5 @@
+
+
 package model;
 
 import jakarta.persistence.*;
@@ -8,6 +10,10 @@ import lombok.Setter;
 import javax.swing.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
+
+/**
+ *Clase que representa la asociación entre boxes de atención y registros de entrada.
+ */
 @NoArgsConstructor
 @Getter
 @Setter
@@ -33,6 +39,10 @@ public class Asignacion {
     @JoinColumn(name = "numero", nullable = false, unique = true)
     private BoxAtencion boxAtencion;
 
+    /**
+     * @param registroEntrada Registro de entrada al que se le asociará un box de atención
+     * @param boxAtencion Box de atención al que se le asociará un registro de entrada
+     */
     public Asignacion(RegistroEntrada registroEntrada, BoxAtencion boxAtencion) {
         this.fecha = LocalDate.now();
         this.hora = LocalTime.now();
