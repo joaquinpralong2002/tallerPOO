@@ -56,7 +56,7 @@ public class Main {
         usuario.setRoles(List.of(rol));
 
         //*********Sector al cual pertenece el funcionario*********
-        Sector sector = new Sector("Administración");
+        Sector sector = new Sector("Funcionario");
         sectorDAO.agregar(sector);
 
         //*********Funcionario Administrativo que toma los datos del paciente*********
