@@ -11,13 +11,17 @@ import model.*;
 
 import static java.lang.Boolean.TRUE;
 
-
+/**
+ * Configuración de Hibernate
+ */
 
 public class GlobalSessionFactory {
 
     @Getter
     private static SessionFactory sessionFactory;
-
+    /**
+     * Inicializa la SessionFactory global de Hibernate.
+     */
     public void InitGlobalSessionFactory(){
         sessionFactory = new Configuration()
                 //Clases mapeadas
@@ -51,7 +55,7 @@ public class GlobalSessionFactory {
                 .setProperty(AvailableSettings.SHOW_SQL, TRUE.toString())
                 .setProperty(AvailableSettings.FORMAT_SQL, TRUE.toString())
                 .setProperty(AvailableSettings.HIGHLIGHT_SQL, TRUE.toString())
-                .setProperty(AvailableSettings.HBM2DDL_AUTO, "update")
+                .setProperty(AvailableSettings.HBM2DDL_AUTO, "create-drop")
                 // Creación de SessionFactory
                 .buildSessionFactory();
     }

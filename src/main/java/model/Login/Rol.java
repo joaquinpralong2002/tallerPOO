@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+ * Clase que representa los roles que pueden tener los usuarios de la aplicación.
+ */
 @Getter
 @Setter
 @NoArgsConstructor

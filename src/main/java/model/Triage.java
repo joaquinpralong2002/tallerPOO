@@ -8,6 +8,14 @@ import lombok.*;
 
 import java.util.Objects;
 
+/**
+ * Clase que se encarga de calcular el triage.
+ * A esta clase pueden acceder los Medicos y Enfermeros, los cuales son encargados de asignar los colores
+ * Dependiendo de los distintos síntomas del paciente, se le asigna un puntaje,
+ * y en base a ese puntaje, se le asigna un color.
+ *
+ * Se relaciona con Registro de Entrada, Médico y Enfermero.
+ */
 @NoArgsConstructor
 @Getter
 @Setter
@@ -105,6 +113,33 @@ public class Triage{
         this.sangrado = sangrado;
     }
 
+    /**
+     * Calcula el color de triage recomendado para el paciente.
+     *
+     * El color de triage se calcula sumando los valores de los siguientes indicadores:
+     * - Respiración
+     * - Pulso
+     * - Estado mental
+     * - Conciencia
+     * - Dolor de pecho
+     * - Lesión grave
+     * - Edad
+     * - Fiebre
+     * - Vómito
+     * - Dolor abdominal
+     * - Signos de shock
+     * - Lesiones leves
+     * - Sangrado
+     *
+     * Los valores de los indicadores se obtienen de las propiedades del paciente.
+     *
+     * Los colores de triage son los siguientes:
+     * 15 o más, Rojo: Requiere atención médica inmediata
+     * 10 a 14, Naranja: Requiere atención médica urgente
+     * 5 a 9, Amarillo: Requiere atención médica en un plazo más largo
+     * 0 a 4 Verde: Condiciones no urgentes
+     * 0 Azul: Condiciones que pueden ser tratadas en un entorno no hospitalario
+     */
     public void calcularColorTriageRecomendado(){
         int suma = respiracion.getValor() + pulso.getValor() + estadoMental.getValor() + conciencia.getValor() + dolorPecho.getValor() +
                 lesionGrave.getValor() + edad.getValor() + fiebre.getValor() + vomito.getValor() + dolorAbdominal.getValor() +
@@ -122,6 +157,17 @@ public class Triage{
         }
     }
 
+    /**
+     * Modifica el color de triage final del paciente.
+     * El color de triage final es el que se asigna al paciente después de que un médico o enfermero lo haya revisado.
+     * El método solo permite modificar el color de triage final si la diferencia entre el color final
+     * y el color recomendado es de dos niveles o menos.
+     *
+     * @param colorFinal El color de triage final que se desea asignar al paciente.
+     * @param motivo El motivo del cambio de triage.
+     *
+     * @return `true` si el color de triage final se pudo modificar, `false` de lo contrario.
+     */
 
     public boolean modificarColorTriageFinal(ColorTriage colorFinal, String motivo){
         if(colorFinal.getValor() - colorTriageRecomendado.getValor() <= 2){

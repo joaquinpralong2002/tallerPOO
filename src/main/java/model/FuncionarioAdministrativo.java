@@ -12,6 +12,9 @@ import lombok.*;
 import model.Enum.EstadoCivil;
 import model.Login.Usuario;
 
+/**
+ * Clase que representa un Funcionario Administrativo.
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -29,12 +32,17 @@ public class FuncionarioAdministrativo extends Funcionario{
         super(nombre, apellido, fechaNacimiento, domicilio, DNI, telefonoFijo, telefonoCelular, estadoCivil, correo, usuario, sector);
     }
 
-    public void RealizarRegistroEntrada(Paciente p, String descripcion){
-        RegistroEntrada r = new RegistroEntrada(descripcion,p,this);
+    /**
+     * Realiza un registro de entrada para un paciente.
+     * @param paciente El paciente al que se le va a realizar el registro de entrada.
+     * @param descripcion La descripción del registro de entrada.
+     */
+    public void RealizarRegistroEntrada(Paciente paciente, String descripcion){
+        RegistroEntrada r = new RegistroEntrada(descripcion,paciente,this);
         RegistroEntradaDAO registroEntradaDAO = new RegistroEntradaDAO();
         registroEntradaDAO.agregar(r);
         this.registrosEntradas.add(r);
-        p.agregarRegistroEntrada(r);
+        paciente.agregarRegistroEntrada(r);
     }
 
     public List<Paciente> pacientesMasConsultas(LocalDate fecha1, LocalDate fecha2){

@@ -2,6 +2,7 @@ package org.example;
 import datasource.*;
 import model.*;
 import model.Enum.*;
+import model.EnumeracionesVariablesTriage.*;
 import model.Login.*;
 
 import model.Login.Rol;
@@ -95,19 +96,19 @@ public class Main {
                 "123456789", List.of(especialidad));
         medicoDAO.agregar(medico);
 
-        medico.atenderPaciente(paciente, boxAtencion, paciente.getRegistrosEntradas().get(paciente.getRegistrosEntradas().size() - 1));
-        //medico.agregarBox(boxAtencion);
+        medico.realizarTriage(Respiracion.Normal, Pulso.Normal,12, EstadoMental.Normal, Conciencia.Consciente,
+                DolorPecho.NoPresnte, LecionesGraves.NoPresentes, Edad.NinioAnciano,81, Fiebre.Alta, 38, Vomitos.SinVomito,
+                DolorAbdominal.NoPresente, SignoShock.NoPresente, LesionLeve.NoPresente, Sangrado.NoPresente);
+
+        medico.confirmarTriage(paciente.getRegistrosEntradas().get(paciente.getRegistrosEntradas().size() - 1),
+                medico.getTriagesRealizados().get(medico.getTriagesRealizados().size() - 1));
+
+        medico.atenderPaciente(paciente, boxAtencion, "CORONAVAIRUS");
+
+
 
         especialidad.setMedico(medico);
         sectorMedico.setFuncionarios(Set.of(medico));
-
-        //medico.realizarTriage(funAdmin.getRegistrosEntradas().get(0));
-
-        Registro registro = new Registro(LugarAtencion.Consultorio,paciente,medico);
-        registroDAO.agregar(registro);
-
-        ResultadoDiagnostico resultadoDiagnostico = new ResultadoDiagnostico("Dolor de cabeza y fiebre",paciente);
-        resultadoDiagnosticoDAO.agregar(resultadoDiagnostico);
 
         System.out.println(medico.toString());
 

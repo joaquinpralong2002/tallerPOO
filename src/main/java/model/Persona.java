@@ -8,6 +8,10 @@ import lombok.*;
 import model.Enum.EstadoCivil;
 import org.hibernate.annotations.NaturalId;
 
+/**
+ * Representa a una persona en el sistema.
+ */
+
 @Getter
 @Setter
 @NoArgsConstructor

@@ -6,6 +6,10 @@ import org.hibernate.annotations.NaturalId;
 
 import java.util.List;
 
+/**
+ * Clase que representa una institución educativa superior, de la que los medicos se recibierón.
+ */
+
 @NoArgsConstructor
 @Setter
 @Getter

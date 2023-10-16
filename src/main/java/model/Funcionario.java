@@ -8,6 +8,9 @@ import model.Login.Usuario;
 
 import java.time.LocalDate;
 
+/**
+ * Clase que representa un funcionario del hospital.
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -35,6 +38,4 @@ public class Funcionario extends Persona{
         this.usuario = usuario;
         this.sector = sector;
     }
-
-
 }
