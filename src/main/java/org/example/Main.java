@@ -53,10 +53,10 @@ public class Main {
         Usuario usuario = new Usuario("danielalopez","perrochichuA8€");
         usuarioDAO.agregar(usuario);
         rol.setUsuarios(Set.of(usuario));
-        usuario.setRoles(Set.of(rol));
+        usuario.setRoles(List.of(rol));
 
         //*********Sector al cual pertenece el funcionario*********
-        Sector sector = new Sector("Administración");
+        Sector sector = new Sector("Funcionario");
         sectorDAO.agregar(sector);
 
         //*********Funcionario Administrativo que toma los datos del paciente*********
@@ -76,7 +76,7 @@ public class Main {
         Usuario usuarioMedico = new Usuario("juancarlosramirez@gmail.com","juancito01&");
         usuarioDAO.agregar(usuarioMedico);
         rolMedico.setUsuarios(Set.of(usuarioMedico));
-        usuarioMedico.setRoles(Set.of(rolMedico));
+        usuarioMedico.setRoles(List.of(rolMedico));
 
         //Sector al cual pertenece el medico
         Sector sectorMedico = new Sector("Incisiones");

@@ -23,11 +23,11 @@ public class Usuario {
     private String nombreUsuario;
     private String contrasenia;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH}, fetch = FetchType.EAGER)
     @JoinTable(name = "Usuarios_roles",
             joinColumns = @JoinColumn(name = "idUsuario"),
             inverseJoinColumns = @JoinColumn(name = "idRol"))
-    private Set<Rol> roles = new LinkedHashSet<>();
+    private List<Rol> roles = new LinkedList<>();
 
     @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, optional = false, orphanRemoval = true)
     private Funcionario funcionario;
