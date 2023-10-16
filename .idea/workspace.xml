@@ -4,39 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2be48f36-62e0-45df-812c-c4d57fbb8bcb" name="Changes" comment="Creada una aplicación de login.">
+    <list default="true" id="2be48f36-62e0-45df-812c-c4d57fbb8bcb" name="Changes" comment="Escrito javadoc para todas las clases, modificados métodos de la clase médico.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/MedicoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/TriageController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/views/MedicoViews/Medico.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/views/MedicoViews/Triage.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Asignacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Asignacion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/BoxAtencion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/BoxAtencion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/CapacitadoTriage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/CapacitadoTriage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Enfermero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Enfermero.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Especialidad.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Especialidad.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Funcionario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Funcionario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/FuncionarioAdministrativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/FuncionarioAdministrativo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Login/AdministradorSistemas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Login/AdministradorSistemas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/datasource/UsuarioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/datasource/UsuarioDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/Login/Rol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Login/Rol.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/Login/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Login/Usuario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Medico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Medico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Paciente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Paciente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Registro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Registro.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/util/GlobalSessionFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/util/GlobalSessionFactory.java" afterDir="false" />
     </list>
     <list id="7cf27e7a-e8ef-4e7b-8ea0-1add41df4e7f" name="Changes by Ema Bozzo" comment="Changes by Ema Bozzo" />
-    <list id="81562c92-767e-49a1-a6f7-1e8a266e862a" name="Changes by gasto" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Enum/EstadoCivil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Enum/EstadoCivil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Persona.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Persona.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Registro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Registro.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/RegistroEntrada.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/RegistroEntrada.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/ResultadoDiagnostico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/ResultadoDiagnostico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Sector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Sector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Triage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Triage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/util/GlobalSessionFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/util/GlobalSessionFactory.java" afterDir="false" />
-    </list>
-    <list id="9d16d164-8f00-4786-a993-0260a1540d87" name="Changes by Jesús Ksa" comment="Changes by Jesús Ksa">
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Login/AdministradorSistemas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Login/AdministradorSistemas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Medico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Medico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Universidad.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Universidad.java" afterDir="false" />
+    <list id="bb2b6195-ffe5-4c8f-8aa7-bdf692c126ae" name="Changes by Jesús Ksa" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,43 +62,22 @@
     <option name="isToolWindowVisible" value="false" />
   </component>
   <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/main/java/util/GlobalSessionFactory.java">
+    <file path="$PROJECT_DIR$/src/main/java/org/example/Main.java">
       <ranges>
-        <range start1="13" end1="14" start2="13" end2="16" changelist="81562c92-767e-49a1-a6f7-1e8a266e862a" />
-        <range start1="19" end1="20" start2="21" end2="24" changelist="81562c92-767e-49a1-a6f7-1e8a266e862a" />
-        <range start1="53" end1="54" start2="57" end2="58" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
+        <range start1="55" end1="56" start2="55" end2="56" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
+        <range start1="58" end1="59" start2="58" end2="59" changelist="bb2b6195-ffe5-4c8f-8aa7-bdf692c126ae" />
+        <range start1="78" end1="79" start2="78" end2="79" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
       </ranges>
     </file>
-    <file path="$PROJECT_DIR$/src/main/java/model/Login/AdministradorSistemas.java">
+    <file path="$PROJECT_DIR$/src/main/java/controllers/LoginController.java">
       <ranges>
-        <range start1="11" end1="11" start2="11" end2="15" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
-        <range start1="22" end1="22" start2="26" end2="31" changelist="9d16d164-8f00-4786-a993-0260a1540d87" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/main/java/model/Registro.java">
-      <ranges>
-        <range start1="8" end1="8" start2="8" end2="16" changelist="81562c92-767e-49a1-a6f7-1e8a266e862a" />
-        <range start1="15" end1="16" start2="23" end2="24" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
-        <range start1="45" end1="45" start2="53" end2="66" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/main/java/model/Medico.java">
-      <ranges>
-        <range start1="1" end1="3" start2="1" end2="2" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
-        <range start1="16" end1="16" start2="15" end2="18" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
-        <range start1="54" end1="56" start2="56" end2="58" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
-        <range start1="57" end1="59" start2="59" end2="61" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
-        <range start1="62" end1="64" start2="64" end2="66" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
-        <range start1="65" end1="67" start2="67" end2="69" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
-        <range start1="69" end1="76" start2="71" end2="71" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
-        <range start1="79" end1="80" start2="74" end2="75" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
-        <range start1="85" end1="85" start2="80" end2="81" changelist="9d16d164-8f00-4786-a993-0260a1540d87" />
-        <range start1="88" end1="93" start2="84" end2="84" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
-        <range start1="94" end1="96" start2="85" end2="87" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
-        <range start1="99" end1="100" start2="90" end2="91" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
-        <range start1="101" end1="104" start2="92" end2="95" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
-        <range start1="107" end1="108" start2="98" end2="112" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
-        <range start1="148" end1="148" start2="152" end2="153" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
+        <range start1="5" end1="5" start2="5" end2="9" changelist="bb2b6195-ffe5-4c8f-8aa7-bdf692c126ae" />
+        <range start1="6" end1="6" start2="10" end2="11" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
+        <range start1="7" end1="7" start2="12" end2="14" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
+        <range start1="14" end1="15" start2="21" end2="25" changelist="bb2b6195-ffe5-4c8f-8aa7-bdf692c126ae" />
+        <range start1="20" end1="23" start2="30" end2="34" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
+        <range start1="25" end1="27" start2="36" end2="38" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
+        <range start1="29" end1="34" start2="40" end2="86" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
       </ranges>
     </file>
   </component>
@@ -146,7 +109,7 @@
       <recent name="C:\Users\Administrador\Documents\TallerPOO\tallerPOO\src\main\resources\images" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.LoginApplication">
     <configuration name="LoginApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.LoginApplication" />
       <module name="tallerPOO" />
@@ -202,8 +165,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
         <item itemvalue="Application.LoginApplication" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.Recursividad" />
         <item itemvalue="Application.recursivo" />
       </list>
@@ -434,7 +397,31 @@
       <option name="project" value="LOCAL" />
       <updated>1697348809005</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Escrito javadoc para todas las clases, modificados métodos de la clase médico.">
+      <option name="closed" value="true" />
+      <created>1697413900852</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1697413900852</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Changes by gasto">
+      <option name="closed" value="true" />
+      <created>1697413917617</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1697413917617</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Changes by Jesús Ksa">
+      <option name="closed" value="true" />
+      <created>1697413924957</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1697413924957</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -457,12 +444,13 @@
     <MESSAGE value="Hay que modificar Id de la clase BoxAtencion, que no sea generado automáticamente." />
     <MESSAGE value="Revisadas algunas asociaciones." />
     <MESSAGE value="Revisadas más asociaciones." />
-    <MESSAGE value="Changes by gasto" />
     <MESSAGE value="Implementados DAOS y cambio en el Main. Solucionado problema con Asignación." />
     <MESSAGE value="Changes by Ema Bozzo" />
     <MESSAGE value="Cambios." />
-    <MESSAGE value="Changes by Jesús Ksa" />
     <MESSAGE value="Creada una aplicación de login." />
-    <option name="LAST_COMMIT_MESSAGE" value="Creada una aplicación de login." />
+    <MESSAGE value="Changes by gasto" />
+    <MESSAGE value="Escrito javadoc para todas las clases, modificados métodos de la clase médico." />
+    <MESSAGE value="Changes by Jesús Ksa" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changes by Jesús Ksa" />
   </component>
 </project>

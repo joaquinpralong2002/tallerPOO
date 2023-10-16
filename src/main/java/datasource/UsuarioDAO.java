@@ -7,6 +7,7 @@ import org.hibernate.*;
 import util.GlobalSessionFactory;
 
 import java.util.List;
+import java.util.Optional;
 
 public class UsuarioDAO implements GenericoDAO<Usuario> {
     private SessionFactory sessionFactory;
@@ -15,7 +16,6 @@ public class UsuarioDAO implements GenericoDAO<Usuario> {
         this.sessionFactory = GlobalSessionFactory.getSessionFactory();
     }
 
-    //************** BASICOS DE USUARIO*******************
     @Override
     public Usuario obtener(Long id) {
         Session session = sessionFactory.openSession();
@@ -32,7 +32,6 @@ public class UsuarioDAO implements GenericoDAO<Usuario> {
         session.close();
         return usuario;
     }
-    //**************************************************************************
 
     public Usuario obtenerUsuarioPorNombre(String nombreUsuario){
         Session session = sessionFactory.openSession();
@@ -42,6 +41,16 @@ public class UsuarioDAO implements GenericoDAO<Usuario> {
                 .getSingleResult();
         session.close();
         return usuario;
+    }
+
+    public Boolean existeUsuarioPorNombre(String nombreUsuario){
+        Session session = sessionFactory.openSession();
+        String query = "SELECT usuario FROM Usuario usuario WHERE usuario.nombreUsuario = :nombreUsuario";
+        Usuario usuario = session.createQuery(query, Usuario.class)
+                .setParameter("nombreUsuario", nombreUsuario)
+                        .getSingleResultOrNull();
+        session.close();
+        return usuario != null;
     }
 
 }
