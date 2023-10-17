@@ -12,7 +12,6 @@ import model.Login.Usuario;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -53,7 +52,7 @@ public class Enfermero extends Funcionario implements CapacitadoTriage{
     }
 
     @Override
-    public boolean confirmarTriage(RegistroEntrada registroEntrada, Triage triage){
+    public boolean confirmarTriage(RegistroEntrada registroEntrada, Triage triage, ColorTriage colorFinal){
         triage.setEnfermero(this);
         triage.setRegistroEntrada(registroEntrada);
         registroEntrada.setTriage(triage);

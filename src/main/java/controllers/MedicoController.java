@@ -19,19 +19,23 @@ import model.Enum.EstadoCivil;
 import model.Paciente;
 import model.RegistroEntrada;
 import model.Triage;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import util.GlobalSessionFactory;
 
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class MedicoController {
-    public TableColumn colNomPac;
-    public TableColumn colApePac;
-    public TableColumn colColorTriage;
-    public TableColumn colHoraIng;
+    public TableColumn<Paciente, String> colNomPac;
+    public TableColumn<Paciente, String> colApePac;
+    public TableColumn<ColorTriage, String> colColorTriage;
+    public TableColumn<RegistroEntrada, LocalTime> colHoraIng;
     @FXML
     private TableView tblPacientes;
     @FXML
@@ -54,30 +58,53 @@ public class MedicoController {
 
     @FXML
     public void initialize(){
-        cmboxTriage.getItems().addAll(ColorTriage.values());
+        this.cmboxTriage.getItems().addAll(ColorTriage.values());
 
-        this.colNomPac.setCellValueFactory(new PropertyValueFactory<>("Nombre"));
-        this.colApePac.setCellValueFactory(new PropertyValueFactory<>("Apellido"));
-        this.colColorTriage.setCellValueFactory(new PropertyValueFactory<>("Color Triage"));
-        this.colHoraIng.setCellValueFactory(new PropertyValueFactory<>("Hora Ingreso"));
+        this.IniciarTabla();
+    }
+
+    private void IniciarTabla(){
+        this.colNomPac.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        this.colApePac.setCellValueFactory(new PropertyValueFactory<>("apellido"));
+        this.colColorTriage.setCellValueFactory(new PropertyValueFactory<>("colorTriageFinal"));
+        this.colHoraIng.setCellValueFactory(new PropertyValueFactory<>("hora"));
 
         RegistroEntradaDAO registroEntradaDAO = new RegistroEntradaDAO();
-        List<RegistroEntrada> registrosEntradas = registroEntradaDAO.obtenerTodos();
-        ObservableList datosOB = FXCollections.observableArrayList();
+        SessionFactory sessionFactory = GlobalSessionFactory.getSessionFactory();
+        Session session = sessionFactory.openSession();
 
-        /*while (registrosEntradas.iterator().hasNext()){
-            RegistroEntrada registroEntrada = registrosEntradas.iterator().next();
-            Paciente paciente = registroEntrada.getPaciente();
-            Triage triage = registroEntrada.getTriage();
+        Paciente paciente = (Paciente) session.createQuery("SELECT paciente FROM RegistroEntrada registroentrada INNER JOIN paciente ON registroentrada.id = paciente.id").getSingleResult();
+        Triage triage = (Triage) session.createQuery("SELECT triage FROM RegistroEntrada registroentrada INNER JOIN triage ON registroentrada.id = triage.idTriage").getSingleResult();
+        LocalTime horaIngreso = (LocalTime) session.createQuery("SELECT hora FROm RegistroEntrada registroentrada").getSingleResult();
 
-            String nombrePaciente = paciente.getNombre();
-            String apellidoPaciente = paciente.getApellido();
-            String colorTriage = triage.getColorTriageRecomendado().name();
+        ObservableList list = FXCollections.observableArrayList(paciente.getNombre(),paciente.getApellido(),triage.getColorTriageFinal().name(),horaIngreso.toString());
+        this.tblPacientes.setItems(list);
+    }
+
+    private void InciarTabla2(){
+        this.colNomPac.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        this.colApePac.setCellValueFactory(new PropertyValueFactory<>("apellido"));
+        this.colColorTriage.setCellValueFactory(new PropertyValueFactory<>("colorTriageFinal"));
+        this.colHoraIng.setCellValueFactory(new PropertyValueFactory<>("hora"));
+
+        ObservableList datosTabla = FXCollections.observableArrayList();
+        List listaDatos = new ArrayList<>();
+        RegistroEntradaDAO registroEntradaDAO = new RegistroEntradaDAO();
+        List<RegistroEntrada> listaregistros = registroEntradaDAO.obtenerTodos();
+        while (listaregistros.iterator().hasNext()){
+            RegistroEntrada registroEntrada = listaregistros.iterator().next();
             LocalTime horaIngreso = registroEntrada.getHora();
+            String nombrePaciente = registroEntrada.getPaciente().getNombre();
+            String apellidoPaciente = registroEntrada.getPaciente().getApellido();
+            String colorTriage = registroEntrada.getTriage().getColorTriageFinal().name();
 
-            datosOB.addAll(nombrePaciente,apellidoPaciente,colorTriage,horaIngreso);
-        }*/
-        this.tblPacientes.setItems(datosOB);
+            listaDatos.add(nombrePaciente);
+            listaDatos.add(apellidoPaciente);
+            listaDatos.add(colorTriage);
+            listaDatos.add(horaIngreso);
+
+            datosTabla.add(listaDatos);
+        }
     }
 
 
