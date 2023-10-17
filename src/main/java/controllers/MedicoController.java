@@ -1,6 +1,10 @@
 package controllers;
 
 
+import datasource.PacienteDAO;
+import datasource.RegistroEntradaDAO;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -8,17 +12,26 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Enum.ColorTriage;
 import model.Enum.EstadoCivil;
 import model.Paciente;
+import model.RegistroEntrada;
+import model.Triage;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class MedicoController {
+    public TableColumn colNomPac;
+    public TableColumn colApePac;
+    public TableColumn colColorTriage;
+    public TableColumn colHoraIng;
     @FXML
     private TableView tblPacientes;
     @FXML
@@ -42,6 +55,29 @@ public class MedicoController {
     @FXML
     public void initialize(){
         cmboxTriage.getItems().addAll(ColorTriage.values());
+
+        this.colNomPac.setCellValueFactory(new PropertyValueFactory<>("Nombre"));
+        this.colApePac.setCellValueFactory(new PropertyValueFactory<>("Apellido"));
+        this.colColorTriage.setCellValueFactory(new PropertyValueFactory<>("Color Triage"));
+        this.colHoraIng.setCellValueFactory(new PropertyValueFactory<>("Hora Ingreso"));
+
+        RegistroEntradaDAO registroEntradaDAO = new RegistroEntradaDAO();
+        List<RegistroEntrada> registrosEntradas = registroEntradaDAO.obtenerTodos();
+        ObservableList datosOB = FXCollections.observableArrayList();
+
+        /*while (registrosEntradas.iterator().hasNext()){
+            RegistroEntrada registroEntrada = registrosEntradas.iterator().next();
+            Paciente paciente = registroEntrada.getPaciente();
+            Triage triage = registroEntrada.getTriage();
+
+            String nombrePaciente = paciente.getNombre();
+            String apellidoPaciente = paciente.getApellido();
+            String colorTriage = triage.getColorTriageRecomendado().name();
+            LocalTime horaIngreso = registroEntrada.getHora();
+
+            datosOB.addAll(nombrePaciente,apellidoPaciente,colorTriage,horaIngreso);
+        }*/
+        this.tblPacientes.setItems(datosOB);
     }
 
 

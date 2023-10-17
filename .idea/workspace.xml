@@ -4,15 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2be48f36-62e0-45df-812c-c4d57fbb8bcb" name="Changes" comment="Creada escena para médico.">
+    <list default="true" id="2be48f36-62e0-45df-812c-c4d57fbb8bcb" name="Changes" comment="Escrito javadoc para todas las clases, modificados métodos de la clase médico.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/MedicoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/MedicoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/TriageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/TriageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Triage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Triage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/views/MedicoViews/Triage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/MedicoViews/Triage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/views/MedicoViews/Medico.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/MedicoViews/Medico.fxml" afterDir="false" />
     </list>
     <list id="7cf27e7a-e8ef-4e7b-8ea0-1add41df4e7f" name="Changes by Ema Bozzo" comment="Changes by Ema Bozzo" />
-    <list id="bb2b6195-ffe5-4c8f-8aa7-bdf692c126ae" name="Changes by Jesús Ksa" comment="Changes by Jesús Ksa" />
+    <list id="bb2b6195-ffe5-4c8f-8aa7-bdf692c126ae" name="Changes by Jesús Ksa" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -84,7 +83,7 @@
     <configuration name="LoginApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.LoginApplication" />
       <module name="tallerPOO" />
-      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Users\Administrador\Downloads\openjfx-17.0.8_windows-x64_bin-sdk\javafx-sdk-17.0.8\lib&quot; --add-modules javafx.controls,javafx.fxml" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Program Files\Java\javafx-sdk-17.0.8\lib&quot; --add-modules javafx.controls,javafx.fxml" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="org.example.*" />
@@ -392,31 +391,7 @@
       <option name="project" value="LOCAL" />
       <updated>1697413924957</updated>
     </task>
-    <task id="LOCAL-00031" summary="Creada escena para médico.">
-      <option name="closed" value="true" />
-      <created>1697498266478</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1697498266478</updated>
-    </task>
-    <task id="LOCAL-00032" summary="Changes by Jesús Ksa">
-      <option name="closed" value="true" />
-      <created>1697498280247</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1697498280247</updated>
-    </task>
-    <task id="LOCAL-00033" summary="Creada escena para médico.">
-      <option name="closed" value="true" />
-      <created>1697498290037</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1697498290037</updated>
-    </task>
-    <option name="localTasksCounter" value="34" />
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -446,7 +421,6 @@
     <MESSAGE value="Changes by gasto" />
     <MESSAGE value="Escrito javadoc para todas las clases, modificados métodos de la clase médico." />
     <MESSAGE value="Changes by Jesús Ksa" />
-    <MESSAGE value="Creada escena para médico." />
-    <option name="LAST_COMMIT_MESSAGE" value="Creada escena para médico." />
+    <option name="LAST_COMMIT_MESSAGE" value="Changes by Jesús Ksa" />
   </component>
 </project>
