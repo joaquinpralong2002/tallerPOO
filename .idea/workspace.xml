@@ -4,14 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2be48f36-62e0-45df-812c-c4d57fbb8bcb" name="Changes" comment="Escrito javadoc para todas las clases, modificados métodos de la clase médico.">
+    <list default="true" id="2be48f36-62e0-45df-812c-c4d57fbb8bcb" name="Changes" comment="elimine el cartelito, intente añadir los datos a la tabla, da error">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/MedicoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/MedicoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/views/MedicoViews/Medico.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/MedicoViews/Medico.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Enum/ColorTriage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Enum/ColorTriage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Triage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Triage.java" afterDir="false" />
     </list>
-    <list id="7cf27e7a-e8ef-4e7b-8ea0-1add41df4e7f" name="Changes by Ema Bozzo" comment="Changes by Ema Bozzo" />
-    <list id="bb2b6195-ffe5-4c8f-8aa7-bdf692c126ae" name="Changes by Jesús Ksa" comment="" />
+    <list id="7cf27e7a-e8ef-4e7b-8ea0-1add41df4e7f" name="Changes by Ema Bozzo" comment="Changes by Ema Bozzo">
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Triage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Triage.java" afterDir="false" />
+    </list>
+    <list id="15828dba-da6f-4f6e-b73c-4d6da2316fd2" name="Changes by gasto" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,6 +30,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -50,6 +57,14 @@
   </component>
   <component name="JpbToolWindowState">
     <option name="isToolWindowVisible" value="false" />
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/main/java/model/Triage.java">
+      <ranges>
+        <range start1="76" end1="76" start2="76" end2="77" changelist="7cf27e7a-e8ef-4e7b-8ea0-1add41df4e7f" />
+        <range start1="112" end1="112" start2="113" end2="114" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
+      </ranges>
+    </file>
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
@@ -83,7 +98,7 @@
     <configuration name="LoginApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.LoginApplication" />
       <module name="tallerPOO" />
-      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Program Files\Java\javafx-sdk-17.0.8\lib&quot; --add-modules javafx.controls,javafx.fxml" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Users\Administrador\Downloads\openjfx-17.0.8_windows-x64_bin-sdk\javafx-sdk-17.0.8\lib&quot; --add-modules javafx.controls,javafx.fxml" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="org.example.*" />
@@ -391,7 +406,15 @@
       <option name="project" value="LOCAL" />
       <updated>1697413924957</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="elimine el cartelito, intente añadir los datos a la tabla, da error">
+      <option name="closed" value="true" />
+      <created>1697514962217</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1697514962217</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -421,6 +444,7 @@
     <MESSAGE value="Changes by gasto" />
     <MESSAGE value="Escrito javadoc para todas las clases, modificados métodos de la clase médico." />
     <MESSAGE value="Changes by Jesús Ksa" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changes by Jesús Ksa" />
+    <MESSAGE value="elimine el cartelito, intente añadir los datos a la tabla, da error" />
+    <option name="LAST_COMMIT_MESSAGE" value="elimine el cartelito, intente añadir los datos a la tabla, da error" />
   </component>
 </project>
