@@ -1,7 +1,6 @@
 package controllers;
 
 
-import datasource.PacienteDAO;
 import datasource.RegistroEntradaDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,22 +13,20 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.ToString;
 import model.Enum.ColorTriage;
 import model.Enum.EstadoCivil;
 import model.Paciente;
 import model.RegistroEntrada;
-import model.Triage;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import util.GlobalSessionFactory;
 
-import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
-import java.util.ResourceBundle;
 
 public class MedicoController {
     public TableColumn<Paciente, String> colNomPac;
@@ -59,54 +56,25 @@ public class MedicoController {
     @FXML
     public void initialize(){
         this.cmboxTriage.getItems().addAll(ColorTriage.values());
-
-        this.IniciarTabla2();
-    }
-
-    private void IniciarTabla(){
         this.colNomPac.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         this.colApePac.setCellValueFactory(new PropertyValueFactory<>("apellido"));
-        this.colColorTriage.setCellValueFactory(new PropertyValueFactory<>("colorTriageFinal"));
+        this.colColorTriage.setCellValueFactory(new PropertyValueFactory<>("colorTriage"));
         this.colHoraIng.setCellValueFactory(new PropertyValueFactory<>("hora"));
-
-        RegistroEntradaDAO registroEntradaDAO = new RegistroEntradaDAO();
-        SessionFactory sessionFactory = GlobalSessionFactory.getSessionFactory();
-        Session session = sessionFactory.openSession();
-
-        Paciente paciente = (Paciente) session.createQuery("SELECT paciente FROM RegistroEntrada registroentrada INNER JOIN paciente ON registroentrada.id = paciente.id").getSingleResult();
-        Triage triage = (Triage) session.createQuery("SELECT triage FROM RegistroEntrada registroentrada INNER JOIN triage ON registroentrada.id = triage.idTriage").getSingleResult();
-        LocalTime horaIngreso = (LocalTime) session.createQuery("SELECT hora FROm RegistroEntrada registroentrada").getSingleResult();
-
-        ObservableList list = FXCollections.observableArrayList(paciente.getNombre(),paciente.getApellido(),triage.getColorTriageFinal().name(),horaIngreso.toString());
-        this.tblPacientes.setItems(list);
+        this.iniciarTabla();
     }
 
-    private void IniciarTabla2(){
-        this.colNomPac.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-        this.colApePac.setCellValueFactory(new PropertyValueFactory<>("apellido"));
-        this.colColorTriage.setCellValueFactory(new PropertyValueFactory<>("colorTriageFinal"));
-        this.colHoraIng.setCellValueFactory(new PropertyValueFactory<>("hora"));
-
+    private void iniciarTabla(){
         ObservableList datosTabla = FXCollections.observableArrayList();
-        List listaDatos = new ArrayList<>();
         RegistroEntradaDAO registroEntradaDAO = new RegistroEntradaDAO();
         List<RegistroEntrada> listaregistros = registroEntradaDAO.obtenerTodos();
-        while (!listaregistros.iterator().hasNext()){
-            RegistroEntrada registroEntrada = listaregistros.iterator().next();
-            LocalTime horaIngreso = registroEntrada.getHora();
-            String nombrePaciente = registroEntrada.getPaciente().getNombre();
-            String apellidoPaciente = registroEntrada.getPaciente().getApellido();
-            String colorTriage = registroEntrada.getTriage().getColorTriageFinal().name();
 
-            listaDatos.add(nombrePaciente);
-            listaDatos.add(apellidoPaciente);
-            listaDatos.add(colorTriage);
-            listaDatos.add(horaIngreso);
-
-            datosTabla.add(listaDatos);
+        for(RegistroEntrada registro : listaregistros){
+            datosTabla.add(new PacienteTableClass(registro.getPaciente().getNombre(), registro.getPaciente().getApellido(),
+                    registro.getTriage().getColorTriageFinal(), registro.getHora()));
         }
-        this.tblPacientes.setItems(datosTabla);
-    }
+
+        tblPacientes.setItems(datosTabla);
+        }
 
 
     public void RealizarTriage(ActionEvent event) throws Exception {
@@ -157,4 +125,14 @@ public class MedicoController {
 
     }
 
+    @AllArgsConstructor
+    @ToString
+    @Getter
+    class PacienteTableClass {
+        private String nombre;
+        private String apellido;
+        private ColorTriage colorTriage;
+        private LocalTime hora;
+    }
 }
+
