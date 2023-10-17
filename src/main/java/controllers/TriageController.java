@@ -10,12 +10,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 import model.EnumeracionesVariablesTriage.*;
+import model.Medico;
+import model.Paciente;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 public class TriageController {
-
-    @FXML
-    private Button atrasButton;
+    private Paciente paciente;
     @FXML
     private ComboBox<Conciencia> concienciaComboBox;
     @FXML
@@ -60,6 +61,12 @@ public class TriageController {
         vomitosComboBox.getItems().addAll(Vomitos.values());
     }
 
+    @FXML
+    public void recibirDatos(Paciente persona) {
+        //Método para recibir el paciente de la escena anterior.
+        this.paciente = persona;
+    }
+
     public void handleAtrasButtonAction(ActionEvent event) throws Exception {
         // Obtiene la vista inicial
         Parent root = FXMLLoader.load(getClass().getResource("/views/MedicoViews/Medico.fxml"));
@@ -68,6 +75,10 @@ public class TriageController {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+        System.out.println(paciente.toString());
+    }
+
+    public void handleCalcularColorButtonAction(ActionEvent event) throws Exception {
     }
 
     public void handleModificarColorButtonAction(ActionEvent event) throws Exception {

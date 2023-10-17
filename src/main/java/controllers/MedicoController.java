@@ -10,8 +10,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.Enum.ColorTriage;
+import model.Enum.EstadoCivil;
+import model.Paciente;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -43,8 +46,17 @@ public class MedicoController {
 
 
     public void RealizarTriage(ActionEvent event) throws Exception {
-        // Realiza el triage del paciente
-        Parent root = FXMLLoader.load(getClass().getResource("/views/MedicoViews/Triage.fxml"));
+        Paciente paciente = new Paciente("Juan" ,"Pérez", LocalDate.of(1975,11,3),"Sargento Rodriguez",20113654,
+                4259761,3454698743L, EstadoCivil.Casado,"juancitoperez@gmail.com"
+                ,"Pepe Sand");
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/views/MedicoViews/Triage.fxml"));
+        Parent root = loader.load();
+
+        TriageController controller = loader.getController();
+        controller.recibirDatos(paciente);
+        //controller.recibirDatos((Paciente) tblPacientes.getSelectionModel().getSelectedItem());
 
         // Cambia a la nueva escena
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();

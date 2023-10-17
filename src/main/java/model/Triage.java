@@ -157,6 +157,7 @@ public class Triage{
         }
     }
 
+
     /**
      * Modifica el color de triage final del paciente.
      * El color de triage final es el que se asigna al paciente después de que un médico o enfermero lo haya revisado.
