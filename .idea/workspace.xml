@@ -5,11 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2be48f36-62e0-45df-812c-c4d57fbb8bcb" name="Changes" comment="Creada escena para médico.">
+      <change afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/MedicoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/MedicoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/TriageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/TriageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Triage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Triage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/views/MedicoViews/Triage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/MedicoViews/Triage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <list id="7cf27e7a-e8ef-4e7b-8ea0-1add41df4e7f" name="Changes by Ema Bozzo" comment="Changes by Ema Bozzo" />
     <list id="bb2b6195-ffe5-4c8f-8aa7-bdf692c126ae" name="Changes by Jesús Ksa" comment="Changes by Jesús Ksa" />
@@ -84,7 +83,7 @@
     <configuration name="LoginApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.LoginApplication" />
       <module name="tallerPOO" />
-      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Users\Administrador\Downloads\openjfx-17.0.8_windows-x64_bin-sdk\javafx-sdk-17.0.8\lib&quot; --add-modules javafx.controls,javafx.fxml" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Users\gasto\Documents\javafx-sdk-17.0.9\lib&quot; --add-modules javafx.controls,javafx.fxml" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="org.example.*" />
@@ -108,38 +107,14 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Recursividad" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="model.Recursividad" />
-      <module name="tallerPOO" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="model.EnumeracionesVariablesTriage.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="recursivo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="recursivo" />
-      <module name="tallerPOO" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
       <item itemvalue="Application.LoginApplication" />
       <item itemvalue="Application.Main" />
-      <item itemvalue="Application.Recursividad" />
-      <item itemvalue="Application.recursivo" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.LoginApplication" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="Application.Recursividad" />
-        <item itemvalue="Application.recursivo" />
       </list>
     </recent_temporary>
   </component>
