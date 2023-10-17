@@ -4,24 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2be48f36-62e0-45df-812c-c4d57fbb8bcb" name="Changes" comment="Escrito javadoc para todas las clases, modificados métodos de la clase médico.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/MedicoController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/TriageController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/views/MedicoViews/Medico.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/views/MedicoViews/Triage.fxml" afterDir="false" />
+    <list default="true" id="2be48f36-62e0-45df-812c-c4d57fbb8bcb" name="Changes" comment="Creada escena para médico.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/datasource/UsuarioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/datasource/UsuarioDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Login/Rol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Login/Rol.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Login/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Login/Usuario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/util/GlobalSessionFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/util/GlobalSessionFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/MedicoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/MedicoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/TriageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/TriageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Triage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Triage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/views/MedicoViews/Triage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/MedicoViews/Triage.fxml" afterDir="false" />
     </list>
     <list id="7cf27e7a-e8ef-4e7b-8ea0-1add41df4e7f" name="Changes by Ema Bozzo" comment="Changes by Ema Bozzo" />
-    <list id="bb2b6195-ffe5-4c8f-8aa7-bdf692c126ae" name="Changes by Jesús Ksa" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
-    </list>
+    <list id="bb2b6195-ffe5-4c8f-8aa7-bdf692c126ae" name="Changes by Jesús Ksa" comment="Changes by Jesús Ksa" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -60,26 +51,6 @@
   </component>
   <component name="JpbToolWindowState">
     <option name="isToolWindowVisible" value="false" />
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/main/java/org/example/Main.java">
-      <ranges>
-        <range start1="55" end1="56" start2="55" end2="56" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
-        <range start1="58" end1="59" start2="58" end2="59" changelist="bb2b6195-ffe5-4c8f-8aa7-bdf692c126ae" />
-        <range start1="78" end1="79" start2="78" end2="79" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/main/java/controllers/LoginController.java">
-      <ranges>
-        <range start1="5" end1="5" start2="5" end2="9" changelist="bb2b6195-ffe5-4c8f-8aa7-bdf692c126ae" />
-        <range start1="6" end1="6" start2="10" end2="11" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
-        <range start1="7" end1="7" start2="12" end2="14" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
-        <range start1="14" end1="15" start2="21" end2="25" changelist="bb2b6195-ffe5-4c8f-8aa7-bdf692c126ae" />
-        <range start1="20" end1="23" start2="30" end2="34" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
-        <range start1="25" end1="27" start2="36" end2="38" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
-        <range start1="29" end1="34" start2="40" end2="86" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
-      </ranges>
-    </file>
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
@@ -421,7 +392,31 @@
       <option name="project" value="LOCAL" />
       <updated>1697413924957</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Creada escena para médico.">
+      <option name="closed" value="true" />
+      <created>1697498266478</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1697498266478</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Changes by Jesús Ksa">
+      <option name="closed" value="true" />
+      <created>1697498280247</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1697498280247</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Creada escena para médico.">
+      <option name="closed" value="true" />
+      <created>1697498290037</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1697498290037</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -451,6 +446,7 @@
     <MESSAGE value="Changes by gasto" />
     <MESSAGE value="Escrito javadoc para todas las clases, modificados métodos de la clase médico." />
     <MESSAGE value="Changes by Jesús Ksa" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changes by Jesús Ksa" />
+    <MESSAGE value="Creada escena para médico." />
+    <option name="LAST_COMMIT_MESSAGE" value="Creada escena para médico." />
   </component>
 </project>
