@@ -5,36 +5,41 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.TriageController">
+<AnchorPane maxHeight="1080.0" maxWidth="1920.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.TriageController">
    <children>
       <Label layoutX="138.0" layoutY="22.0" text="Ingrese los valores correspondientes a cada atributo:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <ComboBox fx:id="concienciaComboBox" layoutX="17.0" layoutY="55.0" prefHeight="25.0" prefWidth="112.0" promptText="Conciencia" />
-      <ComboBox fx:id="dolorAbdominalComboBox" layoutX="397.0" layoutY="124.0" prefHeight="25.0" prefWidth="133.0" promptText="Dolor abdominal" />
-      <ComboBox fx:id="dolorPechoComboBox" layoutX="17.0" layoutY="161.0" prefHeight="25.0" prefWidth="112.0" promptText="Dolor pecho" />
-      <ComboBox fx:id="edadComboBox" layoutX="397.0" layoutY="55.0" prefHeight="25.0" prefWidth="133.0" promptText="Edad" />
-      <ComboBox fx:id="estadoMentalComboBox" layoutX="397.0" layoutY="90.0" prefHeight="25.0" prefWidth="133.0" promptText="Estado mental" />
-      <ComboBox fx:id="fiebreComboBox" layoutX="147.0" layoutY="124.0" prefHeight="25.0" prefWidth="112.0" promptText="Fiebre" />
-      <ComboBox fx:id="lesionGraveComboBox" layoutX="147.0" layoutY="55.0" prefHeight="25.0" prefWidth="112.0" promptText="Lesión grave" />
-      <ComboBox fx:id="lesionLeveComboBox" layoutX="272.0" layoutY="90.0" prefHeight="25.0" prefWidth="112.0" promptText="Lesión leve" />
-      <ComboBox fx:id="pulsoComboBox" layoutX="17.0" layoutY="90.0" prefHeight="25.0" prefWidth="112.0" promptText="Pulso" />
-      <ComboBox fx:id="respiracionComboBox" layoutX="17.0" layoutY="124.0" prefHeight="25.0" prefWidth="112.0" promptText="Respiración" />
-      <ComboBox fx:id="sangradoComboBox" layoutX="147.0" layoutY="90.0" prefHeight="25.0" prefWidth="112.0" promptText="Sangrado" />
-      <ComboBox fx:id="signoShockComboBox" layoutX="272.0" layoutY="55.0" prefHeight="25.0" prefWidth="112.0" promptText="Signo shock" />
-      <ComboBox fx:id="vomitosComboBox" layoutX="272.0" layoutY="124.0" prefHeight="25.0" prefWidth="112.0" promptText="Vómitos" />
       <Label layoutX="61.0" layoutY="238.0" text="El color recomendado por el sistema es:" />
       <Button fx:id="modificarColorButton" layoutX="167.0" layoutY="287.0" mnemonicParsing="false" text="Modificar color" />
       <Button fx:id="confirmarTriageButton" layoutX="326.0" layoutY="287.0" mnemonicParsing="false" text="Confirmar triage" />
       <Label fx:id="colorRecomendadoLabel" layoutX="287.0" layoutY="238.0" text="Label" />
-      <TextField fx:id="edadTextField" layoutX="147.0" layoutY="161.0" prefHeight="25.0" prefWidth="112.0" promptText="Edad" />
-      <TextField layoutX="272.0" layoutY="161.0" promptText="Valor pulso cardíaco" />
-      <TextField fx:id="temperaturaTextField" layoutX="428.0" layoutY="161.0" promptText="Temperatura corporal" />
       <Button fx:id="atrasButton" layoutX="15.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleAtrasButtonAction" text="Atrás" />
       <Button fx:id="calcularColorButton" layoutX="377.0" layoutY="234.0" mnemonicParsing="false" onAction="#handleCalcularColorButtonAction" text="Calcular" />
+      <Pane layoutX="247.0" layoutY="347.0" prefHeight="381.0" prefWidth="872.0">
+         <children>
+            <ComboBox fx:id="concienciaComboBox" layoutX="12.0" layoutY="40.0" prefHeight="54.0" prefWidth="161.0" promptText="Conciencia" />
+            <ComboBox fx:id="lesionGraveComboBox" layoutX="183.0" layoutY="40.0" prefHeight="54.0" prefWidth="161.0" promptText="Lesión grave" />
+            <ComboBox fx:id="signoShockComboBox" layoutX="356.0" layoutY="40.0" prefHeight="54.0" prefWidth="161.0" promptText="Signo shock" />
+            <ComboBox fx:id="sangradoComboBox" layoutX="524.0" layoutY="40.0" prefHeight="54.0" prefWidth="161.0" promptText="Sangrado" />
+            <ComboBox fx:id="lesionLeveComboBox" layoutX="12.0" layoutY="131.0" prefHeight="54.0" prefWidth="161.0" promptText="Lesión leve" />
+            <ComboBox fx:id="estadoMentalComboBox" layoutX="183.0" layoutY="131.0" prefHeight="54.0" prefWidth="161.0" promptText="Estado mental" />
+            <ComboBox fx:id="respiracionComboBox" layoutX="356.0" layoutY="131.0" prefHeight="54.0" prefWidth="161.0" promptText="Respiración" />
+            <ComboBox fx:id="fiebreComboBox" layoutX="524.0" layoutY="131.0" prefHeight="54.0" prefWidth="161.0" promptText="Fiebre" />
+            <ComboBox fx:id="vomitosComboBox" layoutX="697.0" layoutY="40.0" prefHeight="54.0" prefWidth="161.0" promptText="Vómitos" />
+            <ComboBox fx:id="dolorAbdominalComboBox" layoutX="12.0" layoutY="218.0" prefHeight="54.0" prefWidth="161.0" promptText="Dolor abdominal" />
+            <ComboBox fx:id="dolorPechoComboBox" layoutX="697.0" layoutY="131.0" prefHeight="54.0" prefWidth="161.0" promptText="Dolor pecho" />
+            <TextField layoutX="189.0" layoutY="218.0" promptText="Valor pulso cardíaco" />
+            <TextField fx:id="temperaturaTextField" layoutX="189.0" layoutY="245.0" promptText="Temperatura corporal" />
+            <Label layoutX="183.0" layoutY="14.0" text="Lesiones graves" />
+            <Label layoutX="14.0" layoutY="14.0" text="Conciencia" />
+            <Label layoutX="356.0" layoutY="14.0" text="Señales de shock" />
+         </children>
+      </Pane>
    </children>
 </AnchorPane>
