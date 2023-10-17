@@ -48,7 +48,7 @@ public interface CapacitadoTriage {
      * @param triage El triage del paciente.
      * @return True si el triage se confirmó correctamente, false en caso contrario.
      */
-    public boolean confirmarTriage(RegistroEntrada registroEntrada, Triage triage);
+    public boolean confirmarTriage(RegistroEntrada registroEntrada, Triage triage, ColorTriage colorFinal);
 
 
     /**

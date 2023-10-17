@@ -30,13 +30,15 @@ public class RegistroEntrada {
 
     @ToString.Exclude
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "idFuncionario")
     private FuncionarioAdministrativo funcionariosAdministrativo;
 
-    @OneToOne(mappedBy = "registroEntrada", optional = false, orphanRemoval = true)
+    @OneToOne(cascade = CascadeType.ALL, optional = true, orphanRemoval = true)
+    @JoinColumn(name = "idAsignacion")
     private Asignacion asignacion;
 
-    @OneToOne(mappedBy = "registroEntrada", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(cascade = CascadeType.ALL, optional = true, orphanRemoval = true)
+    @JoinColumn(name = "idTriage")
     private Triage triage;
 
     @ManyToOne(cascade = CascadeType.ALL, optional = false)

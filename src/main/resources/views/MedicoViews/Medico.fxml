@@ -9,15 +9,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="419.0" prefWidth="526.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MedicoController">
    <children>
       <TableView fx:id="tblPacientes" layoutX="37.0" layoutY="197.0" prefHeight="200.0" prefWidth="322.0">
          <columns>
-            <TableColumn prefWidth="75.0" text="Nombre" />
-            <TableColumn prefWidth="75.0" text="Apellido" />
-            <TableColumn prefWidth="75.0" text="Color Triage" />
-            <TableColumn prefWidth="96.0" text="Hora Ingreso" />
+            <TableColumn fx:id="colNomPac" prefWidth="75.0" text="Nombre" />
+            <TableColumn fx:id="colApePac" prefWidth="75.0" text="Apellido" />
+            <TableColumn fx:id="colColorTriage" prefWidth="75.0" text="Color Triage" />
+            <TableColumn fx:id="colHoraIng" prefWidth="96.0" text="Hora Ingreso" />
          </columns>
       </TableView>
       <Button fx:id="bttmAtender" layoutX="378.0" layoutY="249.0" mnemonicParsing="false" onAction="#AtenderPaciente" prefHeight="47.0" prefWidth="114.0" text="Atender Paciente" />

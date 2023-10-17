@@ -77,8 +77,7 @@ public class Triage{
     private String motivoCambioTriage;
 
     @ToString.Exclude
-    @OneToOne(cascade = CascadeType.ALL, optional = true, orphanRemoval = true)
-    @JoinColumn(name = "idRegistroEntrada", nullable = true)
+    @OneToOne(mappedBy = "triage", cascade = CascadeType.ALL, orphanRemoval = true)
     private RegistroEntrada registroEntrada;
 
     @ManyToOne(cascade = CascadeType.ALL)

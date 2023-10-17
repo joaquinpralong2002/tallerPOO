@@ -42,11 +42,6 @@ public class LoginController {
             if (existeUsuario) {
                 if(username.equals(usuarioDAO.obtenerUsuarioPorNombre(username).getNombreUsuario())
                 && usuarioDAO.obtenerUsuarioPorNombre(username).getContrasenia().equals(password)){
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Información");
-                    alert.setHeaderText("Sesión correcta");
-                    alert.setContentText("El usuario ha iniciado sesión correctamente.");
-                    alert.show();
                     //if(usuarioDAO.obtenerUsuarioPorNombre(username).getRoles().size() == 1){
                         Usuario usuario = usuarioDAO.obtenerUsuarioPorNombre(username);
                         String rol = usuario.getRoles().get(0).getNombre();
