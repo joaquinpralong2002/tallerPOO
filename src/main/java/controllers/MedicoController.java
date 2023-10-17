@@ -60,7 +60,7 @@ public class MedicoController {
     public void initialize(){
         this.cmboxTriage.getItems().addAll(ColorTriage.values());
 
-        this.IniciarTabla();
+        this.IniciarTabla2();
     }
 
     private void IniciarTabla(){
@@ -81,7 +81,7 @@ public class MedicoController {
         this.tblPacientes.setItems(list);
     }
 
-    private void InciarTabla2(){
+    private void IniciarTabla2(){
         this.colNomPac.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         this.colApePac.setCellValueFactory(new PropertyValueFactory<>("apellido"));
         this.colColorTriage.setCellValueFactory(new PropertyValueFactory<>("colorTriageFinal"));
@@ -91,7 +91,7 @@ public class MedicoController {
         List listaDatos = new ArrayList<>();
         RegistroEntradaDAO registroEntradaDAO = new RegistroEntradaDAO();
         List<RegistroEntrada> listaregistros = registroEntradaDAO.obtenerTodos();
-        while (listaregistros.iterator().hasNext()){
+        while (!listaregistros.iterator().hasNext()){
             RegistroEntrada registroEntrada = listaregistros.iterator().next();
             LocalTime horaIngreso = registroEntrada.getHora();
             String nombrePaciente = registroEntrada.getPaciente().getNombre();
@@ -105,6 +105,7 @@ public class MedicoController {
 
             datosTabla.add(listaDatos);
         }
+        this.tblPacientes.setItems(datosTabla);
     }
 
 

@@ -46,7 +46,7 @@ public class Main {
         pacienteDAO.agregar(paciente);
 
         //*********Asignacion del rol al funcionario*******
-        Rol rol = new Rol("Administrativo");
+        Rol rol = new Rol("Funcionario");
         rolDAO.agregar(rol);
 
         //*********Usuario del Funcionario y seter del rol*********
