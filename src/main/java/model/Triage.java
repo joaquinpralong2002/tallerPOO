@@ -110,6 +110,7 @@ public class Triage{
         this.signoShock = signoShock;
         this.lesionesLeves = lesionesLeves;
         this.sangrado = sangrado;
+        this.colorTriageFinal = ColorTriage.Ninguno;
     }
 
     /**
