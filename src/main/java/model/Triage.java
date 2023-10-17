@@ -74,11 +74,11 @@ public class Triage{
 
     @Enumerated(EnumType.STRING)
     private ColorTriage colorTriageFinal;
+
     private String motivoCambioTriage;
 
     @ToString.Exclude
-    @OneToOne(cascade = CascadeType.ALL, optional = true, orphanRemoval = true)
-    @JoinColumn(name = "idRegistroEntrada", nullable = true)
+    @OneToOne(mappedBy = "triage", cascade = CascadeType.ALL, orphanRemoval = true)
     private RegistroEntrada registroEntrada;
 
     @ManyToOne(cascade = CascadeType.ALL)
@@ -111,6 +111,7 @@ public class Triage{
         this.signoShock = signoShock;
         this.lesionesLeves = lesionesLeves;
         this.sangrado = sangrado;
+        this.colorTriageFinal = ColorTriage.Ninguno;
     }
 
     /**

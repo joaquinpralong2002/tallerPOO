@@ -31,8 +31,7 @@ public class Asignacion {
     @Column(name = "hora", nullable = false, unique = true)
     private LocalTime hora;
 
-    @OneToOne(optional = false, orphanRemoval = true)
-    @JoinColumn(name = "idRegistroEntrada", nullable = false)
+    @OneToOne(mappedBy = "asignacion", cascade = CascadeType.ALL, orphanRemoval = false)
     private RegistroEntrada registroEntrada;
 
     @ManyToOne(optional = false)

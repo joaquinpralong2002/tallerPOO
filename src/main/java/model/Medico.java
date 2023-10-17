@@ -88,8 +88,9 @@ public class Medico extends Funcionario implements CapacitadoTriage{
     }
 
     @Override
-    public boolean confirmarTriage(RegistroEntrada registroEntrada, Triage triage){
+    public boolean confirmarTriage(RegistroEntrada registroEntrada, Triage triage, ColorTriage colorfinal){
         triage.setMedico(this);
+        triage.setColorTriageFinal(colorfinal);
         triage.setRegistroEntrada(registroEntrada);
         registroEntrada.setTriage(triage);
         asignarBox(registroEntrada);

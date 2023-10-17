@@ -1,7 +1,6 @@
 package controllers;
 
 
-import datasource.PacienteDAO;
 import datasource.RegistroEntradaDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,24 +13,26 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.ToString;
 import model.Enum.ColorTriage;
 import model.Enum.EstadoCivil;
 import model.Paciente;
 import model.RegistroEntrada;
-import model.Triage;
 
-import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
-import java.util.ResourceBundle;
 
 public class MedicoController {
-    public TableColumn colNomPac;
-    public TableColumn colApePac;
-    public TableColumn colColorTriage;
-    public TableColumn colHoraIng;
+    public TableColumn<Paciente, String> colNomPac;
+    public TableColumn<Paciente, String> colApePac;
+    public TableColumn<ColorTriage, String> colColorTriage;
+    public TableColumn<RegistroEntrada, LocalTime> colHoraIng;
     @FXML
     private TableView tblPacientes;
     @FXML
@@ -54,31 +55,26 @@ public class MedicoController {
 
     @FXML
     public void initialize(){
-        cmboxTriage.getItems().addAll(ColorTriage.values());
-
-        this.colNomPac.setCellValueFactory(new PropertyValueFactory<>("Nombre"));
-        this.colApePac.setCellValueFactory(new PropertyValueFactory<>("Apellido"));
-        this.colColorTriage.setCellValueFactory(new PropertyValueFactory<>("Color Triage"));
-        this.colHoraIng.setCellValueFactory(new PropertyValueFactory<>("Hora Ingreso"));
-
-        RegistroEntradaDAO registroEntradaDAO = new RegistroEntradaDAO();
-        List<RegistroEntrada> registrosEntradas = registroEntradaDAO.obtenerTodos();
-        ObservableList datosOB = FXCollections.observableArrayList();
-
-        /*while (registrosEntradas.iterator().hasNext()){
-            RegistroEntrada registroEntrada = registrosEntradas.iterator().next();
-            Paciente paciente = registroEntrada.getPaciente();
-            Triage triage = registroEntrada.getTriage();
-
-            String nombrePaciente = paciente.getNombre();
-            String apellidoPaciente = paciente.getApellido();
-            String colorTriage = triage.getColorTriageRecomendado().name();
-            LocalTime horaIngreso = registroEntrada.getHora();
-
-            datosOB.addAll(nombrePaciente,apellidoPaciente,colorTriage,horaIngreso);
-        }*/
-        this.tblPacientes.setItems(datosOB);
+        this.cmboxTriage.getItems().addAll(ColorTriage.values());
+        this.colNomPac.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        this.colApePac.setCellValueFactory(new PropertyValueFactory<>("apellido"));
+        this.colColorTriage.setCellValueFactory(new PropertyValueFactory<>("colorTriage"));
+        this.colHoraIng.setCellValueFactory(new PropertyValueFactory<>("hora"));
+        this.iniciarTabla();
     }
+
+    private void iniciarTabla(){
+        ObservableList datosTabla = FXCollections.observableArrayList();
+        RegistroEntradaDAO registroEntradaDAO = new RegistroEntradaDAO();
+        List<RegistroEntrada> listaregistros = registroEntradaDAO.obtenerTodos();
+
+        for(RegistroEntrada registro : listaregistros){
+            datosTabla.add(new PacienteTableClass(registro.getPaciente().getNombre(), registro.getPaciente().getApellido(),
+                    registro.getTriage().getColorTriageFinal(), registro.getHora()));
+        }
+
+        tblPacientes.setItems(datosTabla);
+        }
 
 
     public void RealizarTriage(ActionEvent event) throws Exception {
@@ -129,4 +125,14 @@ public class MedicoController {
 
     }
 
+    @AllArgsConstructor
+    @ToString
+    @Getter
+    class PacienteTableClass {
+        private String nombre;
+        private String apellido;
+        private ColorTriage colorTriage;
+        private LocalTime hora;
+    }
 }
+
