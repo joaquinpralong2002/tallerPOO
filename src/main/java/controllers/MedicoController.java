@@ -31,16 +31,26 @@ import java.util.List;
 import java.util.Optional;
 
 public class MedicoController {
+    @AllArgsConstructor
+    @ToString
+    @Getter
+    protected class PacienteTableClass {
+        String nombre;
+        String apellido;
+        ColorTriage colorTriage;
+        LocalTime hora;
+    }
+
     private List<Rol> roles;
     private Medico medico;
     @FXML
-    public TableColumn<Paciente, String> colNomPac;
+    private TableColumn<Paciente, String> colNomPac;
     @FXML
-    public TableColumn<Paciente, String> colApePac;
+    private TableColumn<Paciente, String> colApePac;
     @FXML
-    public TableColumn<ColorTriage, String> colColorTriage;
+    private TableColumn<ColorTriage, String> colColorTriage;
     @FXML
-    public TableColumn<RegistroEntrada, LocalTime> colHoraIng;
+    private TableColumn<RegistroEntrada, LocalTime> colHoraIng;
     @FXML
     private TableView tblPacientes;
     @FXML
@@ -75,15 +85,14 @@ public class MedicoController {
     public void recibirDatos(List<Rol> roles, Medico medico) {
         this.roles = roles;
         this.medico = medico;
-        System.out.println(medico.toString());
     }
 
     private void iniciarTabla(){
-        ObservableList datosTabla = FXCollections.observableArrayList();
+        ObservableList<PacienteTableClass> datosTabla = FXCollections.observableArrayList();
         RegistroEntradaDAO registroEntradaDAO = new RegistroEntradaDAO();
-        List<RegistroEntrada> listaregistros = registroEntradaDAO.obtenerTodos();
+        List<RegistroEntrada> listaRegistros = registroEntradaDAO.obtenerTodos();
 
-        for(RegistroEntrada registro : listaregistros){
+        for(RegistroEntrada registro : listaRegistros){
             datosTabla.add(new PacienteTableClass(registro.getPaciente().getNombre(), registro.getPaciente().getApellido(),
                     registro.getTriage().getColorTriageFinal(), registro.getHora()));
         }
@@ -133,17 +142,6 @@ public class MedicoController {
             stage.setScene(scene);
             stage.show();
         }
-
-    }
-
-    @AllArgsConstructor
-    @ToString
-    @Getter
-    class PacienteTableClass {
-        private String nombre;
-        private String apellido;
-        private ColorTriage colorTriage;
-        private LocalTime hora;
     }
 }
 
