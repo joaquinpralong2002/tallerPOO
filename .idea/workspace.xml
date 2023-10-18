@@ -4,16 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2be48f36-62e0-45df-812c-c4d57fbb8bcb" name="Changes" comment="workspace">
-      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/RegistroEntradaController.java" afterDir="false" />
+    <list default="true" id="2be48f36-62e0-45df-812c-c4d57fbb8bcb" name="Changes" comment="creo RegistroEntradaController">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/RegistroEntradaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/RegistroEntradaController.java" afterDir="false" />
     </list>
-    <list id="7cf27e7a-e8ef-4e7b-8ea0-1add41df4e7f" name="Changes by Ema Bozzo" comment="Changes by Ema Bozzo">
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/FuncionarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/FuncionarioController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/datasource/UsuarioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/datasource/UsuarioDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/LoginApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/LoginApplication.java" afterDir="false" />
-    </list>
+    <list id="7cf27e7a-e8ef-4e7b-8ea0-1add41df4e7f" name="Changes by Ema Bozzo" comment="Changes by Ema Bozzo" />
     <list id="15828dba-da6f-4f6e-b73c-4d6da2316fd2" name="Changes by gasto" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -416,7 +411,23 @@
       <option name="project" value="LOCAL" />
       <updated>1697586338514</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="Changes by Ema Bozzo">
+      <option name="closed" value="true" />
+      <created>1697596207151</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1697596207151</updated>
+    </task>
+    <task id="LOCAL-00034" summary="creo RegistroEntradaController">
+      <option name="closed" value="true" />
+      <created>1697596229358</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1697596229358</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -440,7 +451,6 @@
     <MESSAGE value="Revisadas algunas asociaciones." />
     <MESSAGE value="Revisadas más asociaciones." />
     <MESSAGE value="Implementados DAOS y cambio en el Main. Solucionado problema con Asignación." />
-    <MESSAGE value="Changes by Ema Bozzo" />
     <MESSAGE value="Cambios." />
     <MESSAGE value="Creada una aplicación de login." />
     <MESSAGE value="Changes by gasto" />
@@ -448,6 +458,10 @@
     <MESSAGE value="Changes by Jesús Ksa" />
     <MESSAGE value="elimine el cartelito, intente añadir los datos a la tabla, da error" />
     <MESSAGE value="workspace" />
-    <option name="LAST_COMMIT_MESSAGE" value="workspace" />
+    <MESSAGE value="mejoro metodo iniciar sesion, modifico usuarioDAO, creo RegistroEntradaController" />
+    <MESSAGE value="mejoro metodo iniciar sesion, modifico usuarioDAO por Ema" />
+    <MESSAGE value="Changes by Ema Bozzo" />
+    <MESSAGE value="creo RegistroEntradaController" />
+    <option name="LAST_COMMIT_MESSAGE" value="creo RegistroEntradaController" />
   </component>
 </project>
