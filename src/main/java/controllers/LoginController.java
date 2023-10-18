@@ -48,17 +48,24 @@ public class LoginController {
                         switch (rol){
                             case "Medico":
                                     // Carga la escena de medico
-                                    Parent root = FXMLLoader.load(getClass().getResource("/views/MedicoViews/Medico.fxml"));
+
+                                    Parent rootMedico = FXMLLoader.load(getClass().getResource("/views/MedicoViews/Medico.fxml"));
 
                                     // Cambia a la nueva escena
                                     Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-                                    Scene scene = new Scene(root);
+                                    Scene scene = new Scene(rootMedico);
                                     stage.setScene(scene);
                                     stage.show();
                                 break;
                             case "Administrador":
                                 break;
                             case "Funcionario":
+                                    Parent rootFuncionario = FXMLLoader.load(getClass().getResource("/views/FuncionarioViews/Funcionario.fxml"));
+
+                                    Stage stage1 = (Stage)((Node)event.getSource()).getScene().getWindow();
+                                    Scene scene1 = new Scene(rootFuncionario);
+                                    stage1.setScene(scene1);
+                                    stage1.show();
                                 break;
                             default:
                         }
