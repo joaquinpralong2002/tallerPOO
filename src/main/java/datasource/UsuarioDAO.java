@@ -38,7 +38,7 @@ public class UsuarioDAO implements GenericoDAO<Usuario> {
         String query = "SELECT usuario FROM Usuario usuario WHERE usuario.nombreUsuario = :nombreUsuario";
         Usuario usuario = session.createQuery(query, Usuario.class)
                 .setParameter("nombreUsuario", nombreUsuario)
-                .getSingleResult();
+                .getSingleResultOrNull();
         session.close();
         return usuario;
     }
