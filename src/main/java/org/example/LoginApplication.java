@@ -11,12 +11,13 @@ import util.GlobalSessionFactory;
 
 public class LoginApplication extends Application {
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage primaryStage) throws Exception {
         GlobalSessionFactory init = new GlobalSessionFactory();
         init.InitGlobalSessionFactory();
+
         Parent root = FXMLLoader.load(getClass().getResource("/views/Login.fxml"));
         Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 }
