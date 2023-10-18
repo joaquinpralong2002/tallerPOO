@@ -18,6 +18,8 @@ import lombok.Getter;
 import lombok.ToString;
 import model.Enum.ColorTriage;
 import model.Enum.EstadoCivil;
+import model.Login.Rol;
+import model.Medico;
 import model.Paciente;
 import model.RegistroEntrada;
 
@@ -29,9 +31,15 @@ import java.util.List;
 import java.util.Optional;
 
 public class MedicoController {
+    private List<Rol> roles;
+    private Medico medico;
+    @FXML
     public TableColumn<Paciente, String> colNomPac;
+    @FXML
     public TableColumn<Paciente, String> colApePac;
+    @FXML
     public TableColumn<ColorTriage, String> colColorTriage;
+    @FXML
     public TableColumn<RegistroEntrada, LocalTime> colHoraIng;
     @FXML
     private TableView tblPacientes;
@@ -63,6 +71,13 @@ public class MedicoController {
         this.iniciarTabla();
     }
 
+    @FXML
+    public void recibirDatos(List<Rol> roles, Medico medico) {
+        this.roles = roles;
+        this.medico = medico;
+        System.out.println(medico.toString());
+    }
+
     private void iniciarTabla(){
         ObservableList datosTabla = FXCollections.observableArrayList();
         RegistroEntradaDAO registroEntradaDAO = new RegistroEntradaDAO();
@@ -78,17 +93,13 @@ public class MedicoController {
 
 
     public void RealizarTriage(ActionEvent event) throws Exception {
-        Paciente paciente = new Paciente("Juan" ,"Pérez", LocalDate.of(1975,11,3),"Sargento Rodriguez",20113654,
-                4259761,3454698743L, EstadoCivil.Casado,"juancitoperez@gmail.com"
-                ,"Pepe Sand");
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/views/MedicoViews/Triage.fxml"));
         Parent root = loader.load();
 
         TriageController controller = loader.getController();
-        controller.recibirDatos(paciente);
-        //controller.recibirDatos((Paciente) tblPacientes.getSelectionModel().getSelectedItem());
+        controller.recibirDatos((RegistroEntrada) tblPacientes.getSelectionModel().getSelectedItem(), medico);
 
         // Cambia a la nueva escena
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();

@@ -1,7 +1,9 @@
 package datasource;
 
 import datasource.interfaces.GenericoDAO;
+import model.Funcionario;
 import model.Login.*;
+import model.Medico;
 import model.Paciente;
 import org.hibernate.*;
 import util.GlobalSessionFactory;
@@ -51,6 +53,16 @@ public class UsuarioDAO implements GenericoDAO<Usuario> {
                         .getSingleResultOrNull();
         session.close();
         return usuario != null;
+    }
+
+    public Medico obtenerMedicoPorNombreUsuario(String nombreUsuario) {
+        Session session = sessionFactory.openSession();
+        String query = "SELECT funcionario FROM Funcionario funcionario WHERE funcionario.correo = :nombreUsuario";
+        Medico medico = session.createQuery(query, Medico.class)
+                .setParameter("nombreUsuario", nombreUsuario)
+                .getSingleResultOrNull();
+        session.close();
+        return medico;
     }
 
 }

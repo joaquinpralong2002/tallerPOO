@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import model.BoxAtencion;
 import model.Enum.LugarAtencion;
 import model.Paciente;
+import model.Triage;
 
 import java.util.Optional;
 
