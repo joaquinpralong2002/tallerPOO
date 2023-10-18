@@ -71,9 +71,7 @@ public class LoginController {
                         stage1.show();
                         break;
                     default:
-
                 }
-
             }
         }
 
