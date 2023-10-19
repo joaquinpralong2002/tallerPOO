@@ -1,10 +1,14 @@
 package model.Login;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import model.Funcionario;
 
-import java.util.*;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * Clase que representa los usuarios de la aplicación.
@@ -18,6 +22,7 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false)
     private Long idUsuario;
 
     private String nombreUsuario;
@@ -29,8 +34,10 @@ public class Usuario {
             inverseJoinColumns = @JoinColumn(name = "idRol"))
     private List<Rol> roles = new LinkedList<>();
 
-    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, optional = false, orphanRemoval = true)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "id_funcionario")
     private Funcionario funcionario;
+
 
     public Usuario(String nombreUsuario, String contrasenia) {
         this.nombreUsuario = nombreUsuario;

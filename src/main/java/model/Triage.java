@@ -111,7 +111,6 @@ public class Triage{
         this.signoShock = signoShock;
         this.lesionesLeves = lesionesLeves;
         this.sangrado = sangrado;
-        this.colorTriageFinal = ColorTriage.Ninguno;
     }
 
     /**
@@ -150,11 +149,34 @@ public class Triage{
         } else if (suma >= 10 && suma <= 14) {
             this.colorTriageRecomendado = ColorTriage.Naranja;
         } else if (suma >= 5 && suma <= 9) {
-            this.colorTriageRecomendado = ColorTriage.Amarrillo;
+            this.colorTriageRecomendado = ColorTriage.Amarillo;
         } else if (suma > 0 && suma <= 4) {
             this.colorTriageRecomendado = ColorTriage.Verde;
         } else {
             this.colorTriageRecomendado = ColorTriage.Azul;
+        }
+    }
+
+    public static ColorTriage calcularColorTriageRecomendado(Respiracion respiracion, Pulso pulso, int vaLorPulso,
+                                                             EstadoMental estadoMental, Conciencia conciencia, DolorPecho dolorPecho,
+                                                             LecionesGraves lesionGrave, Edad edad, int valorEdad, Fiebre fiebre,
+                                                             float valorFiebre, Vomitos vomito, DolorAbdominal dolorAbdominal, SignoShock signoShock,
+                                                             LesionLeve lesionesLeves, Sangrado sangrado){
+
+
+        int suma = respiracion.getValor() + pulso.getValor() + estadoMental.getValor() + conciencia.getValor() + dolorPecho.getValor() +
+                lesionGrave.getValor() + edad.getValor() + fiebre.getValor() + vomito.getValor() + dolorAbdominal.getValor() +
+                signoShock.getValor() + lesionesLeves.getValor() + sangrado.getValor();
+        if(suma >= 15){
+            return ColorTriage.Rojo;
+        } else if (suma >= 10 && suma <= 14) {
+            return ColorTriage.Naranja;
+        } else if (suma >= 5 && suma <= 9) {
+            return ColorTriage.Amarillo;
+        } else if (suma > 0 && suma <= 4) {
+            return ColorTriage.Verde;
+        } else {
+            return ColorTriage.Azul;
         }
     }
 

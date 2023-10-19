@@ -18,15 +18,17 @@ import java.time.LocalDate;
 
 @Entity
 public class Funcionario extends Persona{
-    @ToString.Exclude
-    @OneToOne(cascade = CascadeType.ALL, optional = false, orphanRemoval = true)
-    @JoinColumn(name = "idUsuario", nullable = false, unique = true)
-    private Usuario usuario;
+
 
     @ToString.Exclude
     @ManyToOne(cascade = CascadeType.ALL, optional = false)
     @JoinColumn(name = "idSector", nullable = false)
     private Sector sector;
+
+    @ToString.Exclude
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "idUsuario")
+    private Usuario usuario;
 
     //constructor
     public Funcionario(String nombre,String apellido, LocalDate fechaNacimiento, String domicilio,

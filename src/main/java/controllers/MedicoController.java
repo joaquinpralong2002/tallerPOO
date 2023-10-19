@@ -1,6 +1,7 @@
 package controllers;
 
 
+import datasource.PacienteDAO;
 import datasource.RegistroEntradaDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -35,10 +36,17 @@ public class MedicoController {
     @ToString
     @Getter
     protected class PacienteTableClass {
+        Long id;
         String nombre;
         String apellido;
         ColorTriage colorTriage;
         LocalTime hora;
+
+        public Paciente obtenerPaciente(Long id){
+            PacienteDAO pacienteDAO = new PacienteDAO();
+            Paciente paciente = pacienteDAO.obtener(id);
+            return paciente;
+        }
     }
 
     private List<Rol> roles;
@@ -93,7 +101,7 @@ public class MedicoController {
         List<RegistroEntrada> listaRegistros = registroEntradaDAO.obtenerTodos();
 
         for(RegistroEntrada registro : listaRegistros){
-            datosTabla.add(new PacienteTableClass(registro.getPaciente().getNombre(), registro.getPaciente().getApellido(),
+            datosTabla.add(new PacienteTableClass(registro.getPaciente().getId(), registro.getPaciente().getNombre(), registro.getPaciente().getApellido(),
                     registro.getTriage().getColorTriageFinal(), registro.getHora()));
         }
 
@@ -102,14 +110,22 @@ public class MedicoController {
 
 
     public void RealizarTriage(ActionEvent event) throws Exception {
-
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/views/MedicoViews/Triage.fxml"));
         Parent root = loader.load();
 
         TriageController controller = loader.getController();
-        controller.recibirDatos((RegistroEntrada) tblPacientes.getSelectionModel().getSelectedItem(), medico);
-
+        PacienteTableClass pacienteTableClass = (PacienteTableClass) tblPacientes.getSelectionModel().getSelectedItem();
+        if (pacienteTableClass == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("Debe seleccionar un paciente de la tabla.");
+            alert.showAndWait();
+            return;
+        }
+        Paciente paciente = pacienteTableClass.obtenerPaciente(pacienteTableClass.id);
+        RegistroEntrada registroEntrada = paciente.getRegistrosEntradas().get(paciente.getRegistrosEntradas().size() - 1);
+        controller.recibirDatos(registroEntrada, medico);
         // Cambia a la nueva escena
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);

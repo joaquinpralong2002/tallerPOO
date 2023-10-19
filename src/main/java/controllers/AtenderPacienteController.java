@@ -23,24 +23,9 @@ public class AtenderPacienteController {
     private Paciente paciente;
     private Triage triage;
     @FXML
-    private TextField campoDeTexto;
+    private TextArea campoDeTexto;
     @FXML
     private Button atrasButton;
-    @FXML
-    private ComboBox tipoDeBoxComboBox;
-    @FXML
-    private ComboBox<LugarAtencion> consultorioComboBox;
-    @FXML
-    private ComboBox<LugarAtencion> emergenciaComboBox;
-    @FXML
-    private ComboBox<LugarAtencion> internacionesComboBox;
-
-    @FXML
-    public void initialize(){
-        consultorioComboBox.getItems().add(LugarAtencion.Consultorio);
-        emergenciaComboBox.getItems().add(LugarAtencion.Emergencia);
-        internacionesComboBox.getItems().add(LugarAtencion.Internaciones);
-    }
 
     @FXML
     public void recibirDatos(Paciente persona) {

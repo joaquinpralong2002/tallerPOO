@@ -95,6 +95,7 @@ public class Main {
                 11054332, 3455321243L, EstadoCivil.Casado, "juancarlosramirez@gmail.com",usuarioMedico, sectorMedico,
                 "123456789", List.of(especialidad));
         medicoDAO.agregar(medico);
+        usuarioMedico.setFuncionario(medico);
 
         medico.realizarTriage(Respiracion.Normal, Pulso.Normal,12, EstadoMental.Normal, Conciencia.Consciente,
                 DolorPecho.NoPresnte, LecionesGraves.NoPresentes, Edad.NinioAnciano,81, Fiebre.Alta, 38, Vomitos.SinVomito,

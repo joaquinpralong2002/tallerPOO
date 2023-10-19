@@ -1,5 +1,7 @@
 package controllers;
 
+import datasource.FuncionarioAdministrativoDAO;
+import datasource.FuncionarioDAO;
 import datasource.UsuarioDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
