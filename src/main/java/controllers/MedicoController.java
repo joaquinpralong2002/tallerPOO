@@ -101,8 +101,14 @@ public class MedicoController {
         List<RegistroEntrada> listaRegistros = registroEntradaDAO.obtenerTodos();
 
         for(RegistroEntrada registro : listaRegistros){
-            datosTabla.add(new PacienteTableClass(registro.getPaciente().getId(), registro.getPaciente().getNombre(), registro.getPaciente().getApellido(),
-                    registro.getTriage().getColorTriageFinal(), registro.getHora()));
+            if(registro.getPaciente().isTriagiado()){
+                datosTabla.add(new PacienteTableClass(registro.getPaciente().getId(), registro.getPaciente().getNombre(), registro.getPaciente().getApellido(),
+                        registro.getTriage().getColorTriageFinal(), registro.getHora()));
+            } else {
+                datosTabla.add(new PacienteTableClass(registro.getPaciente().getId(), registro.getPaciente().getNombre(), registro.getPaciente().getApellido(),
+                        ColorTriage.Ninguno, registro.getHora()));
+            }
+
         }
 
         tblPacientes.setItems(datosTabla);
@@ -124,6 +130,13 @@ public class MedicoController {
             return;
         }
         Paciente paciente = pacienteTableClass.obtenerPaciente(pacienteTableClass.id);
+        if (paciente.isTriagiado()){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("El paciente ya está triagado.");
+            alert.showAndWait();
+            return;
+        }
         RegistroEntrada registroEntrada = paciente.getRegistrosEntradas().get(paciente.getRegistrosEntradas().size() - 1);
         controller.recibirDatos(registroEntrada, medico);
         // Cambia a la nueva escena
