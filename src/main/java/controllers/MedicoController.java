@@ -133,7 +133,7 @@ public class MedicoController {
         if (paciente.isTriagiado()){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
-            alert.setContentText("El paciente ya está triagado.");
+            alert.setContentText("El paciente ya fue triagado.");
             alert.showAndWait();
             return;
         }
