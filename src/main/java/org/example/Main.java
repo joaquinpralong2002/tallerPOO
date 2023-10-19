@@ -63,6 +63,7 @@ public class Main {
         FuncionarioAdministrativo funAdmin = new FuncionarioAdministrativo("Daniela", "López",LocalDate.of(1980,3,2)
         ,"Rocamora 91",31598762,42698756,3454169865L,EstadoCivil.Soltero,"danielitalop@hotmail.com",usuario, sector);
         funcionarioAdministrativoDAO.agregar(funAdmin);
+        usuario.setFuncionario(funAdmin);
 
         //*********Registro de entrada del funcionario administrativo al paciente*********
         funAdmin.RealizarRegistroEntrada(paciente,"Dolor de cabeza y fiebre");

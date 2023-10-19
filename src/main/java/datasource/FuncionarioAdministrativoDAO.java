@@ -2,6 +2,7 @@ package datasource;
 
 import datasource.interfaces.GenericoDAO;
 import model.FuncionarioAdministrativo;
+import model.Login.Usuario;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import util.GlobalSessionFactory;
