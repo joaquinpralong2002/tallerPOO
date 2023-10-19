@@ -32,6 +32,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class MedicoController {
+
     @AllArgsConstructor
     @ToString
     @Getter
@@ -41,6 +42,7 @@ public class MedicoController {
         String apellido;
         ColorTriage colorTriage;
         LocalTime hora;
+        String motivo;
 
         public Paciente obtenerPaciente(Long id){
             PacienteDAO pacienteDAO = new PacienteDAO();
@@ -59,6 +61,8 @@ public class MedicoController {
     private TableColumn<ColorTriage, String> colColorTriage;
     @FXML
     private TableColumn<RegistroEntrada, LocalTime> colHoraIng;
+    @FXML
+    public TableColumn<RegistroEntrada, String> colMotivo;
     @FXML
     private TableView tblPacientes;
     @FXML
@@ -86,6 +90,7 @@ public class MedicoController {
         this.colApePac.setCellValueFactory(new PropertyValueFactory<>("apellido"));
         this.colColorTriage.setCellValueFactory(new PropertyValueFactory<>("colorTriage"));
         this.colHoraIng.setCellValueFactory(new PropertyValueFactory<>("hora"));
+        this.colMotivo.setCellValueFactory(new PropertyValueFactory<>("motivo"));
         this.iniciarTabla();
     }
 
@@ -102,7 +107,7 @@ public class MedicoController {
 
         for(RegistroEntrada registro : listaRegistros){
             datosTabla.add(new PacienteTableClass(registro.getPaciente().getId(), registro.getPaciente().getNombre(), registro.getPaciente().getApellido(),
-                    registro.getTriage().getColorTriageFinal(), registro.getHora()));
+                    registro.getTriage().getColorTriageFinal(), registro.getHora(),registro.getDescripcion()));
         }
 
         tblPacientes.setItems(datosTabla);

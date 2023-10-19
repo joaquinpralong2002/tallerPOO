@@ -1,8 +1,5 @@
 package controllers;
 
-import datasource.FuncionarioAdministrativoDAO;
-import datasource.PacienteDAO;
-import datasource.RegistroEntradaDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -41,9 +38,7 @@ public class RegistroEntradaController {
     public TextArea txtMotivoConsulta;
 
     @FXML
-    public void initialize(){
-        this.cboxEstCivilPac.getItems().addAll(EstadoCivil.values());
-    }
+    public void initialize(){this.cboxEstCivilPac.getItems().addAll(EstadoCivil.values());}
     public void CrearRegistro(ActionEvent actionEvent) {
         String nombrePac = this.txtNomPac.getText();
         String apellidoPac = this.txtApePac.getText();
@@ -64,19 +59,18 @@ public class RegistroEntradaController {
 
             //para luego setearlo al registro de entrada que creo
             RegistroEntrada registroEntrada = new RegistroEntrada(motivoConsulta,paciente,funcionarioAdministrativoIniciado);
-
             //persistencia de los datos
-            PacienteDAO pacienteDAO = new PacienteDAO();
-            pacienteDAO.agregar(paciente);
-            RegistroEntradaDAO registroEntradaDAO = new RegistroEntradaDAO();
-            registroEntradaDAO.agregar(registroEntrada);
+//            PacienteDAO pacienteDAO = new PacienteDAO();
+//            pacienteDAO.agregar(paciente);
+//            RegistroEntradaDAO registroEntradaDAO = new RegistroEntradaDAO();
+//            registroEntradaDAO.agregar(registroEntrada);
 
         }catch (IllegalArgumentException e) {
             // Mostrar un mensaje de error al usuario
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Datos Invalidos");
-            alert.setContentText("Debe llenar todos los campos, con la informacion correspondiente.");
+            alert.setContentText(e.getMessage());
             alert.show();
         }
 
@@ -84,7 +78,7 @@ public class RegistroEntradaController {
 
     public void validarDatosPaciente(String nombrePac, String apellidoPac, LocalDate fechaNaciPac, String domicilioPac, String dniPac, String telefonoFijoPac, String telefonoCelPac, EstadoCivil estadoCivilPac, String correoPac, String telefonoPersonaContactoPac, String motivoConsulta) {
         // Validar que los campos obligatorios no sean nulos
-        if (nombrePac == null || apellidoPac == null || domicilioPac == null || estadoCivilPac == null || correoPac == null || fechaNaciPac == null || motivoConsulta == null) {
+        if (nombrePac == null || apellidoPac == null || domicilioPac == null || estadoCivilPac == null || fechaNaciPac == null || motivoConsulta == null) {
             throw new IllegalArgumentException("Los campos obligatorios no pueden ser nulos");
         }
 
