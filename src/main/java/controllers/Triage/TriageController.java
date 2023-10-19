@@ -1,4 +1,4 @@
-package controllers;
+package controllers.Triage;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,6 +23,7 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.ResourceBundle;
 public class TriageController {
+    private ColorTriage colorTriageSistema;
     private RegistroEntrada registroEntrada;
     private Medico medico;
     @FXML
@@ -103,6 +104,7 @@ public class TriageController {
         ColorTriage colorRecomendado = Triage.calcularColorTriageRecomendado(respiracion, pulso, pulsoCardiaco, estadoMental, conciencia, dolorPecho, lecionesGraves,
                 edad, edadAños, fiebre, temperatura, vomitos, dolorAbdominal, signoShock, lesionLeve, sangrado);
         colorRecomendadoLabel.setText(colorRecomendado.toString());
+        this.colorTriageSistema = colorRecomendado;
     }
 
     public void handleModificarColorButtonAction(ActionEvent event) throws Exception {

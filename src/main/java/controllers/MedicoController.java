@@ -1,6 +1,7 @@
 package controllers;
 
 
+import controllers.Triage.TriageController;
 import datasource.PacienteDAO;
 import datasource.RegistroEntradaDAO;
 import javafx.collections.FXCollections;
@@ -18,16 +19,12 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
 import model.Enum.ColorTriage;
-import model.Enum.EstadoCivil;
 import model.Login.Rol;
 import model.Medico;
 import model.Paciente;
 import model.RegistroEntrada;
 
-import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -117,7 +114,7 @@ public class MedicoController {
 
     public void RealizarTriage(ActionEvent event) throws Exception {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/views/MedicoViews/Triage.fxml"));
+        loader.setLocation(getClass().getResource("/views/MedicoViews/Triage/Triage.fxml"));
         Parent root = loader.load();
 
         TriageController controller = loader.getController();
