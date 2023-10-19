@@ -68,7 +68,7 @@ public class UsuarioDAO implements GenericoDAO<Usuario> {
 
     public FuncionarioAdministrativo obtenerFuncionarioAdministrativoPorIdUsuario(Long id) {
         Session session = sessionFactory.openSession();
-        String query = "SELECT funcionario FROM Funcionario funcionario WHERE funcionario.idUsuario = :id";
+        String query = "SELECT funcionario FROM Funcionario funcionario WHERE funcionario.usuario.idUsuario = :id";
         FuncionarioAdministrativo funcionarioAdministrativo = session.createQuery(query, FuncionarioAdministrativo.class).setParameter("id", id)
                 .getSingleResultOrNull();
         session.close();
