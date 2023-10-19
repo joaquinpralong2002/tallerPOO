@@ -135,7 +135,17 @@ public class MedicoController {
 
     public void AtenderPaciente(ActionEvent event) throws Exception{
         // Atiende al paciente
-        Parent root = FXMLLoader.load(getClass().getResource("/views/MedicoViews/AtenderPaciente.fxml"));
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/views/MedicoViews/AtenderPaciente.fxml"));
+        Parent root = loader.load();
+        PacienteTableClass pacienteTableClass = (PacienteTableClass) tblPacientes.getSelectionModel().getSelectedItem();
+        if (pacienteTableClass == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("Debe seleccionar un paciente de la tabla.");
+            alert.showAndWait();
+            return;
+        }
 
         // Cambia a la nueva escena
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();

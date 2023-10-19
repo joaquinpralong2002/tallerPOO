@@ -1,6 +1,5 @@
 package controllers;
 
-import datasource.RegistroDAO;
 import datasource.ResultadoDiagnosticoDAO;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -15,54 +14,59 @@ import javafx.stage.Stage;
 import model.BoxAtencion;
 import model.Enum.LugarAtencion;
 import model.Paciente;
-import model.Triage;
+import model.Medico;
 
 import java.util.Optional;
 
 public class AtenderPacienteController {
     private Paciente paciente;
-    private Triage triage;
+    private Medico medico;
+    private BoxAtencion boxAtencion;
+    @FXML
+    private Button realizarDiagnosticoButton;
     @FXML
     private TextArea campoDeTexto;
     @FXML
     private Button atrasButton;
 
     @FXML
-    public void recibirDatos(Paciente persona) {
-        //Método para recibir el paciente y el triage asociado de la escena anterior.
+    public void recibirDatos(Paciente persona, Medico medico,BoxAtencion boxAtencion) {
+        //Método para recibir el paciente y medico asociado de la escena anterior.
         this.paciente = persona;
-        this.triage = triage;
+        this.medico = medico;
+        this.boxAtencion = boxAtencion;
     }
 
     //Metodo para guardar en que Box de atencion lo atendieron, se guarda en el Registro
+    //Revisar si anda...
+    public void BotonRealizarRegistro(AccessibleAction action, Paciente persona, BoxAtencion boxAtencion) throws Exception{
 
-
-    public void RealizarRegistro(AccessibleAction action) throws Exception{
-        RegistroDAO registro = new RegistroDAO();
-        ResultadoDiagnosticoDAO resultadoDiagnostico = new ResultadoDiagnosticoDAO();
-
-
-        TextField textField = new TextField();
         // Llena el TextField
-        textField.setText(String.valueOf(campoDeTexto));
-        // Agrega un evento al botón
-        atrasButton.setOnAction(new EventHandler<ActionEvent>() {
+        String diagnostico = campoDeTexto.getText();
+
+        realizarDiagnosticoButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                // Guarda la información del TextField
-                String informacion = textField.getText();
+                // Lanza una alerta para confirmar la acción
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmar acción");
+                alert.setContentText("¿Estás seguro de que deseas realizar el diagnóstico?");
+                Optional<ButtonType> resultado = alert.showAndWait();
 
-                // Envía la información a otro lugar
-                //Deberia guardar en el ResultadoDiagnosticoDAO?...
+                // Si el usuario hace clic en el botón "Aceptar", entonces se realiza la acción
+                if (resultado.get() == ButtonType.OK) {
+                    medico.atenderPaciente(persona,boxAtencion,diagnostico);
+                }
             }
         });
     }
-    public void CerrarSesion(ActionEvent event) throws Exception {
+
+    public void BotonAtras(ActionEvent event) throws Exception {
         // Volver atras a Médico
         Parent root = FXMLLoader.load(getClass().getResource("/views/MedicoViews/Medico.fxml"));
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Cerrar sesión");
-        alert.setContentText("¿Estás seguro de que deseas cerrar sesión?");
+        alert.setTitle("Ir atrás");
+        alert.setContentText("¿Estás seguro de que deseas volver a la pestaña anterior?");
         Optional<ButtonType> resultado = alert.showAndWait();
 
         if (resultado.isPresent() && resultado.get() == ButtonType.OK) {
