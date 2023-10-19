@@ -95,6 +95,7 @@ public class Medico extends Funcionario implements CapacitadoTriage{
         triage.setColorTriageFinal(colorfinal);
         triage.setRegistroEntrada(registroEntrada);
         registroEntrada.setTriage(triage);
+        registroEntrada.getPaciente().setTriagiado(true);
         asignarBox(registroEntrada);
         return true;
     }

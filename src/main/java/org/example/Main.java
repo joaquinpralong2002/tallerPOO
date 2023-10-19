@@ -45,6 +45,10 @@ public class Main {
         ,"Pepe Sand");
         pacienteDAO.agregar(paciente);
 
+        Paciente paciente2 = new Paciente("Johanna", "Ramírez", LocalDate.of(1998,6,19),"Gatto 1929",
+                25698413, 4259813, 3456987136L, EstadoCivil.Casado, "johannitaramirez@gmail.com", "Roman");
+        pacienteDAO.agregar(paciente2);
+
         //*********Asignacion del rol al funcionario*******
         Rol rol = new Rol("Funcionario");
         rolDAO.agregar(rol);
@@ -68,6 +72,7 @@ public class Main {
         //*********Registro de entrada del funcionario administrativo al paciente*********
         funAdmin.RealizarRegistroEntrada(paciente,"Dolor de cabeza y fiebre");
 
+        funAdmin.RealizarRegistroEntrada(paciente2, "Vómitos y diarrea");
 
         //*******************CREACION DEL MEDICO******************************
         //*******************MEDICOOOOOOO***********************************
