@@ -59,5 +59,6 @@
             </Pane>
          </children>
       </HBox>
+      <Button fx:id="bttmVolver" layoutX="14.0" layoutY="23.0" mnemonicParsing="false" onAction="#Volver" prefHeight="35.0" prefWidth="97.0" text="Volver" />
    </children>
 </AnchorPane>

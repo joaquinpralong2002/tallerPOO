@@ -29,13 +29,13 @@
             <VBox prefHeight="222.0" prefWidth="185.0" BorderPane.alignment="CENTER">
                <children>
                   <Button fx:id="bttmRegEnt" mnemonicParsing="false" onAction="#CrearRegistroEntrada" prefHeight="40.0" prefWidth="147.0" text="Registro Entrada" />
-                  <Button fx:id="bttmRegEnt1" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#CrearRegistroEntrada" prefHeight="40.0" prefWidth="147.0" />
-                  <Button fx:id="bttmRegEnt11" layoutX="10.0" layoutY="50.0" mnemonicParsing="false" onAction="#CrearRegistroEntrada" prefHeight="40.0" prefWidth="147.0" />
+                  <Button fx:id="bttmBuscarPaciente" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#BuscarPaciente" prefHeight="40.0" prefWidth="147.0" text="Buscar Paciente" />
+                  <Button layoutX="10.0" layoutY="50.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="147.0" />
                </children>
             </VBox>
          </center>
          <bottom>
-            <Button fx:id="bttmRegEnt111" mnemonicParsing="false" onAction="#CrearRegistroEntrada" prefHeight="40.0" prefWidth="147.0" BorderPane.alignment="CENTER" />
+            <Button fx:id="bttmCerrarSesion" mnemonicParsing="false" onAction="#CerrarSesion" prefHeight="40.0" prefWidth="147.0" text="Cerrar Sesion" BorderPane.alignment="CENTER" />
          </bottom>
       </BorderPane>
       <BorderPane layoutX="148.0" prefHeight="400.0" prefWidth="454.0" />
