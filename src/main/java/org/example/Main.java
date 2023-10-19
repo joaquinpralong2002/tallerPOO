@@ -63,6 +63,7 @@ public class Main {
         FuncionarioAdministrativo funAdmin = new FuncionarioAdministrativo("Daniela", "López",LocalDate.of(1980,3,2)
         ,"Rocamora 91",31598762,42698756,3454169865L,EstadoCivil.Soltero,"danielitalop@hotmail.com",usuario, sector);
         funcionarioAdministrativoDAO.agregar(funAdmin);
+        usuario.setFuncionario(funAdmin);
 
         //*********Registro de entrada del funcionario administrativo al paciente*********
         funAdmin.RealizarRegistroEntrada(paciente,"Dolor de cabeza y fiebre");
@@ -95,6 +96,7 @@ public class Main {
                 11054332, 3455321243L, EstadoCivil.Casado, "juancarlosramirez@gmail.com",usuarioMedico, sectorMedico,
                 "123456789", List.of(especialidad));
         medicoDAO.agregar(medico);
+        usuarioMedico.setFuncionario(medico);
 
         medico.realizarTriage(Respiracion.Normal, Pulso.Normal,12, EstadoMental.Normal, Conciencia.Consciente,
                 DolorPecho.NoPresnte, LecionesGraves.NoPresentes, Edad.NinioAnciano,81, Fiebre.Alta, 38, Vomitos.SinVomito,

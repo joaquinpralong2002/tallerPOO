@@ -8,14 +8,20 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import model.Enum.EstadoCivil;
 import model.FuncionarioAdministrativo;
+import model.Login.Rol;
+import model.Login.Usuario;
 import model.Paciente;
 import model.RegistroEntrada;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class RegistroEntradaController {
 
-    
+    private List<Rol> rolesUsuario;
+    private Usuario usuarioIniciado;
+    private FuncionarioAdministrativo funcionarioAdministrativoIniciado;
+
     public TextField txtNomPac;
     public TextField txtApePac;
     public TextField txtDNIPac;
@@ -50,14 +56,8 @@ public class RegistroEntradaController {
 
             Paciente paciente = new Paciente(nombrePac,apellidoPac,fechaNaciPac,domicilioPac,Integer.parseInt(dniPac),Integer.parseInt(telefonoFijoPac),Long.parseLong(telefonoCelPac),estadoCivilPac,correoPac,teleonoPersonaContactoPac);
 
-            //buscar una forma de traer el funcionario que realizo el registro entrada
-            //buscarlo desde el dao de usuario, pero abria que pasar el usuario que se logeo de ventana en ventana
-            //buscarlo desde el dao de funcionarioadministrativo, buscado por el usuario que se logeo tambien
-            FuncionarioAdministrativoDAO daoFuncAdm = new FuncionarioAdministrativoDAO();
-            FuncionarioAdministrativo funcionarioAdministrativo = new FuncionarioAdministrativo();
-
             //para luego setearlo al registro de entrada que creo
-            RegistroEntrada registroEntrada = new RegistroEntrada(motivoConsulta,paciente,funcionarioAdministrativo);
+            RegistroEntrada registroEntrada = new RegistroEntrada(motivoConsulta,paciente,funcionarioAdministrativoIniciado);
 
             //persistencia de los datos
             PacienteDAO pacienteDAO = new PacienteDAO();
@@ -113,4 +113,9 @@ public class RegistroEntradaController {
     }
 
 
+    public void recibirDatos(List<Rol> roles, Usuario usuario, FuncionarioAdministrativo funcionarioAdministrativo) {
+        this.rolesUsuario = roles;
+        this.usuarioIniciado = usuario;
+        this.funcionarioAdministrativoIniciado = funcionarioAdministrativo;
+    }
 }

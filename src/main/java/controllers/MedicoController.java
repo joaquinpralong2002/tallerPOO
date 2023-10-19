@@ -1,6 +1,7 @@
 package controllers;
 
 
+import datasource.PacienteDAO;
 import datasource.RegistroEntradaDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,6 +19,8 @@ import lombok.Getter;
 import lombok.ToString;
 import model.Enum.ColorTriage;
 import model.Enum.EstadoCivil;
+import model.Login.Rol;
+import model.Medico;
 import model.Paciente;
 import model.RegistroEntrada;
 
@@ -29,10 +32,33 @@ import java.util.List;
 import java.util.Optional;
 
 public class MedicoController {
-    public TableColumn<Paciente, String> colNomPac;
-    public TableColumn<Paciente, String> colApePac;
-    public TableColumn<ColorTriage, String> colColorTriage;
-    public TableColumn<RegistroEntrada, LocalTime> colHoraIng;
+    @AllArgsConstructor
+    @ToString
+    @Getter
+    protected class PacienteTableClass {
+        Long id;
+        String nombre;
+        String apellido;
+        ColorTriage colorTriage;
+        LocalTime hora;
+
+        public Paciente obtenerPaciente(Long id){
+            PacienteDAO pacienteDAO = new PacienteDAO();
+            Paciente paciente = pacienteDAO.obtener(id);
+            return paciente;
+        }
+    }
+
+    private List<Rol> roles;
+    private Medico medico;
+    @FXML
+    private TableColumn<Paciente, String> colNomPac;
+    @FXML
+    private TableColumn<Paciente, String> colApePac;
+    @FXML
+    private TableColumn<ColorTriage, String> colColorTriage;
+    @FXML
+    private TableColumn<RegistroEntrada, LocalTime> colHoraIng;
     @FXML
     private TableView tblPacientes;
     @FXML
@@ -63,13 +89,19 @@ public class MedicoController {
         this.iniciarTabla();
     }
 
-    private void iniciarTabla(){
-        ObservableList datosTabla = FXCollections.observableArrayList();
-        RegistroEntradaDAO registroEntradaDAO = new RegistroEntradaDAO();
-        List<RegistroEntrada> listaregistros = registroEntradaDAO.obtenerTodos();
+    @FXML
+    public void recibirDatos(List<Rol> roles, Medico medico) {
+        this.roles = roles;
+        this.medico = medico;
+    }
 
-        for(RegistroEntrada registro : listaregistros){
-            datosTabla.add(new PacienteTableClass(registro.getPaciente().getNombre(), registro.getPaciente().getApellido(),
+    private void iniciarTabla(){
+        ObservableList<PacienteTableClass> datosTabla = FXCollections.observableArrayList();
+        RegistroEntradaDAO registroEntradaDAO = new RegistroEntradaDAO();
+        List<RegistroEntrada> listaRegistros = registroEntradaDAO.obtenerTodos();
+
+        for(RegistroEntrada registro : listaRegistros){
+            datosTabla.add(new PacienteTableClass(registro.getPaciente().getId(), registro.getPaciente().getNombre(), registro.getPaciente().getApellido(),
                     registro.getTriage().getColorTriageFinal(), registro.getHora()));
         }
 
@@ -78,18 +110,22 @@ public class MedicoController {
 
 
     public void RealizarTriage(ActionEvent event) throws Exception {
-        Paciente paciente = new Paciente("Juan" ,"Pérez", LocalDate.of(1975,11,3),"Sargento Rodriguez",20113654,
-                4259761,3454698743L, EstadoCivil.Casado,"juancitoperez@gmail.com"
-                ,"Pepe Sand");
-
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/views/MedicoViews/Triage.fxml"));
         Parent root = loader.load();
 
         TriageController controller = loader.getController();
-        controller.recibirDatos(paciente);
-        //controller.recibirDatos((Paciente) tblPacientes.getSelectionModel().getSelectedItem());
-
+        PacienteTableClass pacienteTableClass = (PacienteTableClass) tblPacientes.getSelectionModel().getSelectedItem();
+        if (pacienteTableClass == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("Debe seleccionar un paciente de la tabla.");
+            alert.showAndWait();
+            return;
+        }
+        Paciente paciente = pacienteTableClass.obtenerPaciente(pacienteTableClass.id);
+        RegistroEntrada registroEntrada = paciente.getRegistrosEntradas().get(paciente.getRegistrosEntradas().size() - 1);
+        controller.recibirDatos(registroEntrada, medico);
         // Cambia a la nueva escena
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
@@ -99,7 +135,17 @@ public class MedicoController {
 
     public void AtenderPaciente(ActionEvent event) throws Exception{
         // Atiende al paciente
-        Parent root = FXMLLoader.load(getClass().getResource("/views/MedicoViews/AtenderPaciente.fxml"));
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/views/MedicoViews/AtenderPaciente.fxml"));
+        Parent root = loader.load();
+        PacienteTableClass pacienteTableClass = (PacienteTableClass) tblPacientes.getSelectionModel().getSelectedItem();
+        if (pacienteTableClass == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("Debe seleccionar un paciente de la tabla.");
+            alert.showAndWait();
+            return;
+        }
 
         // Cambia a la nueva escena
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -122,17 +168,6 @@ public class MedicoController {
             stage.setScene(scene);
             stage.show();
         }
-
-    }
-
-    @AllArgsConstructor
-    @ToString
-    @Getter
-    class PacienteTableClass {
-        private String nombre;
-        private String apellido;
-        private ColorTriage colorTriage;
-        private LocalTime hora;
     }
 }
 
