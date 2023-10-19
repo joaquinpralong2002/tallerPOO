@@ -41,7 +41,7 @@ public class RegistroEntrada {
     @JoinColumn(name = "idTriage")
     private Triage triage;
 
-    @ManyToOne(cascade = CascadeType.ALL, optional = false)
+    @ManyToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.EAGER)
     @JoinColumn(name = "idPaciente", nullable = false)
     private Paciente paciente;
 

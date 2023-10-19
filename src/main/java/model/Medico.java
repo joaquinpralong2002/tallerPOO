@@ -31,7 +31,7 @@ public class Medico extends Funcionario implements CapacitadoTriage{
     @JoinColumn(name = "numeroBox")
     private BoxAtencion boxAtencion;
 
-    @OneToMany(mappedBy = "medico", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "medico", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Triage> triagesRealizados = new ArrayList<>();
 
     public Medico(String nombre, String apellido, LocalDate fechaNacimiento, String domicilio, int DNI,
@@ -78,6 +78,8 @@ public class Medico extends Funcionario implements CapacitadoTriage{
         Triage triage = new Triage(respiracion, pulso, valorPulso, estadoMental, conciencia, dolorPecho, lecionesGraves, edad,
                 valorEdad, fiebre, valorFiebre, vomitos, dolorAbdominal, signoShock, lesionLeve, sangrado);
         triage.calcularColorTriageRecomendado();
+        TriageDAO triageDAO = new TriageDAO();
+        triageDAO.agregar(triage);
         this.triagesRealizados.add(triage);
         return triage;
     }

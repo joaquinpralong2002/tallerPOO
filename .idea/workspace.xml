@@ -4,17 +4,36 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2be48f36-62e0-45df-812c-c4d57fbb8bcb" name="Changes" comment="creo RegistroEntradaController">
+    <list default="true" id="2be48f36-62e0-45df-812c-c4d57fbb8bcb" name="Changes" comment="Solucionado error con la clase de la tabla Paciente en MedicoController">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/AtenderPacienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/AtenderPacienteController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/MedicoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/MedicoController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/TriageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/TriageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/datasource/UsuarioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/datasource/UsuarioDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Enum/ColorTriage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Enum/ColorTriage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Funcionario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Funcionario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Login/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Login/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Medico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Medico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Paciente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Paciente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/RegistroEntrada.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/RegistroEntrada.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Triage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Triage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/views/MedicoViews/AtenderPaciente.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/MedicoViews/AtenderPaciente.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/views/MedicoViews/Triage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/MedicoViews/Triage.fxml" afterDir="false" />
     </list>
     <list id="7cf27e7a-e8ef-4e7b-8ea0-1add41df4e7f" name="Changes by Ema Bozzo" comment="Changes by Ema Bozzo" />
-    <list id="15828dba-da6f-4f6e-b73c-4d6da2316fd2" name="Changes by gasto" comment="" />
+    <list id="15828dba-da6f-4f6e-b73c-4d6da2316fd2" name="Changes by gasto" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/AtenderPacienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/AtenderPacienteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/MedicoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/MedicoController.java" afterDir="false" />
+    </list>
+    <list id="84c213b7-9331-415d-9f8d-f6543a7ae6ee" name="Changes by Jesús Ksa" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/FuncionarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/FuncionarioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/RegistroEntradaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/RegistroEntradaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/datasource/FuncionarioAdministrativoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/datasource/FuncionarioAdministrativoDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -58,6 +77,51 @@
   </component>
   <component name="JpbToolWindowState">
     <option name="isToolWindowVisible" value="false" />
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/main/java/controllers/MedicoController.java">
+      <ranges>
+        <range start1="3" end1="3" start2="3" end2="4" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
+        <range start1="37" end1="37" start2="38" end2="39" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
+        <range start1="41" end1="41" start2="43" end2="49" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
+        <range start1="95" end1="96" start2="103" end2="104" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
+        <range start1="104" end1="105" start2="112" end2="112" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
+        <range start1="110" end1="112" start2="117" end2="128" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
+        <range start1="121" end1="122" start2="137" end2="148" changelist="15828dba-da6f-4f6e-b73c-4d6da2316fd2" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/controllers/AtenderPacienteController.java">
+      <ranges>
+        <range start1="2" end1="3" start2="2" end2="2" changelist="15828dba-da6f-4f6e-b73c-4d6da2316fd2" />
+        <range start1="17" end1="18" start2="16" end2="17" changelist="15828dba-da6f-4f6e-b73c-4d6da2316fd2" />
+        <range start1="23" end1="24" start2="22" end2="26" changelist="15828dba-da6f-4f6e-b73c-4d6da2316fd2" />
+        <range start1="25" end1="26" start2="27" end2="28" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
+        <range start1="28" end1="43" start2="30" end2="30" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
+        <range start1="45" end1="47" start2="32" end2="34" changelist="15828dba-da6f-4f6e-b73c-4d6da2316fd2" />
+        <range start1="48" end1="49" start2="35" end2="37" changelist="15828dba-da6f-4f6e-b73c-4d6da2316fd2" />
+        <range start1="52" end1="53" start2="40" end2="42" changelist="15828dba-da6f-4f6e-b73c-4d6da2316fd2" />
+        <range start1="54" end1="60" start2="43" end2="43" changelist="15828dba-da6f-4f6e-b73c-4d6da2316fd2" />
+        <range start1="61" end1="64" start2="44" end2="47" changelist="15828dba-da6f-4f6e-b73c-4d6da2316fd2" />
+        <range start1="66" end1="68" start2="49" end2="54" changelist="15828dba-da6f-4f6e-b73c-4d6da2316fd2" />
+        <range start1="69" end1="71" start2="55" end2="59" changelist="15828dba-da6f-4f6e-b73c-4d6da2316fd2" />
+        <range start1="74" end1="75" start2="62" end2="64" changelist="15828dba-da6f-4f6e-b73c-4d6da2316fd2" />
+        <range start1="78" end1="80" start2="67" end2="69" changelist="15828dba-da6f-4f6e-b73c-4d6da2316fd2" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/org/example/Main.java">
+      <ranges>
+        <range start1="65" end1="65" start2="65" end2="66" changelist="84c213b7-9331-415d-9f8d-f6543a7ae6ee" />
+        <range start1="97" end1="97" start2="98" end2="99" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/controllers/LoginController.java">
+      <ranges>
+        <range start1="2" end1="2" start2="2" end2="4" changelist="2be48f36-62e0-45df-812c-c4d57fbb8bcb" />
+        <range start1="13" end1="13" start2="15" end2="17" changelist="84c213b7-9331-415d-9f8d-f6543a7ae6ee" />
+        <range start1="65" end1="66" start2="69" end2="75" changelist="84c213b7-9331-415d-9f8d-f6543a7ae6ee" />
+        <range start1="67" end1="67" start2="76" end2="80" changelist="84c213b7-9331-415d-9f8d-f6543a7ae6ee" />
+      </ranges>
+    </file>
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
@@ -144,9 +208,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.LoginApplication" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.recursivo" />
         <item itemvalue="Application.Recursividad" />
-        <item itemvalue="Application.Main" />
         <item itemvalue="Application.recursivo" />
       </list>
     </recent_temporary>
@@ -432,7 +496,23 @@
       <option name="project" value="LOCAL" />
       <updated>1697596229358</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Arreglado error en el login.">
+      <option name="closed" value="true" />
+      <created>1697660624497</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1697660624497</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Solucionado error con la clase de la tabla Paciente en MedicoController">
+      <option name="closed" value="true" />
+      <created>1697662566923</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1697662566923</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -467,6 +547,8 @@
     <MESSAGE value="mejoro metodo iniciar sesion, modifico usuarioDAO por Ema" />
     <MESSAGE value="Changes by Ema Bozzo" />
     <MESSAGE value="creo RegistroEntradaController" />
-    <option name="LAST_COMMIT_MESSAGE" value="creo RegistroEntradaController" />
+    <MESSAGE value="Arreglado error en el login." />
+    <MESSAGE value="Solucionado error con la clase de la tabla Paciente en MedicoController" />
+    <option name="LAST_COMMIT_MESSAGE" value="Solucionado error con la clase de la tabla Paciente en MedicoController" />
   </component>
 </project>

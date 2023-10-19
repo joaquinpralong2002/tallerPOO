@@ -1,5 +1,7 @@
 package controllers;
 
+import datasource.FuncionarioAdministrativoDAO;
+import datasource.FuncionarioDAO;
 import datasource.UsuarioDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,6 +13,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Funcionario;
+import model.FuncionarioAdministrativo;
 import model.Login.Rol;
 import model.Login.Usuario;
 import model.Medico;
@@ -63,8 +67,17 @@ public class LoginController {
                         stage.show();
                         break;
                     case "Funcionario":
-                        Parent rootFuncionario = FXMLLoader.load(getClass().getResource("/views/FuncionarioViews/Funcionario.fxml"));
+                        System.out.println("Entró funcionario");
+                        FXMLLoader loaderFuncionario = new FXMLLoader();
+                        loaderFuncionario.setLocation(getClass().getResource("/views/FuncionarioViews/Funcionario.fxml"));
+                        Parent rootFuncionario = loaderFuncionario.load();
 
+                        FuncionarioAdministrativo funcionarioAdministrativo = usuarioDAO.obtenerFuncionarioAdministrativoPorIdUsuario(user.getIdUsuario());
+
+                        FuncionarioController funcionarioController = loaderFuncionario.getController();
+                        funcionarioController.recibirDatos(user.getRoles(), user, funcionarioAdministrativo);
+
+                        //RegistroEntradaController
                         Stage stage1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
                         Scene scene1 = new Scene(rootFuncionario);
                         stage1.setScene(scene1);
