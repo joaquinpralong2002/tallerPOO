@@ -76,7 +76,7 @@ public class RegistroEntradaController {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Datos Invalidos");
-            alert.setContentText("Debe llenar todos los campos, con la informacion correspondiente.");
+            alert.setContentText(e.getMessage());
             alert.show();
         }
 

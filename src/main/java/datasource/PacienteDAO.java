@@ -48,7 +48,7 @@ public class PacienteDAO implements GenericoDAO<Paciente> {
 
     public Paciente obtenerPorDni(String dni) {
         Session session = sessionFactory.openSession();
-        String query = "SELECT paciente FROM Paciente paciente WHERE paciente.dni = :dni";
+        String query = "SELECT paciente FROM Paciente paciente WHERE paciente.DNI = :dni";
         Paciente paciente = session.createQuery(query, Paciente.class)
                 .setParameter("dni", dni)
                 .getSingleResult();

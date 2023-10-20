@@ -11,28 +11,49 @@
 
 <AnchorPane prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MedicoController">
    <children>
-      <TableView fx:id="tblPacientes" layoutX="401.0" layoutY="173.0" prefHeight="558.0" prefWidth="564.0">
+      <TableView fx:id="tblPacientes" layoutX="401.0" layoutY="173.0" prefHeight="558.0" prefWidth="762.0">
          <columns>
-            <TableColumn fx:id="colNomPac" prefWidth="141.0" text="Nombre" />
-            <TableColumn fx:id="colApePac" prefWidth="141.0" text="Apellido" />
-            <TableColumn fx:id="colColorTriage" prefWidth="141.0" text="Color Triage" />
-            <TableColumn fx:id="colHoraIng" prefWidth="141.0" text="Hora Ingreso" />
+            <TableColumn fx:id="colNomPac" prefWidth="130.0" text="Nombre" />
+            <TableColumn fx:id="colApePac" prefWidth="150.0" text="Apellido" />
+            <TableColumn fx:id="colColorTriage" prefWidth="110.0" text="Color Triage" />
+            <TableColumn fx:id="colHoraIng" prefWidth="110.0" text="Hora Ingreso" />
+            <TableColumn fx:id="colMotivo" prefWidth="259.9999755859375" text="Motivo de Consulta" />
          </columns>
       </TableView>
-      <Button fx:id="bttmAtender" layoutX="997.0" layoutY="361.0" mnemonicParsing="false" onAction="#AtenderPaciente" prefHeight="47.0" prefWidth="114.0" text="Atender Paciente" />
-      <TextField fx:id="txtNombPac" layoutX="37.0" layoutY="173.0" promptText="Nombre paciente" />
-      <ComboBox fx:id="cmboxTriage" layoutX="207.0" layoutY="230.0" prefWidth="150.0" promptText="Color triage" />
-      <TextField fx:id="txtApellPac" layoutX="37.0" layoutY="230.0" promptText="Apellido paciente" />
+      <Button fx:id="bttmAtender" layoutX="1200.0" layoutY="360.0" mnemonicParsing="false" onAction="#AtenderPaciente" prefHeight="47.0" prefWidth="114.0" text="Atender Paciente" />
+      <TextField fx:id="txtNombPac" layoutX="40.0" layoutY="240.0" prefHeight="35.0" prefWidth="150.0" promptText="Nombre paciente" />
+      <ComboBox fx:id="cmboxTriage" layoutX="210.0" layoutY="333.0" prefHeight="35.0" prefWidth="150.0" promptText="Color triage" />
+      <TextField fx:id="txtApellPac" layoutX="40.0" layoutY="333.0" prefHeight="35.0" prefWidth="150.0" promptText="Apellido paciente" />
       <Button fx:id="bttmCerrarSesion" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#CerrarSesion" text="Cerrar Sesion" />
       <Label layoutX="575.0" layoutY="86.0" text="Listado de Pacientes">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="txtDNIPac" layoutX="207.0" layoutY="173.0" promptText="DNI paciente" />
-      <Button fx:id="bttmRealTriage" layoutX="997.0" layoutY="462.0" mnemonicParsing="false" onAction="#RealizarTriage" prefHeight="47.0" prefWidth="114.0" text="Realizar Triage" />
+      <TextField fx:id="txtDNIPac" layoutX="210.0" layoutY="240.0" prefHeight="35.0" prefWidth="150.0" promptText="DNI paciente" />
+      <Button fx:id="bttmRealTriage" layoutX="1200.0" layoutY="461.0" mnemonicParsing="false" onAction="#RealizarTriage" prefHeight="47.0" prefWidth="114.0" text="Realizar Triage" />
       <Label layoutX="-91.0" layoutY="86.0" text="Label" />
-      <Label layoutX="124.0" layoutY="122.0" text="Filtrar Pacientes">
+      <Label layoutX="24.0" layoutY="155.0" text="              Filtrar Pacientes               " underline="true">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="40.0" layoutY="210.0" text="Nombre:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="210.0" layoutY="210.0" text="Dni:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="40.0" layoutY="294.0" text="Apellido:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="214.0" layoutY="294.0" text="Color Triage:">
          <font>
             <Font size="18.0" />
          </font>
