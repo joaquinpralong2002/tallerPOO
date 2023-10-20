@@ -1,4 +1,4 @@
-package controllers;
+package controllers.Administracion;
 
 import datasource.FuncionarioAdministrativoDAO;
 import datasource.PacienteDAO;
@@ -62,14 +62,16 @@ public class RegistroEntradaController {
 
             Paciente paciente = new Paciente(nombrePac,apellidoPac,fechaNaciPac,domicilioPac,Integer.parseInt(dniPac),Integer.parseInt(telefonoFijoPac),Long.parseLong(telefonoCelPac),estadoCivilPac,correoPac,teleonoPersonaContactoPac);
 
-            //para luego setearlo al registro de entrada que creo
-            RegistroEntrada registroEntrada = new RegistroEntrada(motivoConsulta,paciente,funcionarioAdministrativoIniciado);
-
             //persistencia de los datos
-            PacienteDAO pacienteDAO = new PacienteDAO();
-            pacienteDAO.agregar(paciente);
-            RegistroEntradaDAO registroEntradaDAO = new RegistroEntradaDAO();
-            registroEntradaDAO.agregar(registroEntrada);
+            //PacienteDAO pacienteDAO = new PacienteDAO();
+            //pacienteDAO.agregar(paciente);
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Informacion");
+            alert.setHeaderText("Registro Creado Exitosamente");
+            alert.show();
+            //esta comentado para que no se persista
+            //funcionarioAdministrativoIniciado.RealizarRegistroEntrada(paciente,this.txtMotivoConsulta.getText());
 
         }catch (IllegalArgumentException e) {
             // Mostrar un mensaje de error al usuario
@@ -84,7 +86,7 @@ public class RegistroEntradaController {
 
     public void validarDatosPaciente(String nombrePac, String apellidoPac, LocalDate fechaNaciPac, String domicilioPac, String dniPac, String telefonoFijoPac, String telefonoCelPac, EstadoCivil estadoCivilPac, String correoPac, String telefonoPersonaContactoPac, String motivoConsulta) {
         // Validar que los campos obligatorios no sean nulos
-        if (nombrePac == null || apellidoPac == null || domicilioPac == null || estadoCivilPac == null || correoPac == null || fechaNaciPac == null || motivoConsulta == null) {
+        if (nombrePac == "" || apellidoPac == "" || domicilioPac == "" || estadoCivilPac == null || correoPac == "" || fechaNaciPac == null || motivoConsulta == "") {
             throw new IllegalArgumentException("Los campos obligatorios no pueden ser nulos");
         }
 

@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="900.0" maxWidth="1600.0" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RegistroEntradaController">
+<AnchorPane maxHeight="900.0" maxWidth="1600.0" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Administracion.RegistroEntradaController">
    <children>
       <Label layoutX="551.0" layoutY="78.0" text="Realizar Registro Entrada">
          <font>
@@ -29,16 +29,17 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txtApePac" layoutX="175.0" layoutY="79.0" prefHeight="25.0" prefWidth="152.0" promptText="Ingrese Texto" />
-                  <TextField fx:id="txtDNIPac" layoutX="16.0" layoutY="124.0" prefHeight="25.0" prefWidth="152.0" promptText="Ingrese Texto" />
-                  <TextField fx:id="txtTelFijoPac" layoutX="16.0" layoutY="166.0" prefHeight="25.0" prefWidth="152.0" promptText="Ingrese Texto" />
-                  <TextField fx:id="txtTelCelPac" layoutX="175.0" layoutY="166.0" prefHeight="25.0" prefWidth="152.0" promptText="Ingrese Texto" />
                   <Label layoutX="16.0" layoutY="58.0" text="Nombre:" />
                   <Label layoutX="177.0" layoutY="58.0" text="Apellido:" />
                   <Label layoutX="174.0" layoutY="107.0" text="Domicilio:" />
                   <Label layoutX="13.0" layoutY="149.0" text="Telefono Fijo:" />
                   <Label layoutX="177.0" layoutY="149.0" text="Telefono Celular" />
                   <Label layoutX="18.0" layoutY="107.0" text="DNI:" />
+                  <TextField fx:id="txtApePac" layoutX="175.0" layoutY="79.0" prefHeight="25.0" prefWidth="152.0" promptText="Ingrese Texto" />
+                  <TextField fx:id="txtDNIPac" layoutX="16.0" layoutY="124.0" prefHeight="25.0" prefWidth="152.0" promptText="Ingrese Texto" />
+                  <TextField fx:id="txtDomiPac" layoutX="175.0" layoutY="124.0" prefHeight="25.0" prefWidth="152.0" promptText="Ingrese Texto" />
+                  <TextField fx:id="txtTelFijoPac" layoutX="16.0" layoutY="166.0" prefHeight="25.0" prefWidth="152.0" promptText="Ingrese Texto" />
+                  <TextField fx:id="txtTelCelPac" layoutX="175.0" layoutY="166.0" prefHeight="25.0" prefWidth="152.0" promptText="Ingrese Texto" />
                   <DatePicker fx:id="dateFechaNaciPac" layoutX="16.0" layoutY="208.0" prefHeight="25.0" prefWidth="152.0" />
                   <Label layoutX="16.0" layoutY="191.0" text="Fecha Nacimiento:" />
                   <ComboBox fx:id="cboxEstCivilPac" layoutX="175.0" layoutY="208.0" prefHeight="25.0" prefWidth="152.0" />
@@ -47,7 +48,6 @@
                   <Label layoutX="19.0" layoutY="240.0" text="Correo:" />
                   <TextField fx:id="txtNumPerContPac" layoutX="173.0" layoutY="257.0" prefHeight="25.0" prefWidth="152.0" />
                   <Label layoutX="176.0" layoutY="240.0" text="Numero Persona Contacto:" />
-                  <TextField fx:id="txtDomiPac" layoutX="175.0" layoutY="124.0" prefHeight="25.0" prefWidth="152.0" promptText="Ingrese Texto" />
                </children>
             </Pane>
             <Pane prefHeight="416.0" prefWidth="327.0">

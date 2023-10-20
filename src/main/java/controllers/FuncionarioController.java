@@ -1,7 +1,8 @@
 package controllers;
 
+import controllers.Administracion.BuscarPacienteController;
+import controllers.Administracion.RegistroEntradaController;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -9,7 +10,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.FuncionarioAdministrativo;
 import model.Login.Rol;
@@ -51,6 +51,9 @@ public class FuncionarioController {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/views/FuncionarioViews/BuscarPaciente.fxml"));
         Parent rootFuncionario = loader.load();
+
+        BuscarPacienteController buscarPacienteController = loader.getController();
+        buscarPacienteController.recibirDatos(rolesUsuario, usuarioIniciado, funcionarioAdministrativoIniciado);
 
         Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(rootFuncionario);
