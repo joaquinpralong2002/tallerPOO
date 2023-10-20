@@ -41,7 +41,7 @@ public class PacienteDAO implements GenericoDAO<Paciente> {
         Paciente paciente = session.createQuery(query, Paciente.class)
                 .setParameter("nombre", nombre)
                 .setParameter("apellido", apellido)
-                .getSingleResult();
+                .getSingleResultOrNull();
         session.close();
         return paciente;
     }
@@ -51,7 +51,7 @@ public class PacienteDAO implements GenericoDAO<Paciente> {
         String query = "SELECT paciente FROM Paciente paciente WHERE paciente.DNI = :dni";
         Paciente paciente = session.createQuery(query, Paciente.class)
                 .setParameter("dni", dni)
-                .getSingleResult();
+                .getSingleResultOrNull();
         session.close();
         return paciente;
     }
