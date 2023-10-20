@@ -47,6 +47,17 @@ public class FuncionarioController {
         this.funcionarioAdministrativoIniciado = funcionarioAdministrativo;
     }
 
+    public void BuscarPaciente(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/views/FuncionarioViews/BuscarPaciente.fxml"));
+        Parent rootFuncionario = loader.load();
+
+        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(rootFuncionario);
+        stage.setScene(scene);
+        stage.show();
+    }
+
     public void CerrarSesion(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/views/Login.fxml"));
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -60,8 +71,5 @@ public class FuncionarioController {
             stage.setScene(scene);
             stage.show();
         }
-    }
-
-    public void BuscarPaciente(ActionEvent actionEvent) {
     }
 }
