@@ -44,19 +44,19 @@
       </Pane>
       <Pane layoutX="291.0" layoutY="401.0" prefHeight="290.0" prefWidth="784.0">
          <children>
-            <Label layoutX="76.0" layoutY="108.0" text="El color recomendado por el sistema es:">
+            <Label layoutX="220.0" layoutY="109.0" text="El color asignado es:">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="colorRecomendadoLabel" layoutX="402.0" layoutY="108.0" text="Label">
+            <Label fx:id="colorRecomendadoLabel" layoutX="392.0" layoutY="109.0" text="Label">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
             <Button fx:id="calcularColorButton" layoutX="504.0" layoutY="95.0" mnemonicParsing="false" onAction="#handleCalcularColorButtonAction" prefHeight="54.0" prefWidth="161.0" text="Calcular" />
-            <Button fx:id="confirmarTriageButton" layoutX="424.0" layoutY="186.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="161.0" text="Confirmar triage" />
-            <Button fx:id="modificarColorButton" layoutX="220.0" layoutY="186.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="161.0" text="Modificar color" />
+            <Button fx:id="confirmarTriageButton" layoutX="424.0" layoutY="186.0" mnemonicParsing="false" onAction="#handleConfirmarTriageButtonAction" prefHeight="54.0" prefWidth="161.0" text="Confirmar triage" />
+            <Button fx:id="modificarColorButton" layoutX="220.0" layoutY="186.0" mnemonicParsing="false" onAction="#handleModificarColorButtonAction" prefHeight="54.0" prefWidth="161.0" text="Modificar color" />
          </children>
       </Pane>
    </children>
