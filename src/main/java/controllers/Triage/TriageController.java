@@ -6,24 +6,19 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.Enum.ColorTriage;
 import model.EnumeracionesVariablesTriage.*;
 import model.Medico;
-import model.Paciente;
 import model.RegistroEntrada;
 import model.Triage;
 
-import java.net.URL;
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.ResourceBundle;
+
 public class TriageController {
-    private ColorTriage colorTriageSistema;
+    private ColorTriage colorTriageAsignado = ColorTriage.Ninguno;
     private RegistroEntrada registroEntrada;
     private Medico medico;
     @FXML
@@ -64,6 +59,7 @@ public class TriageController {
         sangradoComboBox.getItems().addAll(Sangrado.values());
         signoShockComboBox.getItems().addAll(SignoShock.values());
         vomitosComboBox.getItems().addAll(Vomitos.values());
+        colorRecomendadoLabel.setText(ColorTriage.Ninguno.toString());
     }
 
     @FXML
@@ -71,6 +67,11 @@ public class TriageController {
         //Método para recibir el paciente de la escena anterior.
         this.registroEntrada = registroEntrada;
         this.medico = medico;
+    }
+
+    public void recibirColorModificacionCancelada(ColorTriage colorTriage){
+        this.colorTriageAsignado = colorTriage;
+        colorRecomendadoLabel.setText(colorTriageAsignado.toString());
     }
 
     public void handleAtrasButtonAction(ActionEvent event) throws Exception {
@@ -104,11 +105,30 @@ public class TriageController {
         ColorTriage colorRecomendado = Triage.calcularColorTriageRecomendado(respiracion, pulso, pulsoCardiaco, estadoMental, conciencia, dolorPecho, lecionesGraves,
                 edad, edadAños, fiebre, temperatura, vomitos, dolorAbdominal, signoShock, lesionLeve, sangrado);
         colorRecomendadoLabel.setText(colorRecomendado.toString());
-        this.colorTriageSistema = colorRecomendado;
+        this.colorTriageAsignado = colorRecomendado;
     }
 
     public void handleModificarColorButtonAction(ActionEvent event) throws Exception {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/views/MedicoViews/Triage/ModificarTriage.fxml"));
+        Parent root = loader.load();
 
+
+        ModificarTriageController controller = loader.getController();
+        if(this.colorTriageAsignado != ColorTriage.Ninguno){
+            controller.recibirDatos(medico, registroEntrada, this.colorTriageAsignado);
+            // Cambia a la nueva escena
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("El paciente no tiene ningún color asignado.");
+            alert.showAndWait();
+            return;
+        }
     }
 
     public void handleConfirmarTriageButtonAction(ActionEvent event) throws Exception {
