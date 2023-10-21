@@ -21,6 +21,9 @@ public class TriageController {
     private ColorTriage colorTriageAsignado = ColorTriage.Ninguno;
     private RegistroEntrada registroEntrada;
     private Medico medico;
+    private int pulsoCardiaco;
+    private int edadAños;
+    private float temperatura;
     @FXML
     private ComboBox<Conciencia> concienciaComboBox;
     @FXML
@@ -48,6 +51,7 @@ public class TriageController {
     @FXML
     private Label colorRecomendadoLabel;
 
+
     public void initialize() {
         concienciaComboBox.getItems().addAll(Conciencia.values());
         dolorAbdominalComboBox.getItems().addAll(DolorAbdominal.values());
@@ -69,10 +73,6 @@ public class TriageController {
         this.medico = medico;
     }
 
-    public void recibirColorModificacionCancelada(ColorTriage colorTriage){
-        this.colorTriageAsignado = colorTriage;
-        colorRecomendadoLabel.setText(colorTriageAsignado.toString());
-    }
 
     public void handleAtrasButtonAction(ActionEvent event) throws Exception {
         // Obtiene la vista inicial
@@ -88,13 +88,16 @@ public class TriageController {
         Respiracion respiracion = respiracionComboBox.getSelectionModel().getSelectedItem();
         int pulsoCardiaco = Integer.parseInt(pulsoTextField.getText());
         Pulso pulso = calcularPulso(pulsoCardiaco);
+        this.pulsoCardiaco = pulsoCardiaco;
         EstadoMental estadoMental = estadoMentalComboBox.getSelectionModel().getSelectedItem();
         Conciencia conciencia = concienciaComboBox.getSelectionModel().getSelectedItem();
         DolorPecho dolorPecho = dolorPechoComboBox.getSelectionModel().getSelectedItem();
         LecionesGraves lecionesGraves = lesionGraveComboBox.getSelectionModel().getSelectedItem();
         Edad edad = calcularEdadEnum();
         int edadAños = calcularEdad();
+        this.edadAños = edadAños;
         float temperatura = Float.parseFloat(temperaturaTextField.getText());
+        this.temperatura = temperatura;
         Fiebre fiebre = calcularFiebre(temperatura);
         Vomitos vomitos = vomitosComboBox.getSelectionModel().getSelectedItem();
         DolorAbdominal dolorAbdominal = dolorAbdominalComboBox.getSelectionModel().getSelectedItem();
@@ -112,11 +115,29 @@ public class TriageController {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/views/MedicoViews/Triage/ModificarTriage.fxml"));
         Parent root = loader.load();
-
-
         ModificarTriageController controller = loader.getController();
         if(this.colorTriageAsignado != ColorTriage.Ninguno){
             controller.recibirDatos(medico, registroEntrada, this.colorTriageAsignado);
+            TriageSingleton triageSingleton = TriageSingleton.getInstance();
+            triageSingleton.setRespiracion(respiracionComboBox.getSelectionModel().getSelectedItem());
+            triageSingleton.setPulsoCardiaco(Integer.parseInt(pulsoTextField.getText()));
+            triageSingleton.setPulso(calcularPulso(pulsoCardiaco));
+            triageSingleton.setEstadoMental(estadoMentalComboBox.getSelectionModel().getSelectedItem());
+            triageSingleton.setConciencia(concienciaComboBox.getSelectionModel().getSelectedItem());
+            triageSingleton.setDolorPecho(dolorPechoComboBox.getSelectionModel().getSelectedItem());
+            triageSingleton.setLecionesGraves(lesionGraveComboBox.getSelectionModel().getSelectedItem());
+            triageSingleton.setEdad(calcularEdadEnum());
+            triageSingleton.setEdadAños(edadAños);
+            triageSingleton.setTemperatura(temperatura);
+            triageSingleton.setFiebre(calcularFiebre(temperatura));
+            triageSingleton.setVomitos(vomitosComboBox.getSelectionModel().getSelectedItem());
+            triageSingleton.setDolorAbdominal(dolorAbdominalComboBox.getSelectionModel().getSelectedItem());
+            triageSingleton.setSignoShock(signoShockComboBox.getSelectionModel().getSelectedItem());
+            triageSingleton.setLesionLeve(lesionLeveComboBox.getSelectionModel().getSelectedItem());
+            triageSingleton.setSangrado(sangradoComboBox.getSelectionModel().getSelectedItem());
+            triageSingleton.setMedico(medico);
+            triageSingleton.setColorTriageAsignado(colorTriageAsignado);
+            triageSingleton.setRegistroEntrada(registroEntrada);
             // Cambia a la nueva escena
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
@@ -133,6 +154,25 @@ public class TriageController {
 
     public void handleConfirmarTriageButtonAction(ActionEvent event) throws Exception {
 
+    }
+
+    public void restaurarEstado(){
+        this.colorTriageAsignado = TriageSingleton.getInstance().getColorTriageAsignado();
+        this.registroEntrada = TriageSingleton.getInstance().getRegistroEntrada();
+        this.medico = TriageSingleton.getInstance().getMedico();
+        this.concienciaComboBox.setValue(TriageSingleton.getInstance().getConciencia());
+        this.dolorAbdominalComboBox.setValue(TriageSingleton.getInstance().getDolorAbdominal());
+        this.dolorPechoComboBox.setValue(TriageSingleton.getInstance().getDolorPecho());
+        this.estadoMentalComboBox.setValue(TriageSingleton.getInstance().getEstadoMental());
+        this.lesionGraveComboBox.setValue(TriageSingleton.getInstance().getLecionesGraves());
+        this.lesionLeveComboBox.setValue(TriageSingleton.getInstance().getLesionLeve());
+        this.respiracionComboBox.setValue(TriageSingleton.getInstance().getRespiracion());
+        this.sangradoComboBox.setValue(TriageSingleton.getInstance().getSangrado());
+        this.signoShockComboBox.setValue(TriageSingleton.getInstance().getSignoShock());
+        this.vomitosComboBox.setValue(TriageSingleton.getInstance().getVomitos());
+        this.pulsoTextField.setText(Integer.toString(TriageSingleton.getInstance().getPulsoCardiaco()));
+        this.temperaturaTextField.setText(Float.toString(TriageSingleton.getInstance().getTemperatura()));
+        this.colorRecomendadoLabel.setText(TriageSingleton.getInstance().getColorTriageAsignado().toString());
     }
 
     private Pulso calcularPulso(int valorPulso) {
