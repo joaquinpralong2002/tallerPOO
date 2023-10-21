@@ -4,9 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2be48f36-62e0-45df-812c-c4d57fbb8bcb" name="Changes" comment="cambios, arreglos, creacion de cositas">
+    <list default="true" id="2be48f36-62e0-45df-812c-c4d57fbb8bcb" name="Changes" comment="creada ventana BuscarPaciente, añadida columna motivo consulta a tabla de pacientes">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/BuscarPacienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Administracion/BuscarPacienteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/FuncionarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/FuncionarioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/RegistroEntradaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Administracion/RegistroEntradaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/datasource/PacienteDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/datasource/PacienteDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/views/FuncionarioViews/BuscarPaciente.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/FuncionarioViews/BuscarPaciente.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/views/FuncionarioViews/RegistroEntrada.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/FuncionarioViews/RegistroEntrada.fxml" afterDir="false" />
     </list>
     <list id="7cf27e7a-e8ef-4e7b-8ea0-1add41df4e7f" name="Changes by Ema Bozzo" comment="Changes by Ema Bozzo" />
     <list id="15828dba-da6f-4f6e-b73c-4d6da2316fd2" name="Changes by gasto" comment="Changes by gasto" />
@@ -494,15 +500,7 @@
       <option name="project" value="LOCAL" />
       <updated>1697766855945</updated>
     </task>
-    <task id="LOCAL-00043" summary="cambios, arreglos, creacion de cositas">
-      <option name="closed" value="true" />
-      <created>1697813409610</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1697813409610</updated>
-    </task>
-    <option name="localTasksCounter" value="44" />
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -517,6 +515,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="Creadas varias clases." />
     <MESSAGE value="Finalizado mapeo de entidades." />
     <MESSAGE value="Cambio en el mapeo de algunas entidades. Nuevo main. Sigue arrojando excepciones." />
     <MESSAGE value="Revisadas clases Persona, Paciente, Registro, RegistroEntrada, Funcionario, Sector, Usuario y Rol." />
@@ -541,7 +540,6 @@
     <MESSAGE value="Creado otro paciente, creado aviso para imposibilitar que se realice el triage en un paciente ya triagiado." />
     <MESSAGE value="Aumentada resolución en escena de médico, modificado valor de Ninguno en la enumeración de ColorTriage." />
     <MESSAGE value="creada ventana BuscarPaciente, añadida columna motivo consulta a tabla de pacientes" />
-    <MESSAGE value="cambios, arreglos, creacion de cositas" />
-    <option name="LAST_COMMIT_MESSAGE" value="cambios, arreglos, creacion de cositas" />
+    <option name="LAST_COMMIT_MESSAGE" value="creada ventana BuscarPaciente, añadida columna motivo consulta a tabla de pacientes" />
   </component>
 </project>

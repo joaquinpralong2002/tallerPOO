@@ -181,6 +181,10 @@ public class Triage{
         }
     }
 
+    public static boolean controlarTriage(ColorTriage colorAntes, ColorTriage colorDespues){
+        return Math.abs(colorDespues.getValor() - colorAntes.getValor()) <= 2;
+    }
+
 
     /**
      * Modifica el color de triage final del paciente.
@@ -195,6 +199,8 @@ public class Triage{
      */
 
     public boolean modificarColorTriageFinal(ColorTriage colorFinal, String motivo){
+        this.colorTriageFinal = colorFinal;
+        this.motivoCambioTriage = motivo;
         if(colorFinal.getValor() - colorTriageRecomendado.getValor() <= 2){
             this.colorTriageFinal = colorFinal;
             this.motivoCambioTriage = motivo;
