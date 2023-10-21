@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2be48f36-62e0-45df-812c-c4d57fbb8bcb" name="Changes" comment="Múltiples cambios en la modificación del triage.">
+    <list default="true" id="2be48f36-62e0-45df-812c-c4d57fbb8bcb" name="Changes" comment="Agregado ícono a la aplicación.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/Triage/DatosTriage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/LoginApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/LoginApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Triage/ModificarTriageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Triage/ModificarTriageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Triage/TriageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Triage/TriageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Triage/TriageSingleton.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/views/MedicoViews/Triage/ModificarTriage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/MedicoViews/Triage/ModificarTriage.fxml" afterDir="false" />
     </list>
     <list id="7cf27e7a-e8ef-4e7b-8ea0-1add41df4e7f" name="Changes by Ema Bozzo" comment="Changes by Ema Bozzo" />
     <list id="15828dba-da6f-4f6e-b73c-4d6da2316fd2" name="Changes by gasto" comment="Changes by gasto" />
@@ -510,7 +514,15 @@
       <option name="project" value="LOCAL" />
       <updated>1697855087237</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="Agregado ícono a la aplicación.">
+      <option name="closed" value="true" />
+      <created>1697865979608</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1697865979608</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -525,7 +537,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Cambio en el mapeo de algunas entidades. Nuevo main. Sigue arrojando excepciones." />
     <MESSAGE value="Revisadas clases Persona, Paciente, Registro, RegistroEntrada, Funcionario, Sector, Usuario y Rol." />
     <MESSAGE value="Hay que modificar Id de la clase BoxAtencion, que no sea generado automáticamente." />
     <MESSAGE value="Revisadas algunas asociaciones." />
@@ -550,6 +561,7 @@
     <MESSAGE value="creada ventana BuscarPaciente, añadida columna motivo consulta a tabla de pacientes" />
     <MESSAGE value="Creada ventana para modificar el triage." />
     <MESSAGE value="Múltiples cambios en la modificación del triage." />
-    <option name="LAST_COMMIT_MESSAGE" value="Múltiples cambios en la modificación del triage." />
+    <MESSAGE value="Agregado ícono a la aplicación." />
+    <option name="LAST_COMMIT_MESSAGE" value="Agregado ícono a la aplicación." />
   </component>
 </project>

@@ -14,7 +14,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Button fx:id="cancelarButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#cancelarCambioTriage" text="Cancelar" />
+      <Button fx:id="volverButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#volverCambioTriage" text="Volver" />
       <Label layoutX="51.0" layoutY="66.0" text="Nuevo color asignado:">
          <font>
             <Font size="14.0" />
