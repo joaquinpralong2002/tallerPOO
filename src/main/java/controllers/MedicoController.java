@@ -14,6 +14,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -150,7 +151,7 @@ public class MedicoController {
     public void AtenderPaciente(ActionEvent event) throws Exception{
         // Atiende al paciente
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/views/MedicoViews/AtenderPaciente.fxml"));
+        loader.setLocation(getClass().getResource("/views/MedicoViews/ElegirBoxAtencion_AtenderPaciente.fxml"));
         Parent root = loader.load();
         PacienteTableClass pacienteTableClass = (PacienteTableClass) tblPacientes.getSelectionModel().getSelectedItem();
         if (pacienteTableClass == null) {
@@ -161,12 +162,23 @@ public class MedicoController {
             return;
         }
 
+        // Obtiene una referencia al escenario de la ventana Medico
+        Stage medicoStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        // Pasa el escenario de la ventana Medico al controlador de ElegirBoxAtencion_AtenderPaciente
+        ElegirBoxAtencionAtenderPaciente controller = loader.getController();
+        controller.setMedicoStage(medicoStage);
+
         // Cambia a la nueva escena
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Stage stage = new Stage();
         Scene scene = new Scene(root);
         stage.setScene(scene);
+        stage.setTitle("Elegir Box Atencion");
+        stage.initModality(Modality.NONE);
+        stage.initOwner(((Node) event.getSource()).getScene().getWindow());
         stage.show();
     }
+
 
     public void CerrarSesion(ActionEvent event) throws Exception {
         // Cierra la sesión del médico

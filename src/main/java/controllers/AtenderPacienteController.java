@@ -11,15 +11,20 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import lombok.Getter;
 import model.BoxAtencion;
 import model.Enum.LugarAtencion;
 import model.Paciente;
 import model.Medico;
 
+import java.net.URL;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
 public class AtenderPacienteController {
     private Paciente paciente;
+    @Getter
+    private LugarAtencion lugarAtencionSeleccionada;
     private Medico medico;
     private BoxAtencion boxAtencion;
     @FXML
@@ -28,6 +33,18 @@ public class AtenderPacienteController {
     private TextArea campoDeTexto;
     @FXML
     private Button atrasButton;
+    @FXML
+    private Label LabalTipoBox;
+
+    @FXML
+    void initialize(URL url, ResourceBundle rb) {
+        // Obtiene el tipo de BoxAtencion seleccionado
+        LugarAtencion lugarAtencionSeleccionada = getLugarAtencionSeleccionada();
+
+        // Establece el texto del Label
+        LabalTipoBox.setText(lugarAtencionSeleccionada.toString());
+    }
+
 
     @FXML
     public void recibirDatos(Paciente persona, Medico medico,BoxAtencion boxAtencion) {
@@ -36,6 +53,7 @@ public class AtenderPacienteController {
         this.medico = medico;
         this.boxAtencion = boxAtencion;
     }
+
 
     //Metodo para guardar en que Box de atencion lo atendieron, se guarda en el Registro
     //Revisar si anda...
@@ -76,4 +94,9 @@ public class AtenderPacienteController {
             stage.show();
         }
     }
+
+    public void setLugarAtencionSeleccionada(LugarAtencion lugarAtencionSeleccionada) {
+        this.lugarAtencionSeleccionada = lugarAtencionSeleccionada;
+    }
+
 }
