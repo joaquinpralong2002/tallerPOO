@@ -42,7 +42,7 @@ public class EspecialidadDAO implements GenericoDAO<Especialidad> {
         Especialidad especialidad = session.createQuery(query, Especialidad.class)
                 .setParameter("fecha", fecha)
                 .setParameter("nombre", nombre)
-                .getSingleResult();
+                .getSingleResultOrNull();
         session.close();
         return especialidad;
     }
