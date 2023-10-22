@@ -178,14 +178,25 @@ public class MedicoController {
         ElegirBoxAtencionAtenderPaciente controller = loader.getController();
         controller.setMedicoStage(medicoStage);
 
-        // Cambia a la nueva escena
-        Stage stage = new Stage();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.setTitle("Elegir Box Atencion");
-        stage.initModality(Modality.NONE);
-        stage.initOwner(((Node) event.getSource()).getScene().getWindow());
-        stage.show();
+        //Se verifica que el paciente tenga un triage asociado para atenderlo
+        Long id = ((PacienteTableClass) tblPacientes.getSelectionModel().getSelectedItem()).getId();
+        Paciente paciente = pacienteTableClass.obtenerPaciente(id);
+        if(paciente.isTriagiado()) {
+            // Cambia a la nueva escena
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("Elegir Box Atencion");
+            stage.initModality(Modality.NONE);
+            stage.initOwner(((Node) event.getSource()).getScene().getWindow());
+            stage.show();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("No puede atender un paciente que no tenga un triage asociado.");
+            alert.showAndWait();
+            return;
+        }
     }
 
 
