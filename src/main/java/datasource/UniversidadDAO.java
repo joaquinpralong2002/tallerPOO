@@ -39,7 +39,7 @@ public class UniversidadDAO implements GenericoDAO<Universidad> {
         String query = "SELECT universidad FROM Universidad universidad WHERE universidad.nombre = :nombre";
         Universidad universidad = session.createQuery(query, Universidad.class)
                 .setParameter("nombre", nombre)
-                .getSingleResult();
+                .getSingleResultOrNull();
         session.close();
         return universidad;
     }
