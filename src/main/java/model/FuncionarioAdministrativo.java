@@ -1,16 +1,19 @@
 package model;
 
+import datasource.RegistroEntradaDAO;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+import model.Enum.EstadoCivil;
+import model.Login.Usuario;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
-import datasource.AsignacionDAO;
-import datasource.BoxAtencionDAO;
-import datasource.RegistroEntradaDAO;
-import jakarta.persistence.*;
-import lombok.*;
-import model.Enum.EstadoCivil;
-import model.Login.Usuario;
 
 /**
  * Clase que representa un Funcionario Administrativo.
@@ -19,13 +22,13 @@ import model.Login.Usuario;
 @Setter
 @NoArgsConstructor
 @ToString
-@EqualsAndHashCode
 
 @Entity
 public class FuncionarioAdministrativo extends Funcionario{
 
 
     @OneToMany(mappedBy = "funcionariosAdministrativo", cascade = CascadeType.ALL, orphanRemoval = true)
+    @ToString.Exclude
     private List<RegistroEntrada> registrosEntradas = new ArrayList<>();
 
     public FuncionarioAdministrativo(String nombre, String apellido, LocalDate fechaNacimiento, String domicilio, int DNI, int telefonoFijo, long telefonoCelular, EstadoCivil estadoCivil, String correo, Usuario usuario, Sector sector) {

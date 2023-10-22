@@ -1,5 +1,9 @@
 package controllers.Triage;
 
+import controllers.MedicoController;
+import datasource.PacienteDAO;
+import datasource.RegistroEntradaDAO;
+import datasource.TriageDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +21,7 @@ import model.Triage;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Optional;
 
 public class TriageController {
     private ColorTriage colorTriageAsignado = ColorTriage.Ninguno;
@@ -133,7 +138,64 @@ public class TriageController {
     }
 
     public void handleConfirmarTriageButtonAction(ActionEvent event) throws Exception {
+        // Cierra la sesión del médico
 
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Realizar triage");
+        alert.setContentText("¿Confirmar el triage?");
+        Optional<ButtonType> resultado = alert.showAndWait();
+
+        if(resultado.get() == ButtonType.OK){
+            Respiracion respiracion = this.datosTriage.getRespiracion();
+            int pulsoCardiaco = this.datosTriage.getPulsoCardiaco();
+            Pulso pulso = this.datosTriage.getPulso();
+            EstadoMental estadoMental = this.datosTriage.getEstadoMental();
+            Conciencia conciencia = this.datosTriage.getConciencia();
+            DolorPecho dolorPecho = this.datosTriage.getDolorPecho();
+            LecionesGraves lecionesGraves = this.datosTriage.getLecionesGraves();
+            Edad edad = this.datosTriage.getEdad();
+            System.out.println(edad);
+            int edadAños = this.datosTriage.getEdadAños();
+            float temperatura = this.datosTriage.getTemperatura();
+            Fiebre fiebre = this.datosTriage.getFiebre();
+            Vomitos vomitos = this.datosTriage.getVomitos();
+            DolorAbdominal dolorAbdominal = this.datosTriage.getDolorAbdominal();
+            SignoShock signoShock = this.datosTriage.getSignoShock();
+            LesionLeve lesionLeve = this.datosTriage.getLesionLeve();
+            Sangrado sangrado = this.datosTriage.getSangrado();
+
+            //El médico realiza el triage
+            this.medico.realizarTriage(respiracion, pulso, pulsoCardiaco,  estadoMental, conciencia, dolorPecho, lecionesGraves,
+                    edad, edadAños, fiebre, temperatura, vomitos, dolorAbdominal, signoShock, lesionLeve, sangrado);
+
+            Triage triageMedico = this.medico.getTriagesRealizados().get(medico.getTriagesRealizados().size() - 1);
+
+            //Se realizan cambios si se ha modificado el color del triage
+            if(this.datosTriage.getColorTriageCambiado() != null){
+                this.medico.cambiarColorTriage(triageMedico,this.datosTriage.getColorTriageCambiado(), this.datosTriage.getMotivoCambioTriage());
+            }
+
+            TriageDAO triageDAO = new TriageDAO();
+            triageMedico.setMedico(medico);
+            triageDAO.actualizar(triageMedico);
+
+            registroEntrada.setTriage(triageMedico);
+
+            registroEntrada.getPaciente().setTriagiado(true);
+            PacienteDAO pacienteDAO = new PacienteDAO();
+            pacienteDAO.actualizar(registroEntrada.getPaciente());
+
+            //Una vez realizado el triage, se vuelve a la escena inicial de médico
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/views/MedicoViews/Medico.fxml"));
+            Parent root = loader.load();
+            MedicoController medicoController = loader.getController();
+            medicoController.iniciarTablaDesdeTriage();
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
     }
 
     public void setDatosTriage(DatosTriage datosTriage){
@@ -189,7 +251,7 @@ public class TriageController {
     private Edad calcularEdadEnum(){
         LocalDate fechaActual = LocalDate.now();
         LocalDate fechaNacimiento = this.registroEntrada.getPaciente().getFechaNacimiento();
-        Period periodo = Period.between(fechaActual, fechaNacimiento);
+        Period periodo = Period.between(fechaNacimiento, fechaActual);
         int añosEdad = periodo.getYears();
         Edad edad = Edad.Adulto;
         if(añosEdad <= 12 || añosEdad >= 60) edad = Edad.NinioAnciano;
@@ -199,7 +261,7 @@ public class TriageController {
     private int calcularEdad(){
         LocalDate fechaActual = LocalDate.now();
         LocalDate fechaNacimiento = this.registroEntrada.getPaciente().getFechaNacimiento();
-        Period periodo = Period.between(fechaActual, fechaNacimiento);
+        Period periodo = Period.between(fechaNacimiento, fechaActual);
         int añosEdad = periodo.getYears();
         return añosEdad;
     }

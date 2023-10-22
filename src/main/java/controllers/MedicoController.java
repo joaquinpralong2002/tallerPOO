@@ -97,6 +97,10 @@ public class MedicoController {
         this.medico = medico;
     }
 
+    public void iniciarTablaDesdeTriage(){
+        this.iniciarTabla();
+    }
+
     private void iniciarTabla(){
         ObservableList<PacienteTableClass> datosTabla = FXCollections.observableArrayList();
         RegistroEntradaDAO registroEntradaDAO = new RegistroEntradaDAO();
@@ -104,8 +108,13 @@ public class MedicoController {
 
         for(RegistroEntrada registro : listaRegistros){
             if(registro.getPaciente().isTriagiado()){
-                datosTabla.add(new PacienteTableClass(registro.getPaciente().getId(), registro.getPaciente().getNombre(), registro.getPaciente().getApellido(),
-                        registro.getTriage().getColorTriageFinal(), registro.getHora(),registro.getDescripcion()));
+                if(registro.getTriage().getColorTriageFinal() != ColorTriage.Ninguno){
+                    datosTabla.add(new PacienteTableClass(registro.getPaciente().getId(), registro.getPaciente().getNombre(), registro.getPaciente().getApellido(),
+                            registro.getTriage().getColorTriageFinal(), registro.getHora(),registro.getDescripcion()));
+                } else {
+                    datosTabla.add(new PacienteTableClass(registro.getPaciente().getId(), registro.getPaciente().getNombre(), registro.getPaciente().getApellido(),
+                            registro.getTriage().getColorTriageRecomendado(), registro.getHora(),registro.getDescripcion()));
+                }
             } else {
                 datosTabla.add(new PacienteTableClass(registro.getPaciente().getId(), registro.getPaciente().getNombre(), registro.getPaciente().getApellido(),
                         ColorTriage.Ninguno, registro.getHora(),registro.getDescripcion()));
