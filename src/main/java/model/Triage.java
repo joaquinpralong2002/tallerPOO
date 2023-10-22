@@ -1,5 +1,6 @@
 package model;
 
+import datasource.TriageDAO;
 import jakarta.persistence.*;
 import model.EnumeracionesVariablesTriage.*;
 import model.Enum.ColorTriage;
@@ -198,17 +199,11 @@ public class Triage{
      * @return `true` si el color de triage final se pudo modificar, `false` de lo contrario.
      */
 
-    public boolean modificarColorTriageFinal(ColorTriage colorFinal, String motivo){
+    public void modificarColorTriageFinal(ColorTriage colorFinal, String motivo){
         this.colorTriageFinal = colorFinal;
         this.motivoCambioTriage = motivo;
-        if(colorFinal.getValor() - colorTriageRecomendado.getValor() <= 2){
-            this.colorTriageFinal = colorFinal;
-            this.motivoCambioTriage = motivo;
-            return true;
-        } else {
-            System.out.println("No se puede asignar un color de triage que tenga dos niveles de diferencia con el recomendado por el sistema.");
-            return false;
-        }
+        TriageDAO triageDAO = new TriageDAO();
+        triageDAO.actualizar(this);
     }
 
     @Override
