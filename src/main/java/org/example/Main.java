@@ -32,8 +32,25 @@ public class Main {
         UniversidadDAO universidadDAO = new UniversidadDAO();
         EspecialidadDAO especialidadDAO = new EspecialidadDAO();
         MedicoDAO medicoDAO = new MedicoDAO();
+        AdministradorSistemasDAO administradorSistemasDAO = new AdministradorSistemasDAO();
         RegistroDAO registroDAO = new RegistroDAO();
         ResultadoDiagnosticoDAO resultadoDiagnosticoDAO = new ResultadoDiagnosticoDAO();
+
+        //Creacion de Administrador Sistemas
+        Rol rolSistemas = new Rol("Sistemas");
+        rolDAO.agregar(rolSistemas);
+
+        Usuario usuarioAdminSistemas = new Usuario("villalbaangel","villalbaangel123",List.of(rolSistemas));
+        usuarioDAO.agregar(usuarioAdminSistemas);
+        rolSistemas.setUsuarios(Set.of(usuarioAdminSistemas));
+        usuarioAdminSistemas.setRoles(List.of(rolSistemas));
+
+        Sector sectorInformatica = new Sector("Informatica");
+        sectorDAO.agregar(sectorInformatica);
+
+        AdministradorSistemas administradorSistemas = new AdministradorSistemas("Angel","Villalba",LocalDate.of(1996,5,11),"Jose Rucci 340", 41432875, 439378921, 345873536, EstadoCivil.Soltero, "villalbaangel@gmail.com",usuarioAdminSistemas,sectorInformatica);
+        funcionarioAdministrativoDAO.agregar(administradorSistemas);
+        usuarioAdminSistemas.setFuncionario(administradorSistemas);
 
         //Se crea un box de atención
         BoxAtencion boxAtencion = new BoxAtencion(LugarAtencion.Consultorio,1,30,true);
