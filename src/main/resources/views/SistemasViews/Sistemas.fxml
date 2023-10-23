@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="900.0" maxWidth="1600.0" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SistemasController">
+   <children>
+      <Button fx:id="bttmCerrarSesion" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#CerrarSesion" prefHeight="50.0" prefWidth="150.0" text="Cerrar Sesion">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Label layoutX="591.0" layoutY="108.0" text="Area Sistemas">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <Pane layoutX="35.0" layoutY="202.0" prefHeight="486.0" prefWidth="658.0">
+         <children>
+            <Label layoutX="284.0" layoutY="14.0" text="Usuarios">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <TableView fx:id="tblUsuarios" layoutX="14.0" layoutY="71.0" prefHeight="391.0" prefWidth="631.0">
+              <columns>
+                <TableColumn fx:id="colNombUsu" prefWidth="110.39999008178711" text="Nombre Usuario" />
+                <TableColumn fx:id="colRoles" prefWidth="127.19996643066406" text="Roles" />
+                  <TableColumn fx:id="colNombFunc" prefWidth="153.60003662109375" text="Nombre Funcionario" />
+                  <TableColumn fx:id="colApeFunc" prefWidth="145.60003662109375" text="Apellido Funcionario" />
+                  <TableColumn fx:id="colSector" prefWidth="95.20001220703125" text="Sector" />
+              </columns>
+            </TableView>
+         </children>
+      </Pane>
+      <Pane layoutX="712.0" layoutY="202.0" prefHeight="181.0" prefWidth="518.0">
+         <children>
+            <Label layoutX="181.0" layoutY="14.0" text="Buscar Usuario">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="76.0" text="Nombre usuario:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtNombUsu" layoutX="155.0" layoutY="72.0" prefHeight="35.0" prefWidth="185.0" />
+            <Label layoutX="14.0" layoutY="137.0" text="Dni funcionario:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtDniFunc" layoutX="155.0" layoutY="133.0" prefHeight="35.0" prefWidth="185.0" />
+            <Button fx:id="bttmBuscar" layoutX="395.0" layoutY="73.0" mnemonicParsing="false" onAction="#BuscarUsuario" prefHeight="35.0" prefWidth="91.0" text="Buscar">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+      <Pane layoutX="712.0" layoutY="401.0" prefHeight="258.0" prefWidth="518.0">
+         <children>
+            <Label layoutX="209.0" layoutY="14.0" text="Opciones">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <VBox layoutX="109.0" layoutY="78.0" prefHeight="149.0" prefWidth="300.0" spacing="15.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="46.0" prefWidth="300.0">
+                     <children>
+                        <Label prefHeight="32.0" prefWidth="176.0" text="Crear usuario:">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="bttmCrear" alignment="TOP_CENTER" mnemonicParsing="false" onAction="#CrearUsuario" prefHeight="40.0" prefWidth="92.0" text="Crear">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="46.0" prefWidth="300.0">
+                     <children>
+                        <Label prefHeight="32.0" prefWidth="175.0" text="Editar usuario:">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="bttmEditar" alignment="TOP_CENTER" mnemonicParsing="false" onAction="#EditarUsuario" prefHeight="40.0" prefWidth="92.0" text="Editar">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="10.0" layoutY="56.0" prefHeight="46.0" prefWidth="300.0">
+                     <children>
+                        <Label prefHeight="32.0" prefWidth="177.0" text="Eliminar usuario:">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="bttmEliminar" alignment="TOP_CENTER" mnemonicParsing="false" onAction="#EliminarUsuario" prefHeight="40.0" prefWidth="92.0" text="Eliminar">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </VBox>
+         </children>
+      </Pane>
+   </children>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+</AnchorPane>

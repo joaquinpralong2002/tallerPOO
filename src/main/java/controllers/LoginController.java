@@ -45,7 +45,15 @@ public class LoginController {
         if (controlarCampos()) {
             if (validarUsuario(user, username, password)) {
                 switch (user.getRoles().get(0).getNombre()) {
-                    case "Administrador":
+                    case "Sistemas":
+                        FXMLLoader loaderSistemas = new FXMLLoader();
+                        loaderSistemas.setLocation(getClass().getResource("/views/SistemasViews/Sistemas.fxml"));
+                        Parent rootSistemas = loaderSistemas.load();
+
+                        Stage stageSistemas = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        Scene sceneSistemas = new Scene(rootSistemas);
+                        stageSistemas.setScene(sceneSistemas);
+                        stageSistemas.show();
                         break;
                     case "Medico":
                         // Carga la escena de médico
