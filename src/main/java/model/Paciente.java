@@ -1,4 +1,5 @@
 package model;
+import datasource.PacienteDAO;
 import jakarta.persistence.*;
 import lombok.*;
 import model.Enum.EstadoCivil;
@@ -83,5 +84,4 @@ public class Paciente extends Persona{
     }
 
     public void agregarRegistros(Registro registro){registros.add(registro);}
-
 }

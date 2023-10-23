@@ -14,6 +14,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -96,6 +97,10 @@ public class MedicoController {
         this.medico = medico;
     }
 
+    public void iniciarTablaDesdeTriage(){
+        this.iniciarTabla();
+    }
+
     private void iniciarTabla(){
         ObservableList<PacienteTableClass> datosTabla = FXCollections.observableArrayList();
         RegistroEntradaDAO registroEntradaDAO = new RegistroEntradaDAO();
@@ -103,8 +108,13 @@ public class MedicoController {
 
         for(RegistroEntrada registro : listaRegistros){
             if(registro.getPaciente().isTriagiado()){
-                datosTabla.add(new PacienteTableClass(registro.getPaciente().getId(), registro.getPaciente().getNombre(), registro.getPaciente().getApellido(),
-                        registro.getTriage().getColorTriageFinal(), registro.getHora(),registro.getDescripcion()));
+                if(registro.getTriage().getColorTriageFinal() != ColorTriage.Ninguno){
+                    datosTabla.add(new PacienteTableClass(registro.getPaciente().getId(), registro.getPaciente().getNombre(), registro.getPaciente().getApellido(),
+                            registro.getTriage().getColorTriageFinal(), registro.getHora(),registro.getDescripcion()));
+                } else {
+                    datosTabla.add(new PacienteTableClass(registro.getPaciente().getId(), registro.getPaciente().getNombre(), registro.getPaciente().getApellido(),
+                            registro.getTriage().getColorTriageRecomendado(), registro.getHora(),registro.getDescripcion()));
+                }
             } else {
                 datosTabla.add(new PacienteTableClass(registro.getPaciente().getId(), registro.getPaciente().getNombre(), registro.getPaciente().getApellido(),
                         ColorTriage.Ninguno, registro.getHora(),registro.getDescripcion()));
@@ -150,7 +160,7 @@ public class MedicoController {
     public void AtenderPaciente(ActionEvent event) throws Exception{
         // Atiende al paciente
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/views/MedicoViews/AtenderPaciente.fxml"));
+        loader.setLocation(getClass().getResource("/views/MedicoViews/ElegirBoxAtencion_AtenderPaciente.fxml"));
         Parent root = loader.load();
         PacienteTableClass pacienteTableClass = (PacienteTableClass) tblPacientes.getSelectionModel().getSelectedItem();
         if (pacienteTableClass == null) {
@@ -161,12 +171,34 @@ public class MedicoController {
             return;
         }
 
-        // Cambia a la nueva escena
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        // Obtiene una referencia al escenario de la ventana Medico
+        Stage medicoStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        // Pasa el escenario de la ventana Medico al controlador de ElegirBoxAtencion_AtenderPaciente
+        ElegirBoxAtencionAtenderPaciente controller = loader.getController();
+        controller.setMedicoStage(medicoStage);
+
+        //Se verifica que el paciente tenga un triage asociado para atenderlo
+        Long id = ((PacienteTableClass) tblPacientes.getSelectionModel().getSelectedItem()).getId();
+        Paciente paciente = pacienteTableClass.obtenerPaciente(id);
+        if(paciente.isTriagiado()) {
+            // Cambia a la nueva escena
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("Elegir Box Atencion");
+            stage.initModality(Modality.NONE);
+            stage.initOwner(((Node) event.getSource()).getScene().getWindow());
+            stage.show();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("No puede atender un paciente que no tenga un triage asociado.");
+            alert.showAndWait();
+            return;
+        }
     }
+
 
     public void CerrarSesion(ActionEvent event) throws Exception {
         // Cierra la sesión del médico

@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AtenderPacienteController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AtenderPacienteController">
    <children>
       <Button fx:id="realizarDiagnosticoButton" layoutX="551.0" layoutY="664.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="265.0" text="Realizar Diagnostico">
          <font>
@@ -20,5 +20,11 @@
       </Label>
       <TextArea fx:id="campoDeTexto" layoutX="236.0" layoutY="123.0" prefHeight="523.0" prefWidth="894.0" />
       <Button fx:id="atrasButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#BotonAtras" text="Atras" />
+      <Label layoutX="860.0" layoutY="60.0" text="Usted está en ">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="LabalTipoBox" layoutX="968.0" layoutY="62.0" prefHeight="17.0" prefWidth="118.0" text="Label" />
    </children>
 </Pane>

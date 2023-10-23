@@ -29,7 +29,7 @@ public class RegistroEntrada {
     private String descripcion;
 
     @ToString.Exclude
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "idFuncionario")
     private FuncionarioAdministrativo funcionariosAdministrativo;
 
