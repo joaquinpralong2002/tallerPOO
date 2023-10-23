@@ -19,6 +19,7 @@ import jakarta.persistence.*;
 public class ResultadoDiagnostico {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idResultadoDiagnostico;
+
     private String descripcion;
 
     @ManyToOne(cascade = CascadeType.ALL, optional = false)
