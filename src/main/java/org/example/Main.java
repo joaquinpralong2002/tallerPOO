@@ -94,12 +94,15 @@ public class Main {
         //*******************CREACION DEL MEDICO******************************
         //*******************MEDICOOOOOOO***********************************
         Rol rolMedico = new Rol("Medico");
+        Rol rolMedico2 = new Rol("Triage");
         rolDAO.agregar(rolMedico);
+        rolDAO.agregar(rolMedico2);
 
         Usuario usuarioMedico = new Usuario("juancarlosramirez@gmail.com","juancito01&");
         usuarioDAO.agregar(usuarioMedico);
         rolMedico.setUsuarios(Set.of(usuarioMedico));
-        usuarioMedico.setRoles(List.of(rolMedico));
+        usuarioMedico.setRoles(List.of(rolMedico, rolMedico2));
+        usuarioDAO.actualizar(usuarioMedico);
 
         //Sector al cual pertenece el medico
         Sector sectorMedico = new Sector("Incisiones");
