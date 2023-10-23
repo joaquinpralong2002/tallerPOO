@@ -23,7 +23,6 @@ import java.util.Set;
 public class Paciente extends Persona{
     private String personaContacto;
 
-    private boolean triagiado;
 
     @ToString.Exclude
     @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, orphanRemoval = true)

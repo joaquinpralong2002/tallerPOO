@@ -28,6 +28,9 @@ public class RegistroEntrada {
     private LocalTime hora;
     private String descripcion;
 
+    @Setter
+    private boolean triagiado;
+
     @ToString.Exclude
     @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "idFuncionario")
