@@ -116,7 +116,7 @@ public class MedicoController {
         List<RegistroEntrada> listaRegistros = registroEntradaDAO.obtenerTodos();
 
         for(RegistroEntrada registro : listaRegistros){
-            if(registro.getPaciente().isTriagiado()){
+            if(registro.isTriagiado()){
                 if(registro.getTriage().getColorTriageFinal() != ColorTriage.Ninguno){
                     datosTabla.add(new PacienteTableClass(registro.getPaciente().getId(), registro.getPaciente().getNombre(), registro.getPaciente().getApellido(),
                             registro.getTriage().getColorTriageFinal(), registro.getHora(),registro.getDescripcion()));
@@ -150,7 +150,7 @@ public class MedicoController {
             return;
         }
         Paciente paciente = pacienteTableClass.obtenerPaciente(pacienteTableClass.id);
-        if (paciente.isTriagiado()){
+        if (paciente.getRegistrosEntradas().get(paciente.getRegistrosEntradas().size() - 1).isTriagiado()){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setContentText("El paciente ya fue triagado.");
@@ -190,12 +190,12 @@ public class MedicoController {
         //Se verifica que el paciente tenga un triage asociado para atenderlo
         Long id = ((PacienteTableClass) tblPacientes.getSelectionModel().getSelectedItem()).getId();
         Paciente paciente = pacienteTableClass.obtenerPaciente(id);
-        if(paciente.isTriagiado()) {
+        if(paciente.getRegistrosEntradas().get(paciente.getRegistrosEntradas().size() - 1).isTriagiado()) {
             // Cambia a la nueva escena
             Stage stage = new Stage();
             Scene scene = new Scene(root);
             stage.setScene(scene);
-            stage.setTitle("Elegir Box Atencion");
+            stage.setTitle("Elegir box atención");
             stage.initModality(Modality.NONE);
             stage.initOwner(((Node) event.getSource()).getScene().getWindow());
             stage.show();

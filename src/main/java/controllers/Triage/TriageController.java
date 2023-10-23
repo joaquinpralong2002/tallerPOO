@@ -208,7 +208,6 @@ public class TriageController {
             DolorPecho dolorPecho = this.datosTriage.getDolorPecho();
             LecionesGraves lecionesGraves = this.datosTriage.getLecionesGraves();
             Edad edad = this.datosTriage.getEdad();
-            System.out.println(edad);
             int edadAños = this.datosTriage.getEdadAños();
             float temperatura = this.datosTriage.getTemperatura();
             Fiebre fiebre = this.datosTriage.getFiebre();
@@ -224,20 +223,25 @@ public class TriageController {
 
             Triage triageMedico = this.medico.getTriagesRealizados().get(medico.getTriagesRealizados().size() - 1);
 
+
             //Se realizan cambios si se ha modificado el color del triage
             if(this.datosTriage.getColorTriageCambiado() != null){
                 this.medico.cambiarColorTriage(triageMedico,this.datosTriage.getColorTriageCambiado(), this.datosTriage.getMotivoCambioTriage());
+                medico.confirmarTriage(registroEntrada, triageMedico, this.datosTriage.getColorTriageCambiado());
+            } else {
+                medico.confirmarTriage(registroEntrada, triageMedico, triageMedico.getColorTriageRecomendado());
             }
 
+            /*
             TriageDAO triageDAO = new TriageDAO();
             triageMedico.setMedico(medico);
             triageDAO.actualizar(triageMedico);
 
             registroEntrada.setTriage(triageMedico);
 
-            registroEntrada.getPaciente().setTriagiado(true);
-            PacienteDAO pacienteDAO = new PacienteDAO();
-            pacienteDAO.actualizar(registroEntrada.getPaciente());
+            registroEntrada.setTriagiado(true);
+            RegistroEntradaDAO registroEntradaDAO = new RegistroEntradaDAO();
+            registroEntradaDAO.actualizar(registroEntrada);*/
 
             //Una vez realizado el triage, se vuelve a la escena inicial de médico
             FXMLLoader loader = new FXMLLoader();
