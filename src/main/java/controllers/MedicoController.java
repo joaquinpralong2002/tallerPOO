@@ -72,12 +72,11 @@ public class MedicoController {
     private TextField txtDNIPac;
     @FXML
     private Button bttmRealTriage;
-
     @FXML
     private Button bttmAtender;
-
     @FXML
     private Button bttmCerrarSesion;
+
 
 
     @FXML
@@ -89,12 +88,22 @@ public class MedicoController {
         this.colHoraIng.setCellValueFactory(new PropertyValueFactory<>("hora"));
         this.colMotivo.setCellValueFactory(new PropertyValueFactory<>("motivo"));
         this.iniciarTabla();
+
     }
 
     @FXML
     public void recibirDatos(List<Rol> roles, Medico medico) {
         this.roles = roles;
         this.medico = medico;
+        System.out.println(roles);
+        boolean contieneTriage = false;
+        for(int i = 0; i < roles.size(); i++){
+            if(roles.get(i).getNombre().equals("Triage")) contieneTriage = true;
+            System.out.println("Contiene triage: " + contieneTriage);
+        }
+        if(!contieneTriage){
+            bttmRealTriage.setVisible(false);
+        }
     }
 
     public void iniciarTablaDesdeTriage(){

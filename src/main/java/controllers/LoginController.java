@@ -59,6 +59,7 @@ public class LoginController {
                         //Carga el controlador de médico, y le envía el médico y sus roles
                         MedicoController controller = loader.getController();
                         controller.recibirDatos(user.getRoles(), medico);
+                        System.out.println(user.getRoles());
 
                         // Cambia a la nueva escena
                         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -67,7 +68,6 @@ public class LoginController {
                         stage.show();
                         break;
                     case "Funcionario":
-                        System.out.println("Entró funcionario");
                         FXMLLoader loaderFuncionario = new FXMLLoader();
                         loaderFuncionario.setLocation(getClass().getResource("/views/FuncionarioViews/Funcionario.fxml"));
                         Parent rootFuncionario = loaderFuncionario.load();
