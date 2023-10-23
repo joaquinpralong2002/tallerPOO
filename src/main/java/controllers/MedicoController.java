@@ -1,6 +1,7 @@
 package controllers;
 
 
+import controllers.AtencionPaciente.ElegirBoxAtencionAtenderPaciente;
 import controllers.Triage.TriageController;
 import datasource.PacienteDAO;
 import datasource.RegistroEntradaDAO;

@@ -1,4 +1,4 @@
-package controllers;
+package controllers.AtencionPaciente;
 
 import datasource.ResultadoDiagnosticoDAO;
 import javafx.event.ActionEvent;

@@ -42,12 +42,12 @@ public class ModificarTriageController {
      *
      * Este método verifica si se ha seleccionado un nuevo color de triaje y si se ha proporcionado
      * un motivo para el cambio. Luego, controla si el cambio de color es válido en función de las
-     * restricciones específicas. Si el cambio es válido, registra el nuevo color y el motivo del cambio.
-     * Si no es válido, muestra un mensaje de error. En ambos casos, muestra un mensaje de confirmación
-     * al usuario.
+     * restricciones específicas. Si el cambio es válido y el motivo no supera el límite de caracteres,
+     * registra el nuevo color y el motivo del cambio. En caso contrario, muestra mensajes de error
+     * apropiados. Finalmente, muestra un mensaje de confirmación al usuario.
      */
     public void aceptarCambioTriage(){
-        if((nuevoColorTriageComboBox.getSelectionModel().getSelectedItem() == null) || motivoCambioTextArea.getText().isEmpty()){
+        if((nuevoColorTriageComboBox.getSelectionModel().getSelectedItem() == null) || (motivoCambioTextArea.getText().isEmpty())){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setContentText("Debe asignar el nuevo color y brindar el motivo del cambio.");
@@ -55,15 +55,22 @@ public class ModificarTriageController {
             return;
         } else {
             if(Triage.controlarTriage(this.datosTriage.getColorTriageAsignado(), nuevoColorTriageComboBox.getValue())){
-                System.out.println("Color asignado: " + this.datosTriage.getColorTriageAsignado() + ", color seleccionado:" +
-                        nuevoColorTriageComboBox.getValue());
-                datosTriage.setColorTriageCambiado(nuevoColorTriageComboBox.getValue());
-                datosTriage.setMotivoCambioTriage(motivoCambioTextArea.getText());
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Confirmación");
-                alert.setContentText("El cambio de color se produjo satisfactoriamente");
-                alert.showAndWait();
-                return;
+                if(this.datosTriage.getMotivoCambioTriage().length() > 255){
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setContentText("Se superó el límite de carácteres.");
+                    alert.showAndWait();
+                    return;
+                } else {
+                    datosTriage.setColorTriageCambiado(nuevoColorTriageComboBox.getValue());
+                    datosTriage.setMotivoCambioTriage(motivoCambioTextArea.getText());
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Confirmación");
+                    alert.setContentText("El cambio de color se produjo satisfactoriamente");
+                    alert.showAndWait();
+                    return;
+                }
+
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");

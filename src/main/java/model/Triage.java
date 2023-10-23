@@ -76,6 +76,7 @@ public class Triage{
     @Enumerated(EnumType.STRING)
     private ColorTriage colorTriageFinal;
 
+    @Column(length = 255)
     private String motivoCambioTriage;
 
     @ToString.Exclude
