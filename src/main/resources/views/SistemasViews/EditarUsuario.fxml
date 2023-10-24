@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="900.0" maxWidth="1600.0" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Sistemas.EditarUsuarioController">
+   <children>
+      <Button fx:id="bttmVolver" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#Volver" prefHeight="50.0" prefWidth="150.0" text="Volver">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <Label layoutX="559.0" layoutY="119.0" text="Edicion de Usuario">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <Pane layoutX="508.0" layoutY="239.0" prefHeight="358.0" prefWidth="349.0">
+         <children>
+            <Label layoutX="14.0" layoutY="38.0" text="Nombre de usuario:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtNombUsu" layoutX="186.0" layoutY="35.0" prefHeight="33.0" prefWidth="150.0" />
+            <Label layoutX="14.0" layoutY="100.0" text="Contraseña:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <PasswordField fx:id="txtPass" layoutX="186.0" layoutY="97.0" prefHeight="33.0" prefWidth="150.0" />
+            <GridPane layoutX="136.0" layoutY="179.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <CheckBox fx:id="cbFuncionario" mnemonicParsing="false" text="Funcionario">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </CheckBox>
+                  <CheckBox fx:id="cbInformatico" layoutX="10.0" layoutY="15.0" mnemonicParsing="false" text="Informatico" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </CheckBox>
+                  <CheckBox fx:id="cbMedico" layoutX="10.0" layoutY="15.0" mnemonicParsing="false" text="Medico" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </CheckBox>
+                  <CheckBox fx:id="cbEnfermero" layoutX="10.0" layoutY="15.0" mnemonicParsing="false" text="Enfermero" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </CheckBox>
+               </children>
+            </GridPane>
+            <Label layoutX="14.0" layoutY="179.0" text="Roles:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="bttmEditar" layoutX="149.0" layoutY="292.0" mnemonicParsing="false" onAction="#Editar" text="Editar">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

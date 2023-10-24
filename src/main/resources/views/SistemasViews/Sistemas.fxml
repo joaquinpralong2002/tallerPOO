@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="900.0" maxWidth="1600.0" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SistemasController">
    <children>
       <Button fx:id="bttmCerrarSesion" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#CerrarSesion" prefHeight="50.0" prefWidth="150.0" text="Cerrar Sesion">
@@ -56,17 +55,6 @@
                </font>
             </Label>
             <TextField fx:id="txtNombUsu" layoutX="155.0" layoutY="72.0" prefHeight="35.0" prefWidth="185.0" />
-            <Label layoutX="14.0" layoutY="137.0" text="Dni funcionario:">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <TextField fx:id="txtDniFunc" layoutX="155.0" layoutY="133.0" prefHeight="35.0" prefWidth="185.0" />
-            <Button fx:id="bttmBuscar" layoutX="395.0" layoutY="73.0" mnemonicParsing="false" onAction="#BuscarUsuario" prefHeight="35.0" prefWidth="91.0" text="Buscar">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Button>
          </children>
       </Pane>
       <Pane layoutX="712.0" layoutY="401.0" prefHeight="258.0" prefWidth="518.0">
