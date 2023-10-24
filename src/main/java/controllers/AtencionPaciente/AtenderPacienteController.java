@@ -97,6 +97,7 @@ public class AtenderPacienteController {
 
     public void setLugarAtencionSeleccionada(LugarAtencion lugarAtencionSeleccionada) {
         this.lugarAtencionSeleccionada = lugarAtencionSeleccionada;
+        LabalTipoBox.setText(lugarAtencionSeleccionada.name());
     }
 
 }

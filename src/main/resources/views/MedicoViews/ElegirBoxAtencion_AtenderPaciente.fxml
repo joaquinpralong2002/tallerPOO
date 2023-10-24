@@ -10,9 +10,9 @@
    <children>
       <Button fx:id="IrAlBoxButton" layoutX="484.0" layoutY="350.0" mnemonicParsing="false" onAction="#elegirBoxAtencion" text="Ir al Box" />
       <Button fx:id="IrAtrasButton" layoutX="35.0" layoutY="350.0" mnemonicParsing="false" onAction="#BotonAtras" text="Atras" />
-      <Label layoutX="163.0" layoutY="70.0" text="Eliga el Box de Atención Correspondiente">
+      <Label layoutX="133.0" layoutY="103.0" text="Eliga el Box de Atención Correspondiente">
          <font>
-            <Font size="15.0" />
+            <Font size="18.0" />
          </font>
       </Label>
       <RadioButton fx:id="BotonRedondoEmergencia" layoutX="147.0" layoutY="232.0" mnemonicParsing="false" onAction="#elegirBoxAtencion">
@@ -45,5 +45,11 @@
             <Font size="14.0" />
          </font>
       </Label>
+      <Label layoutX="35.0" layoutY="28.0" text="El programa recomienda: ">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="BoxRecomendadoApp" layoutX="208.0" layoutY="29.0" text="Label" />
    </children>
 </AnchorPane>
