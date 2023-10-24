@@ -1,5 +1,6 @@
 package model.Login;
 
+import jakarta.persistence.Entity;
 import lombok.*;
 import model.Enum.EstadoCivil;
 import model.FuncionarioAdministrativo;
@@ -18,6 +19,8 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @ToString
 @EqualsAndHashCode
+
+@Entity
 public class AdministradorSistemas extends FuncionarioAdministrativo {
 
     public AdministradorSistemas(String nombre, String apellido, LocalDate fechaNacimiento, String domicilio, int DNI, int telefonoFijo, long telefonoCelular, EstadoCivil estadoCivil, String correo, Usuario usuario, Sector sector) {
