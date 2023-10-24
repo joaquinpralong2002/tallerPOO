@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -11,8 +12,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
    <children>
       <TextField fx:id="usernameTextField" layoutX="374.0" layoutY="157.0" promptText="usuario" />
-      <TextField fx:id="passwordTextField" accessibleRole="PASSWORD_FIELD" layoutX="375.0" layoutY="238.0" promptText="contraseña" />
-      <Button fx:id="loginButton" layoutX="421.0" layoutY="324.0" mnemonicParsing="false" onAction="#handleLoginButtonAction" text="Aceptar" />
+      <Button fx:id="loginButton" layoutX="421.0" layoutY="285.0" mnemonicParsing="false" onAction="#handleLoginButtonAction" text="Aceptar" />
       <Label layoutX="343.0" layoutY="95.0" prefHeight="0.0" prefWidth="231.0" text="Ingrese su nombre de usuario y contraseña:" />
       <ImageView fitHeight="237.0" fitWidth="257.0" layoutX="63.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -29,5 +29,6 @@
             <Font size="14.0" />
          </font>
       </Label>
+      <PasswordField fx:id="passwordTextField" layoutX="374.0" layoutY="232.0" promptText="contraseña" />
    </children>
 </AnchorPane>
