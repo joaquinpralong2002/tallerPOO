@@ -31,12 +31,19 @@ public class SistemasController {
     @ToString
     @Getter
     protected class UsuarioTableClass{
-        Long id;
         String nombreUsuario;
-        List<Rol> roles;
+        List<Rol> rolesUs;
+        //List<String> roles = "";
         String nombreFuncionario;
         String apellidoFuncionario;
-        Sector sectorFuncionario;
+        String sectorFuncionario;
+
+        /*
+        public void obtenerRoles(){
+            for(Rol rol: this.rolesUs){
+                roles.add(rol.getNombre());
+            }
+        }*/
     }
     public TableView tblUsuarios;
     public TableColumn colNombUsu;
@@ -48,16 +55,16 @@ public class SistemasController {
     public TextField txtDniFunc;
     private List<Rol> roles;
     private AdministradorSistemas adminSistemas;
-    private Usuario usuario;
+    private Usuario usuarioInicio;
 
     @FXML
     public void initialize(){
         this.colNombUsu.setCellValueFactory(new PropertyValueFactory<>("nombreUsuario"));
-        this.colNombUsu.setCellValueFactory(new PropertyValueFactory<>("roles"));
-        this.colNombUsu.setCellValueFactory(new PropertyValueFactory<>("nombreFuncionario"));
-        this.colNombUsu.setCellValueFactory(new PropertyValueFactory<>("apellidoFuncionario"));
-        this.colNombUsu.setCellValueFactory(new PropertyValueFactory<>("sectorFuncionario"));
-        //this.iniciarTabla();
+        this.colRoles.setCellValueFactory(new PropertyValueFactory<>("rolesUs"));
+        this.colNombFunc.setCellValueFactory(new PropertyValueFactory<>("nombreFuncionario"));
+        this.colApeFunc.setCellValueFactory(new PropertyValueFactory<>("apellidoFuncionario"));
+        this.colSector.setCellValueFactory(new PropertyValueFactory<>("sectorFuncionario"));
+        this.iniciarTabla();
     }
 
     public void iniciarTabla(){
@@ -65,14 +72,16 @@ public class SistemasController {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         List<Usuario> usuarios = usuarioDAO.obtenerTodos();
         for(Usuario u: usuarios){
-            datosTabla.add(new UsuarioTableClass(u.getIdUsuario(),u.getNombreUsuario(),u.getRoles(),u.getFuncionario().getNombre(),u.getFuncionario().getApellido(),u.getFuncionario().getSector()));
+            UsuarioTableClass usuarioTableClass = new UsuarioTableClass(u.getNombreUsuario(),u.getRoles(),u.getFuncionario().getNombre(),u.getFuncionario().getApellido(),u.getFuncionario().getSector().getNombre());
+            //usuarioTableClass.obtenerRoles();
+            datosTabla.add(usuarioTableClass);
         }
         this.tblUsuarios.setItems(datosTabla);
     }
 
     public void recibirDatos(List<Rol> roles, Usuario user,AdministradorSistemas adminSistemas) {
         this.roles = roles;
-        this.usuario = user;
+        this.usuarioInicio = user;
         this.adminSistemas = adminSistemas;
     }
 
@@ -81,7 +90,7 @@ public class SistemasController {
         ObservableList usuarioTabla = FXCollections.observableArrayList();
         Usuario usuario1 = usuarioDAO.obtenerUsuarioPorNombre(this.txtNombUsu.getText());
         if(usuario1 != null){
-            usuarioTabla.add(new UsuarioTableClass(usuario1.getIdUsuario(), usuario1.getNombreUsuario(), usuario1.getRoles(), usuario1.getFuncionario().getNombre(), usuario1.getFuncionario().getApellido(), usuario1.getFuncionario().getSector()));
+            usuarioTabla.add(new UsuarioTableClass(usuario1.getNombreUsuario(), usuario1.getRoles(), usuario1.getFuncionario().getNombre(), usuario1.getFuncionario().getApellido(), usuario1.getFuncionario().getSector().getNombre()));
         }
         this.tblUsuarios.setItems(usuarioTabla);
     }
