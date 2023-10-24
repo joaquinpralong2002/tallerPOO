@@ -35,7 +35,7 @@ public class Asignacion {
     private RegistroEntrada registroEntrada;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "numero", nullable = false, unique = true)
+    @JoinColumn(name = "numero", nullable = false)
     private BoxAtencion boxAtencion;
 
     public Asignacion(RegistroEntrada registroEntrada, BoxAtencion boxAtencion) {

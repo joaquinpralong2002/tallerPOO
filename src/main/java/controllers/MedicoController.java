@@ -99,7 +99,7 @@ public class MedicoController {
     @FXML
     private Button bttmCerrarSesion;
 
-    private final ObservableList<PacienteTableClass> datosTabla = FXCollections.observableArrayList();
+    private ObservableList<PacienteTableClass> datosTabla = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
@@ -130,9 +130,6 @@ public class MedicoController {
         }
     }
 
-    public void iniciarTablaDesdeTriage() {
-        this.iniciarTabla();
-    }
 
     private void iniciarTabla() {
 
@@ -174,7 +171,6 @@ public class MedicoController {
             // Combinar resultados de todos los filtros
             return nombreMatch && apellidoMatch && dniMatch && colorTriageMatch;
         };
-
         tblPacientes.setItems(datosTabla.filtered(predicate));
     }
 

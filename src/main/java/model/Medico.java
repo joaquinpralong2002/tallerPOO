@@ -149,6 +149,7 @@ public class Medico extends Funcionario implements CapacitadoTriage{
         //Si se encontró un box para el paciente, se crea una asignación asociada al registro de entrada y al box.
         if(boxAsignado != null){
             Asignacion asignacion = new Asignacion(registroEntrada, boxAsignado);
+            System.out.println(asignacion);
             boxAsignado.setDisponible(false);
             boxAtencionDAO.actualizar(boxAsignado);
             AsignacionDAO asignacionDAO = new AsignacionDAO();
