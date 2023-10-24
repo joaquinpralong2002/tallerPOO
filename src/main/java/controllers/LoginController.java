@@ -15,6 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Funcionario;
 import model.FuncionarioAdministrativo;
+import model.Login.AdministradorSistemas;
 import model.Login.Rol;
 import model.Login.Usuario;
 import model.Medico;
@@ -50,6 +51,11 @@ public class LoginController {
                         loaderSistemas.setLocation(getClass().getResource("/views/SistemasViews/Sistemas.fxml"));
                         Parent rootSistemas = loaderSistemas.load();
 
+                        AdministradorSistemas administradorSistemas = usuarioDAO.obtenerAdministradorPorIdUsuario(user.getIdUsuario());
+
+                        SistemasController controladorSistemas = loaderSistemas.getController();
+                        controladorSistemas.recibirDatos(user.getRoles(), user,administradorSistemas);
+
                         Stage stageSistemas = (Stage) ((Node) event.getSource()).getScene().getWindow();
                         Scene sceneSistemas = new Scene(rootSistemas);
                         stageSistemas.setScene(sceneSistemas);
@@ -62,7 +68,7 @@ public class LoginController {
                         Parent rootMedico = loader.load();
 
                         //Se busca el objeto de médico para pasarlo al controlador
-                        Medico medico = usuarioDAO.obtenerMedicoPorNombreUsuario(user.getNombreUsuario());
+                        Medico medico = usuarioDAO.obtenerMedicoPorIdUsuario(user.getIdUsuario());
 
                         //Carga el controlador de médico, y le envía el médico y sus roles
                         MedicoController controller = loader.getController();

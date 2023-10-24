@@ -56,14 +56,24 @@ public class UsuarioDAO implements GenericoDAO<Usuario> {
         return usuario != null;
     }
 
-    public Medico obtenerMedicoPorNombreUsuario(String nombreUsuario) {
+    public Medico obtenerMedicoPorIdUsuario(Long id) {
         Session session = sessionFactory.openSession();
-        String query = "SELECT funcionario FROM Funcionario funcionario WHERE funcionario.correo = :nombreUsuario";
+        String query = "SELECT funcionario FROM Funcionario funcionario WHERE funcionario.usuario.id = :id";
         Medico medico = session.createQuery(query, Medico.class)
-                .setParameter("nombreUsuario", nombreUsuario)
+                .setParameter("id", id)
                 .getSingleResultOrNull();
         session.close();
         return medico;
+    }
+
+    public AdministradorSistemas obtenerAdministradorPorIdUsuario(Long id) {
+        Session session = sessionFactory.openSession();
+        String query = "SELECT admin FROM AdministradorSistemas admin WHERE admin.usuario.id = :id";
+        AdministradorSistemas administradorSistemas = session.createQuery(query, AdministradorSistemas.class)
+                .setParameter("id", id)
+                .getSingleResultOrNull();
+        session.close();
+        return administradorSistemas;
     }
 
     public FuncionarioAdministrativo obtenerFuncionarioAdministrativoPorIdUsuario(Long id) {
