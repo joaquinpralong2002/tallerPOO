@@ -237,12 +237,14 @@ public class MedicoController {
         Long id = ((PacienteTableClass) tblPacientes.getSelectionModel().getSelectedItem()).getId();
         Paciente paciente = pacienteTableClass.obtenerPaciente(id);
 
-        //Verifica el Color de triage del Paciente y lo envia a la siguiente escecna.
-        ColorTriage colorTriage = paciente.getRegistrosEntradas().get(paciente.getRegistrosEntradas().size() - 1).getTriage().getColorTriageFinal();
 
-        controller.setBoxRecomendadoApp(colorTriage);
 
         if (paciente.getRegistrosEntradas().get(paciente.getRegistrosEntradas().size() - 1).isTriagiado()) {
+            //Verifica el Color de triage del Paciente y lo envia a la siguiente escecna.
+            ColorTriage colorTriage = paciente.getRegistrosEntradas().get(paciente.getRegistrosEntradas().size() - 1).getTriage().getColorTriageFinal();
+
+            controller.setBoxRecomendadoApp(colorTriage);
+            controller.recibirDatos(medico,paciente);
             // Cambia a la nueva escena
             Stage stage = new Stage();
             Scene scene = new Scene(root);

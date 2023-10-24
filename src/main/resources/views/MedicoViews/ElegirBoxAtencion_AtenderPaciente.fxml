@@ -15,36 +15,21 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <RadioButton fx:id="BotonRedondoEmergencia" layoutX="147.0" layoutY="232.0" mnemonicParsing="false" onAction="#elegirBoxAtencion">
+      <RadioButton fx:id="BotonRedondoEmergencia" layoutX="109.0" layoutY="232.0" mnemonicParsing="false" onAction="#elegirBoxAtencion" style="-fx-text-alignment: left;" text="Emergencia">
          <font>
             <Font size="15.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="BotonRedondoConsultorio" layoutX="284.0" layoutY="232.0" mnemonicParsing="false" onAction="#elegirBoxAtencion">
+      <RadioButton fx:id="BotonRedondoConsultorio" layoutX="248.0" layoutY="232.0" mnemonicParsing="false" onAction="#elegirBoxAtencion" text="Consultorio">
          <font>
             <Font size="15.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="BotonRedondoInternaciones" layoutX="429.0" layoutY="232.0" mnemonicParsing="false" onAction="#elegirBoxAtencion">
+      <RadioButton fx:id="BotonRedondoInternaciones" layoutX="404.0" layoutY="232.0" mnemonicParsing="false" onAction="#elegirBoxAtencion" text="Internaciones">
          <font>
             <Font size="15.0" />
          </font>
       </RadioButton>
-      <Label layoutX="124.0" layoutY="201.0" text="Emergencia">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="261.0" layoutY="201.0" text="Consultorio">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="401.0" layoutY="201.0" text="Internaciones">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
       <Label layoutX="35.0" layoutY="28.0" text="El programa recomienda: ">
          <font>
             <Font size="13.0" />

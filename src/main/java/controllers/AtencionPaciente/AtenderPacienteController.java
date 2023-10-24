@@ -1,5 +1,7 @@
 package controllers.AtencionPaciente;
 
+import controllers.MedicoController;
+import datasource.BoxAtencionDAO;
 import datasource.ResultadoDiagnosticoDAO;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -13,20 +15,23 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import lombok.Getter;
 import model.BoxAtencion;
+import model.Enum.ColorTriage;
 import model.Enum.LugarAtencion;
 import model.Paciente;
 import model.Medico;
 
+import javax.swing.*;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class AtenderPacienteController {
-    private Paciente paciente;
+    private Paciente persona;
     @Getter
     private LugarAtencion lugarAtencionSeleccionada;
     private Medico medico;
     private BoxAtencion boxAtencion;
+    private ColorTriage colorTriage;
     @FXML
     private Button realizarDiagnosticoButton;
     @FXML
@@ -36,32 +41,13 @@ public class AtenderPacienteController {
     @FXML
     private Label LabalTipoBox;
 
-    @FXML
-    void initialize(URL url, ResourceBundle rb) {
-        // Obtiene el tipo de BoxAtencion seleccionado
-        LugarAtencion lugarAtencionSeleccionada = getLugarAtencionSeleccionada();
-
-        // Establece el texto del Label
-        LabalTipoBox.setText(lugarAtencionSeleccionada.toString());
-    }
-
-
-    @FXML
-    public void recibirDatos(Paciente persona, Medico medico,BoxAtencion boxAtencion) {
-        //Método para recibir el paciente y medico asociado de la escena anterior.
-        this.paciente = persona;
-        this.medico = medico;
-        this.boxAtencion = boxAtencion;
-    }
-
 
     //Metodo para guardar en que Box de atencion lo atendieron, se guarda en el Registro
     //Revisar si anda...
-    public void BotonRealizarRegistro(AccessibleAction action, Paciente persona, BoxAtencion boxAtencion) throws Exception{
-
+    public void BotonRealizarRegistro(ActionEvent event) throws Exception {
+        boxAtencion.setLugarAtencion(lugarAtencionSeleccionada);
         // Llena el TextField
         String diagnostico = campoDeTexto.getText();
-
         realizarDiagnosticoButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -73,10 +59,22 @@ public class AtenderPacienteController {
 
                 // Si el usuario hace clic en el botón "Aceptar", entonces se realiza la acción
                 if (resultado.get() == ButtonType.OK) {
-                    medico.atenderPaciente(persona,boxAtencion,diagnostico);
+                    try {
+                        medico.atenderPaciente(persona,boxAtencion,diagnostico);
+                    } catch (Exception e) {
+                        Alert alertError = new Alert(Alert.AlertType.ERROR);
+                        alertError.setTitle("Error");
+                        alertError.setContentText(e.getMessage());
+                        alertError.showAndWait();
+                    }
                 }
             }
         });
+    }
+
+    public void setLugarAtencionSeleccionada(LugarAtencion lugarAtencionSeleccionada) {
+        this.lugarAtencionSeleccionada = lugarAtencionSeleccionada;
+        LabalTipoBox.setText(lugarAtencionSeleccionada.name());
     }
 
     public void BotonAtras(ActionEvent event) throws Exception {
@@ -95,9 +93,13 @@ public class AtenderPacienteController {
         }
     }
 
-    public void setLugarAtencionSeleccionada(LugarAtencion lugarAtencionSeleccionada) {
-        this.lugarAtencionSeleccionada = lugarAtencionSeleccionada;
-        LabalTipoBox.setText(lugarAtencionSeleccionada.name());
+    @FXML
+    public void recibirDatos(Medico medico, Paciente persona, ColorTriage colorTriage){
+        this.medico = medico;
+        this.persona = persona;
+        this.colorTriage = colorTriage;
     }
+
+
 
 }

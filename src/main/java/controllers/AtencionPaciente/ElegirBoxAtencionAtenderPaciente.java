@@ -14,6 +14,8 @@ import javafx.stage.Stage;
 import model.BoxAtencion;
 import model.Enum.ColorTriage;
 import model.Enum.LugarAtencion;
+import model.Medico;
+import model.Paciente;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -24,6 +26,9 @@ public class ElegirBoxAtencionAtenderPaciente {
     @FXML
     private Button IrAlBoxButton;
     @FXML
+    private ToggleGroup grupoDeBotones = new ToggleGroup();
+
+    @FXML
     private RadioButton BotonRedondoEmergencia, BotonRedondoConsultorio, BotonRedondoInternaciones;
     @FXML
     private BoxAtencion boxAtencion;
@@ -32,38 +37,19 @@ public class ElegirBoxAtencionAtenderPaciente {
     private LugarAtencion lugarAtencionSeleccionada;
     private Stage medicoStage;
     private ColorTriage colorTriage;
+    private Medico medico;
+    private Paciente paciente;
 
-
+    @FXML
+    public void initialize(){
+        BotonRedondoEmergencia.setToggleGroup(grupoDeBotones);
+        BotonRedondoConsultorio.setToggleGroup(grupoDeBotones);
+        BotonRedondoInternaciones.setToggleGroup(grupoDeBotones);
+    }
     @FXML
     void elegirBoxAtencion(ActionEvent event) throws Exception {
         // Obtiene la opción seleccionada
         lugarAtencionSeleccionada = getLugarAtencionSeleccionada();
-
-        if (BotonRedondoEmergencia.isSelected() && BotonRedondoConsultorio.isSelected()) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Error");
-            alert.setContentText("Solo puede seleccionar un Box de Atención a la vez.");
-            alert.showAndWait();
-            BotonRedondoEmergencia.setSelected(false);
-            BotonRedondoConsultorio.setSelected(false);
-            BotonRedondoInternaciones.setSelected(false);
-        } else if (BotonRedondoInternaciones.isSelected() && BotonRedondoConsultorio.isSelected()) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Error");
-            alert.setContentText("Solo puede seleccionar un Box de Atención a la vez.");
-            alert.showAndWait();
-            BotonRedondoEmergencia.setSelected(false);
-            BotonRedondoConsultorio.setSelected(false);
-            BotonRedondoInternaciones.setSelected(false);
-        } else if (BotonRedondoInternaciones.isSelected() && BotonRedondoEmergencia.isSelected()) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Error");
-            alert.setContentText("Solo puede seleccionar un Box de Atención a la vez.");
-            alert.showAndWait();
-            BotonRedondoEmergencia.setSelected(false);
-            BotonRedondoConsultorio.setSelected(false);
-            BotonRedondoInternaciones.setSelected(false);
-        } else {
             // Llama al método setOnAction() para pasar la variable a la siguiente escena
             IrAlBoxButton.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
@@ -81,8 +67,11 @@ public class ElegirBoxAtencionAtenderPaciente {
                         // Establece la opción seleccionada en la siguiente escena
                         AtenderPacienteController controller = loader.getController();
                         controller.setLugarAtencionSeleccionada(lugarAtencionSeleccionada);
+
+                        controller.recibirDatos(medico,paciente,colorTriage);
                         //Metodo para cerrar la pestaña de Medico
                         medicoStage.close();
+
 
                         // Cambia a la siguiente escena
                         if (resultado.isPresent() && resultado.get() == ButtonType.OK) {
@@ -101,7 +90,7 @@ public class ElegirBoxAtencionAtenderPaciente {
                 }
             });
         }
-    }
+
     private LugarAtencion getLugarAtencionSeleccionada() {
         if (BotonRedondoEmergencia.isSelected()) {
             return LugarAtencion.Emergencia;
@@ -124,6 +113,12 @@ public class ElegirBoxAtencionAtenderPaciente {
         else {
             BoxRecomendadoApp.setText("Consultorio");
         }
+    }
+
+    @FXML
+    public void recibirDatos(Medico medico, Paciente paciente){
+        this.medico = medico;
+        this.paciente = paciente;
     }
 
     public void BotonAtras(ActionEvent event) throws Exception {
