@@ -51,6 +51,7 @@ public class Main {
         AdministradorSistemas administradorSistemas = new AdministradorSistemas("Angel","Villalba",LocalDate.of(1996,5,11),"Jose Rucci 340", 41432875, 439378921, 345873536, EstadoCivil.Soltero, "villalbaangel@gmail.com",usuarioAdminSistemas,sectorInformatica);
         funcionarioAdministrativoDAO.agregar(administradorSistemas);
         usuarioAdminSistemas.setFuncionario(administradorSistemas);
+        usuarioDAO.actualizar(usuarioAdminSistemas);
 
         //Se crea un box de atención
         BoxAtencion boxAtencion = new BoxAtencion(LugarAtencion.Consultorio,1,30,true);
@@ -85,6 +86,7 @@ public class Main {
         ,"Rocamora 91",31598762,42698756,3454169865L,EstadoCivil.Soltero,"danielitalop@hotmail.com",usuario, sector);
         funcionarioAdministrativoDAO.agregar(funAdmin);
         usuario.setFuncionario(funAdmin);
+        usuarioDAO.actualizar(usuario);
 
         //*********Registro de entrada del funcionario administrativo al paciente*********
         funAdmin.RealizarRegistroEntrada(paciente,"Dolor de cabeza y fiebre");
