@@ -55,7 +55,7 @@ public class ModificarTriageController {
             return;
         } else {
             if(Triage.controlarTriage(this.datosTriage.getColorTriageAsignado(), nuevoColorTriageComboBox.getValue())){
-                if(this.datosTriage.getMotivoCambioTriage().length() > 255){
+                if(motivoCambioTextArea.getText().length() > 255){
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Error");
                     alert.setContentText("Se superó el límite de carácteres.");
