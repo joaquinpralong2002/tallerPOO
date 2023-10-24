@@ -10,40 +10,31 @@
    <children>
       <Button fx:id="IrAlBoxButton" layoutX="484.0" layoutY="350.0" mnemonicParsing="false" onAction="#elegirBoxAtencion" text="Ir al Box" />
       <Button fx:id="IrAtrasButton" layoutX="35.0" layoutY="350.0" mnemonicParsing="false" onAction="#BotonAtras" text="Atras" />
-      <Label layoutX="163.0" layoutY="70.0" text="Eliga el Box de Atención Correspondiente">
+      <Label layoutX="133.0" layoutY="103.0" text="Eliga el Box de Atención Correspondiente">
          <font>
-            <Font size="15.0" />
+            <Font size="18.0" />
          </font>
       </Label>
-      <RadioButton fx:id="BotonRedondoEmergencia" layoutX="147.0" layoutY="232.0" mnemonicParsing="false" onAction="#elegirBoxAtencion">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </RadioButton>
-      <RadioButton fx:id="BotonRedondoConsultorio" layoutX="284.0" layoutY="232.0" mnemonicParsing="false" onAction="#elegirBoxAtencion">
+      <RadioButton fx:id="BotonRedondoEmergencia" layoutX="109.0" layoutY="232.0" mnemonicParsing="false" onAction="#elegirBoxAtencion" style="-fx-text-alignment: left;" text="Emergencia">
          <font>
             <Font size="15.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="BotonRedondoInternaciones" layoutX="429.0" layoutY="232.0" mnemonicParsing="false" onAction="#elegirBoxAtencion">
+      <RadioButton fx:id="BotonRedondoConsultorio" layoutX="248.0" layoutY="232.0" mnemonicParsing="false" onAction="#elegirBoxAtencion" text="Consultorio">
          <font>
             <Font size="15.0" />
          </font>
       </RadioButton>
-      <Label layoutX="124.0" layoutY="201.0" text="Emergencia">
+      <RadioButton fx:id="BotonRedondoInternaciones" layoutX="404.0" layoutY="232.0" mnemonicParsing="false" onAction="#elegirBoxAtencion" text="Internaciones">
          <font>
-            <Font size="14.0" />
+            <Font size="15.0" />
+         </font>
+      </RadioButton>
+      <Label layoutX="35.0" layoutY="28.0" text="El programa recomienda: ">
+         <font>
+            <Font size="13.0" />
          </font>
       </Label>
-      <Label layoutX="261.0" layoutY="201.0" text="Consultorio">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="401.0" layoutY="201.0" text="Internaciones">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
+      <Label fx:id="BoxRecomendadoApp" layoutX="208.0" layoutY="29.0" text="Label" />
    </children>
 </AnchorPane>

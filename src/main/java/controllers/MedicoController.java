@@ -26,6 +26,7 @@ import model.Login.Rol;
 import model.Medico;
 import model.Paciente;
 import model.RegistroEntrada;
+import model.Triage;
 
 import java.time.LocalTime;
 import java.util.List;
@@ -235,7 +236,15 @@ public class MedicoController {
         //Se verifica que el paciente tenga un triage asociado para atenderlo
         Long id = ((PacienteTableClass) tblPacientes.getSelectionModel().getSelectedItem()).getId();
         Paciente paciente = pacienteTableClass.obtenerPaciente(id);
+
+
+
         if (paciente.getRegistrosEntradas().get(paciente.getRegistrosEntradas().size() - 1).isTriagiado()) {
+            //Verifica el Color de triage del Paciente y lo envia a la siguiente escecna.
+            ColorTriage colorTriage = paciente.getRegistrosEntradas().get(paciente.getRegistrosEntradas().size() - 1).getTriage().getColorTriageFinal();
+
+            controller.setBoxRecomendadoApp(colorTriage);
+            controller.recibirDatos(medico,paciente);
             // Cambia a la nueva escena
             Stage stage = new Stage();
             Scene scene = new Scene(root);
