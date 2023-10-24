@@ -90,20 +90,30 @@ public class BuscarPacienteController {
     }
 
     public void CrearRegistroEntrada(ActionEvent event) throws IOException {
-        if(paciente != null && this.txtMotivo.getText() != ""){
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Informacion");
-            alert.setHeaderText("Registro Creado Exitosamente");
-            alert.show();
-            //esta comentado para que no se persista
-            //funcionarioAdministrativoIniciado.RealizarRegistroEntrada(paciente,this.txtMotivo.getText());
-        }else {
+        if(paciente == null){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Datos Incompletos");
-            alert.setContentText("Debe buscar el paciente primeramente y escribir el motivo de consulta");
+            alert.setContentText("Debe buscar el paciente primeramente");
             alert.show();
+        }else{
+            if(this.txtMotivo.getText().matches("^(?![0-9 ]{6,})[A-Za-z0-9 ]{6,}$")){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Informacion");
+                alert.setHeaderText("Registro Creado Exitosamente");
+                alert.show();
+                //esta comentado para que no se persista
+                //funcionarioAdministrativoIniciado.RealizarRegistroEntrada(paciente,this.txtMotivo.getText());
+            }else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Datos Incompletos");
+                alert.setContentText("Debe escribir el motivo de consulta");
+                alert.show();
+            }
+
         }
+
     }
 
     public void CrearPaciente(ActionEvent event) throws IOException {

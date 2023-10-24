@@ -1,4 +1,5 @@
 package model;
+import datasource.PacienteDAO;
 import jakarta.persistence.*;
 import lombok.*;
 import model.Enum.EstadoCivil;
@@ -22,7 +23,6 @@ import java.util.Set;
 public class Paciente extends Persona{
     private String personaContacto;
 
-    private boolean triagiado;
 
     @ToString.Exclude
     @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -83,5 +83,4 @@ public class Paciente extends Persona{
     }
 
     public void agregarRegistros(Registro registro){registros.add(registro);}
-
 }

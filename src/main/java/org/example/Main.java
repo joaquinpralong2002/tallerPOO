@@ -32,8 +32,26 @@ public class Main {
         UniversidadDAO universidadDAO = new UniversidadDAO();
         EspecialidadDAO especialidadDAO = new EspecialidadDAO();
         MedicoDAO medicoDAO = new MedicoDAO();
+        AdministradorSistemasDAO administradorSistemasDAO = new AdministradorSistemasDAO();
         RegistroDAO registroDAO = new RegistroDAO();
         ResultadoDiagnosticoDAO resultadoDiagnosticoDAO = new ResultadoDiagnosticoDAO();
+
+        //Creacion de Administrador Sistemas
+        Rol rolSistemas = new Rol("Sistemas");
+        rolDAO.agregar(rolSistemas);
+
+        Usuario usuarioAdminSistemas = new Usuario("villalbaangel","villalbaangel123",List.of(rolSistemas));
+        usuarioDAO.agregar(usuarioAdminSistemas);
+        rolSistemas.setUsuarios(Set.of(usuarioAdminSistemas));
+        usuarioAdminSistemas.setRoles(List.of(rolSistemas));
+
+        Sector sectorInformatica = new Sector("Informatica");
+        sectorDAO.agregar(sectorInformatica);
+
+        AdministradorSistemas administradorSistemas = new AdministradorSistemas("Angel","Villalba",LocalDate.of(1996,5,11),"Jose Rucci 340", 41432875, 439378921, 345873536, EstadoCivil.Soltero, "villalbaangel@gmail.com",usuarioAdminSistemas,sectorInformatica);
+        funcionarioAdministrativoDAO.agregar(administradorSistemas);
+        usuarioAdminSistemas.setFuncionario(administradorSistemas);
+        usuarioDAO.actualizar(usuarioAdminSistemas);
 
         //Se crea un box de atención
         BoxAtencion boxAtencion = new BoxAtencion(LugarAtencion.Consultorio,1,30,true);
@@ -68,6 +86,7 @@ public class Main {
         ,"Rocamora 91",31598762,42698756,3454169865L,EstadoCivil.Soltero,"danielitalop@hotmail.com",usuario, sector);
         funcionarioAdministrativoDAO.agregar(funAdmin);
         usuario.setFuncionario(funAdmin);
+        usuarioDAO.actualizar(usuario);
 
         //*********Registro de entrada del funcionario administrativo al paciente*********
         funAdmin.RealizarRegistroEntrada(paciente,"Dolor de cabeza y fiebre");
@@ -77,12 +96,15 @@ public class Main {
         //*******************CREACION DEL MEDICO******************************
         //*******************MEDICOOOOOOO***********************************
         Rol rolMedico = new Rol("Medico");
+        Rol rolMedico2 = new Rol("Triage");
         rolDAO.agregar(rolMedico);
+        rolDAO.agregar(rolMedico2);
 
         Usuario usuarioMedico = new Usuario("juancarlosramirez@gmail.com","juancito01&");
         usuarioDAO.agregar(usuarioMedico);
         rolMedico.setUsuarios(Set.of(usuarioMedico));
-        usuarioMedico.setRoles(List.of(rolMedico));
+        usuarioMedico.setRoles(List.of(rolMedico, rolMedico2));
+        usuarioDAO.actualizar(usuarioMedico);
 
         //Sector al cual pertenece el medico
         Sector sectorMedico = new Sector("Incisiones");

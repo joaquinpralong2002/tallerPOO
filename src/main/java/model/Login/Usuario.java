@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import model.Funcionario;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -134,6 +135,13 @@ public class Usuario {
         } else return false;
     }
 
+    public List<String> getNombreRoles(){
+        List<String> listaNombres = new ArrayList<>();
+        for(Rol rol: roles){
+            listaNombres.add(rol.getNombre());
+        }
+        return listaNombres;
+    }
 
     @Override
     public boolean equals(Object o) {

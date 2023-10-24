@@ -1,6 +1,6 @@
-package controllers;
+package controllers.AtencionPaciente;
 
-import datasource.BoxAtencionDAO;
+import controllers.AtencionPaciente.AtenderPacienteController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;

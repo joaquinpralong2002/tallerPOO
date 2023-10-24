@@ -95,8 +95,14 @@ public class Medico extends Funcionario implements CapacitadoTriage{
         triage.setColorTriageFinal(colorfinal);
         triage.setRegistroEntrada(registroEntrada);
         registroEntrada.setTriage(triage);
-        registroEntrada.getPaciente().setTriagiado(true);
+        registroEntrada.setTriagiado(true);
         asignarBox(registroEntrada);
+
+        TriageDAO triageDAO = new TriageDAO();
+        triageDAO.actualizar(triage);
+        RegistroEntradaDAO registroEntradaDAO = new RegistroEntradaDAO();
+        registroEntradaDAO.actualizar(registroEntrada);
+
         return true;
     }
 
@@ -143,6 +149,7 @@ public class Medico extends Funcionario implements CapacitadoTriage{
         //Si se encontró un box para el paciente, se crea una asignación asociada al registro de entrada y al box.
         if(boxAsignado != null){
             Asignacion asignacion = new Asignacion(registroEntrada, boxAsignado);
+            System.out.println(asignacion);
             boxAsignado.setDisponible(false);
             boxAtencionDAO.actualizar(boxAsignado);
             AsignacionDAO asignacionDAO = new AsignacionDAO();

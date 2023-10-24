@@ -60,10 +60,14 @@ public class RegistroEntradaController {
         try {
             validarDatosPaciente(nombrePac,apellidoPac,fechaNaciPac,domicilioPac,dniPac,telefonoFijoPac,telefonoCelPac,estadoCivilPac,correoPac,teleonoPersonaContactoPac,motivoConsulta);
 
+            PacienteDAO pacienteDAO = new PacienteDAO();
+            if(pacienteDAO.obtenerPorDni(dniPac) != null){
+                throw new Exception();
+            }
+
             Paciente paciente = new Paciente(nombrePac,apellidoPac,fechaNaciPac,domicilioPac,Integer.parseInt(dniPac),Integer.parseInt(telefonoFijoPac),Long.parseLong(telefonoCelPac),estadoCivilPac,correoPac,teleonoPersonaContactoPac);
 
             //persistencia de los datos
-            //PacienteDAO pacienteDAO = new PacienteDAO();
             //pacienteDAO.agregar(paciente);
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -80,14 +84,45 @@ public class RegistroEntradaController {
             alert.setHeaderText("Datos Invalidos");
             alert.setContentText(e.getMessage());
             alert.show();
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Paciente ya registrado");
+            alert.show();
         }
 
     }
 
     public void validarDatosPaciente(String nombrePac, String apellidoPac, LocalDate fechaNaciPac, String domicilioPac, String dniPac, String telefonoFijoPac, String telefonoCelPac, EstadoCivil estadoCivilPac, String correoPac, String telefonoPersonaContactoPac, String motivoConsulta) {
+       String patron = "^(?![0-9 ]{6,})[A-Za-z0-9 ]{6,}$";
+       String patron2 = "^(?![0-9-]{3,})[A-Za-z0-9-]{3,}$";
         // Validar que los campos obligatorios no sean nulos
-        if (nombrePac == "" || apellidoPac == "" || domicilioPac == "" || estadoCivilPac == null || correoPac == "" || fechaNaciPac == null || motivoConsulta == "") {
-            throw new IllegalArgumentException("Los campos obligatorios no pueden ser nulos");
+        if(!nombrePac.matches(patron2)){
+            throw new IllegalArgumentException("El nombre no puede estar vacio");
+        }
+
+        if(!apellidoPac.matches(patron2)){
+            throw new IllegalArgumentException("El apellido no puede estar vacio");
+        }
+
+        if(!domicilioPac.matches(patron)){
+            throw new IllegalArgumentException("El domicilio no puede estar vacio");
+        }
+
+        if(estadoCivilPac == null){
+            throw new IllegalArgumentException("El estado civil no puede estar vacio");
+        }
+
+        if(!correoPac.matches("^[A-Z-a-z0-9+_.-]+@(.+)$")){
+            throw new IllegalArgumentException("El correo no puede estar vacio");
+        }
+
+        if(fechaNaciPac == null){
+            throw new IllegalArgumentException("La fecha de nacimiento no puede estar vacia");
+        }
+
+        if(!motivoConsulta.matches(patron)){
+            throw new IllegalArgumentException("El motivo de la consulta no puede estar vacio");
         }
 
         /*

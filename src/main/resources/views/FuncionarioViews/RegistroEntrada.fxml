@@ -13,52 +13,94 @@
 
 <AnchorPane maxHeight="900.0" maxWidth="1600.0" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Administracion.RegistroEntradaController">
    <children>
-      <Label layoutX="551.0" layoutY="78.0" text="Realizar Registro Entrada">
+      <Label layoutX="561.0" layoutY="96.0" text="Realizar Registro Entrada">
          <font>
-            <Font size="24.0" />
+            <Font size="30.0" />
          </font>
       </Label>
-      <Button fx:id="bttmCrearRegistro" layoutX="615.0" layoutY="547.0" mnemonicParsing="false" onAction="#CrearRegistro" prefHeight="49.0" prefWidth="135.0" text="Crear Registro Entrada" />
-      <HBox layoutX="302.0" layoutY="131.0" prefHeight="416.0" prefWidth="761.0">
+      <HBox layoutX="302.0" layoutY="179.0" prefHeight="458.0" prefWidth="847.0">
          <children>
             <Pane prefHeight="416.0" prefWidth="641.0">
                <children>
-                  <TextField fx:id="txtNomPac" layoutX="16.0" layoutY="79.0" prefHeight="25.0" prefWidth="152.0" promptText="Ingrese Texto" />
-                  <Label layoutX="125.0" layoutY="14.0" text="Datos Paciente">
+                  <TextField fx:id="txtNomPac" layoutX="42.0" layoutY="96.0" prefHeight="35.0" prefWidth="191.0" promptText="Ingrese Texto" />
+                  <Label layoutX="40.0" layoutY="14.0" text="                              Datos Paciente                      " underline="true">
                      <font>
-                        <Font size="14.0" />
+                        <Font size="22.0" />
                      </font>
                   </Label>
-                  <Label layoutX="16.0" layoutY="58.0" text="Nombre:" />
-                  <Label layoutX="177.0" layoutY="58.0" text="Apellido:" />
-                  <Label layoutX="174.0" layoutY="107.0" text="Domicilio:" />
-                  <Label layoutX="13.0" layoutY="149.0" text="Telefono Fijo:" />
-                  <Label layoutX="177.0" layoutY="149.0" text="Telefono Celular" />
-                  <Label layoutX="18.0" layoutY="107.0" text="DNI:" />
-                  <TextField fx:id="txtApePac" layoutX="175.0" layoutY="79.0" prefHeight="25.0" prefWidth="152.0" promptText="Ingrese Texto" />
-                  <TextField fx:id="txtDNIPac" layoutX="16.0" layoutY="124.0" prefHeight="25.0" prefWidth="152.0" promptText="Ingrese Texto" />
-                  <TextField fx:id="txtDomiPac" layoutX="175.0" layoutY="124.0" prefHeight="25.0" prefWidth="152.0" promptText="Ingrese Texto" />
-                  <TextField fx:id="txtTelFijoPac" layoutX="16.0" layoutY="166.0" prefHeight="25.0" prefWidth="152.0" promptText="Ingrese Texto" />
-                  <TextField fx:id="txtTelCelPac" layoutX="175.0" layoutY="166.0" prefHeight="25.0" prefWidth="152.0" promptText="Ingrese Texto" />
-                  <DatePicker fx:id="dateFechaNaciPac" layoutX="16.0" layoutY="208.0" prefHeight="25.0" prefWidth="152.0" />
-                  <Label layoutX="16.0" layoutY="191.0" text="Fecha Nacimiento:" />
-                  <ComboBox fx:id="cboxEstCivilPac" layoutX="175.0" layoutY="208.0" prefHeight="25.0" prefWidth="152.0" />
-                  <Label layoutX="176.0" layoutY="191.0" text="Estado Civil:" />
-                  <TextField fx:id="txtCorreoPac" layoutX="17.0" layoutY="257.0" prefHeight="25.0" prefWidth="152.0" />
-                  <Label layoutX="19.0" layoutY="240.0" text="Correo:" />
-                  <TextField fx:id="txtNumPerContPac" layoutX="173.0" layoutY="257.0" prefHeight="25.0" prefWidth="152.0" />
-                  <Label layoutX="176.0" layoutY="240.0" text="Numero Persona Contacto:" />
+                  <Label layoutX="42.0" layoutY="64.0" text="Nombre:">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label layoutX="296.0" layoutY="64.0" text="Apellido:">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label layoutX="296.0" layoutY="137.0" text="Domicilio:">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label layoutX="40.0" layoutY="216.0" text="Telefono Fijo:">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label layoutX="296.0" layoutY="216.0" text="Telefono Celular:">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label layoutX="42.0" layoutY="137.0" text="DNI:">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <TextField fx:id="txtApePac" layoutX="299.0" layoutY="96.0" prefHeight="35.0" prefWidth="191.0" promptText="Ingrese Texto" />
+                  <TextField fx:id="txtDNIPac" layoutX="42.0" layoutY="170.0" prefHeight="35.0" prefWidth="191.0" promptText="Ingrese Texto" />
+                  <TextField fx:id="txtDomiPac" layoutX="296.0" layoutY="170.0" prefHeight="35.0" prefWidth="191.0" promptText="Ingrese Texto" />
+                  <TextField fx:id="txtTelFijoPac" layoutX="42.0" layoutY="248.0" prefHeight="35.0" prefWidth="191.0" promptText="Ingrese Texto" />
+                  <TextField fx:id="txtTelCelPac" layoutX="296.0" layoutY="243.0" prefHeight="35.0" prefWidth="191.0" promptText="Ingrese Texto" />
+                  <DatePicker fx:id="dateFechaNaciPac" layoutX="42.0" layoutY="320.0" prefHeight="35.0" prefWidth="191.0" promptText="Seleccionar" />
+                  <Label layoutX="40.0" layoutY="293.0" text="Fecha Nacimiento:">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <ComboBox fx:id="cboxEstCivilPac" layoutX="296.0" layoutY="320.0" prefHeight="35.0" prefWidth="191.0" promptText="Seleccionar" />
+                  <Label layoutX="296.0" layoutY="293.0" text="Estado Civil:">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <TextField fx:id="txtCorreoPac" layoutX="42.0" layoutY="396.0" prefHeight="35.0" prefWidth="191.0" promptText="Ingrese Texto" />
+                  <Label layoutX="42.0" layoutY="369.0" prefWidth="71.0" text="Correo:">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <TextField fx:id="txtNumPerContPac" layoutX="296.0" layoutY="396.0" prefHeight="35.0" prefWidth="191.0" promptText="Ingrese Texto" />
+                  <Label layoutX="296.0" layoutY="369.0" prefHeight="27.0" prefWidth="217.0" text="Contacto Emergencia:">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
                </children>
             </Pane>
             <Pane prefHeight="416.0" prefWidth="327.0">
                <children>
-                  <Label layoutX="76.0" layoutY="14.0" text="Datos Entrada" />
-                  <Label layoutX="14.0" layoutY="60.0" text="Motivo Consulta:" />
-                  <TextArea fx:id="txtMotivoConsulta" layoutX="14.0" layoutY="77.0" prefHeight="117.0" prefWidth="200.0" />
+                  <Label layoutX="2.0" layoutY="14.0" text="            Datos Entrada         " underline="true">
+                     <font>
+                        <Font size="22.0" />
+                     </font></Label>
+                  <Label layoutX="14.0" layoutY="99.0" text="Motivo Consulta:">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <TextArea fx:id="txtMotivoConsulta" layoutX="13.0" layoutY="145.0" prefHeight="159.0" prefWidth="244.0" />
+                  <Button fx:id="bttmCrearRegistro" layoutX="13.0" layoutY="349.0" mnemonicParsing="false" onAction="#CrearRegistro" prefHeight="50.0" prefWidth="244.0" text="Crear Registro Entrada">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Button>
                </children>
             </Pane>
          </children>
       </HBox>
-      <Button fx:id="bttmVolver" layoutX="14.0" layoutY="23.0" mnemonicParsing="false" onAction="#Volver" prefHeight="35.0" prefWidth="97.0" text="Volver" />
+      <Button fx:id="bttmVolver" layoutX="14.0" layoutY="23.0" mnemonicParsing="false" onAction="#Volver" prefHeight="40.0" prefWidth="150.0" text="Volver">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
    </children>
 </AnchorPane>

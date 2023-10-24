@@ -1,5 +1,6 @@
 package model;
 
+import datasource.TriageDAO;
 import jakarta.persistence.*;
 import model.EnumeracionesVariablesTriage.*;
 import model.Enum.ColorTriage;
@@ -75,6 +76,7 @@ public class Triage{
     @Enumerated(EnumType.STRING)
     private ColorTriage colorTriageFinal;
 
+    @Column(length = 255)
     private String motivoCambioTriage;
 
     @ToString.Exclude
@@ -181,6 +183,10 @@ public class Triage{
         }
     }
 
+    public static boolean controlarTriage(ColorTriage colorAntes, ColorTriage colorDespues){
+        return Math.abs(colorDespues.getValor() - colorAntes.getValor()) <= 2;
+    }
+
 
     /**
      * Modifica el color de triage final del paciente.
@@ -194,15 +200,11 @@ public class Triage{
      * @return `true` si el color de triage final se pudo modificar, `false` de lo contrario.
      */
 
-    public boolean modificarColorTriageFinal(ColorTriage colorFinal, String motivo){
-        if(colorFinal.getValor() - colorTriageRecomendado.getValor() <= 2){
-            this.colorTriageFinal = colorFinal;
-            this.motivoCambioTriage = motivo;
-            return true;
-        } else {
-            System.out.println("No se puede asignar un color de triage que tenga dos niveles de diferencia con el recomendado por el sistema.");
-            return false;
-        }
+    public void modificarColorTriageFinal(ColorTriage colorFinal, String motivo){
+        this.colorTriageFinal = colorFinal;
+        this.motivoCambioTriage = motivo;
+        TriageDAO triageDAO = new TriageDAO();
+        triageDAO.actualizar(this);
     }
 
     @Override
