@@ -2,10 +2,13 @@ package datasource;
 import datasource.interfaces.GenericoDAO;
 import model.*;
 
+import model.Enum.ColorTriage;
 import org.example.Main;
 import org.hibernate.*;
 import util.GlobalSessionFactory;
 
+import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PacienteDAO implements GenericoDAO<Paciente> {
@@ -15,7 +18,6 @@ public class PacienteDAO implements GenericoDAO<Paciente> {
         this.sessionFactory = GlobalSessionFactory.getSessionFactory();
     }
 
-    //************** BASICOS DE PACIENTE*******************
     @Override
     public Paciente obtener(Long id) {
         Session session = sessionFactory.openSession();
@@ -31,17 +33,13 @@ public class PacienteDAO implements GenericoDAO<Paciente> {
         session.close();
         return paciente;
     }
-    //********************************************************************
 
-    //REVISAR POR LAS DUDAS...
-
-    public Paciente obtenerPorNombreYApellido(String nombre, String apellido) {
+    public List<Paciente> obtenerPorNombre(String nombre) {
         Session session = sessionFactory.openSession();
-        String query = "SELECT paciente FROM Paciente paciente WHERE paciente.nombre = :nombre and paciente.apellido = :apellido";
-        Paciente paciente = session.createQuery(query, Paciente.class)
+        String query = "SELECT paciente FROM Paciente paciente WHERE paciente.nombre = :nombre";
+        List<Paciente> paciente = session.createQuery(query, Paciente.class)
                 .setParameter("nombre", nombre)
-                .setParameter("apellido", apellido)
-                .getSingleResultOrNull();
+                .getResultList();
         session.close();
         return paciente;
     }
@@ -56,4 +54,25 @@ public class PacienteDAO implements GenericoDAO<Paciente> {
         return paciente;
     }
 
+    public List<Paciente> obtenerPorApellido(String apellido) {
+        Session session = sessionFactory.openSession();
+        String query = "SELECT paciente FROM Paciente paciente WHERE paciente.apellido = :apellido";
+        List<Paciente> pacientes = session.createQuery(query, Paciente.class)
+                .setParameter("apellido", apellido)
+                .getResultList();
+        session.close();
+        return pacientes;
+    }
+
+    public List<Paciente> obtenerPorColorTriage(ColorTriage colorTriage) {
+        Session session = sessionFactory.openSession();
+        TriageDAO triageDAO = new TriageDAO();
+        List<Triage> triages = triageDAO.obtenerPorColor(colorTriage);
+        List<Paciente> pacientes = new ArrayList<>();
+        for(int i = 0; i < triages.size(); i++){
+            pacientes.add(triages.get(i).getRegistroEntrada().getPaciente());
+        }
+        session.close();
+        return pacientes;
+    }
 }
