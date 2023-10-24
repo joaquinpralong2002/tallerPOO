@@ -33,4 +33,11 @@ public class FuncionarioDAO implements GenericoDAO<Funcionario> {
         session.close();
         return funcionarios;
     }
+
+    public Funcionario obtenerPorDni(String dni){
+        Session session = sessionFactory.openSession();
+        String query = "SELECT funcionario FROM Funcionario funcionario WHERE funcionario.DNI = :dni";
+        Funcionario funcionario = session.createQuery(query, Funcionario.class).setParameter("dni",dni).getSingleResultOrNull();
+        return funcionario;
+    }
 }

@@ -9,9 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import lombok.AllArgsConstructor;
@@ -25,55 +23,47 @@ import model.Sector;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Predicate;
 
 public class SistemasController {
-    @AllArgsConstructor
-    @ToString
-    @Getter
-    protected class UsuarioTableClass{
-        String nombreUsuario;
-        List<Rol> rolesUs;
-        //List<String> roles = "";
-        String nombreFuncionario;
-        String apellidoFuncionario;
-        String sectorFuncionario;
-
-        /*
-        public void obtenerRoles(){
-            for(Rol rol: this.rolesUs){
-                roles.add(rol.getNombre());
-            }
-        }*/
-    }
     public TableView tblUsuarios;
+
     public TableColumn colNombUsu;
     public TableColumn colRoles;
     public TableColumn colNombFunc;
     public TableColumn colApeFunc;
     public TableColumn colSector;
     public TextField txtNombUsu;
-    public TextField txtDniFunc;
+    private ObservableList<UsuarioTableClass> datosTabla = FXCollections.observableArrayList();
     private List<Rol> roles;
     private AdministradorSistemas adminSistemas;
     private Usuario usuarioInicio;
-
     @FXML
     public void initialize(){
         this.colNombUsu.setCellValueFactory(new PropertyValueFactory<>("nombreUsuario"));
-        this.colRoles.setCellValueFactory(new PropertyValueFactory<>("rolesUs"));
+        this.colRoles.setCellValueFactory(new PropertyValueFactory<>("roles"));
         this.colNombFunc.setCellValueFactory(new PropertyValueFactory<>("nombreFuncionario"));
         this.colApeFunc.setCellValueFactory(new PropertyValueFactory<>("apellidoFuncionario"));
         this.colSector.setCellValueFactory(new PropertyValueFactory<>("sectorFuncionario"));
         this.iniciarTabla();
+
+        txtNombUsu.textProperty().addListener((observable,oldValue,newValue) -> filtrarUsuario());
+    }
+
+    private void filtrarUsuario() {
+        Predicate<UsuarioTableClass> predicate = usuario ->{
+          String nombreUsuarioFiltro = txtNombUsu.getText();
+          return usuario.getNombreUsuario().contains(nombreUsuarioFiltro);
+        };
+        tblUsuarios.setItems(datosTabla.filtered(predicate));
     }
 
     public void iniciarTabla(){
-        ObservableList<UsuarioTableClass> datosTabla = FXCollections.observableArrayList();
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         List<Usuario> usuarios = usuarioDAO.obtenerTodos();
         for(Usuario u: usuarios){
-            UsuarioTableClass usuarioTableClass = new UsuarioTableClass(u.getNombreUsuario(),u.getRoles(),u.getFuncionario().getNombre(),u.getFuncionario().getApellido(),u.getFuncionario().getSector().getNombre());
-            //usuarioTableClass.obtenerRoles();
+            UsuarioTableClass usuarioTableClass = new UsuarioTableClass(u.getNombreUsuario(),u.getNombreRoles(),u.getFuncionario().getNombre(),u.getFuncionario().getApellido(),u.getFuncionario().getSector().getNombre());
             datosTabla.add(usuarioTableClass);
         }
         this.tblUsuarios.setItems(datosTabla);
@@ -86,13 +76,32 @@ public class SistemasController {
     }
 
     public void BuscarUsuario(ActionEvent actionEvent) {
+        String nombreUsuario = this.txtNombUsu.getText();
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         ObservableList usuarioTabla = FXCollections.observableArrayList();
-        Usuario usuario1 = usuarioDAO.obtenerUsuarioPorNombre(this.txtNombUsu.getText());
-        if(usuario1 != null){
-            usuarioTabla.add(new UsuarioTableClass(usuario1.getNombreUsuario(), usuario1.getRoles(), usuario1.getFuncionario().getNombre(), usuario1.getFuncionario().getApellido(), usuario1.getFuncionario().getSector().getNombre()));
+        try {
+            ComprobarCampo(nombreUsuario);
+            Usuario usuario = usuarioDAO.obtenerUsuarioPorNombre(nombreUsuario);
+            if(usuario != null){
+                usuarioTabla.add(new UsuarioTableClass(usuario.getNombreUsuario(), usuario.getNombreRoles(), usuario.getFuncionario().getNombre(), usuario.getFuncionario().getApellido(), usuario.getFuncionario().getSector().getNombre()));
+            }else{
+                throw new Exception("Usuario no encontrado revise los datos ingresados");
+            }
+
+            this.tblUsuarios.setItems(usuarioTabla);
+        }catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Datos Invalidos");
+            alert.setContentText(e.getMessage());
+            alert.show();
         }
-        this.tblUsuarios.setItems(usuarioTabla);
+    }
+
+    public void ComprobarCampo(String nombreUsuario) throws Exception {
+        if(!nombreUsuario.matches("^[^\s]+$")){
+            throw new Exception("Los campos no pueden estar vacios");
+        }
     }
 
     public void CrearUsuario(ActionEvent event) throws IOException {
@@ -107,11 +116,47 @@ public class SistemasController {
     }
 
     public void EditarUsuario(ActionEvent actionEvent) {
+        //setear ventana primero
+
+        //seleccion de usuario
+        UsuarioTableClass usuarioTableClass = (UsuarioTableClass) tblUsuarios.getSelectionModel().getSelectedItem();
+        if(usuarioTableClass == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("Debe seleccionar un usuario de la tabla.");
+            alert.showAndWait();
+        }
+
+        //setear 2da parte de la ventana
     }
 
     public void EliminarUsuario(ActionEvent actionEvent) {
     }
 
-    public void CerrarSesion(ActionEvent actionEvent) {
+    public void CerrarSesion(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/views/Login.fxml"));
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Cerrar sesión");
+        alert.setContentText("¿Estás seguro de que deseas cerrar sesión?");
+        Optional<ButtonType> resultado = alert.showAndWait();
+
+        if (resultado.get() == ButtonType.OK) {
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+    }
+
+    @AllArgsConstructor
+    @ToString
+    @Getter
+    protected class UsuarioTableClass{
+        String nombreUsuario;
+        List<String> roles;
+        String nombreFuncionario;
+        String apellidoFuncionario;
+        String sectorFuncionario;
+
     }
 }
