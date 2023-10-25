@@ -54,6 +54,7 @@ public class Usuario {
     public Usuario(String nombreUsuario, String contrasenia, List<Rol> roles) {
         this.nombreUsuario = nombreUsuario;
         this.contrasenia = contrasenia;
+        this.roles = roles;
     }
 
     public Usuario(String nombreUsuario, String contrasenia, Funcionario funcionario) {
