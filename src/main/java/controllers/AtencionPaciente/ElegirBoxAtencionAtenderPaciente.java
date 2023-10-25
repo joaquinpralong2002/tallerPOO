@@ -72,7 +72,7 @@ public class ElegirBoxAtencionAtenderPaciente {
                         AtenderPacienteController controller = loader.getController();
 
                         controller.setLugarAtencionSeleccionada(lugarAtencionSeleccionada);
-                        controller.recibirDatos(medico,paciente,colorTriage,registroEntrada);
+                        controller.recibirDatos(medico,paciente,colorTriage,registroEntrada,roles);
 
                         //Metodo para cerrar la pestaña de Medico
                         medicoStage.close();
@@ -124,6 +124,8 @@ public class ElegirBoxAtencionAtenderPaciente {
     @FXML
     public void recibirDatos(Medico medico, Paciente paciente, RegistroEntrada registroEntrada, List<Rol> roles){
         this.medico = medico;
+        System.out.println("medico en elegirbox" + medico);
+        System.out.println("roles en elegirbox" + roles);
         this.paciente = paciente;
         this.registroEntrada = registroEntrada;
         this.roles = roles;

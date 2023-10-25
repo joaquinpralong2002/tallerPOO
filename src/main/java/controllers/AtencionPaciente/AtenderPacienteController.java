@@ -17,12 +17,15 @@ import lombok.Getter;
 import model.BoxAtencion;
 import model.Enum.ColorTriage;
 import model.Enum.LugarAtencion;
+import model.Login.Rol;
 import model.Paciente;
 import model.Medico;
 import model.RegistroEntrada;
 
 import javax.swing.*;
+import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -32,6 +35,7 @@ public class AtenderPacienteController {
     private LugarAtencion lugarAtencionSeleccionada;
     private RegistroEntrada registroEntrada;
     private Medico medico;
+    private List<Rol> roles;
     private BoxAtencion boxAtencion;
     private ColorTriage colorTriage;
     @FXML
@@ -61,9 +65,24 @@ public class AtenderPacienteController {
 
                 // Si el usuario hace clic en el botón "Aceptar", entonces se realiza la acción
                 if (resultado.get() == ButtonType.OK) {
-                    System.out.println(persona);
                     medico.asignarBox(registroEntrada);
                     medico.atenderPaciente(persona,boxAtencion,diagnostico);
+
+
+                    FXMLLoader loader = new FXMLLoader();
+                    loader.setLocation(getClass().getResource("/views/MedicoViews/Medico.fxml"));
+                    Parent root = null;
+                    try {
+                        root = loader.load();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                    MedicoController medicoController = loader.getController();
+                    medicoController.recibirDatos(roles, medico);
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    Scene scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.show();
                 }
             }
         });
@@ -78,12 +97,14 @@ public class AtenderPacienteController {
 
     public void BotonAtras(ActionEvent event) throws Exception {
         // Volver atras a Médico
-        Parent root = FXMLLoader.load(getClass().getResource("/views/MedicoViews/Medico.fxml"));
+        FXMLLoader loader = new FXMLLoader();
+        Parent root = loader.load(getClass().getResource("/views/MedicoViews/Medico.fxml"));
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Ir atrás");
         alert.setContentText("¿Estás seguro de que deseas volver a la pestaña anterior?");
         Optional<ButtonType> resultado = alert.showAndWait();
-
+        MedicoController controller = new MedicoController();
+        controller.recibirDatos(roles, medico);
         if (resultado.isPresent() && resultado.get() == ButtonType.OK) {
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
@@ -93,13 +114,13 @@ public class AtenderPacienteController {
     }
 
     @FXML
-    public void recibirDatos(Medico medico, Paciente persona, ColorTriage colorTriage, RegistroEntrada registroEntrada){
+    public void recibirDatos(Medico medico, Paciente persona, ColorTriage colorTriage, RegistroEntrada registroEntrada, List<Rol> roles){
         this.medico = medico;
+        System.out.println(medico);
         this.persona = persona;
         this.colorTriage = colorTriage;
         this.registroEntrada = registroEntrada;
+        this.roles = roles;
     }
-
-
 
 }

@@ -29,9 +29,8 @@ public class Registro {
     @Enumerated(EnumType.STRING)
     private LugarAtencion lugarAtencion;
 
-    @ToString.Exclude
-    @OneToOne(cascade = CascadeType.ALL, optional = false, orphanRemoval = true)
-    @JoinColumn(name = "idMedico", nullable = false, unique = false)
+    @ManyToOne
+    @JoinColumn(name = "idMedico", referencedColumnName = "id", unique = false)
     private Medico medico;
 
     @ManyToOne(cascade = CascadeType.REFRESH, optional = false)
