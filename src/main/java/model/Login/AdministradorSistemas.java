@@ -18,7 +18,6 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @ToString
-@EqualsAndHashCode
 
 @Entity
 public class AdministradorSistemas extends FuncionarioAdministrativo {

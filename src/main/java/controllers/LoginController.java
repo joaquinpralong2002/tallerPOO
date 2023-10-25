@@ -1,7 +1,6 @@
 package controllers;
 
-import datasource.FuncionarioAdministrativoDAO;
-import datasource.FuncionarioDAO;
+
 import datasource.UsuarioDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,16 +22,21 @@ import model.Medico;
 import java.util.List;
 
 public class LoginController {
+
+
+    //Declaraciones
     private List<Rol> rolUsuario;
     private static Stage loginStage;
+
+
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
 
     @FXML
     private TextField usernameTextField;
     @FXML
     private TextField passwordTextField;
-
-    @FXML
-    private Button Loginbutton;
 
     public void handleLoginButtonAction(ActionEvent event) throws Exception {
         // Obtén los datos de inicio de sesión
@@ -54,12 +58,12 @@ public class LoginController {
                         AdministradorSistemas administradorSistemas = usuarioDAO.obtenerAdministradorPorIdUsuario(user.getIdUsuario());
 
                         SistemasController controladorSistemas = loaderSistemas.getController();
-                        controladorSistemas.recibirDatos(user.getRoles(), user,administradorSistemas);
+                        controladorSistemas.recibirDatos(user.getRoles(), user, administradorSistemas);
 
-                        Stage stageSistemas = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                        Scene sceneSistemas = new Scene(rootSistemas);
-                        stageSistemas.setScene(sceneSistemas);
-                        stageSistemas.show();
+                        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        scene = new Scene(rootSistemas);
+                        stage.setScene(scene);
+                        stage.show();
                         break;
                     case "Medico":
                         // Carga la escena de médico
@@ -76,26 +80,30 @@ public class LoginController {
                         System.out.println(user.getRoles());
 
                         // Cambia a la nueva escena
-                        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                        Scene scene = new Scene(rootMedico);
+                        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        scene = new Scene(rootMedico);
                         stage.setScene(scene);
                         stage.show();
                         break;
+
                     case "Funcionario":
                         FXMLLoader loaderFuncionario = new FXMLLoader();
-                        loaderFuncionario.setLocation(getClass().getResource("/views/FuncionarioViews/Funcionario.fxml"));
+                        loaderFuncionario.setLocation(getClass().getResource("/views/FuncionarioViews/FuncionarioEma.fxml"));
                         Parent rootFuncionario = loaderFuncionario.load();
 
-                        FuncionarioAdministrativo funcionarioAdministrativo = usuarioDAO.obtenerFuncionarioAdministrativoPorIdUsuario(user.getIdUsuario());
+                        //FuncionarioAdministrativo funcionarioAdministrativo = usuarioDAO.obtenerFuncionarioAdministrativoPorIdUsuario(user.getIdUsuario());
+                        Funcionario funciorio = usuarioDAO.obtenerFuncionarioAdministrativoPorIdUsuario(user.getIdUsuario());
 
-                        FuncionarioController funcionarioController = loaderFuncionario.getController();
-                        funcionarioController.recibirDatos(user.getRoles(), user, funcionarioAdministrativo);
+
+                        FuncionarioProController funcionarioProController = loaderFuncionario.getController();
+                        funcionarioProController.setFuncionario(funciorio);
+                        //funcionarioController.recibirDatos(user.getRoles(), user, funcionarioAdministrativo);
 
                         //RegistroEntradaController
-                        Stage stage1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                        Scene scene1 = new Scene(rootFuncionario);
-                        stage1.setScene(scene1);
-                        stage1.show();
+                        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        scene = new Scene(rootFuncionario);
+                        stage.setScene(scene);
+                        stage.show();
                         break;
                     default:
                 }
