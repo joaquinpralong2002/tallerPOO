@@ -54,10 +54,10 @@ public class BoxAtencionDAO implements GenericoDAO<BoxAtencion> {
     public BoxAtencion obtenerDisponible(LugarAtencion lugarAtencion){
         Session session = sessionFactory.openSession();
         String query = "SELECT box FROM BoxAtencion box WHERE box.lugarAtencion = :lugarAtencion";
-        BoxAtencion boxAtencion = session.createQuery(query, BoxAtencion.class)
-                .setParameter("lugarAtencion", lugarAtencion).getSingleResultOrNull();
+        List<BoxAtencion> boxAtencion = session.createQuery(query, BoxAtencion.class)
+                .setParameter("lugarAtencion", lugarAtencion).getResultList();
         session.close();
-        return boxAtencion;
+        return boxAtencion.get(0);
     }
 
     /**

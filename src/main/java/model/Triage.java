@@ -116,6 +116,57 @@ public class Triage{
         this.colorTriageFinal = ColorTriage.Ninguno;
     }
 
+    public Triage(RegistroEntrada registroEntrada, Medico medico,Respiracion respiracion, Pulso pulso, int vaLorPulso,
+                  EstadoMental estadoMental, Conciencia conciencia, DolorPecho dolorPecho,
+                  LecionesGraves lesionGrave, Edad edad, int valorEdad, Fiebre fiebre,
+                  float valorFiebre, Vomitos vomito, DolorAbdominal dolorAbdominal, SignoShock signoShock,
+                  LesionLeve lesionesLeves, Sangrado sangrado) {
+        this.respiracion = respiracion;
+        this.pulso = pulso;
+        this.vaLorPulso = vaLorPulso;
+        this.estadoMental = estadoMental;
+        this.conciencia = conciencia;
+        this.dolorPecho = dolorPecho;
+        this.lesionGrave = lesionGrave;
+        this.edad = edad;
+        this.valorEdad = valorEdad;
+        this.fiebre = fiebre;
+        this.valorFiebre = valorFiebre;
+        this.vomito = vomito;
+        this.dolorAbdominal = dolorAbdominal;
+        this.signoShock = signoShock;
+        this.lesionesLeves = lesionesLeves;
+        this.sangrado = sangrado;
+        this.colorTriageFinal = ColorTriage.Ninguno;
+        this.registroEntrada = registroEntrada;
+        this.medico = medico;
+    }
+
+    public Triage(RegistroEntrada registroEntrada, Enfermero enfermero,Respiracion respiracion, Pulso pulso, int vaLorPulso,
+                  EstadoMental estadoMental, Conciencia conciencia, DolorPecho dolorPecho,
+                  LecionesGraves lesionGrave, Edad edad, int valorEdad, Fiebre fiebre,
+                  float valorFiebre, Vomitos vomito, DolorAbdominal dolorAbdominal, SignoShock signoShock,
+                  LesionLeve lesionesLeves, Sangrado sangrado) {
+        this.respiracion = respiracion;
+        this.pulso = pulso;
+        this.vaLorPulso = vaLorPulso;
+        this.estadoMental = estadoMental;
+        this.conciencia = conciencia;
+        this.dolorPecho = dolorPecho;
+        this.lesionGrave = lesionGrave;
+        this.edad = edad;
+        this.valorEdad = valorEdad;
+        this.fiebre = fiebre;
+        this.valorFiebre = valorFiebre;
+        this.vomito = vomito;
+        this.dolorAbdominal = dolorAbdominal;
+        this.signoShock = signoShock;
+        this.lesionesLeves = lesionesLeves;
+        this.sangrado = sangrado;
+        this.colorTriageFinal = ColorTriage.Ninguno;
+        this.registroEntrada = registroEntrada;
+        this.enfermero = enfermero;
+    }
     /**
      * Calcula el color de triage recomendado para el paciente.
      *
