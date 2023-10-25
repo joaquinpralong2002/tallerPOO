@@ -52,23 +52,6 @@ public class MedicoController {
             Paciente paciente = pacienteDAO.obtener(id);
             return paciente;
         }
-
-        public static Predicate<PacienteTableClass> filtrarPorNombre(String nombre) {
-            return paciente -> paciente.getNombre().equals(nombre);
-        }
-
-        public static Predicate<PacienteTableClass> filtrarPorApellido(String apellido) {
-            return paciente -> paciente.getApellido().equals(apellido);
-        }
-
-        public static Predicate<PacienteTableClass> filtrarPorDni(Long dni) {
-            return paciente -> paciente.getDni() == dni;
-        }
-
-        public static Predicate<PacienteTableClass> filtrarPorColorTriage(ColorTriage colorTriage) {
-            return paciente -> paciente.getColorTriage().equals(colorTriage);
-        }
-
     }
 
     private List<Rol> roles;
@@ -121,7 +104,8 @@ public class MedicoController {
     public void recibirDatos(List<Rol> roles, Medico medico) {
         this.roles = roles;
         this.medico = medico;
-        System.out.println(roles);
+        System.out.println("medico en medico controlador" + medico);
+        System.out.println("roles en medico controlador" + roles);
         boolean contieneTriage = false;
         for (int i = 0; i < roles.size(); i++) {
             if (roles.get(i).getNombre().equals("Triage")) contieneTriage = true;
@@ -238,6 +222,9 @@ public class MedicoController {
         //Se verifica que el paciente tenga un triage asociado para atenderlo
         Long id = ((PacienteTableClass) tblPacientes.getSelectionModel().getSelectedItem()).getId();
         Paciente paciente = pacienteTableClass.obtenerPaciente(id);
+
+        System.out.println("paciente: " + paciente);
+        System.out.println("medico: " + medico);
 
         controller.recibirDatos(medico,paciente,paciente.getRegistrosEntradas().get(paciente.getRegistrosEntradas().size() - 1), roles);
 

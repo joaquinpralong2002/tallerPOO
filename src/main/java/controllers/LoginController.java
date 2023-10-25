@@ -73,7 +73,7 @@ public class LoginController {
 
                         //Se busca el objeto de médico para pasarlo al controlador
                         Medico medico = usuarioDAO.obtenerMedicoPorIdUsuario(user.getIdUsuario());
-
+                        System.out.println("Médico en login controlador: " + medico);
                         //Carga el controlador de médico, y le envía el médico y sus roles
                         MedicoController controller = loader.getController();
                         controller.recibirDatos(user.getRoles(), medico);

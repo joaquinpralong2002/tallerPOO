@@ -44,7 +44,7 @@ public class Main {
 //************************************************* Boxes *******************************************************//
 
         //Creacion Boxes en Colsultorio
-        BoxAtencion boxAtencion = new BoxAtencion(LugarAtencion.Consultorio,1,30,true);
+        BoxAtencion boxAtencion = new BoxAtencion(LugarAtencion.Consultorio,1,5,true);
         BoxAtencion box1 = new BoxAtencion(LugarAtencion.Consultorio, 2, 5, true);
         BoxAtencion box2 = new BoxAtencion(LugarAtencion.Consultorio, 3, 5, true);
         BoxAtencion box3 = new BoxAtencion(LugarAtencion.Consultorio, 4, 5, true);
@@ -409,12 +409,12 @@ public class Main {
         medico3.confirmarTriage(registroEntrada8,triage8,triage8.getColorTriageRecomendado());
 
 //************************************************* Atencion de Pacientes **************************************//
-        medico.atenderPaciente(paciente, boxAtencion, "CORONAVAIRUS");
+        /*medico.atenderPaciente(paciente, boxAtencion, "CORONAVAIRUS");
         medico4.atenderPaciente(paciente3,box1,"Parasitos");
         medico2.atenderPaciente(paciente5,box2,"Sobreesfuerzo muscular");
         medico3.atenderPaciente(paciente7,box3,"Sobreesfuerzo muscular");
         medico5.atenderPaciente(paciente11,box2,"Sin resulados");
-
+        */
         //no deja q un medico haga mas de 1 registro
 //        medico.atenderPaciente(paciente4,box6,"Corte en la cabeza");
 //        medico.atenderPaciente(paciente6,box7,"Corte en el antebrazo");
