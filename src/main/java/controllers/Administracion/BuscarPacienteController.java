@@ -102,8 +102,7 @@ public class BuscarPacienteController {
                 alert.setTitle("Informacion");
                 alert.setHeaderText("Registro Creado Exitosamente");
                 alert.show();
-                //esta comentado para que no se persista
-                //funcionarioAdministrativoIniciado.RealizarRegistroEntrada(paciente,this.txtMotivo.getText());
+                funcionarioAdministrativoIniciado.RealizarRegistroEntrada(paciente,this.txtMotivo.getText());
             }else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");

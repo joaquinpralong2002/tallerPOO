@@ -142,6 +142,7 @@ public class Medico extends Funcionario implements CapacitadoTriage{
 
     @Override
     public boolean asignarBox(RegistroEntrada registroEntrada){
+        RegistroEntradaDAO registroEntradaDAO = new RegistroEntradaDAO();
         //Se crea el DAO de box de atención.
         BoxAtencionDAO boxAtencionDAO = new BoxAtencionDAO();
         //Se obtiene el color de triage asociado al registro de entrada, y en base a este se elige a qué lugar de atención
@@ -160,6 +161,8 @@ public class Medico extends Funcionario implements CapacitadoTriage{
             boxAtencionDAO.actualizar(boxAsignado);
             AsignacionDAO asignacionDAO = new AsignacionDAO();
             asignacionDAO.agregar(asignacion);
+            registroEntrada.setAsignacion(asignacion);
+            registroEntradaDAO.actualizar(registroEntrada);
             return true;
         }
         else {

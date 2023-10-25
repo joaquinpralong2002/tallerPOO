@@ -65,17 +65,16 @@ public class RegistroEntradaController {
                 throw new Exception();
             }
 
-            Paciente paciente = new Paciente(nombrePac,apellidoPac,fechaNaciPac,domicilioPac,Integer.parseInt(dniPac),Integer.parseInt(telefonoFijoPac),Long.parseLong(telefonoCelPac),estadoCivilPac,correoPac,teleonoPersonaContactoPac);
-
-            //persistencia de los datos
-            //pacienteDAO.agregar(paciente);
+            Paciente paciente = new Paciente(nombrePac,apellidoPac,fechaNaciPac,domicilioPac,Integer.parseInt(dniPac),Integer.parseInt(telefonoFijoPac),Long.parseLong(telefonoCelPac),estadoCivilPac,correoPac,Integer.parseInt(teleonoPersonaContactoPac));
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Informacion");
             alert.setHeaderText("Registro Creado Exitosamente");
             alert.show();
-            //esta comentado para que no se persista
-            //funcionarioAdministrativoIniciado.RealizarRegistroEntrada(paciente,this.txtMotivoConsulta.getText());
+
+            //persistencia de los datos
+            pacienteDAO.agregar(paciente);
+            funcionarioAdministrativoIniciado.RealizarRegistroEntrada(paciente,this.txtMotivoConsulta.getText());
 
         }catch (IllegalArgumentException e) {
             // Mostrar un mensaje de error al usuario

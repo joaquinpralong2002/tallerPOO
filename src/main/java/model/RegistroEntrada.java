@@ -61,21 +61,22 @@ public class RegistroEntrada {
     }
 
     //constructor con atributos popios de la clase
+
     public RegistroEntrada(String descripcion) {
         this.fecha = LocalDate.now();
         this.hora = LocalTime.now();
         this.descripcion = descripcion;
     }
-
     //constructor con atributo Asignacion agregado
+
     public RegistroEntrada(String descripcion, Asignacion asignacion) {
         this.fecha = LocalDate.now();
         this.hora = LocalTime.now();
         this.descripcion = descripcion;
         this.asignacion = asignacion;
     }
-
     //constructor con atributo Paciente agregado
+
     public RegistroEntrada(String descripcion, Asignacion asignacion,
                            Paciente paciente) {
         this.fecha = LocalDate.now();
@@ -84,8 +85,8 @@ public class RegistroEntrada {
         this.asignacion = asignacion;
         this.paciente = paciente;
     }
-
     //constructor con atributo Triage agregado
+
     public RegistroEntrada(String descripcion,Asignacion asignacion,
                            Paciente paciente, Triage triage) {
         this.fecha = LocalDate.now();
@@ -95,8 +96,8 @@ public class RegistroEntrada {
         this.paciente = paciente;
         this.triage = triage;
     }
-
     //constructor con atributo FuncionarioAdministrativo agregado
+
     public RegistroEntrada(String descripcion,Asignacion asignacion,
                            Paciente paciente, Triage triage,
                            FuncionarioAdministrativo funcionarioAdministrativo) {
@@ -108,11 +109,18 @@ public class RegistroEntrada {
         this.triage = triage;
         this.funcionariosAdministrativo = funcionarioAdministrativo;
     }
-
     //constructor de Inicio (fecha, hora, descripcion, paciente, funcionario)
+
     public  RegistroEntrada(String descripcion, Paciente paciente, FuncionarioAdministrativo funcionarioAdministrativo){
         this.fecha = LocalDate.now();
         this.hora = LocalTime.now();
+        this.descripcion = descripcion;
+        this.paciente = paciente;
+        this.funcionariosAdministrativo = funcionarioAdministrativo;
+    }
+    public RegistroEntrada(String descripcion, Paciente paciente, FuncionarioAdministrativo funcionarioAdministrativo, LocalDate fecha, LocalTime hora) {
+        this.fecha = fecha;
+        this.hora = hora;
         this.descripcion = descripcion;
         this.paciente = paciente;
         this.funcionariosAdministrativo = funcionarioAdministrativo;
