@@ -135,7 +135,7 @@ public class Main {
         medico.confirmarTriage(paciente.getRegistrosEntradas().get(paciente.getRegistrosEntradas().size() - 1),
                 medico.getTriagesRealizados().get(medico.getTriagesRealizados().size() - 1),medico.getTriagesRealizados().get(medico.getTriagesRealizados().size() - 1).getColorTriageRecomendado());
 
-        //medico.atenderPaciente(paciente, boxAtencion, "CORONAVAIRUS");
+        medico.atenderPaciente(paciente, boxAtencion, "CORONAVAIRUS");
 
 
 
