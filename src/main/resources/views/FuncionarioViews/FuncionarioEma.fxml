@@ -1,43 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FuncionarioController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FuncionarioProController">
    <children>
-      <BorderPane layoutX="-2.0" layoutY="1.0" prefHeight="768.0" prefWidth="148.0">
+      <BorderPane layoutY="-2.0" prefHeight="768.0" prefWidth="160.0" styleClass="fondo-color-primario" stylesheets="@../../Styless/Styles.css">
          <top>
-            <BorderPane prefHeight="138.0" prefWidth="551.0" BorderPane.alignment="CENTER">
+            <BorderPane prefHeight="171.0" prefWidth="160.0" stylesheets="@../../Styless/Styles.css" BorderPane.alignment="CENTER">
                <center>
-                  <ImageView fitHeight="61.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+                  <ImageView fitHeight="126.0" fitWidth="118.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                     <image>
+                        <Image url="@../../images/only-logo%20.jpg" />
+                     </image></ImageView>
                </center>
                <bottom>
-                  <Label text="Administración" BorderPane.alignment="CENTER">
+                  <Label alignment="CENTER" prefHeight="40.0" prefWidth="160.0" text="Administración" BorderPane.alignment="CENTER">
                      <font>
-                        <Font size="14.0" />
+                        <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
                </bottom>
             </BorderPane>
          </top>
          <center>
-            <VBox prefHeight="222.0" prefWidth="185.0" BorderPane.alignment="CENTER">
+            <VBox prefHeight="354.0" prefWidth="160.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="bttmRegEnt" mnemonicParsing="false" onAction="#CrearRegistroEntrada" prefHeight="40.0" prefWidth="147.0" text="Registro Entrada" />
-                  <Button fx:id="bttmBuscarPaciente" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#BuscarPaciente" prefHeight="40.0" prefWidth="147.0" text="Buscar Paciente" />
-                  <Button layoutX="10.0" layoutY="50.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="147.0" />
+                  <Separator prefHeight="160.0" prefWidth="200.0" />
+                  <Button fx:id="bttmRegistroEntrada" mnemonicParsing="false" onAction="#RegistroEntradadaAction" prefHeight="40.0" prefWidth="160.0" stylesheets="@../../Styless/Styles.css" text="Registro Entrada">
+                     <styleClass>
+                        <String fx:value="boton-basico" />
+                        <String fx:value="boton-basico-encima" />
+                     </styleClass></Button>
+                  <Button fx:id="bttmBuscarPaciente" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#BuscarPaciente" prefHeight="40.0" prefWidth="160.0" stylesheets="@../../Styless/Styles.css" text="Buscar Paciente">
+                     <styleClass>
+                        <String fx:value="boton-basico" />
+                        <String fx:value="boton-basico-encima" />
+                     </styleClass></Button>
+                  <Button fx:id="bttmEstadistica" layoutX="10.0" layoutY="50.0" mnemonicParsing="false" onAction="#EstadisticasAction" prefHeight="40.0" prefWidth="160.0" stylesheets="@../../Styless/Styles.css" text="Estadisticas">
+                     <styleClass>
+                        <String fx:value="boton-basico" />
+                        <String fx:value="boton-basico-encima" />
+                     </styleClass></Button>
+                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="160.0" stylesheets="@../../Styless/Styles.css">
+                     <styleClass>
+                        <String fx:value="boton-basico" />
+                        <String fx:value="boton-basico-encima" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="bttnNomina" mnemonicParsing="false" onAction="#NominaAction" prefHeight="40.0" prefWidth="160.0" stylesheets="@../../Styless/Styles.css" text="Nómina">
+                     <styleClass>
+                        <String fx:value="boton-basico" />
+                        <String fx:value="boton-basico-encima" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="bttnAjustes" mnemonicParsing="false" onAction="#AjustesAction" prefHeight="40.0" prefWidth="160.0" stylesheets="@../../Styless/Styles.css" text="Ajustes">
+                     <styleClass>
+                        <String fx:value="boton-basico" />
+                        <String fx:value="boton-basico-encima" />
+                     </styleClass>
+                  </Button>
                </children>
             </VBox>
          </center>
          <bottom>
-            <Button fx:id="bttmCerrarSesion" mnemonicParsing="false" onAction="#CerrarSesion" prefHeight="40.0" prefWidth="147.0" text="Cerrar Sesion" BorderPane.alignment="CENTER" />
+            <VBox alignment="BOTTOM_CENTER" prefHeight="360.0" prefWidth="160.0" styleClass="fondo-color-primario" stylesheets="@../../Styless/Styles.css" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="bttmCerrarSesion" mnemonicParsing="false" onAction="#CerrarSesion" prefHeight="40.0" prefWidth="160.0" stylesheets="@../../Styless/Styles.css" text="Cerrar Sesion">
+                     <styleClass>
+                        <String fx:value="boton-cerrar" />
+                        <String fx:value="boton-cerrar-encima" />
+                     </styleClass>
+                  </Button>
+               </children>
+            </VBox>
          </bottom>
       </BorderPane>
-      <BorderPane layoutX="148.0" prefHeight="400.0" prefWidth="454.0" />
+      <Separator layoutX="161.0" layoutY="-2.0" orientation="VERTICAL" prefHeight="768.0" prefWidth="6.0" styleClass="fondo-blanco" stylesheets="@../../Styless/Styles.css" />
+      <Pane fx:id="paneTrasero" layoutX="164.0" prefHeight="768.0" prefWidth="1200.0" styleClass="fondo-blanco" stylesheets="@../../Styless/Styles.css" />
    </children>
 </AnchorPane>

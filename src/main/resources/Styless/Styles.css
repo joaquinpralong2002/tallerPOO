@@ -1,0 +1,47 @@
+.fondo-transparente{
+}
+
+.fondo-blanco{
+-fx-background-color: white;
+}
+
+.fondo-color-primario{
+-fx-background-color: crimson;
+}
+
+.fondo-color-secundario{
+-fx-background-color:palevioletred;
+}
+
+.marco-color-primario{
+-fx-border-color: crimson;
+-fx-border-width: 4 2 2 2;
+}
+
+.boton-basico{
+-fx-background-radius: 0;
+-fx-padding: 10 10;
+-fx-alignment: top-left;
+-fx-font-weight: bold;
+-fx-background-color: palevioletred;
+-fx-border-width: 0 0 2 0;
+-fx-border-color: lightgray;
+}
+
+.boton-basico-encima:hover {
+    -fx-background-color: crimson; /* Cambia el color de fondo al pasar el cursor (celeste) */
+    -fx-border-color: gray;
+    -fx-cursor: hand;
+}
+
+.boton-cerrar{
+-fx-background-radius: 0;
+-fx-padding: 10 10;
+-fx-font-weight: bold;
+-fx-background-color: white;
+}
+
+.boton-cerrar-encima: hover{
+-fx-background-color:palevioletred;
+-fx-cursor: hand;
+}

@@ -11,14 +11,14 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="900.0" maxWidth="1600.0" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Administracion.RegistroEntradaController">
+<AnchorPane prefHeight="768.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Administracion.RegistroEntradaController">
    <children>
-      <Label layoutX="561.0" layoutY="96.0" text="Realizar Registro Entrada">
+      <Label layoutX="435.0" layoutY="74.0" text="Realizar Registro Entrada">
          <font>
             <Font size="30.0" />
          </font>
       </Label>
-      <HBox layoutX="302.0" layoutY="179.0" prefHeight="458.0" prefWidth="847.0">
+      <HBox layoutX="177.0" layoutY="155.0" prefHeight="458.0" prefWidth="847.0">
          <children>
             <Pane prefHeight="416.0" prefWidth="641.0">
                <children>
@@ -98,7 +98,7 @@
             </Pane>
          </children>
       </HBox>
-      <Button fx:id="bttmVolver" layoutX="14.0" layoutY="23.0" mnemonicParsing="false" onAction="#Volver" prefHeight="40.0" prefWidth="150.0" text="Volver">
+      <Button fx:id="bttmVolver" layoutX="33.0" layoutY="56.0" mnemonicParsing="false" onAction="#Volver" prefHeight="40.0" prefWidth="150.0" text="Volver">
          <font>
             <Font size="18.0" />
          </font></Button>
