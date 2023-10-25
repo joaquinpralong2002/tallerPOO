@@ -54,8 +54,11 @@ public class Main {
         usuarioDAO.actualizar(usuarioAdminSistemas);
 
         //Se crea un box de atención
-        BoxAtencion boxAtencion = new BoxAtencion(LugarAtencion.Consultorio,1,30,true);
+        BoxAtencion boxAtencion = new BoxAtencion(LugarAtencion.Consultorio,1,3,true);
         boxAtencionDAO.agregar(boxAtencion);
+
+        BoxAtencion boxAtencion2 = new BoxAtencion(LugarAtencion.Emergencia,2,2,true);
+        boxAtencionDAO.agregar(boxAtencion2);
 
         //Creación de un paciente.
         Paciente paciente = new Paciente("Juan" ,"Pérez",LocalDate.of(1975,11,3),"Sargento Rodriguez",20113654,
@@ -132,7 +135,7 @@ public class Main {
         medico.confirmarTriage(paciente.getRegistrosEntradas().get(paciente.getRegistrosEntradas().size() - 1),
                 medico.getTriagesRealizados().get(medico.getTriagesRealizados().size() - 1),medico.getTriagesRealizados().get(medico.getTriagesRealizados().size() - 1).getColorTriageRecomendado());
 
-        medico.atenderPaciente(paciente, boxAtencion, "CORONAVAIRUS");
+        //medico.atenderPaciente(paciente, boxAtencion, "CORONAVAIRUS");
 
 
 

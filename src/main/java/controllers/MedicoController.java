@@ -213,6 +213,8 @@ public class MedicoController {
     }
 
     public void AtenderPaciente(ActionEvent event) throws Exception {
+
+
         // Atiende al paciente
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/views/MedicoViews/ElegirBoxAtencion_AtenderPaciente.fxml"));
@@ -237,14 +239,13 @@ public class MedicoController {
         Long id = ((PacienteTableClass) tblPacientes.getSelectionModel().getSelectedItem()).getId();
         Paciente paciente = pacienteTableClass.obtenerPaciente(id);
 
-
+        controller.recibirDatos(medico,paciente,paciente.getRegistrosEntradas().get(paciente.getRegistrosEntradas().size() - 1), roles);
 
         if (paciente.getRegistrosEntradas().get(paciente.getRegistrosEntradas().size() - 1).isTriagiado()) {
             //Verifica el Color de triage del Paciente y lo envia a la siguiente escecna.
             ColorTriage colorTriage = paciente.getRegistrosEntradas().get(paciente.getRegistrosEntradas().size() - 1).getTriage().getColorTriageFinal();
-
             controller.setBoxRecomendadoApp(colorTriage);
-            controller.recibirDatos(medico,paciente);
+            
             // Cambia a la nueva escena
             Stage stage = new Stage();
             Scene scene = new Scene(root);

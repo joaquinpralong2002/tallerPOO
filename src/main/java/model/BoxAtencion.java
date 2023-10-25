@@ -27,9 +27,9 @@ public class BoxAtencion {
     @Enumerated(EnumType.STRING)
     private LugarAtencion lugarAtencion;
 
-    @OneToMany(mappedBy = "boxAtencion", orphanRemoval = true)
+    @OneToMany(mappedBy = "boxAtencion", orphanRemoval = true, fetch = FetchType.EAGER)
     @ToString.Exclude
-    private Set<Asignacion> asignaciones = new LinkedHashSet<>();
+    private List<Asignacion> asignaciones = new LinkedList<>();
 
     @OneToOne(mappedBy = "boxAtencion", cascade = CascadeType.ALL, orphanRemoval = true)
     private Medico medico;

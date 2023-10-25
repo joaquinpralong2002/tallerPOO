@@ -25,6 +25,9 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="LabalTipoBox" layoutX="968.0" layoutY="62.0" prefHeight="17.0" prefWidth="118.0" text="Label" />
+      <Label fx:id="LabalTipoBox" layoutX="960.0" layoutY="57.0" prefHeight="17.0" prefWidth="118.0" text="Label" textFill="#610000">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
    </children>
 </Pane>
