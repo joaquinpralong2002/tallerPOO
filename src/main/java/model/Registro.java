@@ -31,10 +31,10 @@ public class Registro {
 
     @ToString.Exclude
     @OneToOne(cascade = CascadeType.ALL, optional = false, orphanRemoval = true)
-    @JoinColumn(name = "idMedico", nullable = false)
+    @JoinColumn(name = "idMedico", nullable = false, unique = false)
     private Medico medico;
 
-    @ManyToOne(cascade = CascadeType.ALL, optional = false)
+    @ManyToOne(cascade = CascadeType.REFRESH, optional = false)
     @JoinColumn(name = "idPaciente", nullable = false)
     private Paciente paciente;
 

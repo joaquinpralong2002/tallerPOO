@@ -5,10 +5,7 @@ import lombok.*;
 import model.Enum.EstadoCivil;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Clase que representa a un Paciente.
@@ -25,16 +22,16 @@ public class Paciente extends Persona{
 
 
     @ToString.Exclude
-    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "paciente", orphanRemoval = true, fetch = FetchType.EAGER)
     private List<ResultadoDiagnostico> resultadosDiagnosticos = new ArrayList<>();
 
     @ToString.Exclude
-    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "paciente", orphanRemoval = true, fetch = FetchType.EAGER)
     private List<RegistroEntrada> registrosEntradas = new ArrayList<>();
 
     @ToString.Exclude
-    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Registro> registros = new LinkedHashSet<>();
+    @OneToMany(mappedBy = "paciente", orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<Registro> registros = new LinkedList<>();
 
     //sugerir cambiar tipo de persona de contacto a int q sea un numero de telefono
     public Paciente(String nombre, String apellido, LocalDate fechaNacimiento, String domicilio, int DNI,

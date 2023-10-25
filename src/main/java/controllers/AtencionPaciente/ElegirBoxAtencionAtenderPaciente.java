@@ -14,10 +14,13 @@ import javafx.stage.Stage;
 import model.BoxAtencion;
 import model.Enum.ColorTriage;
 import model.Enum.LugarAtencion;
+import model.Login.Rol;
 import model.Medico;
 import model.Paciente;
+import model.RegistroEntrada;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 
 public class ElegirBoxAtencionAtenderPaciente {
@@ -30,8 +33,7 @@ public class ElegirBoxAtencionAtenderPaciente {
 
     @FXML
     private RadioButton BotonRedondoEmergencia, BotonRedondoConsultorio, BotonRedondoInternaciones;
-    @FXML
-    private BoxAtencion boxAtencion;
+
     @FXML
     private Label BoxRecomendadoApp;
     private LugarAtencion lugarAtencionSeleccionada;
@@ -39,6 +41,8 @@ public class ElegirBoxAtencionAtenderPaciente {
     private ColorTriage colorTriage;
     private Medico medico;
     private Paciente paciente;
+    private RegistroEntrada registroEntrada;
+    private List<Rol> roles;
 
     @FXML
     public void initialize(){
@@ -66,9 +70,10 @@ public class ElegirBoxAtencionAtenderPaciente {
 
                         // Establece la opción seleccionada en la siguiente escena
                         AtenderPacienteController controller = loader.getController();
-                        controller.setLugarAtencionSeleccionada(lugarAtencionSeleccionada);
 
-                        controller.recibirDatos(medico,paciente,colorTriage);
+                        controller.setLugarAtencionSeleccionada(lugarAtencionSeleccionada);
+                        controller.recibirDatos(medico,paciente,colorTriage,registroEntrada);
+
                         //Metodo para cerrar la pestaña de Medico
                         medicoStage.close();
 
@@ -104,10 +109,11 @@ public class ElegirBoxAtencionAtenderPaciente {
 
     public void setBoxRecomendadoApp(ColorTriage colorTriage) {
         this.colorTriage = colorTriage;
+        System.out.println(colorTriage);
         if(colorTriage == ColorTriage.Rojo || colorTriage == ColorTriage.Naranja){
             BoxRecomendadoApp.setText("Internaciones");
         }
-        if(colorTriage == ColorTriage.Amarillo){
+        else if(colorTriage == ColorTriage.Amarillo){
             BoxRecomendadoApp.setText("Emergencia");
         }
         else {
@@ -116,18 +122,24 @@ public class ElegirBoxAtencionAtenderPaciente {
     }
 
     @FXML
-    public void recibirDatos(Medico medico, Paciente paciente){
+    public void recibirDatos(Medico medico, Paciente paciente, RegistroEntrada registroEntrada, List<Rol> roles){
         this.medico = medico;
         this.paciente = paciente;
+        this.registroEntrada = registroEntrada;
+        this.roles = roles;
     }
 
     public void BotonAtras(ActionEvent event) throws Exception {
         // Volver atras a Médico
-        Parent root = FXMLLoader.load(getClass().getResource("/views/MedicoViews/Medico.fxml"));
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/views/MedicoViews/Medico.fxml"));
+        Parent root = loader.load();
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Ir atrás");
         alert.setContentText("¿Estás seguro de que deseas volver a la pestaña anterior?");
         Optional<ButtonType> resultado = alert.showAndWait();
+        MedicoController controller = loader.getController();
+        controller.recibirDatos(roles, medico);
 
         //Metodo para cerrar la pestaña de Medico
         medicoStage.close();

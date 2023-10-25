@@ -421,5 +421,12 @@ public class Main {
 //        medico2.atenderPaciente(paciente8,box4,"Migraña generada por estres");
 //        medico4.atenderPaciente(paciente9,box8,"Contucion cerebral por golpe");
 //        medico.atenderPaciente(paciente10,box11,"Coma Alcholico");
+
+
+
+
+
+
+        //HICE CAGADA
     }
 }

@@ -19,6 +19,7 @@ import model.Enum.ColorTriage;
 import model.Enum.LugarAtencion;
 import model.Paciente;
 import model.Medico;
+import model.RegistroEntrada;
 
 import javax.swing.*;
 import java.net.URL;
@@ -29,6 +30,7 @@ public class AtenderPacienteController {
     private Paciente persona;
     @Getter
     private LugarAtencion lugarAtencionSeleccionada;
+    private RegistroEntrada registroEntrada;
     private Medico medico;
     private BoxAtencion boxAtencion;
     private ColorTriage colorTriage;
@@ -42,10 +44,10 @@ public class AtenderPacienteController {
     private Label LabalTipoBox;
 
 
+
     //Metodo para guardar en que Box de atencion lo atendieron, se guarda en el Registro
     //Revisar si anda...
     public void BotonRealizarRegistro(ActionEvent event) throws Exception {
-        boxAtencion.setLugarAtencion(lugarAtencionSeleccionada);
         // Llena el TextField
         String diagnostico = campoDeTexto.getText();
         realizarDiagnosticoButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -59,14 +61,9 @@ public class AtenderPacienteController {
 
                 // Si el usuario hace clic en el botón "Aceptar", entonces se realiza la acción
                 if (resultado.get() == ButtonType.OK) {
-                    try {
-                        medico.atenderPaciente(persona,boxAtencion,diagnostico);
-                    } catch (Exception e) {
-                        Alert alertError = new Alert(Alert.AlertType.ERROR);
-                        alertError.setTitle("Error");
-                        alertError.setContentText(e.getMessage());
-                        alertError.showAndWait();
-                    }
+                    System.out.println(persona);
+                    medico.asignarBox(registroEntrada);
+                    medico.atenderPaciente(persona,boxAtencion,diagnostico);
                 }
             }
         });
@@ -75,6 +72,8 @@ public class AtenderPacienteController {
     public void setLugarAtencionSeleccionada(LugarAtencion lugarAtencionSeleccionada) {
         this.lugarAtencionSeleccionada = lugarAtencionSeleccionada;
         LabalTipoBox.setText(lugarAtencionSeleccionada.name());
+        BoxAtencionDAO boxAtencionDAO = new BoxAtencionDAO();
+        boxAtencion = boxAtencionDAO.obtenerDisponible(lugarAtencionSeleccionada);
     }
 
     public void BotonAtras(ActionEvent event) throws Exception {
@@ -94,10 +93,11 @@ public class AtenderPacienteController {
     }
 
     @FXML
-    public void recibirDatos(Medico medico, Paciente persona, ColorTriage colorTriage){
+    public void recibirDatos(Medico medico, Paciente persona, ColorTriage colorTriage, RegistroEntrada registroEntrada){
         this.medico = medico;
         this.persona = persona;
         this.colorTriage = colorTriage;
+        this.registroEntrada = registroEntrada;
     }
 
 

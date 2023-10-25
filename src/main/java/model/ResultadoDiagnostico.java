@@ -22,7 +22,7 @@ public class ResultadoDiagnostico {
 
     private String descripcion;
 
-    @ManyToOne(cascade = CascadeType.ALL, optional = false)
+    @ManyToOne(cascade = CascadeType.REFRESH, optional = false)
     @JoinColumn(name = "idPaciente", nullable = false)
     private Paciente paciente;
 

@@ -110,9 +110,15 @@ public class Medico extends Funcionario implements CapacitadoTriage{
         RegistroDAO registroDAO = new RegistroDAO();
         ResultadoDiagnosticoDAO resultadoDiagnosticoDAO = new ResultadoDiagnosticoDAO();
         PacienteDAO pacienteDAO = new PacienteDAO();
+        BoxAtencionDAO boxAtencionDAO = new BoxAtencionDAO();
+        box.setMedico(this);
+        //box.getAsignaciones().get(box.getAsignaciones().size() -1);
+        boxAtencionDAO.actualizar(box);
 
+        System.out.println(box);
         Registro registro = new Registro(box.getLugarAtencion(), paciente, this);
         registroDAO.agregar(registro);
+        System.out.println(registro);
         paciente.agregarRegistros(registro);
 
         ResultadoDiagnostico resultadoDiagnostico = new ResultadoDiagnostico(descripcionDiagnostico, paciente);

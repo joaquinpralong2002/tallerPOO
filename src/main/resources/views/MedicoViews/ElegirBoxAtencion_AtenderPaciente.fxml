@@ -15,7 +15,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <RadioButton fx:id="BotonRedondoEmergencia" layoutX="109.0" layoutY="232.0" mnemonicParsing="false" onAction="#elegirBoxAtencion" style="-fx-text-alignment: left;" text="Emergencia">
+      <RadioButton fx:id="BotonRedondoEmergencia" layoutX="94.0" layoutY="232.0" mnemonicParsing="false" onAction="#elegirBoxAtencion" style="-fx-text-alignment: left;" text="Emergencia">
          <font>
             <Font size="15.0" />
          </font>
@@ -25,7 +25,7 @@
             <Font size="15.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="BotonRedondoInternaciones" layoutX="404.0" layoutY="232.0" mnemonicParsing="false" onAction="#elegirBoxAtencion" text="Internaciones">
+      <RadioButton fx:id="BotonRedondoInternaciones" layoutX="398.0" layoutY="232.0" mnemonicParsing="false" onAction="#elegirBoxAtencion" text="Internaciones">
          <font>
             <Font size="15.0" />
          </font>
@@ -35,6 +35,9 @@
             <Font size="13.0" />
          </font>
       </Label>
-      <Label fx:id="BoxRecomendadoApp" layoutX="208.0" layoutY="29.0" text="Label" />
+      <Label fx:id="BoxRecomendadoApp" layoutX="198.0" layoutY="24.0" text="Label" textFill="#650909">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
    </children>
 </AnchorPane>
