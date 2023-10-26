@@ -2,6 +2,8 @@ package model;
 
 import datasource.AsignacionDAO;
 import datasource.BoxAtencionDAO;
+import datasource.RegistroEntradaDAO;
+import datasource.TriageDAO;
 import jakarta.persistence.*;
 import lombok.*;
 import model.Enum.ColorTriage;
@@ -25,7 +27,7 @@ import java.util.List;
 @Entity
 public class Enfermero extends Funcionario implements CapacitadoTriage{
     @ToString.Exclude
-    @OneToMany(mappedBy = "enfermero", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "enfermero", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Triage> triagesRealizados = new ArrayList<>();
 
     //constructor
@@ -37,12 +39,16 @@ public class Enfermero extends Funcionario implements CapacitadoTriage{
 
     @Override
     public Triage realizarTriage(Respiracion respiracion, Pulso pulso, int valorPulso, EstadoMental estadoMental,
-                                      Conciencia conciencia, DolorPecho dolorPecho, LecionesGraves lecionesGraves, Edad edad,
-                                      int valorEdad, Fiebre fiebre, float valorFiebre, Vomitos vomitos, DolorAbdominal dolorAbdominal,
-                                      SignoShock signoShock, LesionLeve lesionLeve, Sangrado sangrado) {
+                                 Conciencia conciencia, DolorPecho dolorPecho, LecionesGraves lecionesGraves, Edad edad,
+                                 int valorEdad, Fiebre fiebre, float valorFiebre, Vomitos vomitos, DolorAbdominal dolorAbdominal,
+                                 SignoShock signoShock, LesionLeve lesionLeve, Sangrado sangrado) {
+
         Triage triage = new Triage(respiracion, pulso, valorPulso, estadoMental, conciencia, dolorPecho, lecionesGraves, edad,
                 valorEdad, fiebre, valorFiebre, vomitos, dolorAbdominal, signoShock, lesionLeve, sangrado);
         triage.calcularColorTriageRecomendado();
+        TriageDAO triageDAO = new TriageDAO();
+        triageDAO.agregar(triage);
+        this.triagesRealizados.add(triage);
         return triage;
     }
 
@@ -52,11 +58,17 @@ public class Enfermero extends Funcionario implements CapacitadoTriage{
     }
 
     @Override
-    public boolean confirmarTriage(RegistroEntrada registroEntrada, Triage triage, ColorTriage colorFinal){
+    public boolean confirmarTriage(RegistroEntrada registroEntrada, Triage triage, ColorTriage colorfinal){
         triage.setEnfermero(this);
+        triage.setColorTriageFinal(colorfinal);
         triage.setRegistroEntrada(registroEntrada);
         registroEntrada.setTriage(triage);
-        this.triagesRealizados.add(triage);
+        registroEntrada.setTriagiado(true);
+
+        TriageDAO triageDAO = new TriageDAO();
+        triageDAO.actualizar(triage);
+        RegistroEntradaDAO registroEntradaDAO = new RegistroEntradaDAO();
+        registroEntradaDAO.actualizar(registroEntrada);
 
         return true;
     }

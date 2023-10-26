@@ -1,6 +1,7 @@
 package controllers;
 
 
+import controllers.Enfermero.EnfermeroController;
 import datasource.UsuarioDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,6 +13,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Enfermero;
 import model.Funcionario;
 import model.FuncionarioAdministrativo;
 import model.Login.AdministradorSistemas;
@@ -85,7 +87,6 @@ public class LoginController {
                         stage.setScene(scene);
                         stage.show();
                         break;
-
                     case "Funcionario":
                         FXMLLoader loaderFuncionario = new FXMLLoader();
                         loaderFuncionario.setLocation(getClass().getResource("/views/FuncionarioViews/FuncionarioEma.fxml"));
@@ -102,6 +103,21 @@ public class LoginController {
                         //RegistroEntradaController
                         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                         scene = new Scene(rootFuncionario);
+                        stage.setScene(scene);
+                        stage.show();
+                        break;
+                    case "Enfermero":
+                        FXMLLoader loaderEnfermero = new FXMLLoader();
+                        loaderEnfermero.setLocation(getClass().getResource("/views/EnfermeroViews/Enfermero.fxml"));
+                        Parent rootEnfermero= loaderEnfermero.load();
+
+                        Enfermero enfermero = usuarioDAO.obtenerEnfermeroPorIdUsuario(user.getIdUsuario());
+
+                        EnfermeroController enfermeroController = loaderEnfermero.getController();
+                        enfermeroController.recibirDatos(user.getRoles(), enfermero);
+
+                        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        scene = new Scene(rootEnfermero);
                         stage.setScene(scene);
                         stage.show();
                         break;
