@@ -2,6 +2,7 @@ package controllers.AtencionPaciente;
 
 import controllers.AtencionPaciente.AtenderPacienteController;
 import controllers.MedicoController;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -54,6 +55,8 @@ public class ElegirBoxAtencionAtenderPaciente {
     void elegirBoxAtencion(ActionEvent event) throws Exception {
         // Obtiene la opción seleccionada
         lugarAtencionSeleccionada = getLugarAtencionSeleccionada();
+
+
             // Llama al método setOnAction() para pasar la variable a la siguiente escena
             IrAlBoxButton.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
@@ -74,12 +77,14 @@ public class ElegirBoxAtencionAtenderPaciente {
                         controller.setLugarAtencionSeleccionada(lugarAtencionSeleccionada);
                         controller.recibirDatos(medico,paciente,colorTriage,registroEntrada,roles);
 
+                        registroEntrada.setAtendido(true);
+
                         //Metodo para cerrar la pestaña de Medico
                         medicoStage.close();
 
-
                         // Cambia a la siguiente escena
                         if (resultado.isPresent() && resultado.get() == ButtonType.OK) {
+
                             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                             Scene scene = new Scene(root);
                             stage.setScene(scene);
@@ -120,6 +125,7 @@ public class ElegirBoxAtencionAtenderPaciente {
             BoxRecomendadoApp.setText("Consultorio");
         }
     }
+
 
     @FXML
     public void recibirDatos(Medico medico, Paciente paciente, RegistroEntrada registroEntrada, List<Rol> roles){

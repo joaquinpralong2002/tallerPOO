@@ -37,7 +37,7 @@ public class MedicoController {
     @AllArgsConstructor
     @ToString
     @Getter
-    protected class PacienteTableClass {
+    public class PacienteTableClass {
         Long id;
         String nombre;
         String apellido;
@@ -121,23 +121,25 @@ public class MedicoController {
         RegistroEntradaDAO registroEntradaDAO = new RegistroEntradaDAO();
         List<RegistroEntrada> listaRegistros = registroEntradaDAO.obtenerTodos();
 
+
         for (RegistroEntrada registro : listaRegistros) {
-            if (registro.isTriagiado()) {
-                if (registro.getTriage().getColorTriageFinal() != ColorTriage.Ninguno) {
-                    datosTabla.add(new PacienteTableClass(registro.getPaciente().getId(), registro.getPaciente().getNombre(), registro.getPaciente().getApellido(),
-                            registro.getTriage().getColorTriageFinal(), registro.getHora(), registro.getDescripcion(),registro.getPaciente().getDNI()));
+            if (!registro.isAtendido()) {
+                if (registro.isTriagiado()) {
+                    if (registro.getTriage().getColorTriageFinal() != ColorTriage.Ninguno) {
+                        datosTabla.add(new PacienteTableClass(registro.getPaciente().getId(), registro.getPaciente().getNombre(), registro.getPaciente().getApellido(),
+                                registro.getTriage().getColorTriageFinal(), registro.getHora(), registro.getDescripcion(), registro.getPaciente().getDNI()));
+                    } else {
+                        datosTabla.add(new PacienteTableClass(registro.getPaciente().getId(), registro.getPaciente().getNombre(), registro.getPaciente().getApellido(),
+                                registro.getTriage().getColorTriageRecomendado(), registro.getHora(), registro.getDescripcion(), registro.getPaciente().getDNI()));
+                    }
                 } else {
                     datosTabla.add(new PacienteTableClass(registro.getPaciente().getId(), registro.getPaciente().getNombre(), registro.getPaciente().getApellido(),
-                            registro.getTriage().getColorTriageRecomendado(), registro.getHora(), registro.getDescripcion(),registro.getPaciente().getDNI()));
+                            ColorTriage.Ninguno, registro.getHora(), registro.getDescripcion(), registro.getPaciente().getDNI()));
                 }
-            } else {
-                datosTabla.add(new PacienteTableClass(registro.getPaciente().getId(), registro.getPaciente().getNombre(), registro.getPaciente().getApellido(),
-                        ColorTriage.Ninguno, registro.getHora(), registro.getDescripcion(),registro.getPaciente().getDNI()));
+
+                tblPacientes.setItems(datosTabla);
             }
-
         }
-
-        tblPacientes.setItems(datosTabla);
     }
 
     public void filtrarPacientes(){
@@ -162,6 +164,7 @@ public class MedicoController {
     public void borrarColorTriageSeleccionado(){
         cmboxTriage.setValue(null);
     }
+
 
 
 
@@ -197,7 +200,6 @@ public class MedicoController {
     }
 
     public void AtenderPaciente(ActionEvent event) throws Exception {
-
 
         // Atiende al paciente
         FXMLLoader loader = new FXMLLoader();
@@ -241,6 +243,7 @@ public class MedicoController {
             stage.initModality(Modality.NONE);
             stage.initOwner(((Node) event.getSource()).getScene().getWindow());
             stage.show();
+
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -249,7 +252,6 @@ public class MedicoController {
             return;
         }
     }
-
 
     public void CerrarSesion(ActionEvent event) throws Exception {
         // Cierra la sesión del médico

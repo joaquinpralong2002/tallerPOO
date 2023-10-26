@@ -48,10 +48,10 @@ public class AtenderPacienteController {
     private Label LabalTipoBox;
 
 
-
     //Metodo para guardar en que Box de atencion lo atendieron, se guarda en el Registro
     //Revisar si anda...
     public void BotonRealizarRegistro(ActionEvent event) throws Exception {
+
         // Llena el TextField
         String diagnostico = campoDeTexto.getText();
         realizarDiagnosticoButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -65,6 +65,7 @@ public class AtenderPacienteController {
 
                 // Si el usuario hace clic en el botón "Aceptar", entonces se realiza la acción
                 if (resultado.get() == ButtonType.OK) {
+
                     medico.asignarBox(registroEntrada);
                     medico.atenderPaciente(persona,boxAtencion,diagnostico);
 
@@ -116,11 +117,11 @@ public class AtenderPacienteController {
     @FXML
     public void recibirDatos(Medico medico, Paciente persona, ColorTriage colorTriage, RegistroEntrada registroEntrada, List<Rol> roles){
         this.medico = medico;
-        System.out.println(medico);
         this.persona = persona;
         this.colorTriage = colorTriage;
         this.registroEntrada = registroEntrada;
         this.roles = roles;
+
     }
 
 }

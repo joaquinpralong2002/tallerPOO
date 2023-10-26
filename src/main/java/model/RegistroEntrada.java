@@ -29,6 +29,8 @@ public class RegistroEntrada {
     private String descripcion;
 
     @Setter
+    private  boolean atendido;
+    @Setter
     private boolean triagiado;
 
     @ToString.Exclude
