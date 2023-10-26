@@ -1,5 +1,7 @@
 package model;
 
+import datasource.PacienteDAO;
+import datasource.RegistroEntradaDAO;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
@@ -38,11 +40,11 @@ public class RegistroEntrada {
     @JoinColumn(name = "idFuncionario")
     private FuncionarioAdministrativo funcionariosAdministrativo;
 
-    @OneToOne(cascade = CascadeType.ALL, optional = true, orphanRemoval = true)
+    @OneToOne(optional = true, orphanRemoval = true)
     @JoinColumn(name = "idAsignacion")
     private Asignacion asignacion;
 
-    @OneToOne(cascade = CascadeType.ALL, optional = true, orphanRemoval = true)
+    @OneToOne(optional = true, orphanRemoval = true)
     @JoinColumn(name = "idTriage")
     private Triage triage;
 
@@ -60,6 +62,7 @@ public class RegistroEntrada {
 
     public void setAsignacion(Asignacion asignacion) {
         this.asignacion = asignacion;
+        this.atendido = true;
     }
 
     //constructor con atributos popios de la clase

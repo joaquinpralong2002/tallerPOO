@@ -162,9 +162,6 @@ public class MedicoController {
         cmboxTriage.setValue(null);
     }
 
-
-
-
     public void RealizarTriage(ActionEvent event) throws Exception {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/views/MedicoViews/Triage/Triage.fxml"));

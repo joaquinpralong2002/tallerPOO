@@ -1,6 +1,7 @@
 package model;
 
 import model.Enum.ColorTriage;
+import model.Enum.LugarAtencion;
 import model.EnumeracionesVariablesTriage.*;
 
 /**
@@ -56,5 +57,5 @@ public interface CapacitadoTriage {
      * @param registroEntrada El registro de entrada del paciente.
      * @return True si se pudo asignar un box de atención, false en caso contrario.
      */
-    public boolean asignarBox(RegistroEntrada registroEntrada);
+    public boolean asignarBox(RegistroEntrada registroEntrada, LugarAtencion lugarAtencion);
 }
