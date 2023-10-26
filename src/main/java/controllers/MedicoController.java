@@ -38,7 +38,7 @@ public class MedicoController {
     @AllArgsConstructor
     @ToString
     @Getter
-    public class PacienteTableClass {
+    protected class PacienteTableClass {
         Long id;
         String nombre;
         String apellido;
@@ -105,6 +105,7 @@ public class MedicoController {
     public void recibirDatos(List<Rol> roles, Medico medico) {
         this.roles = roles;
         this.medico = medico;
+        System.out.println("Medico de medicoController" + medico);
         boolean contieneTriage = false;
         for (int i = 0; i < roles.size(); i++) {
             if (roles.get(i).getNombre().equals("Triage")) contieneTriage = true;
@@ -208,19 +209,12 @@ public class MedicoController {
             return;
         }
 
-        // Obtiene una referencia al escenario de la ventana Medico
-        Stage medicoStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
         // Pasa el escenario de la ventana Medico al controlador de ElegirBoxAtencion_AtenderPaciente
         ElegirBoxAtencionAtenderPaciente controller = loader.getController();
-        controller.setMedicoStage(medicoStage);
 
         //Se verifica que el paciente tenga un triage asociado para atenderlo
         Long id = ((PacienteTableClass) tblPacientes.getSelectionModel().getSelectedItem()).getId();
         Paciente paciente = pacienteTableClass.obtenerPaciente(id);
-
-        System.out.println("paciente: " + paciente);
-        System.out.println("medico: " + medico);
 
         controller.recibirDatos(medico,paciente,paciente.getRegistrosEntradas().get(paciente.getRegistrosEntradas().size() - 1), roles);
 
@@ -230,12 +224,9 @@ public class MedicoController {
             controller.setBoxRecomendadoApp(colorTriage);
             
             // Cambia a la nueva escena
-            Stage stage = new Stage();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);
-            stage.setTitle("Elegir box atención");
-            stage.initModality(Modality.NONE);
-            stage.initOwner(((Node) event.getSource()).getScene().getWindow());
             stage.show();
 
         } else {

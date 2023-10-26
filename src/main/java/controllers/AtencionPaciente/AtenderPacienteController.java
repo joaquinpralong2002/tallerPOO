@@ -44,8 +44,6 @@ public class AtenderPacienteController {
     @FXML
     private TextArea campoDeTexto;
     @FXML
-    private Button atrasButton;
-    @FXML
     private Label LabalTipoBox;
 
 
@@ -69,7 +67,6 @@ public class AtenderPacienteController {
                 if (resultado.get() == ButtonType.OK) {
                     medico.asignarBox(registroEntrada, lugarAtencionSeleccionada);
                     medico.atenderPaciente(persona,boxAtencion,diagnostico);
-
 
                     FXMLLoader loader = new FXMLLoader();
                     loader.setLocation(getClass().getResource("/views/MedicoViews/Medico.fxml"));
@@ -97,23 +94,7 @@ public class AtenderPacienteController {
         boxAtencion = boxAtencionDAO.obtenerDisponible(lugarAtencionSeleccionada);
     }
 
-    public void BotonAtras(ActionEvent event) throws Exception {
-        // Volver atras a Médico
-        FXMLLoader loader = new FXMLLoader();
-        Parent root = loader.load(getClass().getResource("/views/MedicoViews/Medico.fxml"));
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Ir atrás");
-        alert.setContentText("¿Estás seguro de que deseas volver a la pestaña anterior?");
-        Optional<ButtonType> resultado = alert.showAndWait();
-        MedicoController controller = new MedicoController();
-        controller.recibirDatos(roles, medico);
-        if (resultado.isPresent() && resultado.get() == ButtonType.OK) {
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        }
-    }
+
 
     @FXML
     public void recibirDatos(Medico medico, Paciente persona, ColorTriage colorTriage, RegistroEntrada registroEntrada, List<Rol> roles){

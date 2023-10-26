@@ -2,6 +2,7 @@ package controllers.Enfermero;
 
 import controllers.AtencionPaciente.ElegirBoxAtencionAtenderPaciente;
 import controllers.BuscarPacienteVisualizarRegistroController;
+import controllers.Enfermero.TriageEnfermero.TriageEnfermeroController;
 import controllers.MedicoController;
 import controllers.Triage.TriageController;
 import datasource.PacienteDAO;
@@ -36,7 +37,7 @@ public class EnfermeroController {
     @AllArgsConstructor
     @ToString
     @Getter
-    public class PacienteTableClass {
+    protected class PacienteTableClass {
         Long id;
         String nombre;
         String apellido;
@@ -84,12 +85,19 @@ public class EnfermeroController {
     private Button bttmCerrarSesion;
     private MedicoController medicoController;
 
-    private ObservableList<MedicoController.PacienteTableClass> datosTabla = FXCollections.observableArrayList();
+    private ObservableList<PacienteTableClass> datosTabla = FXCollections.observableArrayList();
 
     @FXML
     public void recibirDatos(List<Rol> roles, Enfermero enfermero) {
         this.roles = roles;
         this.enfermero = enfermero;
+        boolean contieneTriage = false;
+        for (int i = 0; i < roles.size(); i++) {
+            if (roles.get(i).getNombre().equals("Triage")) contieneTriage = true;
+        }
+        if (!contieneTriage) {
+            bttmRealTriage.setVisible(false);
+        }
     }
     @FXML
     public void initialize() {
@@ -115,14 +123,14 @@ public class EnfermeroController {
             if (!registro.isAtendido()) {
                 if (registro.isTriagiado()) {
                     if (registro.getTriage().getColorTriageFinal() != ColorTriage.Ninguno) {
-                        datosTabla.add(new MedicoController.PacienteTableClass(registro.getPaciente().getId(), registro.getPaciente().getNombre(), registro.getPaciente().getApellido(),
+                        datosTabla.add(new PacienteTableClass(registro.getPaciente().getId(), registro.getPaciente().getNombre(), registro.getPaciente().getApellido(),
                                 registro.getTriage().getColorTriageFinal(), registro.getHora(), registro.getDescripcion(), registro.getPaciente().getDNI()));
                     } else {
-                        datosTabla.add(new MedicoController.PacienteTableClass(registro.getPaciente().getId(), registro.getPaciente().getNombre(), registro.getPaciente().getApellido(),
+                        datosTabla.add(new PacienteTableClass(registro.getPaciente().getId(), registro.getPaciente().getNombre(), registro.getPaciente().getApellido(),
                                 registro.getTriage().getColorTriageRecomendado(), registro.getHora(), registro.getDescripcion(), registro.getPaciente().getDNI()));
                     }
                 } else {
-                    datosTabla.add(new MedicoController.PacienteTableClass(registro.getPaciente().getId(), registro.getPaciente().getNombre(), registro.getPaciente().getApellido(),
+                    datosTabla.add(new PacienteTableClass(registro.getPaciente().getId(), registro.getPaciente().getNombre(), registro.getPaciente().getApellido(),
                             ColorTriage.Ninguno, registro.getHora(), registro.getDescripcion(), registro.getPaciente().getDNI()));
                 }
                 tblPacientes.setItems(datosTabla);
@@ -130,8 +138,39 @@ public class EnfermeroController {
         }
     }
 
+    public void RealizarTriage(ActionEvent event) throws Exception {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/views/EnfermeroViews/TriageEnfermero/TriageEnfermero.fxml"));
+        Parent root = loader.load();
+
+        TriageEnfermeroController controller = loader.getController();
+        PacienteTableClass pacienteTableClass = (PacienteTableClass) tblPacientes.getSelectionModel().getSelectedItem();
+        if (pacienteTableClass == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("Debe seleccionar un paciente de la tabla.");
+            alert.showAndWait();
+            return;
+        }
+        Paciente paciente = pacienteTableClass.obtenerPaciente(pacienteTableClass.id);
+        if (paciente.getRegistrosEntradas().get(paciente.getRegistrosEntradas().size() - 1).isTriagiado()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("El paciente ya fue triagado.");
+            alert.showAndWait();
+            return;
+        }
+        RegistroEntrada registroEntrada = paciente.getRegistrosEntradas().get(paciente.getRegistrosEntradas().size() - 1);
+        controller.recibirDatos(registroEntrada,enfermero,roles);
+        // Cambia a la nueva escena
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
     public void filtrarPacientes(){
-        Predicate<MedicoController.PacienteTableClass> predicate = paciente -> {
+        Predicate<PacienteTableClass> predicate = paciente -> {
             String nombreFilter = txtNombPac.getText().toLowerCase();
             String apellidoFilter = txtApellPac.getText().toLowerCase();
             String dniFilter = txtDNIPac.getText();
@@ -148,6 +187,7 @@ public class EnfermeroController {
         };
         tblPacientes.setItems(datosTabla.filtered(predicate));
     }
+
 
     public void verHistorialClinico(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
@@ -176,10 +216,6 @@ public class EnfermeroController {
             stage.setScene(scene);
             stage.show();
         }
-    }
-
-    public void RealizarTriage(){
-
     }
     public void borrarColorTriageSeleccionado(){
 
