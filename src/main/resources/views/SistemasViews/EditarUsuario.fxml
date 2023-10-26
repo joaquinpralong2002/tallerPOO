@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
@@ -10,78 +11,183 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="900.0" maxWidth="1600.0" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Sistemas.EditarUsuarioController">
    <children>
-      <Button fx:id="bttmVolver" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#Volver" prefHeight="50.0" prefWidth="150.0" text="Volver">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Button>
-      <Label layoutX="559.0" layoutY="119.0" text="Edicion de Usuario">
+      <Label layoutX="551.0" layoutY="94.0" text="Edicion de usuario">
          <font>
             <Font size="30.0" />
          </font>
       </Label>
-      <Pane layoutX="508.0" layoutY="239.0" prefHeight="358.0" prefWidth="349.0">
+      <Pane layoutX="683.0" layoutY="208.0" prefHeight="475.0" prefWidth="630.0">
          <children>
-            <Label layoutX="14.0" layoutY="38.0" text="Nombre de usuario:">
+            <Label layoutX="234.0" layoutY="14.0" text="Datos de usuario">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="21.0" layoutY="82.0" text="Nombre de usuario:">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="txtNombUsu" layoutX="186.0" layoutY="35.0" prefHeight="33.0" prefWidth="150.0" />
-            <Label layoutX="14.0" layoutY="100.0" text="Contraseña:">
+            <TextField fx:id="txtNombUsu" layoutX="21.0" layoutY="118.0" prefHeight="35.0" prefWidth="192.0" />
+            <Label layoutX="234.0" layoutY="82.0" text="Contraseña: ">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <PasswordField fx:id="txtPass" layoutX="186.0" layoutY="97.0" prefHeight="33.0" prefWidth="150.0" />
-            <GridPane layoutX="136.0" layoutY="179.0">
+            <PasswordField fx:id="txtPassw" layoutX="237.0" layoutY="118.0" prefHeight="35.0" prefWidth="192.0" />
+            <Label layoutX="21.0" layoutY="167.0" text="Roles:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <VBox layoutX="21.0" layoutY="195.0" prefHeight="264.0" prefWidth="202.0" spacing="10.0">
+               <children>
+                  <Label text="Funcionario">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <CheckBox mnemonicParsing="false" text="Administrador Hospitalario" />
+                  <CheckBox mnemonicParsing="false" text="Administrador Sistemas" />
+                  <CheckBox mnemonicParsing="false" text="Director Medico" />
+                  <CheckBox mnemonicParsing="false" text="Director enfermero" />
+                  <CheckBox layoutX="10.0" layoutY="63.0" mnemonicParsing="false" text="Gerente Fecursos Humanos" />
+                  <CheckBox layoutX="10.0" layoutY="80.0" mnemonicParsing="false" text="Director Financiero" />
+                  <CheckBox layoutX="10.0" layoutY="98.0" mnemonicParsing="false" text="Gerente General" />
+                  <CheckBox layoutX="10.0" layoutY="116.0" mnemonicParsing="false" text="Gerente Operacones" />
+                  <CheckBox layoutX="10.0" layoutY="133.0" mnemonicParsing="false" text="Director Tecnologia" />
+                  <CheckBox layoutX="10.0" layoutY="151.0" mnemonicParsing="false" text="Gerente Servicios Pacientes" />
+                  <CheckBox layoutX="10.0" layoutY="168.0" mnemonicParsing="false" text="Cordinador Seguridad" />
+                  <CheckBox layoutX="10.0" layoutY="186.0" mnemonicParsing="false" text="Jefe Almacen" />
+               </children>
+            </VBox>
+            <VBox layoutX="498.0" layoutY="196.0" prefHeight="264.0" prefWidth="185.0" spacing="10.0">
+               <children>
+                  <Label text="Enfermero" />
+                  <CheckBox mnemonicParsing="false" text="Triage" />
+                  <CheckBox mnemonicParsing="false" text="Cuidados Generales" />
+                  <CheckBox mnemonicParsing="false" text="Cuidados Intensivos" />
+                  <CheckBox mnemonicParsing="false" text="Emergencias" />
+                  <CheckBox mnemonicParsing="false" text="Pediatrico" />
+                  <CheckBox mnemonicParsing="false" text="Atencion Primaria" />
+                  <CheckBox mnemonicParsing="false" text="Salud Mental" />
+                  <CheckBox mnemonicParsing="false" text="Oncologia" />
+               </children>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </VBox>
+            <VBox layoutX="293.0" layoutY="196.0" prefHeight="264.0" prefWidth="177.0" spacing="10.0">
+               <children>
+                  <Label text="Medico">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <CheckBox mnemonicParsing="false" text="Triage" />
+                  <CheckBox mnemonicParsing="false" text="Medico Emergencias" />
+                  <CheckBox mnemonicParsing="false" text="Medico General" />
+                  <CheckBox mnemonicParsing="false" text="Medico Especialista" />
+                  <CheckBox mnemonicParsing="false" text="Cirujano" />
+                  <CheckBox mnemonicParsing="false" text="Anestesiologo" />
+                  <CheckBox mnemonicParsing="false" text="Radiologo" />
+                  <CheckBox mnemonicParsing="false" text="Psiquiatra" />
+                  <CheckBox mnemonicParsing="false" text="Medico Cuidados Intensivos" />
+                  <CheckBox mnemonicParsing="false" text="Geriatra" />
+                  <CheckBox layoutX="10.0" layoutY="212.0" mnemonicParsing="false" text="Pediatra" />
+                  <CheckBox layoutX="10.0" layoutY="234.0" mnemonicParsing="false" text="Medico Atencion Primaria" />
+               </children>
+            </VBox>
+         </children>
+      </Pane>
+      <Pane layoutX="89.0" layoutY="208.0" prefHeight="389.0" prefWidth="470.0">
+         <children>
+            <Label layoutX="125.0" layoutY="28.0" text="Datos de funcionario">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <GridPane layoutX="127.0" layoutY="108.0" prefHeight="209.0" prefWidth="259.0">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="165.6" minWidth="10.0" prefWidth="152.0000244140625" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="179.60003662109375" minWidth="10.0" prefWidth="149.59997558593753" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <CheckBox fx:id="cbFuncionario" mnemonicParsing="false" text="Funcionario">
+                  <Label text="Nombre:">
                      <font>
-                        <Font size="14.0" />
+                        <Font size="18.0" />
                      </font>
-                  </CheckBox>
-                  <CheckBox fx:id="cbInformatico" layoutX="10.0" layoutY="15.0" mnemonicParsing="false" text="Informatico" GridPane.columnIndex="1">
+                  </Label>
+                  <Label fx:id="lbNomFunc" layoutX="10.0" layoutY="12.0" text="Sin datos..." GridPane.columnIndex="1">
                      <font>
-                        <Font size="14.0" />
+                        <Font size="18.0" />
                      </font>
-                  </CheckBox>
-                  <CheckBox fx:id="cbMedico" layoutX="10.0" layoutY="15.0" mnemonicParsing="false" text="Medico" GridPane.rowIndex="1">
+                  </Label>
+                  <Label layoutX="10.0" layoutY="12.0" text="Apellido:" GridPane.rowIndex="1">
                      <font>
-                        <Font size="14.0" />
+                        <Font size="18.0" />
                      </font>
-                  </CheckBox>
-                  <CheckBox fx:id="cbEnfermero" layoutX="10.0" layoutY="15.0" mnemonicParsing="false" text="Enfermero" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  </Label>
+                  <Label layoutX="10.0" layoutY="42.0" text="Dni:" GridPane.rowIndex="2">
                      <font>
-                        <Font size="14.0" />
+                        <Font size="18.0" />
                      </font>
-                  </CheckBox>
+                  </Label>
+                  <Label layoutX="10.0" layoutY="72.0" text="Sector:" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lbApeFunc" layoutX="110.0" layoutY="12.0" text="Sin datos..." GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lbDniFunc" layoutX="110.0" layoutY="42.0" text="Sin datos..." GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lbSectorFunc" layoutX="110.0" layoutY="72.0" text="Sin datos..." GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="10.0" layoutY="166.0" text="Roles:" GridPane.rowIndex="4">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lbSectorFunc1" layoutX="141.0" layoutY="131.0" text="Sin datos..." GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
                </children>
             </GridPane>
-            <Label layoutX="14.0" layoutY="179.0" text="Roles:">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <Button fx:id="bttmEditar" layoutX="149.0" layoutY="292.0" mnemonicParsing="false" onAction="#Editar" text="Editar">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Button>
          </children>
       </Pane>
+      <Button fx:id="bttmCrear" layoutX="590.0" layoutY="694.0" mnemonicParsing="false" onAction="#CrearUsuario" prefHeight="59.0" prefWidth="166.0" text="Crear Usuario">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="bttmVolver" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#Volver" prefHeight="50.0" prefWidth="150.0" text="Volver">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
