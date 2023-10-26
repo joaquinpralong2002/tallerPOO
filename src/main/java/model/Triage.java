@@ -80,7 +80,7 @@ public class Triage{
     private String motivoCambioTriage;
 
     @ToString.Exclude
-    @OneToOne(mappedBy = "triage", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(mappedBy = "triage", orphanRemoval = true)
     private RegistroEntrada registroEntrada;
 
     @ManyToOne(cascade = CascadeType.ALL)

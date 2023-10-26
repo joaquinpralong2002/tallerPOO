@@ -30,7 +30,7 @@ public interface GenericoDAO<T> {
         SessionFactory sessionFactory = GlobalSessionFactory.getSessionFactory();
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        session.update(entity);
+        session.saveOrUpdate(entity);
         transaction.commit();
         session.close();
     }

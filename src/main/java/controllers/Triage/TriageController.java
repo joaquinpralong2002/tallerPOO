@@ -229,20 +229,20 @@ public class TriageController {
 
 
             //Se realizan cambios si se ha modificado el color del triage
-            if(this.datosTriage.getColorTriageCambiado() != null){
-                this.medico.cambiarColorTriage(triageMedico,this.datosTriage.getColorTriageCambiado(), this.datosTriage.getMotivoCambioTriage());
-                medico.confirmarTriage(registroEntrada, triageMedico, this.datosTriage.getColorTriageCambiado());
-            } else {
-                medico.confirmarTriage(registroEntrada, triageMedico, this.datosTriage.getColorTriageAsignado());
+            if(registroEntrada.isTriagiado() == false) {
+                if (this.datosTriage.getColorTriageCambiado() != null) {
+                    this.medico.cambiarColorTriage(triageMedico, this.datosTriage.getColorTriageCambiado(), this.datosTriage.getMotivoCambioTriage());
+                    medico.confirmarTriage(registroEntrada, triageMedico, this.datosTriage.getColorTriageCambiado());
+                } else {
+                    medico.confirmarTriage(registroEntrada, triageMedico, this.datosTriage.getColorTriageAsignado());
+                }
             }
-
             //Una vez realizado el triage, se vuelve a la escena inicial de médico
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/views/MedicoViews/Medico.fxml"));
             Parent root = loader.load();
             MedicoController medicoController = loader.getController();
             medicoController.recibirDatos(roles, medico);
-            //medicoController.iniciarTablaDesdeTriage();
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);
