@@ -111,14 +111,12 @@ public class Medico extends Funcionario implements CapacitadoTriage{
         PacienteDAO pacienteDAO = new PacienteDAO();
         BoxAtencionDAO boxAtencionDAO = new BoxAtencionDAO();
         box.setMedico(this);
-        //box.getAsignaciones().get(box.getAsignaciones().size() -1);
         boxAtencionDAO.actualizar(box);
 
         System.out.println(box);
         Registro registro = new Registro(box.getLugarAtencion(), paciente, this);
 
         registroDAO.agregar(registro);
-        System.out.println(registro);
         paciente.agregarRegistros(registro);
 
         ResultadoDiagnostico resultadoDiagnostico = new ResultadoDiagnostico(descripcionDiagnostico, paciente);
@@ -147,20 +145,18 @@ public class Medico extends Funcionario implements CapacitadoTriage{
     }
 
     @Override
-    public boolean asignarBox(RegistroEntrada registroEntrada){
+    public boolean asignarBox(RegistroEntrada registroEntrada, LugarAtencion lugarAtencion){
         RegistroEntradaDAO registroEntradaDAO = new RegistroEntradaDAO();
         //Se crea el DAO de box de atención.
         BoxAtencionDAO boxAtencionDAO = new BoxAtencionDAO();
         //Se obtiene el color de triage asociado al registro de entrada, y en base a este se elige a qué lugar de atención
         //corresponde enviar al paciente.
         ColorTriage colorTriage = registroEntrada.getTriage().getColorTriageRecomendado();
-        BoxAtencion boxAsignado;
-        if(colorTriage == ColorTriage.Rojo) boxAsignado = boxAtencionDAO.obtenerDisponible(LugarAtencion.Internaciones);
-        else if (colorTriage == ColorTriage.Naranja) boxAsignado = boxAtencionDAO.obtenerDisponible(LugarAtencion.Emergencia);
-        else boxAsignado = boxAtencionDAO.obtenerDisponible(LugarAtencion.Consultorio);
+        BoxAtencion boxAsignado = boxAtencionDAO.obtenerDisponible(lugarAtencion);
 
         //Si se encontró un box para el paciente, se crea una asignación asociada al registro de entrada y al box.
         if(boxAsignado != null){
+            registroEntrada.setAtendido(true);
             Asignacion asignacion = new Asignacion(registroEntrada, boxAsignado);
             System.out.println(asignacion);
             boxAsignado.setDisponible(false);
@@ -168,8 +164,9 @@ public class Medico extends Funcionario implements CapacitadoTriage{
             AsignacionDAO asignacionDAO = new AsignacionDAO();
             asignacionDAO.agregar(asignacion);
             registroEntrada.setAsignacion(asignacion);
-            registroEntrada.setAtendido(true);
             registroEntradaDAO.actualizar(registroEntrada);
+            PacienteDAO pacienteDAO = new PacienteDAO();
+            pacienteDAO.actualizar(registroEntrada.getPaciente());
             return true;
         }
         else {

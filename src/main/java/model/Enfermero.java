@@ -62,7 +62,7 @@ public class Enfermero extends Funcionario implements CapacitadoTriage{
     }
 
     @Override
-    public boolean asignarBox(RegistroEntrada registroEntrada){
+    public boolean asignarBox(RegistroEntrada registroEntrada, LugarAtencion lugarAtencion){
         //Se crea el DAO de box de atención.
         BoxAtencionDAO boxAtencionDAO = new BoxAtencionDAO();
         //Se obtiene el color de triage asociado al registro de entrada, y en base a este se elige a qué lugar de atención

@@ -38,7 +38,7 @@ public class MedicoController {
     @AllArgsConstructor
     @ToString
     @Getter
-    public static class PacienteTableClass {
+    public class PacienteTableClass {
         Long id;
         String nombre;
         String apellido;
@@ -162,6 +162,37 @@ public class MedicoController {
         cmboxTriage.setValue(null);
     }
 
+    public void RealizarTriage(ActionEvent event) throws Exception {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/views/MedicoViews/Triage/Triage.fxml"));
+        Parent root = loader.load();
+
+        TriageController controller = loader.getController();
+        PacienteTableClass pacienteTableClass = (PacienteTableClass) tblPacientes.getSelectionModel().getSelectedItem();
+        if (pacienteTableClass == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("Debe seleccionar un paciente de la tabla.");
+            alert.showAndWait();
+            return;
+        }
+        Paciente paciente = pacienteTableClass.obtenerPaciente(pacienteTableClass.id);
+        if (paciente.getRegistrosEntradas().get(paciente.getRegistrosEntradas().size() - 1).isTriagiado()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("El paciente ya fue triagado.");
+            alert.showAndWait();
+            return;
+        }
+        RegistroEntrada registroEntrada = paciente.getRegistrosEntradas().get(paciente.getRegistrosEntradas().size() - 1);
+        controller.recibirDatos(registroEntrada, medico, roles);
+        // Cambia a la nueva escena
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
     public void AtenderPaciente(ActionEvent event) throws Exception {
 
         // Atiende al paciente
@@ -197,6 +228,7 @@ public class MedicoController {
             //Verifica el Color de triage del Paciente y lo envia a la siguiente escecna.
             ColorTriage colorTriage = paciente.getRegistrosEntradas().get(paciente.getRegistrosEntradas().size() - 1).getTriage().getColorTriageFinal();
             controller.setBoxRecomendadoApp(colorTriage);
+            
             // Cambia a la nueva escena
             Stage stage = new Stage();
             Scene scene = new Scene(root);
@@ -213,37 +245,6 @@ public class MedicoController {
             alert.showAndWait();
             return;
         }
-    }
-
-    public void RealizarTriage(ActionEvent event) throws Exception {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/views/MedicoViews/Triage/Triage.fxml"));
-        Parent root = loader.load();
-
-        TriageController controller = loader.getController();
-        PacienteTableClass pacienteTableClass = (PacienteTableClass) tblPacientes.getSelectionModel().getSelectedItem();
-        if (pacienteTableClass == null) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setContentText("Debe seleccionar un paciente de la tabla.");
-            alert.showAndWait();
-            return;
-        }
-        Paciente paciente = pacienteTableClass.obtenerPaciente(pacienteTableClass.id);
-        if (paciente.getRegistrosEntradas().get(paciente.getRegistrosEntradas().size() - 1).isTriagiado()) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setContentText("El paciente ya fue triagado.");
-            alert.showAndWait();
-            return;
-        }
-        RegistroEntrada registroEntrada = paciente.getRegistrosEntradas().get(paciente.getRegistrosEntradas().size() - 1);
-                controller.recibirDatos(registroEntrada, medico, roles);
-                // Cambia a la nueva escena
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
     }
 
     public void verHistorialClinico(ActionEvent event) throws IOException {

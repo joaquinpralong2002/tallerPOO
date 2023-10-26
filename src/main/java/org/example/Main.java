@@ -364,7 +364,7 @@ public class Main {
 
 
 //************************************************* Realizacion de triages **************************************//
-        medico.realizarTriage(Respiracion.Normal, Pulso.Normal,12, EstadoMental.Normal, Conciencia.Consciente,DolorPecho.NoPresnte, LecionesGraves.NoPresentes, Edad.NinioAnciano,81, Fiebre.Alta, 38, Vomitos.SinVomito,DolorAbdominal.NoPresente, SignoShock.NoPresente, LesionLeve.NoPresente, Sangrado.NoPresente);
+        //medico.realizarTriage(Respiracion.Normal, Pulso.Normal,12, EstadoMental.Normal, Conciencia.Consciente,DolorPecho.NoPresnte, LecionesGraves.NoPresentes, Edad.NinioAnciano,81, Fiebre.Alta, 38, Vomitos.SinVomito,DolorAbdominal.NoPresente, SignoShock.NoPresente, LesionLeve.NoPresente, Sangrado.NoPresente);
 
         /*Triage triage = new Triage(registroEntrada1, medico,Respiracion.Normal, Pulso.Normal,22, EstadoMental.Normal, Conciencia.Consciente,DolorPecho.NoPresnte, LecionesGraves.NoPresentes, Edad.Adulto,25, Fiebre.SinFiebre, 30, Vomitos.Moderado,DolorAbdominal.DolorAbdominalModerado, SignoShock.NoPresente, LesionLeve.NoPresente, Sangrado.NoPresente);
 
