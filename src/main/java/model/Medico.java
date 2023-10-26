@@ -96,7 +96,6 @@ public class Medico extends Funcionario implements CapacitadoTriage{
         triage.setRegistroEntrada(registroEntrada);
         registroEntrada.setTriage(triage);
         registroEntrada.setTriagiado(true);
-        asignarBox(registroEntrada);
 
         TriageDAO triageDAO = new TriageDAO();
         triageDAO.actualizar(triage);
@@ -117,6 +116,7 @@ public class Medico extends Funcionario implements CapacitadoTriage{
 
         System.out.println(box);
         Registro registro = new Registro(box.getLugarAtencion(), paciente, this);
+
         registroDAO.agregar(registro);
         System.out.println(registro);
         paciente.agregarRegistros(registro);
@@ -124,6 +124,12 @@ public class Medico extends Funcionario implements CapacitadoTriage{
         ResultadoDiagnostico resultadoDiagnostico = new ResultadoDiagnostico(descripcionDiagnostico, paciente);
         resultadoDiagnosticoDAO.agregar(resultadoDiagnostico);
         paciente.agregarResultadoDiagnostico(resultadoDiagnostico);
+        registro.setResultadoDiagnostico(resultadoDiagnostico);
+        registro.setFechaRegistro(LocalDate.now());
+        registroDAO.actualizar(registro);
+
+        RegistroEntradaDAO registroEntradaDAO = new RegistroEntradaDAO();
+        registroEntradaDAO.actualizar(paciente.getRegistrosEntradas().get(paciente.getRegistrosEntradas().size() - 1));
 
         pacienteDAO.actualizar(paciente);
     }
@@ -162,6 +168,7 @@ public class Medico extends Funcionario implements CapacitadoTriage{
             AsignacionDAO asignacionDAO = new AsignacionDAO();
             asignacionDAO.agregar(asignacion);
             registroEntrada.setAsignacion(asignacion);
+            registroEntrada.setAtendido(true);
             registroEntradaDAO.actualizar(registroEntrada);
             return true;
         }

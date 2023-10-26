@@ -15,18 +15,21 @@ import javafx.stage.Stage;
 import lombok.Setter;
 import model.Enum.ColorTriage;
 import model.EnumeracionesVariablesTriage.*;
+import model.Login.Rol;
 import model.Medico;
 import model.RegistroEntrada;
 import model.Triage;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.List;
 import java.util.Optional;
 
 public class TriageController {
     private ColorTriage colorTriageAsignado = ColorTriage.Ninguno;
     private RegistroEntrada registroEntrada;
     private Medico medico;
+    private List<Rol> roles;
     @Setter
     private DatosTriage datosTriage;
     @FXML
@@ -81,9 +84,10 @@ public class TriageController {
      * @param medico
      */
     @FXML
-    public void recibirDatos(RegistroEntrada registroEntrada, Medico medico) {
+    public void recibirDatos(RegistroEntrada registroEntrada, Medico medico, List<Rol> roles) {
         this.registroEntrada = registroEntrada;
         this.medico = medico;
+        this.roles = roles;
     }
 
 
@@ -237,6 +241,7 @@ public class TriageController {
             loader.setLocation(getClass().getResource("/views/MedicoViews/Medico.fxml"));
             Parent root = loader.load();
             MedicoController medicoController = loader.getController();
+            medicoController.recibirDatos(roles, medico);
             //medicoController.iniciarTablaDesdeTriage();
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);

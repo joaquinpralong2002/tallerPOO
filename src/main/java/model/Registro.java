@@ -7,6 +7,8 @@ import jakarta.persistence.ManyToOne;
 import lombok.*;
 import model.Enum.LugarAtencion;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
@@ -36,6 +38,14 @@ public class Registro {
     @ManyToOne(cascade = CascadeType.REFRESH, optional = false)
     @JoinColumn(name = "idPaciente", nullable = false)
     private Paciente paciente;
+
+    @Setter
+    @Transient
+    private ResultadoDiagnostico resultadoDiagnostico;
+
+    @Setter
+    @Transient
+    private LocalDate fechaRegistro;
 
     public void setMedico(Medico medico) {
         this.medico = medico;

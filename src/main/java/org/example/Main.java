@@ -366,7 +366,7 @@ public class Main {
 //************************************************* Realizacion de triages **************************************//
         medico.realizarTriage(Respiracion.Normal, Pulso.Normal,12, EstadoMental.Normal, Conciencia.Consciente,DolorPecho.NoPresnte, LecionesGraves.NoPresentes, Edad.NinioAnciano,81, Fiebre.Alta, 38, Vomitos.SinVomito,DolorAbdominal.NoPresente, SignoShock.NoPresente, LesionLeve.NoPresente, Sangrado.NoPresente);
 
-        Triage triage = new Triage(registroEntrada1, medico,Respiracion.Normal, Pulso.Normal,22, EstadoMental.Normal, Conciencia.Consciente,DolorPecho.NoPresnte, LecionesGraves.NoPresentes, Edad.Adulto,25, Fiebre.SinFiebre, 30, Vomitos.Moderado,DolorAbdominal.DolorAbdominalModerado, SignoShock.NoPresente, LesionLeve.NoPresente, Sangrado.NoPresente);
+        /*Triage triage = new Triage(registroEntrada1, medico,Respiracion.Normal, Pulso.Normal,22, EstadoMental.Normal, Conciencia.Consciente,DolorPecho.NoPresnte, LecionesGraves.NoPresentes, Edad.Adulto,25, Fiebre.SinFiebre, 30, Vomitos.Moderado,DolorAbdominal.DolorAbdominalModerado, SignoShock.NoPresente, LesionLeve.NoPresente, Sangrado.NoPresente);
 
         Triage triage3 = new Triage(registroEntrada3, enfermero,Respiracion.Normal,Pulso.Normal,15,EstadoMental.Normal,Conciencia.Consciente,DolorPecho.NoPresnte,LecionesGraves.NoPresentes,Edad.NinioAnciano,63,Fiebre.SinFiebre,28,Vomitos.SinVomito,DolorAbdominal.NoPresente,SignoShock.NoPresente,LesionLeve.NoPresente,Sangrado.NoPresente);
 
@@ -390,10 +390,10 @@ public class Main {
         triage6.calcularColorTriageRecomendado();
         triage7.calcularColorTriageRecomendado();
         triage8.calcularColorTriageRecomendado();
-        triage9.calcularColorTriageRecomendado();
+        triage9.calcularColorTriageRecomendado();*/
 
 //************************************************* Confirmacion de triages **************************************//
-        //Confirmacion de Triages del Medico
+        /*//Confirmacion de Triages del Medico
         medico.confirmarTriage(paciente.getRegistrosEntradas().get(paciente.getRegistrosEntradas().size() - 1),medico.getTriagesRealizados().get(medico.getTriagesRealizados().size() - 1),medico.getTriagesRealizados().get(medico.getTriagesRealizados().size() - 1).getColorTriageRecomendado());
         medico.confirmarTriage(registroEntrada1, triage,triage.getColorTriageRecomendado());
         medico.confirmarTriage(registroEntrada5, triage5,triage5.getColorTriageRecomendado());
@@ -406,7 +406,7 @@ public class Main {
 
         //Confirmacion de Triages del Medico 3
         medico3.confirmarTriage(registroEntrada4,triage4,triage4.getColorTriageRecomendado());
-        medico3.confirmarTriage(registroEntrada8,triage8,triage8.getColorTriageRecomendado());
+        medico3.confirmarTriage(registroEntrada8,triage8,triage8.getColorTriageRecomendado());*/
 
 //************************************************* Atencion de Pacientes **************************************//
         /*medico.atenderPaciente(paciente, boxAtencion, "CORONAVAIRUS");

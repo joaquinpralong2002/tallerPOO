@@ -2,6 +2,7 @@ package controllers.AtencionPaciente;
 
 import controllers.MedicoController;
 import datasource.BoxAtencionDAO;
+import datasource.RegistroEntradaDAO;
 import datasource.ResultadoDiagnosticoDAO;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -54,6 +55,7 @@ public class AtenderPacienteController {
 
         // Llena el TextField
         String diagnostico = campoDeTexto.getText();
+
         realizarDiagnosticoButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -65,7 +67,6 @@ public class AtenderPacienteController {
 
                 // Si el usuario hace clic en el botón "Aceptar", entonces se realiza la acción
                 if (resultado.get() == ButtonType.OK) {
-
                     medico.asignarBox(registroEntrada);
                     medico.atenderPaciente(persona,boxAtencion,diagnostico);
 
@@ -121,7 +122,6 @@ public class AtenderPacienteController {
         this.colorTriage = colorTriage;
         this.registroEntrada = registroEntrada;
         this.roles = roles;
-
     }
 
 }
