@@ -31,7 +31,7 @@ public class Asignacion {
     @Column(name = "hora", nullable = false, unique = true)
     private LocalTime hora;
 
-    @OneToOne(mappedBy = "asignacion", cascade = CascadeType.ALL, orphanRemoval = false)
+    @OneToOne(mappedBy = "asignacion", orphanRemoval = false)
     private RegistroEntrada registroEntrada;
 
     @ManyToOne(optional = false)

@@ -67,7 +67,7 @@ public class AtenderPacienteController {
 
                 // Si el usuario hace clic en el botón "Aceptar", entonces se realiza la acción
                 if (resultado.get() == ButtonType.OK) {
-                    medico.asignarBox(registroEntrada);
+                    medico.asignarBox(registroEntrada, lugarAtencionSeleccionada);
                     medico.atenderPaciente(persona,boxAtencion,diagnostico);
 
 
