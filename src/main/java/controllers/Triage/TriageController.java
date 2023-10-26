@@ -59,7 +59,6 @@ public class TriageController {
     @FXML
     private Label colorRecomendadoLabel;
 
-
     /**
      * Inicializa los componentes de la interfaz de usuario asignando los valores posibles
      * a las listas desplegables y estableciendo el texto en la etiqueta de color recomendado.
@@ -196,58 +195,57 @@ public class TriageController {
      * @throws Exception Si ocurre un error al confirmar el triaje o actualizar la interfaz.
      */
     public void handleConfirmarTriageButtonAction(ActionEvent event) throws Exception {
-        // Cierra la sesión del médico
+            // Cierra la sesión del médico
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Realizar triage");
+            alert.setContentText("¿Confirmar el triage?");
+            Optional<ButtonType> resultado = alert.showAndWait();
 
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Realizar triage");
-        alert.setContentText("¿Confirmar el triage?");
-        Optional<ButtonType> resultado = alert.showAndWait();
+            if (resultado.get() == ButtonType.OK) {
+                Respiracion respiracion = this.datosTriage.getRespiracion();
+                int pulsoCardiaco = this.datosTriage.getPulsoCardiaco();
+                Pulso pulso = this.datosTriage.getPulso();
+                EstadoMental estadoMental = this.datosTriage.getEstadoMental();
+                Conciencia conciencia = this.datosTriage.getConciencia();
+                DolorPecho dolorPecho = this.datosTriage.getDolorPecho();
+                LecionesGraves lecionesGraves = this.datosTriage.getLecionesGraves();
+                Edad edad = this.datosTriage.getEdad();
+                int edadAños = this.datosTriage.getEdadAños();
+                float temperatura = this.datosTriage.getTemperatura();
+                Fiebre fiebre = this.datosTriage.getFiebre();
+                Vomitos vomitos = this.datosTriage.getVomitos();
+                DolorAbdominal dolorAbdominal = this.datosTriage.getDolorAbdominal();
+                SignoShock signoShock = this.datosTriage.getSignoShock();
+                LesionLeve lesionLeve = this.datosTriage.getLesionLeve();
+                Sangrado sangrado = this.datosTriage.getSangrado();
 
-        if(resultado.get() == ButtonType.OK){
-            Respiracion respiracion = this.datosTriage.getRespiracion();
-            int pulsoCardiaco = this.datosTriage.getPulsoCardiaco();
-            Pulso pulso = this.datosTriage.getPulso();
-            EstadoMental estadoMental = this.datosTriage.getEstadoMental();
-            Conciencia conciencia = this.datosTriage.getConciencia();
-            DolorPecho dolorPecho = this.datosTriage.getDolorPecho();
-            LecionesGraves lecionesGraves = this.datosTriage.getLecionesGraves();
-            Edad edad = this.datosTriage.getEdad();
-            int edadAños = this.datosTriage.getEdadAños();
-            float temperatura = this.datosTriage.getTemperatura();
-            Fiebre fiebre = this.datosTriage.getFiebre();
-            Vomitos vomitos = this.datosTriage.getVomitos();
-            DolorAbdominal dolorAbdominal = this.datosTriage.getDolorAbdominal();
-            SignoShock signoShock = this.datosTriage.getSignoShock();
-            LesionLeve lesionLeve = this.datosTriage.getLesionLeve();
-            Sangrado sangrado = this.datosTriage.getSangrado();
+                //El médico realiza el triage
+                this.medico.realizarTriage(respiracion, pulso, pulsoCardiaco, estadoMental, conciencia, dolorPecho, lecionesGraves,
+                            edad, edadAños, fiebre, temperatura, vomitos, dolorAbdominal, signoShock, lesionLeve, sangrado);
+                Triage triageMedico = this.medico.getTriagesRealizados().get(medico.getTriagesRealizados().size() - 1);
 
-            //El médico realiza el triage
-            this.medico.realizarTriage(respiracion, pulso, pulsoCardiaco,  estadoMental, conciencia, dolorPecho, lecionesGraves,
-                    edad, edadAños, fiebre, temperatura, vomitos, dolorAbdominal, signoShock, lesionLeve, sangrado);
+                //Se realizan cambios si se ha modificado el color del triage
 
-            Triage triageMedico = this.medico.getTriagesRealizados().get(medico.getTriagesRealizados().size() - 1);
+                if (this.datosTriage.getColorTriageCambiado() != null) {
+                    this.medico.cambiarColorTriage(triageMedico, this.datosTriage.getColorTriageCambiado(), this.datosTriage.getMotivoCambioTriage());
+                    medico.confirmarTriage(registroEntrada, triageMedico, this.datosTriage.getColorTriageCambiado());
+                } else {
+                        medico.confirmarTriage(registroEntrada, triageMedico, this.datosTriage.getColorTriageAsignado());
+                }
 
 
-            //Se realizan cambios si se ha modificado el color del triage
-            if(this.datosTriage.getColorTriageCambiado() != null){
-                this.medico.cambiarColorTriage(triageMedico,this.datosTriage.getColorTriageCambiado(), this.datosTriage.getMotivoCambioTriage());
-                medico.confirmarTriage(registroEntrada, triageMedico, this.datosTriage.getColorTriageCambiado());
-            } else {
-                medico.confirmarTriage(registroEntrada, triageMedico, this.datosTriage.getColorTriageAsignado());
+                //Una vez realizado el triage, se vuelve a la escena inicial de médico
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("/views/MedicoViews/Medico.fxml"));
+                Parent root = loader.load();
+                MedicoController medicoController = loader.getController();
+                medicoController.recibirDatos(roles, medico);
+                //medicoController.iniciarTablaDesdeTriage();
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
             }
-
-            //Una vez realizado el triage, se vuelve a la escena inicial de médico
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/views/MedicoViews/Medico.fxml"));
-            Parent root = loader.load();
-            MedicoController medicoController = loader.getController();
-            medicoController.recibirDatos(roles, medico);
-            //medicoController.iniciarTablaDesdeTriage();
-            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        }
     }
 
     /**
