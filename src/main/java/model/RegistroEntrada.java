@@ -29,7 +29,7 @@ public class RegistroEntrada {
     private String descripcion;
 
     @Setter
-    private  boolean atendido;
+    private boolean atendido;
     @Setter
     private boolean triagiado;
 

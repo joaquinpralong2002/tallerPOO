@@ -31,7 +31,7 @@
             <TableColumn fx:id="colMotivo" prefWidth="259.9999755859375" text="Motivo de Consulta" />
          </columns>
       </TableView>
-      <Pane layoutX="28.0" layoutY="140.0" prefHeight="487.0" prefWidth="442.0">
+      <Pane layoutX="28.0" layoutY="140.0" prefHeight="534.0" prefWidth="442.0">
          <children>
             <Label layoutX="35.0" layoutY="25.0" text="              Filtrar Pacientes               " underline="true">
                <font>
@@ -62,7 +62,7 @@
             <TextField fx:id="txtDNIPac" layoutX="221.0" layoutY="110.0" prefHeight="35.0" prefWidth="150.0" promptText="Ingrese Texto" />
             <TextField fx:id="txtApellPac" layoutX="51.0" layoutY="203.0" prefHeight="35.0" prefWidth="150.0" promptText="Ingrese Texto" />
             <ComboBox fx:id="cmboxTriage" layoutX="221.0" layoutY="203.0" prefHeight="35.0" prefWidth="150.0" promptText="Seleccionar" />
-            <HBox layoutX="26.0" layoutY="410.0" prefHeight="50.0" prefWidth="375.0" spacing="15.0">
+            <HBox layoutX="26.0" layoutY="410.0" prefHeight="116.0" prefWidth="375.0" spacing="15.0">
                <children>
                   <Button fx:id="bttmAtender" mnemonicParsing="false" onAction="#AtenderPaciente" prefHeight="50.0" prefWidth="180.0" text="Atender Paciente">
                      <font>
@@ -82,6 +82,11 @@
                </font>
             </Button>
             <Button fx:id="vaciarButton" layoutX="379.0" layoutY="208.0" mnemonicParsing="false" onAction="#borrarColorTriageSeleccionado" text="Vaciar" />
+            <Button fx:id="historialClinicoButton" layoutX="124.0" layoutY="470.0" mnemonicParsing="false" onAction="#verHistorialClinico" prefHeight="50.0" prefWidth="180.0" text="Ver historial clínico">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
    </children>

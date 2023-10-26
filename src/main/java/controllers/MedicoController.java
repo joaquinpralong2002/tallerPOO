@@ -28,6 +28,7 @@ import model.Paciente;
 import model.RegistroEntrada;
 import model.Triage;
 
+import java.io.IOException;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
@@ -104,8 +105,6 @@ public class MedicoController {
     public void recibirDatos(List<Rol> roles, Medico medico) {
         this.roles = roles;
         this.medico = medico;
-        System.out.println("medico en medico controlador" + medico);
-        System.out.println("roles en medico controlador" + roles);
         boolean contieneTriage = false;
         for (int i = 0; i < roles.size(); i++) {
             if (roles.get(i).getNombre().equals("Triage")) contieneTriage = true;
@@ -121,7 +120,6 @@ public class MedicoController {
         RegistroEntradaDAO registroEntradaDAO = new RegistroEntradaDAO();
         List<RegistroEntrada> listaRegistros = registroEntradaDAO.obtenerTodos();
 
-
         for (RegistroEntrada registro : listaRegistros) {
             if (!registro.isAtendido()) {
                 if (registro.isTriagiado()) {
@@ -136,7 +134,6 @@ public class MedicoController {
                     datosTabla.add(new PacienteTableClass(registro.getPaciente().getId(), registro.getPaciente().getNombre(), registro.getPaciente().getApellido(),
                             ColorTriage.Ninguno, registro.getHora(), registro.getDescripcion(), registro.getPaciente().getDNI()));
                 }
-
                 tblPacientes.setItems(datosTabla);
             }
         }
@@ -191,7 +188,7 @@ public class MedicoController {
             return;
         }
         RegistroEntrada registroEntrada = paciente.getRegistrosEntradas().get(paciente.getRegistrosEntradas().size() - 1);
-        controller.recibirDatos(registroEntrada, medico);
+        controller.recibirDatos(registroEntrada, medico, roles);
         // Cambia a la nueva escena
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
@@ -251,6 +248,19 @@ public class MedicoController {
             alert.showAndWait();
             return;
         }
+    }
+
+    public void verHistorialClinico(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/views/MedicoViews/BuscarPacienteVisualizarRegistros.fxml"));
+        Parent root = loader.load();
+        BuscarPacienteVisualizarRegistroController controller = loader.getController();
+        controller.recibirDatos(roles, medico);
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     public void CerrarSesion(ActionEvent event) throws Exception {
