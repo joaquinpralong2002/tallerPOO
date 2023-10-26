@@ -109,7 +109,7 @@ public class BuscarPacienteVisualizarRegistroController {
         loader.setLocation(getClass().getResource("/views/MedicoViews/HistorialClinico.fxml"));
         Parent rootFuncionario = loader.load();
         HistorialClinicoController controller = loader.getController();
-        controller.recibirDatos(this.paciente);
+        controller.recibirDatos(this.paciente, rolesUsuario, medico);
 
         Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(rootFuncionario);

@@ -4,6 +4,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HistorialClinicoController">
    <children>
@@ -14,6 +15,9 @@
             <TableColumn fx:id="lugarAtencionColumn" prefWidth="275.0" text="Lugar de atención" />
         </columns>
       </TableView>
-      <Label fx:id="resultadoDiagnosticoLabel" layoutX="271.0" layoutY="411.0" prefHeight="311.0" prefWidth="825.0" text="Resultado:" />
+      <Label fx:id="resultadoDiagnosticoLabel" layoutX="271.0" layoutY="411.0" prefHeight="311.0" prefWidth="825.0" text="Resultado:">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
    </children>
 </AnchorPane>
