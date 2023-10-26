@@ -1,6 +1,5 @@
 package controllers;
 
-import controllers.Administracion.RegistroEntradaController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,12 +10,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import lombok.Setter;
-import model.Funcionario;
+import model.FuncionarioAdministrativo;
+import model.Login.AdministradorSistemas;
 
 import java.io.IOException;
 import java.net.URL;
@@ -28,8 +25,10 @@ public class FuncionarioProController implements Initializable {
 
     //Declaraciones
 
-    @Setter
-    private Funcionario funcionario;
+
+    private FuncionarioAdministrativo funcionarioAdministrativo;
+
+    private AdministradorSistemas administradorSistemas;
 
     private Stage stage;
     private Scene scene;
@@ -47,11 +46,12 @@ public class FuncionarioProController implements Initializable {
     @FXML
     private Button bttmRegistroEntrada;
 
-    @FXML
-    private Button bttnAjustes;
 
     @FXML
     private Button bttnNomina;
+
+    @FXML
+    private  Button bttmVacio;
 
     @FXML
     private Pane paneTrasero;
@@ -61,16 +61,12 @@ public class FuncionarioProController implements Initializable {
     //Inicializador
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        bttnNomina.setVisible(false);
+        bttmVacio.setVisible(false);
 
-        try{
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/views/FuncionarioViews/RegistroEntrada.fxml"));
-        RegistroEntradaController registroEntradaController = loader.getController();
-        paneTrasero.getChildren().add(loader.load());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        cargarEscena("/views/FuncionarioViews/RegistroEntrada.fxml");
     }
+
 
     @FXML
     void AjustesAction(ActionEvent event) {
@@ -118,5 +114,33 @@ public class FuncionarioProController implements Initializable {
         stage.show();
     }
 
+    private void cargarEscena(String fxmlResource) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlResource));
+            Node escenaNode = loader.load();
+            paneTrasero.getChildren().clear();
+            paneTrasero.getChildren().add(escenaNode);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //validaciones
+
+    private void chequearRol(){
+
+    }
+
+
+    public void recibirDatos(FuncionarioAdministrativo funcionario){
+        funcionarioAdministrativo = funcionario;
+    }
+
+
+    public void recibirDatos(AdministradorSistemas funcionario){
+        administradorSistemas = funcionario;
+        bttmVacio.setVisible(true);
+        bttnNomina.setVisible(true);
+    }
 
 }

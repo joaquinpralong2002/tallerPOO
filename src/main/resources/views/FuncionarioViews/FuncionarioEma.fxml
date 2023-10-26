@@ -35,35 +35,25 @@
          <center>
             <VBox prefHeight="354.0" prefWidth="160.0" BorderPane.alignment="CENTER">
                <children>
-                  <Separator prefHeight="160.0" prefWidth="200.0" />
-                  <Button fx:id="bttmRegistroEntrada" mnemonicParsing="false" onAction="#RegistroEntradadaAction" prefHeight="40.0" prefWidth="160.0" stylesheets="@../../Styless/Styles.css" text="Registro Entrada">
+                  <Separator minHeight="-Infinity" prefHeight="2.0" prefWidth="160.0" />
+                  <Button fx:id="bttmRegistroEntrada" minHeight="-Infinity" mnemonicParsing="false" onAction="#RegistroEntradadaAction" prefHeight="40.0" prefWidth="160.0" stylesheets="@../../Styless/Styles.css" text="Registro Entrada">
                      <styleClass>
                         <String fx:value="boton-basico" />
                         <String fx:value="boton-basico-encima" />
                      </styleClass></Button>
-                  <Button fx:id="bttmBuscarPaciente" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#BuscarPaciente" prefHeight="40.0" prefWidth="160.0" stylesheets="@../../Styless/Styles.css" text="Buscar Paciente">
+                  <Button fx:id="bttmBuscarPaciente" layoutX="10.0" layoutY="10.0" minHeight="-Infinity" mnemonicParsing="false" onAction="#BuscarPaciente" prefHeight="40.0" prefWidth="160.0" stylesheets="@../../Styless/Styles.css" text="Buscar Paciente">
                      <styleClass>
                         <String fx:value="boton-basico" />
                         <String fx:value="boton-basico-encima" />
                      </styleClass></Button>
-                  <Button fx:id="bttmEstadistica" layoutX="10.0" layoutY="50.0" mnemonicParsing="false" onAction="#EstadisticasAction" prefHeight="40.0" prefWidth="160.0" stylesheets="@../../Styless/Styles.css" text="Estadisticas">
-                     <styleClass>
-                        <String fx:value="boton-basico" />
-                        <String fx:value="boton-basico-encima" />
-                     </styleClass></Button>
-                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="160.0" stylesheets="@../../Styless/Styles.css">
+                  <Button fx:id="bttmEstadistica" minHeight="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="160.0" stylesheets="@../../Styless/Styles.css" text="Estadisticas">
                      <styleClass>
                         <String fx:value="boton-basico" />
                         <String fx:value="boton-basico-encima" />
                      </styleClass>
                   </Button>
-                  <Button fx:id="bttnNomina" mnemonicParsing="false" onAction="#NominaAction" prefHeight="40.0" prefWidth="160.0" stylesheets="@../../Styless/Styles.css" text="Nómina">
-                     <styleClass>
-                        <String fx:value="boton-basico" />
-                        <String fx:value="boton-basico-encima" />
-                     </styleClass>
-                  </Button>
-                  <Button fx:id="bttnAjustes" mnemonicParsing="false" onAction="#AjustesAction" prefHeight="40.0" prefWidth="160.0" stylesheets="@../../Styless/Styles.css" text="Ajustes">
+                  <Button fx:id="bttmVacio" layoutX="10.0" layoutY="50.0" minHeight="-Infinity" mnemonicParsing="false" onAction="#EstadisticasAction" prefHeight="40.0" prefWidth="160.0" styleClass="boton-vacio" stylesheets="@../../Styless/Styles.css" />
+                  <Button fx:id="bttnNomina" minHeight="-Infinity" mnemonicParsing="false" onAction="#NominaAction" prefHeight="40.0" prefWidth="160.0" stylesheets="@../../Styless/Styles.css" text="Nómina">
                      <styleClass>
                         <String fx:value="boton-basico" />
                         <String fx:value="boton-basico-encima" />
@@ -73,7 +63,7 @@
             </VBox>
          </center>
          <bottom>
-            <VBox alignment="BOTTOM_CENTER" prefHeight="360.0" prefWidth="160.0" styleClass="fondo-color-primario" stylesheets="@../../Styless/Styles.css" BorderPane.alignment="CENTER">
+            <VBox alignment="BOTTOM_CENTER" prefHeight="354.0" prefWidth="160.0" styleClass="fondo-color-primario" stylesheets="@../../Styless/Styles.css" BorderPane.alignment="CENTER">
                <children>
                   <Button fx:id="bttmCerrarSesion" mnemonicParsing="false" onAction="#CerrarSesion" prefHeight="40.0" prefWidth="160.0" stylesheets="@../../Styless/Styles.css" text="Cerrar Sesion">
                      <styleClass>

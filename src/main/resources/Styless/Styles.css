@@ -27,6 +27,12 @@
 -fx-border-width: 0 0 2 0;
 -fx-border-color: lightgray;
 }
+.boton-vacio{
+-fx-background-radius: 0;
+-fx-background-color: crimson;
+-fx-border-width: 0 0 2 0;
+-fx-border-color: lightgray;
+}
 
 .boton-basico-encima:hover {
     -fx-background-color: crimson; /* Cambia el color de fondo al pasar el cursor (celeste) */

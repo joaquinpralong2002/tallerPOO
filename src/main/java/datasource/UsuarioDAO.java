@@ -91,4 +91,15 @@ public class UsuarioDAO implements GenericoDAO<Usuario> {
         session.close();
         return funcionario;
     }
+
+
+    public Object obtenerFuncionarioPorIdUsuario(Long idUsuario) {
+        Session session = sessionFactory.openSession();
+        String query = "SELECT funcionario FROM Funcionario funcionario WHERE funcionario.usuario.idUsuario = :id";
+        Object funcionario = session.createQuery(query).setParameter("id", idUsuario)
+                .getSingleResultOrNull();
+        session.close();
+
+        return funcionario;
+    }
 }
