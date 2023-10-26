@@ -40,11 +40,11 @@ public class Registro {
     private Paciente paciente;
 
     @Setter
-    @Transient
+    @ManyToOne
+    @JoinColumn(name = "idResultadoDiagnostico")
     private ResultadoDiagnostico resultadoDiagnostico;
 
     @Setter
-    @Transient
     private LocalDate fechaRegistro;
 
     public void setMedico(Medico medico) {
@@ -59,6 +59,7 @@ public class Registro {
         this.lugarAtencion = lugarAtencion;
         this.paciente = paciente;
         this.medico = medico;
+        this.fechaRegistro = LocalDate.now();
     }
 
     @Override
