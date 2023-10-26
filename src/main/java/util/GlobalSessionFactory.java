@@ -45,8 +45,11 @@ public class GlobalSessionFactory {
                 .addAnnotatedClass(Universidad.class)
                 //url
                 .setProperty(AvailableSettings.URL, "jdbc:mysql://localhost:3306/tallerdb")
+                //.setProperty(AvailableSettings.URL, "jdbc:mysql://root:jqoflvUUll8Tx8j5FMGb@containers-us-west-154.railway.app:7795/railway")
                 // Credenciales
                 .setProperty(AvailableSettings.USER, "usuario")
+                //.setProperty(AvailableSettings.USER, "root")
+                //.setProperty(AvailableSettings.PASS, "jqoflvUUll8Tx8j5FMGb")
                 .setProperty(AvailableSettings.PASS, "basededatostallerpoo123")
                 .setProperty(AvailableSettings.DIALECT, "org.hibernate.dialect.MySQLDialect")
                 .setProperty(AvailableSettings.DRIVER, "com.mysql.cj.jdbc.Driver")
@@ -56,6 +59,7 @@ public class GlobalSessionFactory {
                 .setProperty(AvailableSettings.FORMAT_SQL, TRUE.toString())
                 .setProperty(AvailableSettings.HIGHLIGHT_SQL, TRUE.toString())
                 .setProperty(AvailableSettings.HBM2DDL_AUTO, "update")
+                //.setProperty(AvailableSettings.HBM2DDL_AUTO, "create-drop")
                 // Creación de SessionFactory
                 .buildSessionFactory();
     }
