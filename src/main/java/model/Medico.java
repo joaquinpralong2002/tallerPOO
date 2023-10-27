@@ -7,6 +7,7 @@ import model.Enum.EstadoCivil;
 import model.Enum.LugarAtencion;
 import model.EnumeracionesVariablesTriage.*;
 import model.Login.Usuario;
+import org.hibernate.annotations.NaturalId;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ import java.util.List;
 
 @Entity
 public class Medico extends Funcionario implements CapacitadoTriage{
+    @Column(unique = true)
     private String numMatricula;
 
     @OneToMany(mappedBy = "medico", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

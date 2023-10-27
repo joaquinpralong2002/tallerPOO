@@ -1,6 +1,7 @@
 package controllers;
 
 import controllers.Singletons.SingletonAdministradorSistema;
+import datasource.FuncionarioDAO;
 import datasource.UsuarioDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,6 +17,7 @@ import javafx.stage.Stage;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
+import model.Funcionario;
 import model.Login.AdministradorSistemas;
 import model.Login.Rol;
 import model.Login.Usuario;
@@ -76,35 +78,6 @@ public class SistemasController {
     }
 
 
-    public void BuscarUsuario(ActionEvent actionEvent) {
-        String nombreUsuario = this.txtNombUsu.getText();
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
-        ObservableList usuarioTabla = FXCollections.observableArrayList();
-        try {
-            ComprobarCampo(nombreUsuario);
-            Usuario usuario = usuarioDAO.obtenerUsuarioPorNombre(nombreUsuario);
-            if(usuario != null){
-                usuarioTabla.add(new UsuarioTableClass(usuario.getNombreUsuario(), usuario.getNombreRoles(), usuario.getFuncionario().getNombre(), usuario.getFuncionario().getApellido(), usuario.getFuncionario().getSector().getNombre()));
-            }else{
-                throw new Exception("Usuario no encontrado revise los datos ingresados");
-            }
-
-            this.tblUsuarios.setItems(usuarioTabla);
-        }catch (Exception e){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Datos Invalidos");
-            alert.setContentText(e.getMessage());
-            alert.show();
-        }
-    }
-
-    public void ComprobarCampo(String nombreUsuario) throws Exception {
-        if(!nombreUsuario.matches("^[^\s]+$")){
-            throw new Exception("Los campos no pueden estar vacios");
-        }
-    }
-
     public void CrearUsuario(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/views/SistemasViews/CrearUsuario.fxml"));
@@ -132,21 +105,33 @@ public class SistemasController {
     }
 
     public void EliminarUsuario(ActionEvent actionEvent) {
-    }
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        UsuarioTableClass usuarioTableClass = (UsuarioTableClass) this.tblUsuarios.getSelectionModel().getSelectedItem();
 
-    public void CerrarSesion(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/views/Login.fxml"));
+        if(usuarioTableClass == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("Debe seleccionar un usuario de la tabla.");
+            alert.showAndWait();
+        }
+        Usuario usuario = usuarioDAO.obtenerUsuarioPorNombre(usuarioTableClass.nombreUsuario);
+
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Cerrar sesión");
-        alert.setContentText("¿Estás seguro de que deseas cerrar sesión?");
+        alert.setTitle("Eliminar Usuario");
+        alert.setContentText("¿Estás seguro de que deseas eliminar este usuario?");
         Optional<ButtonType> resultado = alert.showAndWait();
 
         if (resultado.get() == ButtonType.OK) {
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+            usuarioDAO.borrar(usuario);
+            datosTabla.remove(usuarioTableClass);
+            this.tblUsuarios.refresh();
+
+            Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+            alert2.setTitle("Información");
+            alert2.setHeaderText("Usuario eliminado exitosamente");
+            alert2.show();
         }
+
     }
 
     @AllArgsConstructor
