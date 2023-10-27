@@ -1,5 +1,6 @@
 package controllers.Administracion;
 
+import controllers.FuncionarioProController;
 import datasource.PacienteDAO;
 import datasource.RegistroEntradaDAO;
 import javafx.event.ActionEvent;
@@ -13,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import lombok.Setter;
 import model.FuncionarioAdministrativo;
 import model.Login.Rol;
 import model.Login.Usuario;
@@ -36,8 +38,11 @@ public class BuscarPacienteController {
     private Usuario usuarioIniciado;
     private FuncionarioAdministrativo funcionarioAdministrativoIniciado;
 
+    private FuncionarioProController controllerPrincipal;
+
     @FXML
     public void initialize(){
+        controllerPrincipal = FuncionarioProController.getControladorPrimario();
         this.lbNombre.setText("Sin Datos");
         this.lbApellido.setText("Sin Datos");
         this.lbTelFijo.setText("Sin Datos");
@@ -116,25 +121,7 @@ public class BuscarPacienteController {
     }
 
     public void CrearPaciente(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/views/FuncionarioViews/RegistroEntrada.fxml"));
-        Parent rootFuncionario = loader.load();
-
-        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(rootFuncionario);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    public void Volver(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/views/FuncionarioViews/Funcionario.fxml"));
-        Parent rootFuncionario = loader.load();
-
-        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(rootFuncionario);
-        stage.setScene(scene);
-        stage.show();
+        controllerPrincipal.cargarEscena("/views/FuncionarioViews/RegistroEntrada.fxml");
     }
 
     public void recibirDatos(List<Rol> roles, Usuario user, FuncionarioAdministrativo funcionarioAdministrativo) {

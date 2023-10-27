@@ -14,11 +14,6 @@
 
 <AnchorPane maxHeight="900.0" maxWidth="1600.0" prefHeight="768.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SistemasController">
    <children>
-      <Button fx:id="bttmCerrarSesion" layoutX="55.0" layoutY="40.0" mnemonicParsing="false" onAction="#CerrarSesion" prefHeight="50.0" prefWidth="150.0" text="Cerrar Sesion">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Button>
       <Label layoutX="508.0" layoutY="68.0" text="Area Sistemas">
          <font>
             <Font size="30.0" />
