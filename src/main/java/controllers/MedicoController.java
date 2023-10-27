@@ -84,6 +84,10 @@ public class MedicoController {
 
     private ObservableList<PacienteTableClass> datosTabla = FXCollections.observableArrayList();
 
+    /**
+     * Inicia la sesión del médico y verifica si tiene permisos para realizar triages.
+     * Si el médico tiene el rol de "Triage," muestra el botón para realizar triages, de lo contrario, lo oculta.
+     */
     public void iniciarMedico(){
         //Verifica que el médico tenga el rol que le permita realizar triages.
         medico = SingletonMedico.getInstance().getMedico();
@@ -98,6 +102,12 @@ public class MedicoController {
     }
 
 
+    /**
+     * Inicializa la vista y configura los componentes de la interfaz de usuario.
+     * Agrega valores al ComboBox de triage, configura las columnas de la tabla, y establece
+     * listeners para los campos de búsqueda de pacientes y el ComboBox de triage para permitir
+     * la filtración de pacientes en la tabla en función de los valores seleccionados o ingresados.
+     */
     public void initialize() {
         this.cmboxTriage.getItems().addAll(ColorTriage.values());
         this.colNomPac.setCellValueFactory(new PropertyValueFactory<>("nombre"));
@@ -112,6 +122,11 @@ public class MedicoController {
         cmboxTriage.valueProperty().addListener((observable,oldValue,newValue) -> filtrarPacientes());
     }
 
+
+    /**
+     * Inicializa la tabla de pacientes en la vista, cargando registros de entrada de pacientes no atendidos
+     * y configurando los datos de los pacientes en la tabla, incluyendo el color de triage y otros detalles.
+     */
     private void iniciarTabla() {
 
         RegistroEntradaDAO registroEntradaDAO = new RegistroEntradaDAO();
@@ -136,6 +151,10 @@ public class MedicoController {
         }
     }
 
+
+    /**
+     * Filtra y muestra los pacientes en la tabla según los criterios de búsqueda especificados en los campos de entrada.
+     */
     public void filtrarPacientes(){
         Predicate<PacienteTableClass> predicate = paciente -> {
             String nombreFilter = txtNombPac.getText().toLowerCase();
@@ -159,6 +178,13 @@ public class MedicoController {
         cmboxTriage.setValue(null);
     }
 
+
+    /**
+     * Abre la ventana de Triage para realizar el triage de un paciente seleccionado en la tabla.
+     *
+     * @param event El evento que desencadena la apertura de la ventana.
+     * @throws Exception Si ocurre un error durante la apertura de la ventana.
+     */
     public void RealizarTriage(ActionEvent event) throws Exception {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/views/MedicoViews/Triage/Triage.fxml"));
@@ -190,6 +216,14 @@ public class MedicoController {
         stage.show();
     }
 
+
+    /**
+     * Abre una vista para atender a un paciente seleccionado y verifica si el paciente
+     * tiene un triage asociado para proporcionar la información adecuada en la nueva vista.
+     *
+     * @param event Evento que desencadena la acción.
+     * @throws Exception Excepción lanzada en caso de errores.
+     */
     public void AtenderPaciente(ActionEvent event) throws Exception {
 
         // Atiende al paciente
@@ -234,6 +268,12 @@ public class MedicoController {
         }
     }
 
+    /**
+     * Abre la ventana para visualizar el historial clínico de un paciente.
+     *
+     * @param event El evento que desencadena la apertura de la ventana.
+     * @throws IOException Si ocurre un error durante la apertura de la ventana.
+     */
     public void verHistorialClinico(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/views/MedicoViews/BuscarPacienteVisualizarRegistros.fxml"));
@@ -247,6 +287,13 @@ public class MedicoController {
         stage.show();
     }
 
+
+    /**
+     * Cierra la sesión del médico y muestra una confirmación al usuario.
+     *
+     * @param event Evento que desencadena la acción.
+     * @throws Exception Excepción lanzada en caso de errores.
+     */
     public void CerrarSesion(ActionEvent event) throws Exception {
         // Cierra la sesión del médico
         Parent root = FXMLLoader.load(getClass().getResource("/views/Login.fxml"));

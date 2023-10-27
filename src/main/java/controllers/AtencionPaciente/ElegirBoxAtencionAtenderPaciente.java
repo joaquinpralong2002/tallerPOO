@@ -53,6 +53,14 @@ public class ElegirBoxAtencionAtenderPaciente {
         BotonRedondoConsultorio.setToggleGroup(grupoDeBotones);
         BotonRedondoInternaciones.setToggleGroup(grupoDeBotones);
     }
+
+    /**
+     * Maneja el evento de elegir una opción de lugar de atención y cargar la siguiente escena
+     * para atender al paciente en el box seleccionado.
+     *
+     * @param event Evento que desencadena la acción.
+     * @throws Exception Excepción lanzada en caso de errores.
+     */
     @FXML
     void elegirBoxAtencion(ActionEvent event) throws Exception {
         // Obtiene la opción seleccionada
@@ -95,6 +103,11 @@ public class ElegirBoxAtencionAtenderPaciente {
             });
         }
 
+    /**
+     * Obtiene la opción de lugar de atención seleccionada por el médico.
+     *
+     * @return Enumeración que representa el lugar de atención seleccionado.
+     */
     private LugarAtencion getLugarAtencionSeleccionada() {
         if (BotonRedondoEmergencia.isSelected()) {
             return LugarAtencion.Emergencia;
@@ -106,6 +119,12 @@ public class ElegirBoxAtencionAtenderPaciente {
     }
 
 
+    /**
+     * Establece el texto en la interfaz de usuario para mostrar el box de atención recomendado
+     * basado en el color del triaje.
+     *
+     * @param colorTriage El color del triaje del paciente.
+     */
     public void setBoxRecomendadoApp(ColorTriage colorTriage) {
         this.colorTriage = colorTriage;
         System.out.println(colorTriage);
@@ -127,6 +146,13 @@ public class ElegirBoxAtencionAtenderPaciente {
         this.registroEntrada = registroEntrada;
     }
 
+    /**
+     * Maneja el evento de presionar el botón "Atrás" para volver a la pestaña anterior.
+     * Carga la vista anterior y cierra la pestaña actual si se confirma.
+     *
+     * @param event El evento de clic en el botón "Atrás".
+     * @throws Exception Si ocurre un error al cargar la vista anterior.
+     */
     public void BotonAtras(ActionEvent event) throws Exception {
         // Volver atras a Médico
         FXMLLoader loader = new FXMLLoader();
