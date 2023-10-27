@@ -48,8 +48,14 @@ public class AtenderPacienteController {
     private Label LabalTipoBox;
 
 
-    //Metodo para guardar en que Box de atencion lo atendieron, se guarda en el Registro
-    //Revisar si anda...
+    /**
+     * Maneja el evento de presionar el botón "Realizar Registro".
+     * Captura el diagnóstico ingresado por el médico y muestra una alerta de confirmación.
+     * Si el médico confirma la acción, asigna un lugar de atención al paciente y realiza el diagnóstico.
+     *
+     * @param event El evento de clic en el botón "Realizar Registro".
+     * @throws Exception Si ocurre un error al cargar la vista de Medico.
+     */
     public void BotonRealizarRegistro(ActionEvent event) throws Exception {
         // Llena el TextField
         String diagnostico = campoDeTexto.getText();
@@ -86,6 +92,12 @@ public class AtenderPacienteController {
         });
     }
 
+    /**
+     * Establece el lugar de atención seleccionado y actualiza la interfaz de usuario con el tipo de lugar de atención.
+     * Además, busca y asigna un box de atención disponible para el lugar seleccionado.
+     *
+     * @param lugarAtencionSeleccionada El lugar de atención seleccionado por el usuario.
+     */
     public void setLugarAtencionSeleccionada(LugarAtencion lugarAtencionSeleccionada) {
         this.lugarAtencionSeleccionada = lugarAtencionSeleccionada;
         LabalTipoBox.setText(lugarAtencionSeleccionada.name());
