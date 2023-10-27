@@ -1,5 +1,6 @@
 package controllers;
 
+import controllers.Singletons.SingletonMedico;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -48,8 +49,8 @@ public class HistorialClinicoController {
     private Label resultadoDiagnosticoLabel;
     private Paciente paciente;
     private ObservableList<DatosRegistro> datosTabla = FXCollections.observableArrayList();
-    private Medico medico;
-    private List<Rol> roles;
+    private Medico medico = SingletonMedico.getInstance().getMedico();
+    private List<Rol> roles = SingletonMedico.getInstance().getRoles();
 
     @FXML
     public void initialize() {
@@ -68,9 +69,7 @@ public class HistorialClinicoController {
     }
 
 
-    public void recibirDatos(Paciente paciente, List<Rol> roles, Medico medico){
-        this.roles = roles;
-        this.medico = medico;
+    public void recibirDatos(Paciente paciente){
         this.paciente = paciente;
         this.iniciarTabla();
     }
@@ -93,7 +92,6 @@ public class HistorialClinicoController {
         loader.setLocation(getClass().getResource("/views/MedicoViews/BuscarPacienteVisualizarRegistros.fxml"));
         Parent rootFuncionario = loader.load();
         MedicoController controller = loader.getController();
-        controller.recibirDatos(roles, medico);
 
         Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(rootFuncionario);

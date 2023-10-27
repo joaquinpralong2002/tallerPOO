@@ -1,6 +1,7 @@
 package controllers.AtencionPaciente;
 
 import controllers.MedicoController;
+import controllers.Singletons.SingletonMedico;
 import datasource.BoxAtencionDAO;
 import datasource.RegistroEntradaDAO;
 import datasource.ResultadoDiagnosticoDAO;
@@ -35,8 +36,8 @@ public class AtenderPacienteController {
     @Getter
     private LugarAtencion lugarAtencionSeleccionada;
     private RegistroEntrada registroEntrada;
-    private Medico medico;
-    private List<Rol> roles;
+    private Medico medico = SingletonMedico.getInstance().getMedico();
+    private List<Rol> roles = SingletonMedico.getInstance().getRoles();
     private BoxAtencion boxAtencion;
     private ColorTriage colorTriage;
     @FXML
@@ -50,7 +51,6 @@ public class AtenderPacienteController {
     //Metodo para guardar en que Box de atencion lo atendieron, se guarda en el Registro
     //Revisar si anda...
     public void BotonRealizarRegistro(ActionEvent event) throws Exception {
-
         // Llena el TextField
         String diagnostico = campoDeTexto.getText();
 
@@ -77,7 +77,6 @@ public class AtenderPacienteController {
                         throw new RuntimeException(e);
                     }
                     MedicoController medicoController = loader.getController();
-                    medicoController.recibirDatos(roles, medico);
                     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     Scene scene = new Scene(root);
                     stage.setScene(scene);
@@ -97,12 +96,10 @@ public class AtenderPacienteController {
 
 
     @FXML
-    public void recibirDatos(Medico medico, Paciente persona, ColorTriage colorTriage, RegistroEntrada registroEntrada, List<Rol> roles){
-        this.medico = medico;
+    public void recibirDatos(Paciente persona, ColorTriage colorTriage, RegistroEntrada registroEntrada){
         this.persona = persona;
         this.colorTriage = colorTriage;
         this.registroEntrada = registroEntrada;
-        this.roles = roles;
     }
 
 }

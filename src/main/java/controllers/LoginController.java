@@ -2,6 +2,8 @@ package controllers;
 
 
 import controllers.Enfermero.EnfermeroController;
+import controllers.Singletons.SingletonEnfermero;
+import controllers.Singletons.SingletonMedico;
 import datasource.UsuarioDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,11 +12,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Enfermero;
-import model.Funcionario;
 import model.FuncionarioAdministrativo;
 import model.Login.AdministradorSistemas;
 import model.Login.Rol;
@@ -24,12 +24,9 @@ import model.Medico;
 import java.util.List;
 
 public class LoginController {
-
-
     //Declaraciones
-    private List<Rol> rolUsuario;
-    private static Stage loginStage;
-
+    private FXMLLoader loaderFuncionario;
+    private FuncionarioProController funcionarioProController;
 
     private Stage stage;
     private Scene scene;
@@ -50,87 +47,71 @@ public class LoginController {
 
         // Comprueba si alguno de los campos está vacío
         if (controlarCampos()) {
+            //comprueba que el valor de los campos sean correctos
             if (validarUsuario(user, username, password)) {
-                switch (user.getRoles().get(0).getNombre()) {
-                    case "Sistemas":
-                        FXMLLoader loaderSistemas = new FXMLLoader();
-                        loaderSistemas.setLocation(getClass().getResource("/views/SistemasViews/Sistemas.fxml"));
-                        Parent rootSistemas = loaderSistemas.load();
+                var funcionario = usuarioDAO.obtenerFuncionarioPorIdUsuario(user.getIdUsuario());
+                if (funcionario.getClass() == FuncionarioAdministrativo.class || funcionario.getClass() == AdministradorSistemas.class) {
+                    //carga la escena de un Funcionario tanto FuncionarioAdministrativo como AdministradorSistemas
+                    loaderFuncionario = new FXMLLoader();
+                    loaderFuncionario.setLocation(getClass().getResource("/views/FuncionarioViews/FuncionarioEma.fxml"));
+                    root = loaderFuncionario.load();
+                    stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    scene = new Scene(root);
+                    stage.setScene(scene);
+                    funcionarioProController = loaderFuncionario.getController();
+                    //se evalúa qué tipo de funcionario es FuncionarioAdministrativo o AdministradorSistemas
+                    if (funcionario.getClass() == AdministradorSistemas.class) {
+                        funcionarioProController.recibirDatos((AdministradorSistemas) funcionario);
+                    } else if (funcionario.getClass() == FuncionarioAdministrativo.class) {
+                        funcionarioProController.recibirDatos((FuncionarioAdministrativo) funcionario);
+                    }
+                    //Muestra la escena cargada
+                    stage.show();
+                } else if (funcionario.getClass() == Medico.class) {
+                    // Carga la escena de médico
+                    FXMLLoader loader = new FXMLLoader();
+                    loader.setLocation(getClass().getResource("/views/MedicoViews/Medico.fxml"));
+                    Parent rootMedico = loader.load();
 
-                        AdministradorSistemas administradorSistemas = usuarioDAO.obtenerAdministradorPorIdUsuario(user.getIdUsuario());
+                    //Se busca el objeto de médico para pasarlo al controlador
+                    Medico medico = usuarioDAO.obtenerMedicoPorIdUsuario(user.getIdUsuario());
+                    SingletonMedico.getInstance().setMedico(medico);
+                    SingletonMedico.getInstance().setRoles(user.getRoles());
 
-                        SistemasController controladorSistemas = loaderSistemas.getController();
-                        controladorSistemas.recibirDatos(user.getRoles(), user, administradorSistemas);
-
-                        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                        scene = new Scene(rootSistemas);
-                        stage.setScene(scene);
-                        stage.show();
-                        break;
-                    case "Medico":
-                        // Carga la escena de médico
-                        FXMLLoader loader = new FXMLLoader();
-                        loader.setLocation(getClass().getResource("/views/MedicoViews/Medico.fxml"));
-                        Parent rootMedico = loader.load();
-
-                        //Se busca el objeto de médico para pasarlo al controlador
-                        Medico medico = usuarioDAO.obtenerMedicoPorIdUsuario(user.getIdUsuario());
-                        System.out.println("Médico en login controlador: " + medico);
-                        //Carga el controlador de médico, y le envía el médico y sus roles
-                        MedicoController controller = loader.getController();
-                        controller.recibirDatos(user.getRoles(), medico);
-                        System.out.println(user.getRoles());
-
-                        // Cambia a la nueva escena
-                        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                        scene = new Scene(rootMedico);
-                        stage.setScene(scene);
-                        stage.show();
-                        break;
-                    case "Funcionario":
-                        FXMLLoader loaderFuncionario = new FXMLLoader();
-                        loaderFuncionario.setLocation(getClass().getResource("/views/FuncionarioViews/FuncionarioEma.fxml"));
-                        Parent rootFuncionario = loaderFuncionario.load();
-
-                        //FuncionarioAdministrativo funcionarioAdministrativo = usuarioDAO.obtenerFuncionarioAdministrativoPorIdUsuario(user.getIdUsuario());
-                        Funcionario funciorio = usuarioDAO.obtenerFuncionarioAdministrativoPorIdUsuario(user.getIdUsuario());
+                    //Carga el controlador de médico, y le envía el médico y sus roles
+                    MedicoController controller = loader.getController();
+                    controller.iniciarMedico();
 
 
-                        FuncionarioProController funcionarioProController = loaderFuncionario.getController();
-                        funcionarioProController.setFuncionario(funciorio);
-                        //funcionarioController.recibirDatos(user.getRoles(), user, funcionarioAdministrativo);
+                    // Cambia a la nueva escena
+                    stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    scene = new Scene(rootMedico);
+                    stage.setScene(scene);
+                    stage.show();
+                } else {
+                    FXMLLoader loaderEnfermero = new FXMLLoader();
+                    loaderEnfermero.setLocation(getClass().getResource("/views/EnfermeroViews/Enfermero.fxml"));
+                    Parent rootEnfermero = loaderEnfermero.load();
 
-                        //RegistroEntradaController
-                        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                        scene = new Scene(rootFuncionario);
-                        stage.setScene(scene);
-                        stage.show();
-                        break;
-                    case "Enfermero":
-                        FXMLLoader loaderEnfermero = new FXMLLoader();
-                        loaderEnfermero.setLocation(getClass().getResource("/views/EnfermeroViews/Enfermero.fxml"));
-                        Parent rootEnfermero= loaderEnfermero.load();
+                    Enfermero enfermero = usuarioDAO.obtenerEnfermeroPorIdUsuario(user.getIdUsuario());
 
-                        Enfermero enfermero = usuarioDAO.obtenerEnfermeroPorIdUsuario(user.getIdUsuario());
+                    SingletonEnfermero.getInstance().setEnfermero(enfermero);
+                    SingletonEnfermero.getInstance().setRoles(user.getRoles());
 
-                        EnfermeroController enfermeroController = loaderEnfermero.getController();
-                        enfermeroController.recibirDatos(user.getRoles(), enfermero);
+                    EnfermeroController enfermeroController = loaderEnfermero.getController();
+                    enfermeroController.iniciarEnfermero();
 
-                        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                        scene = new Scene(rootEnfermero);
-                        stage.setScene(scene);
-                        stage.show();
-                        break;
-                    default:
+                    stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    scene = new Scene(rootEnfermero);
+                    stage.setScene(scene);
+                    stage.show();
                 }
             }
         }
 
     }
 
-
     private boolean controlarCampos(){
-
         // Comprueba si alguno de los campos está vacío
         if (usernameTextField.getText().isEmpty() || passwordTextField.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);

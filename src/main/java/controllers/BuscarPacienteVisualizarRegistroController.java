@@ -1,5 +1,6 @@
 package controllers;
 
+import controllers.Singletons.SingletonMedico;
 import datasource.PacienteDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -32,8 +33,8 @@ public class BuscarPacienteVisualizarRegistroController {
     @FXML
     private Label lbTelCont;
     private Paciente paciente;
-    private List<Rol> rolesUsuario;
-    private Medico medico;
+    private List<Rol> roles = SingletonMedico.getInstance().getRoles();
+    private Medico medico = SingletonMedico.getInstance().getMedico();
 
     @FXML
     public void initialize(){
@@ -42,11 +43,6 @@ public class BuscarPacienteVisualizarRegistroController {
         this.lbTelFijo.setText("Sin Datos");
         this.lbTelCel.setText("Sin Datos");
         this.lbTelCont.setText("Sin Datos");
-    }
-
-    public void recibirDatos(List<Rol> roles, Medico medico) {
-        this.rolesUsuario = roles;
-        this.medico = medico;
     }
 
     public void BuscarPaciente(ActionEvent actionEvent) {
@@ -96,7 +92,6 @@ public class BuscarPacienteVisualizarRegistroController {
         loader.setLocation(getClass().getResource("/views/MedicoViews/Medico.fxml"));
         Parent rootFuncionario = loader.load();
         MedicoController controller = loader.getController();
-        controller.recibirDatos(rolesUsuario, medico);
 
         Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(rootFuncionario);
@@ -109,7 +104,7 @@ public class BuscarPacienteVisualizarRegistroController {
         loader.setLocation(getClass().getResource("/views/MedicoViews/HistorialClinico.fxml"));
         Parent rootFuncionario = loader.load();
         HistorialClinicoController controller = loader.getController();
-        controller.recibirDatos(this.paciente, rolesUsuario, medico);
+        controller.recibirDatos(this.paciente);
 
         Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(rootFuncionario);

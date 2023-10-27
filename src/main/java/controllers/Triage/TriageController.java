@@ -1,6 +1,7 @@
 package controllers.Triage;
 
 import controllers.MedicoController;
+import controllers.Singletons.SingletonMedico;
 import datasource.PacienteDAO;
 import datasource.RegistroEntradaDAO;
 import datasource.TriageDAO;
@@ -28,8 +29,8 @@ import java.util.Optional;
 public class TriageController {
     private ColorTriage colorTriageAsignado = ColorTriage.Ninguno;
     private RegistroEntrada registroEntrada;
-    private Medico medico;
-    private List<Rol> roles;
+    private Medico medico = SingletonMedico.getInstance().getMedico();
+    private List<Rol> roles = SingletonMedico.getInstance().getRoles();
     @Setter
     private DatosTriage datosTriage;
     @FXML
@@ -81,13 +82,10 @@ public class TriageController {
     /**
      * Recibe el paciente y el registro de entrada de la escena de médico
      * @param registroEntrada
-     * @param medico
-     */
+     **/
     @FXML
-    public void recibirDatos(RegistroEntrada registroEntrada, Medico medico, List<Rol> roles) {
+    public void recibirDatos(RegistroEntrada registroEntrada) {
         this.registroEntrada = registroEntrada;
-        this.medico = medico;
-        this.roles = roles;
     }
 
 
@@ -241,8 +239,6 @@ public class TriageController {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/views/MedicoViews/Medico.fxml"));
             Parent root = loader.load();
-            MedicoController medicoController = loader.getController();
-            medicoController.recibirDatos(roles, medico);
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);

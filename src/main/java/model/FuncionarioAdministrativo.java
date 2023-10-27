@@ -21,7 +21,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString
+@ToString(callSuper = true)
 
 @Entity
 public class FuncionarioAdministrativo extends Funcionario{

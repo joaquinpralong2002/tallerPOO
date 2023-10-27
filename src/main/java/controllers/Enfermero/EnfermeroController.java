@@ -4,6 +4,7 @@ import controllers.AtencionPaciente.ElegirBoxAtencionAtenderPaciente;
 import controllers.BuscarPacienteVisualizarRegistroController;
 import controllers.Enfermero.TriageEnfermero.TriageEnfermeroController;
 import controllers.MedicoController;
+import controllers.Singletons.SingletonEnfermero;
 import controllers.Triage.TriageController;
 import datasource.PacienteDAO;
 import datasource.RegistroEntradaDAO;
@@ -55,7 +56,6 @@ public class EnfermeroController {
     }
 
     private List<Rol> roles;
-    private Medico medico;
     private Enfermero enfermero;
     @FXML
     private TableColumn<Paciente, String> colNomPac;
@@ -79,18 +79,13 @@ public class EnfermeroController {
     private TextField txtDNIPac;
     @FXML
     private Button bttmRealTriage;
-    @FXML
-    private Button bttmAtender;
-    @FXML
-    private Button bttmCerrarSesion;
-    private MedicoController medicoController;
 
     private ObservableList<PacienteTableClass> datosTabla = FXCollections.observableArrayList();
 
-    @FXML
-    public void recibirDatos(List<Rol> roles, Enfermero enfermero) {
-        this.roles = roles;
-        this.enfermero = enfermero;
+
+    public void iniciarEnfermero(){
+        enfermero = SingletonEnfermero.getInstance().getEnfermero();
+        roles = SingletonEnfermero.getInstance().getRoles();
         boolean contieneTriage = false;
         for (int i = 0; i < roles.size(); i++) {
             if (roles.get(i).getNombre().equals("Triage")) contieneTriage = true;
@@ -99,6 +94,7 @@ public class EnfermeroController {
             bttmRealTriage.setVisible(false);
         }
     }
+
     @FXML
     public void initialize() {
         this.cmboxTriage.getItems().addAll(ColorTriage.values());
@@ -161,7 +157,7 @@ public class EnfermeroController {
             return;
         }
         RegistroEntrada registroEntrada = paciente.getRegistrosEntradas().get(paciente.getRegistrosEntradas().size() - 1);
-        controller.recibirDatos(registroEntrada,enfermero,roles);
+        controller.recibirDatos(registroEntrada);
         // Cambia a la nueva escena
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
@@ -194,7 +190,6 @@ public class EnfermeroController {
         loader.setLocation(getClass().getResource("/views/MedicoViews/BuscarPacienteVisualizarRegistros.fxml"));
         Parent root = loader.load();
         BuscarPacienteVisualizarRegistroController controller = loader.getController();
-        controller.recibirDatos(roles, medico);
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
@@ -218,7 +213,7 @@ public class EnfermeroController {
         }
     }
     public void borrarColorTriageSeleccionado(){
-
+        cmboxTriage.setValue(null);
     }
 
 }

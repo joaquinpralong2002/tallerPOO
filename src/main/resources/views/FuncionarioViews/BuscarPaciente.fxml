@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="PanelPrincipalBuscar" maxHeight="900.0" maxWidth="1600.0" prefHeight="768.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Administracion.BuscarPacienteController">
+<AnchorPane fx:id="PanelPrincipalBuscar" maxHeight="900.0" maxWidth="1600.0" prefHeight="768.0" prefWidth="1200.0" styleClass="marco-color-primario" stylesheets="@../../Styless/Styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Administracion.BuscarPacienteController">
    <children>
       <BorderPane layoutX="188.0" layoutY="142.0" prefHeight="562.0" prefWidth="824.0">
          <left>

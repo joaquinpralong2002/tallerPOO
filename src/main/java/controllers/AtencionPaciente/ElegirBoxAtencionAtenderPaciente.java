@@ -2,6 +2,7 @@ package controllers.AtencionPaciente;
 
 import controllers.AtencionPaciente.AtenderPacienteController;
 import controllers.MedicoController;
+import controllers.Singletons.SingletonMedico;
 import datasource.RegistroEntradaDAO;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -41,10 +42,10 @@ public class ElegirBoxAtencionAtenderPaciente {
     private LugarAtencion lugarAtencionSeleccionada;
     private Stage medicoStage;
     private ColorTriage colorTriage;
-    private Medico medico;
+    private Medico medico = SingletonMedico.getInstance().getMedico();
     private Paciente paciente;
     private RegistroEntrada registroEntrada;
-    private List<Rol> roles;
+    private List<Rol> roles = SingletonMedico.getInstance().getRoles();
 
     @FXML
     public void initialize(){
@@ -73,7 +74,8 @@ public class ElegirBoxAtencionAtenderPaciente {
                         // Establece la opción seleccionada en la siguiente escena
                         AtenderPacienteController controller = loader.getController();
                         controller.setLugarAtencionSeleccionada(lugarAtencionSeleccionada);
-                        controller.recibirDatos(medico,paciente,colorTriage,registroEntrada,roles);
+                        controller.recibirDatos(paciente,colorTriage,registroEntrada);
+
 
                         // Cambia a la siguiente escena
                         if (resultado.get() == ButtonType.OK) {
@@ -120,13 +122,9 @@ public class ElegirBoxAtencionAtenderPaciente {
 
 
     @FXML
-    public void recibirDatos(Medico medico, Paciente paciente, RegistroEntrada registroEntrada, List<Rol> roles){
-        this.medico = medico;
-        System.out.println("medico en elegirbox" + medico);
-        System.out.println("roles en elegirbox" + roles);
+    public void recibirDatos(Paciente paciente, RegistroEntrada registroEntrada){
         this.paciente = paciente;
         this.registroEntrada = registroEntrada;
-        this.roles = roles;
     }
 
     public void BotonAtras(ActionEvent event) throws Exception {
@@ -139,8 +137,9 @@ public class ElegirBoxAtencionAtenderPaciente {
         alert.setContentText("¿Estás seguro de que deseas volver a la pestaña anterior?");
         Optional<ButtonType> resultado = alert.showAndWait();
         MedicoController controller = loader.getController();
-        controller.recibirDatos(roles, medico);
 
+        //Metodo para cerrar la pestaña de Medico
+        medicoStage.close();
         if (resultado.isPresent() && resultado.get() == ButtonType.OK) {
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);

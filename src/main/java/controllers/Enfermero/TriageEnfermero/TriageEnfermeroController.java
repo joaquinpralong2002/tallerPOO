@@ -2,6 +2,7 @@ package controllers.Enfermero.TriageEnfermero;
 
 import controllers.Enfermero.EnfermeroController;
 import controllers.MedicoController;
+import controllers.Singletons.SingletonEnfermero;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,9 +28,8 @@ import java.util.Optional;
 public class TriageEnfermeroController {
     private ColorTriage colorTriageAsignado = ColorTriage.Ninguno;
     private RegistroEntrada registroEntrada;
-    private Medico medico;
-    private Enfermero enfermero;
-    private List<Rol> roles;
+    private Enfermero enfermero = SingletonEnfermero.getInstance().getEnfermero();
+    private List<Rol> roles = SingletonEnfermero.getInstance().getRoles();
     @Setter
     private DatosTriageEnfermero datosTriageEnfermero;
     @FXML
@@ -81,13 +81,10 @@ public class TriageEnfermeroController {
     /**
      * Recibe el paciente y el registro de entrada de la escena de médico
      * @param registroEntrada
-     * @param enfermero
      */
     @FXML
-    public void recibirDatos(RegistroEntrada registroEntrada, Enfermero enfermero, List<Rol> roles) {
+    public void recibirDatos(RegistroEntrada registroEntrada) {
         this.registroEntrada = registroEntrada;
-        this.enfermero = enfermero;
-        this.roles = roles;
     }
 
 
@@ -166,9 +163,7 @@ public class TriageEnfermeroController {
         ModificarTriageEnfermeroController controller = loader.getController();
         System.out.println("enfermo en triage" + enfermero);
         if(this.colorTriageAsignado != ColorTriage.Ninguno){
-
             controller.setDatosTriageEnfermero(this.datosTriageEnfermero);
-
             // Cambia a la nueva escena
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
@@ -245,7 +240,6 @@ public class TriageEnfermeroController {
             loader.setLocation(getClass().getResource("/views/EnfermeroViews/Enfermero.fxml"));
             Parent root = loader.load();
             EnfermeroController enfermeroController = loader.getController();
-            enfermeroController.recibirDatos(roles, enfermero);
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);

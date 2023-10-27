@@ -40,4 +40,9 @@ public class FuncionarioDAO implements GenericoDAO<Funcionario> {
         Funcionario funcionario = session.createQuery(query, Funcionario.class).setParameter("dni",dni).getSingleResultOrNull();
         return funcionario;
     }
+
+    
+
+
+
 }

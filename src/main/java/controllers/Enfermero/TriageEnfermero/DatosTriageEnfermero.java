@@ -1,5 +1,6 @@
 package controllers.Enfermero.TriageEnfermero;
 
+import controllers.Singletons.SingletonEnfermero;
 import lombok.Getter;
 import lombok.Setter;
 import model.Enfermero;

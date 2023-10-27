@@ -16,7 +16,7 @@
    <children>
       <BorderPane layoutY="-2.0" prefHeight="768.0" prefWidth="160.0" styleClass="fondo-color-primario" stylesheets="@../../Styless/Styles.css">
          <top>
-            <BorderPane prefHeight="171.0" prefWidth="160.0" stylesheets="@../../Styless/Styles.css" BorderPane.alignment="CENTER">
+            <BorderPane prefHeight="168.0" prefWidth="160.0" stylesheets="@../../Styless/Styles.css" BorderPane.alignment="CENTER">
                <center>
                   <ImageView fitHeight="126.0" fitWidth="118.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                      <image>
@@ -33,9 +33,9 @@
             </BorderPane>
          </top>
          <center>
-            <VBox prefHeight="354.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+            <VBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="202.0" prefWidth="160.0" BorderPane.alignment="CENTER">
                <children>
-                  <Separator prefHeight="160.0" prefWidth="200.0" />
+                  <Separator prefHeight="2.0" prefWidth="160.0" />
                   <Button fx:id="bttmRegistroEntrada" mnemonicParsing="false" onAction="#RegistroEntradadaAction" prefHeight="40.0" prefWidth="160.0" stylesheets="@../../Styless/Styles.css" text="Registro Entrada">
                      <styleClass>
                         <String fx:value="boton-basico" />
@@ -51,19 +51,8 @@
                         <String fx:value="boton-basico" />
                         <String fx:value="boton-basico-encima" />
                      </styleClass></Button>
-                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="160.0" stylesheets="@../../Styless/Styles.css">
-                     <styleClass>
-                        <String fx:value="boton-basico" />
-                        <String fx:value="boton-basico-encima" />
-                     </styleClass>
-                  </Button>
+                  <Button fx:id="bttmVacio" mnemonicParsing="false" prefHeight="40.0" prefWidth="160.0" styleClass="boton-vacio" stylesheets="@../../Styless/Styles.css" />
                   <Button fx:id="bttnNomina" mnemonicParsing="false" onAction="#NominaAction" prefHeight="40.0" prefWidth="160.0" stylesheets="@../../Styless/Styles.css" text="Nómina">
-                     <styleClass>
-                        <String fx:value="boton-basico" />
-                        <String fx:value="boton-basico-encima" />
-                     </styleClass>
-                  </Button>
-                  <Button fx:id="bttnAjustes" mnemonicParsing="false" onAction="#AjustesAction" prefHeight="40.0" prefWidth="160.0" stylesheets="@../../Styless/Styles.css" text="Ajustes">
                      <styleClass>
                         <String fx:value="boton-basico" />
                         <String fx:value="boton-basico-encima" />
@@ -73,7 +62,7 @@
             </VBox>
          </center>
          <bottom>
-            <VBox alignment="BOTTOM_CENTER" prefHeight="360.0" prefWidth="160.0" styleClass="fondo-color-primario" stylesheets="@../../Styless/Styles.css" BorderPane.alignment="CENTER">
+            <VBox alignment="BOTTOM_CENTER" prefHeight="395.0" prefWidth="160.0" styleClass="fondo-color-primario" stylesheets="@../../Styless/Styles.css" BorderPane.alignment="CENTER">
                <children>
                   <Button fx:id="bttmCerrarSesion" mnemonicParsing="false" onAction="#CerrarSesion" prefHeight="40.0" prefWidth="160.0" stylesheets="@../../Styless/Styles.css" text="Cerrar Sesion">
                      <styleClass>
@@ -85,7 +74,11 @@
             </VBox>
          </bottom>
       </BorderPane>
-      <Separator layoutX="161.0" layoutY="-2.0" orientation="VERTICAL" prefHeight="768.0" prefWidth="6.0" styleClass="fondo-blanco" stylesheets="@../../Styless/Styles.css" />
-      <Pane fx:id="paneTrasero" layoutX="164.0" prefHeight="768.0" prefWidth="1200.0" styleClass="fondo-blanco" stylesheets="@../../Styless/Styles.css" />
+      <Separator layoutX="161.0" layoutY="-2.0" maxHeight="-Infinity" minHeight="-Infinity" orientation="VERTICAL" prefHeight="768.0" prefWidth="6.0" />
+      <Pane fx:id="paneTrasero" layoutX="164.0" prefHeight="768.0" prefWidth="1200.0" stylesheets="@../../Styless/Styles.css">
+         <styleClass>
+            <String fx:value="fondo-blanco" />
+            <String fx:value="marco-color-primario" />
+         </styleClass></Pane>
    </children>
 </AnchorPane>

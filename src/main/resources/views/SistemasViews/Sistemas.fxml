@@ -12,19 +12,19 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="900.0" maxWidth="1600.0" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SistemasController">
+<AnchorPane maxHeight="900.0" maxWidth="1600.0" prefHeight="768.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SistemasController">
    <children>
-      <Button fx:id="bttmCerrarSesion" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#CerrarSesion" prefHeight="50.0" prefWidth="150.0" text="Cerrar Sesion">
+      <Button fx:id="bttmCerrarSesion" layoutX="55.0" layoutY="40.0" mnemonicParsing="false" onAction="#CerrarSesion" prefHeight="50.0" prefWidth="150.0" text="Cerrar Sesion">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Label layoutX="591.0" layoutY="108.0" text="Area Sistemas">
+      <Label layoutX="508.0" layoutY="68.0" text="Area Sistemas">
          <font>
             <Font size="30.0" />
          </font>
       </Label>
-      <Pane layoutX="35.0" layoutY="202.0" prefHeight="486.0" prefWidth="722.0">
+      <Pane layoutX="14.0" layoutY="202.0" prefHeight="537.0" prefWidth="709.0">
          <children>
             <Label layoutX="284.0" layoutY="14.0" text="Usuarios">
                <font>
@@ -42,29 +42,29 @@
             </TableView>
          </children>
       </Pane>
-      <Pane layoutX="776.0" layoutY="202.0" prefHeight="181.0" prefWidth="518.0">
+      <Pane layoutX="733.0" layoutY="202.0" prefHeight="181.0" prefWidth="434.0">
          <children>
-            <Label layoutX="181.0" layoutY="14.0" text="Buscar Usuario">
+            <Label layoutX="139.0" layoutY="14.0" text="Buscar Usuario">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label layoutX="96.0" layoutY="77.0" text="Nombre usuario:">
+            <Label layoutX="48.0" layoutY="77.0" text="Nombre usuario:">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="txtNombUsu" layoutX="237.0" layoutY="73.0" prefHeight="35.0" prefWidth="185.0" />
+            <TextField fx:id="txtNombUsu" layoutX="203.0" layoutY="73.0" prefHeight="35.0" prefWidth="185.0" />
          </children>
       </Pane>
-      <Pane layoutX="776.0" layoutY="402.0" prefHeight="258.0" prefWidth="518.0">
+      <Pane layoutX="723.0" layoutY="408.0" prefHeight="258.0" prefWidth="454.0">
          <children>
-            <Label layoutX="209.0" layoutY="14.0" text="Opciones">
+            <Label layoutX="177.0" layoutY="14.0" text="Opciones">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <VBox layoutX="54.0" layoutY="78.0" prefHeight="150.0" prefWidth="410.0" spacing="15.0">
+            <VBox layoutX="22.0" layoutY="75.0" prefHeight="150.0" prefWidth="410.0" spacing="15.0">
                <children>
                   <HBox alignment="CENTER" prefHeight="40.0" prefWidth="431.0" spacing="15.0">
                      <children>
