@@ -45,32 +45,7 @@ public class MedicoDAO implements GenericoDAO<Medico>{
         session.close();
         return medicos;
     }
-    /*
-    public Map<ColorTriage, Long> TriageRangoFechas(LocalDate fechaInicio, LocalDate fechaFin) {
-        Session session = sessionFactory.openSession();
-        Map<ColorTriage, Long> triageRangoFechas = new HashMap<>();
 
-        String query = "SELECT t.colorTriageFinal, COUNT(*) AS cantidad " +
-                "FROM Triage t " +
-                "INNER JOIN t.registroEntrada re " +
-                "WHERE re.fecha BETWEEN :fechaInicio AND :fechaFin " +
-                "GROUP BY t.colorTriageFinal";
-
-        List<Object[]> triages = session.createQuery(query)
-                .setParameter("fechaInicio", fechaInicio)
-                .setParameter("fechaFin", fechaFin)
-                .getResultList();
-
-        for (Object[] triage : triages) {
-            ColorTriage color = (ColorTriage) triage[0];
-            Long cantidad = (Long) triage[1];
-            triageRangoFechas.put(color, cantidad);
-        }
-
-        session.close();
-        return triageRangoFechas;
-    }
-    */
     public Map<ColorTriage, Long> TriageRangoFechas(LocalDate fechaInicio, LocalDate fechaFin) {
         Session session = sessionFactory.openSession();
 
@@ -143,8 +118,6 @@ public class MedicoDAO implements GenericoDAO<Medico>{
         session.close();
         return medicosMasConsultas;
     }
-
-
 
 
 

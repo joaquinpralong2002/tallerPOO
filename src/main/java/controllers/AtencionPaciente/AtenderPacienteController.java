@@ -95,43 +95,7 @@ public class AtenderPacienteController {
             stage.show();
         }
     }
-    /*
-    public void BotonRealizarRegistro(ActionEvent event) throws Exception {
-        // Llena el TextField
-        String diagnostico = campoDeTexto.getText();
 
-        realizarDiagnosticoButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                // Lanza una alerta para confirmar la acción
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Confirmar acción");
-                alert.setContentText("¿Estás seguro de que deseas realizar el diagnóstico?");
-                Optional<ButtonType> resultado = alert.showAndWait();
-
-                // Si el usuario hace clic en el botón "Aceptar", entonces se realiza la acción
-                if (resultado.get() == ButtonType.OK) {
-                    medico.asignarBox(registroEntrada, lugarAtencionSeleccionada);
-                    medico.atenderPaciente(persona,boxAtencion,diagnostico);
-
-                    FXMLLoader loader = new FXMLLoader();
-                    loader.setLocation(getClass().getResource("/views/MedicoViews/Medico.fxml"));
-                    Parent root = null;
-                    try {
-                        root = loader.load();
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                    MedicoController medicoController = loader.getController();
-                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    Scene scene = new Scene(root);
-                    stage.setScene(scene);
-                    stage.show();
-                }
-            }
-        });
-    }
-    */
     /**
      * Establece el lugar de atención seleccionado y actualiza la interfaz de usuario con el tipo de lugar de atención.
      * Además, busca y asigna un box de atención disponible para el lugar seleccionado.

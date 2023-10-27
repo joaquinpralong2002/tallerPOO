@@ -328,4 +328,6 @@ public class EstadisticasController {
         tablaEstadisticas.setItems(datosTabla);
     }
 
+
+
 }
