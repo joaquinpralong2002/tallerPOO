@@ -35,23 +35,18 @@ public class FuncionarioProController implements Initializable {
     private Parent root;
 
     @FXML
-    private Button bttmBuscarPaciente;
-
+    private Button bttmRegistroEntrada;
     @FXML
-    private Button bttmCerrarSesion;
-
+    private Button bttmBuscarPaciente;
     @FXML
     private Button bttmEstadistica;
-
     @FXML
-    private Button bttmRegistroEntrada;
-
-
+    private  Button bttmVacio;
     @FXML
     private Button bttnNomina;
 
     @FXML
-    private  Button bttmVacio;
+    private Button bttmCerrarSesion;
 
     @FXML
     private Pane paneTrasero;
@@ -68,16 +63,26 @@ public class FuncionarioProController implements Initializable {
     }
 
 
-    @FXML
-    void AjustesAction(ActionEvent event) {
+    //ActionEvents
 
+    @FXML
+    void RegistroEntradadaAction(ActionEvent event) {
+        cargarEscena("/views/FuncionarioViews/RegistroEntrada.fxml");
     }
 
-
-    //ActionEvents
     @FXML
     void BuscarPaciente(ActionEvent event) {
+        cargarEscena("/views/FuncionarioViews/BuscarPaciente.fxml");
+    }
 
+    @FXML
+    void EstadisticasAction(ActionEvent event) {
+        cargarEscena("/views/FuncionarioViews/Estadisticas.fxml");
+    }
+
+    @FXML
+    void NominaAction(ActionEvent event) {
+        cargarEscena("/views/SistemasViews/Sistemas.fxml");
     }
 
     @FXML
@@ -89,23 +94,8 @@ public class FuncionarioProController implements Initializable {
         if(resultado.get() == ButtonType.OK)SwitchToLoginScene(event);
     }
 
-    @FXML
-    void EstadisticasAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void NominaAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void RegistroEntradadaAction(ActionEvent event) {
-
-    }
-
     //Scene Switches - Cambios de Escena
-    public void SwitchToLoginScene(ActionEvent event) throws IOException {
+    private void SwitchToLoginScene(ActionEvent event) throws IOException {
         //Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/Login.fxml")));
         Parent root = FXMLLoader.load(getClass().getResource("/views/Login.fxml"));
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();

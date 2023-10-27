@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="768.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Administracion.RegistroEntradaController">
+<AnchorPane prefHeight="768.0" prefWidth="1200.0" styleClass="marco-color-primario" stylesheets="@../../Styless/Styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Administracion.RegistroEntradaController">
    <children>
       <Label layoutX="435.0" layoutY="74.0" text="Realizar Registro Entrada">
          <font>
