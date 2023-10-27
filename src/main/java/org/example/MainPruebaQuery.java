@@ -45,5 +45,7 @@ public class MainPruebaQuery {
         System.out.println(medicoDAO.TriageRangoFechas(LocalDate.of(2023, 01, 01),
                 LocalDate.of(2023, 12, 26)));
 
+
+
     }
 }

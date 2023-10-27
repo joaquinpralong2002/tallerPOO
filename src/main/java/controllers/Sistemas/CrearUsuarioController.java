@@ -118,6 +118,10 @@ public class CrearUsuarioController {
 
     private FuncionarioProController controllerPrincipal;
 
+    /**
+     * Inicializa la vista y configura las opciones iniciales para la creación de usuarios.
+     * Carga valores en las listas desplegables, oculta secciones específicas y establece escuchadores de cambios en el tipo de personal.
+     */
     @FXML
     public void initialize(){
         controllerPrincipal = FuncionarioProController.getControladorPrimario();
@@ -135,6 +139,10 @@ public class CrearUsuarioController {
 
     }
 
+    /**
+     * Carga la lista de sectores disponibles en la lista desplegable de selección de sector.
+     * Obtiene la lista de sectores de la base de datos y la muestra en el control de selección.
+     */
     private void cargarSectores() {
         SectorDAO sectorDAO = new SectorDAO();
         List<Sector> sectores = sectorDAO.obtenerTodos();
@@ -145,6 +153,11 @@ public class CrearUsuarioController {
         this.cboxSector.getItems().addAll(sectores2);
     }
 
+    /**
+     * Muestra o oculta las opciones de roles de acuerdo al tipo de personal seleccionado.
+     * Dependiendo del tipo de personal elegido en la lista desplegable, muestra las opciones de roles correspondientes
+     * y oculta las demás. Además, establece un título para la sección de roles.
+     */
     private void mostrarRoles() {
         //Predicate<> predicate ->
         String tipoPersonal = this.cboxTipoPersonal.getSelectionModel().getSelectedItem().toString();
@@ -167,6 +180,18 @@ public class CrearUsuarioController {
         }
     }
 
+    /**
+     * Establece la visibilidad de secciones de roles y el título según los valores booleanos proporcionados.
+     * Controla la visibilidad de varias secciones de roles y establece un título para la sección según los valores booleanos
+     * proporcionados. El parámetro "personal" se utiliza para definir el tipo de personal seleccionado.
+     *
+     * @param bol1     Visibilidad de la sección de Funcionario Administrativo.
+     * @param bol2     Visibilidad de la segunda sección de Funcionario Administrativo.
+     * @param bol3     Visibilidad de la sección de Médico.
+     * @param bol4     Visibilidad de la sección de Enfermero.
+     * @param bol5     Visibilidad del título de la sección de roles.
+     * @param personal El tipo de personal seleccionado.
+     */
     public void SetearVisibilidadRoles(boolean bol1, boolean bol2, boolean bol3, boolean bol4, boolean bol5, String personal){
         this.scpaneFuncionario.setVisible(bol1);
         this.scpaneFuncionario2.setVisible(bol2);
@@ -177,6 +202,13 @@ public class CrearUsuarioController {
     }
 
 
+    /**
+     * Maneja la acción de creación de un nuevo usuario y su correspondiente personal, según el tipo de personal seleccionado.
+     * Recolecta y valida los datos ingresados en la vista, crea un nuevo usuario y personal en la base de datos, y establece
+     * relaciones entre ellos y el sector correspondiente. Limpia los campos después de la creación exitosa.
+     *
+     * @param actionEvent El evento de acción que desencadena la creación del usuario y personal.
+     */
     public void Crear(ActionEvent actionEvent) {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         SectorDAO sectorDAO = new SectorDAO();
@@ -270,6 +302,10 @@ public class CrearUsuarioController {
             alert.setTitle("Información");
             alert.setHeaderText("Personal creado y añadido exitosamente");
             alert.show();
+            LimpiarCheckBoxs();
+            roles.clear();
+            Volver();
+            //EMA cuando lo guarda debe volver a la ventana de Sistemas
 
         }catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -280,6 +316,58 @@ public class CrearUsuarioController {
         }
     }
 
+    /**
+     * Limpia la selección de roles en los CheckBox de la vista de creación de usuario.
+     * Restablece a "no seleccionado" todos los roles en la vista, lo que permite una creación de usuario
+     * sin roles seleccionados si es necesario.
+     */
+    private void LimpiarCheckBoxs() {
+        //ROLES FUNCIONARIO ADMINISTRATIVO
+        ckboxAdminHosp.setSelected(false);
+        ckboxDircMed.setSelected(false);
+        ckboxDircEnf.setSelected(false);
+        ckboxRRHH.setSelected(false);
+        ckboxDircFinan.setSelected(false);
+        ckboxGertGeneral.setSelected(false);
+        ckboxGertOpe.setSelected(false);
+        ckboxGertServ.setSelected(false);
+        ckboxCordSegu.setSelected(false);
+        ckboxJefeAlm.setSelected(false);
+        //ROLES ADMINISTRADOR SISTEMAS
+        ckboxAdminSist1.setSelected(false);
+        ckboxDircTecn.setSelected(false);
+        ckboxAnalDatos.setSelected(false);
+        ckboxSegrInf.setSelected(false);
+        ckboxRedes.setSelected(false);
+        //ROLES MEDICO
+        ckboxTriage.setSelected(false);
+        ckboxMedEmer.setSelected(false);
+        ckboxMedGen.setSelected(false);
+        ckboxMedEsp.setSelected(false);
+        ckboxCirujano.setSelected(false);
+        ckboxAnestesiologo.setSelected(false);
+        ckboxRadiologo.setSelected(false);
+        ckboxPsiquiatra.setSelected(false);
+        ckboxMedCuidInts.setSelected(false);
+        ckboxGeriatra.setSelected(false);
+        ckboxPediatra.setSelected(false);
+        ckboxMedAtencPrim.setSelected(false);
+        //ROLES ENFERMERO
+        ckboxTriage2.setSelected(false);
+        ckboxCuidGenr.setSelected(false);
+        ckboxCuidInt.setSelected(false);
+        ckboxEmergencias.setSelected(false);
+        ckboxPediatra2.setSelected(false);
+        ckboxAtenPrim.setSelected(false);
+        ckboxSaludMental.setSelected(false);
+        ckboxOncologia.setSelected(false);
+    }
+
+    /**
+     * Guarda los roles seleccionados en los CheckBox de la vista en la lista de roles "roles".
+     * Se encarga de agregar los roles correspondientes a la lista de roles "roles" según los CheckBox seleccionados
+     * en la vista.
+     */
     public void GuardarRoles(){
         RolDAO rolDAO = new RolDAO();
         //ROLES FUNCIONARIO ADMINISTRATIVO
@@ -323,79 +411,70 @@ public class CrearUsuarioController {
         if(ckboxOncologia.isSelected()){roles.add(rolDAO.obtenerPorNombre(RolesEnfermeros.Oncologia.name()));}
     }
 
+    /**
+     * Realiza la validación de los campos de entrada en la vista de creación de usuario.
+     * Lanza una excepción si alguno de los campos requeridos está vacío o si se detecta una discrepancia en las contraseñas.
+     *
+     * @throws Exception Si alguno de los campos requeridos está vacío o si las contraseñas no coinciden.
+     */
     private void comprobarCampos() throws Exception {
-        boolean comprobarNombreFun = nombreFunc.matches("^[^s]+$");
-        boolean comprobarApellidoFun = apellidoFun.matches("^[^s]+$");
-        boolean comprobarDni =  dni.matches("\\d+");
-        boolean comprobarDomicilio = domicilio.matches("^[^s]+$");
-        boolean comprobarfechaNaci = fechaNaci == null;
-        boolean comprobarEstadoCivil = estadoCivil == null;
-        boolean comprobarCorreo = correo.matches("^[A-Z-a-z0-9+_.-]+@(.+)$");
-        boolean comprobarTelFijo =  telefonoFijo.matches("\\d+");
-        boolean comprobarTelCelular =  telefonoCelular.matches("\\d+");
 
-        boolean comprobarNombreUsu = nombreUsu.matches("^[^s]+$");
-        boolean comprobarContrasenia = password.matches("^[^s]+$");
-        boolean comprobarContraseniaConfirm = passwordConfirm.matches("^[^s]+$") && passwordConfirm.equals(password);
-
-        if (comprobarNombreFun){
+        if (nombreFunc.isEmpty()){
             throw new Exception("El nombre del funcionario no puede estar vacío");
         }
 
-       if (comprobarApellidoFun){
+       if (apellidoFun.isEmpty()){
            throw new Exception("El apellido no puede estar vacío");
        }
 
-       if (!comprobarDni){
+       if (!dni.matches("\\d+")){
            throw new Exception("El DNI no puede estar vacío, y debe ser llenado con números");
        }
 
-       if (comprobarDomicilio){
+       if (domicilio.isEmpty()){
            throw new Exception("El domicilio no puede estar vacío");
        }
 
-       if (comprobarfechaNaci){
+       if (fechaNaci == null){
            throw new Exception("La fecha de nacimiento no puede estar vacío");
        }
 
-       if (comprobarEstadoCivil){
+       if (estadoCivil == null){
            throw new Exception("Debe seleccionar una opción como estado civil");
        }
 
-       if (!comprobarCorreo){
+       if (!correo.matches("^[A-Z-a-z0-9+_.-]+@(.+)$")){
            throw new Exception("El correo no puede estar vacío");
        }
 
-       if (!comprobarTelFijo){
+       if (!telefonoFijo.matches("\\d+")){
            throw new Exception("El telefono fijo no puede estar vacío");
        }
 
-       if (!comprobarTelCelular){
+       if (!telefonoCelular.matches("\\d+")){
            throw new Exception("El telefono celular no puede estar vacío");
        }
 
-        if (comprobarNombreUsu){
+        if (nombreUsu.isEmpty()){
             throw new Exception("El nombre de usuario no puede estar vacío");
         }
-       if (comprobarContrasenia){
+       if (password.isEmpty()){
            throw new Exception("La contraseña no puede estar vacía");
        }
 
-       if (comprobarContraseniaConfirm){
-           throw new Exception("La contraseña no puede estar vacía, y debe ser igual a la anterior propuesta");
+       if (passwordConfirm.isEmpty()){
+           throw new Exception("La contraseña no puede estar vacía");
+       }
+
+       if (!passwordConfirm.equals(password)){
+           throw new Exception("La contraseña no son iguales revise los datos");
        }
     }
 
-    public void Volver(ActionEvent event) throws IOException {
+    /**
+     * Vuelve a la vista principal de administración de sistemas cuando se presiona el botón de "Volver".
+     */
+    public void Volver(){
         controllerPrincipal.cargarEscena("/views/SistemasViews/Sistemas.fxml");
-        /**
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/views/SistemasViews/Sistemas.fxml"));
-        Parent rootFuncionario = loader.load();
-
-        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(rootFuncionario);
-        stage.setScene(scene);
-        stage.show();**/
     }
 }

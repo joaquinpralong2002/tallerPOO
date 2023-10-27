@@ -47,18 +47,4 @@ public class FuncionarioAdministrativo extends Funcionario{
         this.registrosEntradas.add(r);
         paciente.agregarRegistroEntrada(r);
     }
-
-    public List<Paciente> pacientesMasConsultas(LocalDate fecha1, LocalDate fecha2){
-        List<Paciente> pacientes = new ArrayList<Paciente>();
-        while (registrosEntradas.iterator().hasNext()){
-            RegistroEntrada r = registrosEntradas.iterator().next();
-            if(r.getFecha().equals(fecha1)
-                    || r.getFecha().isBefore(fecha2)
-                    || r.getFecha().isAfter(fecha1)
-                    || r.getFecha().equals(fecha2)){
-            }
-        }
-        return null;
-    }
-
 }
