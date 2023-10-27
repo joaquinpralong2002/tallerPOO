@@ -27,7 +27,7 @@ import java.util.List;
 public class FuncionarioAdministrativo extends Funcionario{
 
 
-    @OneToMany(mappedBy = "funcionariosAdministrativo", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "funcionariosAdministrativo", orphanRemoval = true)
     @ToString.Exclude
     private List<RegistroEntrada> registrosEntradas = new ArrayList<>();
 

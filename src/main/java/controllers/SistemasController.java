@@ -15,7 +15,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
 import lombok.ToString;
 import model.Login.AdministradorSistemas;
 import model.Login.Rol;
@@ -41,8 +40,6 @@ public class SistemasController {
     private List<Rol> roles;
     private AdministradorSistemas adminSistemas;
 
-    private FuncionarioProController controllerPrincipal;
-
     public void iniciarAdministradorSistemas(){
         this.roles = SingletonAdministradorSistema.getInstance().getRoles();
         this.adminSistemas = SingletonAdministradorSistema.getInstance().getAdministradorSistemas();
@@ -50,7 +47,6 @@ public class SistemasController {
 
     @FXML
     public void initialize(){
-        controllerPrincipal = FuncionarioProController.getControladorPrimario();
         this.colNombUsu.setCellValueFactory(new PropertyValueFactory<>("nombreUsuario"));
         this.colRoles.setCellValueFactory(new PropertyValueFactory<>("roles"));
         this.colNombFunc.setCellValueFactory(new PropertyValueFactory<>("nombreFuncionario"));
@@ -110,8 +106,6 @@ public class SistemasController {
     }
 
     public void CrearUsuario(ActionEvent event) throws IOException {
-        controllerPrincipal.cargarEscena("/views/SistemasViews/CrearUsuario.fxml");
-        /**
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/views/SistemasViews/CrearUsuario.fxml"));
         Parent rootSistemas = loader.load();
@@ -119,7 +113,7 @@ public class SistemasController {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(rootSistemas);
         stage.setScene(scene);
-        stage.show();**/
+        stage.show();
     }
 
     public void EditarUsuario(ActionEvent actionEvent) {
@@ -140,6 +134,20 @@ public class SistemasController {
     public void EliminarUsuario(ActionEvent actionEvent) {
     }
 
+    public void CerrarSesion(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/views/Login.fxml"));
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Cerrar sesión");
+        alert.setContentText("¿Estás seguro de que deseas cerrar sesión?");
+        Optional<ButtonType> resultado = alert.showAndWait();
+
+        if (resultado.get() == ButtonType.OK) {
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+    }
 
     @AllArgsConstructor
     @ToString

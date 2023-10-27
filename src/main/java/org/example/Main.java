@@ -2,6 +2,9 @@ package org.example;
 import datasource.*;
 import model.*;
 import model.Enum.*;
+import model.Enum.Roles.RolesEnfermeros;
+import model.Enum.Roles.RolesFuncionarios;
+import model.Enum.Roles.RolesMedico;
 import model.EnumeracionesVariablesTriage.*;
 import model.Login.*;
 
@@ -88,12 +91,50 @@ public class Main {
         Rol rolEnfermero = new Rol("Enfermero");
         Rol rolSistemas = new Rol("Sistemas");
 
+
         //Persistencia
         rolDAO.agregar(rolFuncionario);
         rolDAO.agregar(rolMedico);
         rolDAO.agregar(rolMedico2);
         rolDAO.agregar(rolEnfermero);
         rolDAO.agregar(rolSistemas);
+
+        rolDAO.agregar(new Rol(RolesFuncionarios.AdministradorHospitalario.name()));
+        rolDAO.agregar(new Rol(RolesFuncionarios.DirectorMedico.name()));
+        rolDAO.agregar(new Rol(RolesFuncionarios.DirectorEnfermeria.name()));
+        rolDAO.agregar(new Rol(RolesFuncionarios.GerenteRecursosHumanos.name()));
+        rolDAO.agregar(new Rol(RolesFuncionarios.DirectorFinanciero.name()));
+        rolDAO.agregar(new Rol(RolesFuncionarios.GerenteGeneral.name()));
+        rolDAO.agregar(new Rol(RolesFuncionarios.GerenteOperaciones.name()));
+        rolDAO.agregar(new Rol(RolesFuncionarios.GerenteServiciosPaciente.name()));
+        rolDAO.agregar(new Rol(RolesFuncionarios.CoordinadorSeguridadHospitalaria.name()));
+        rolDAO.agregar(new Rol(RolesFuncionarios.JefeAlmacen.name()));
+        //ROLES ADMINISTRADOR SISTEMAS
+        rolDAO.agregar(new Rol(RolesFuncionarios.AdministradorSistema.name()));
+        rolDAO.agregar(new Rol(RolesFuncionarios.DirectorTecnologia.name()));
+        rolDAO.agregar(new Rol(RolesFuncionarios.AnalistaDatos.name()));
+        rolDAO.agregar(new Rol(RolesFuncionarios.SeguridadInformatica.name()));
+        rolDAO.agregar(new Rol(RolesFuncionarios.Redes.name()));
+        //ROLES MEDICO
+        rolDAO.agregar(new Rol(RolesMedico.MedicoEmergencias.name()));
+        rolDAO.agregar(new Rol(RolesMedico.MedicoGeneral.name()));
+        rolDAO.agregar(new Rol(RolesMedico.MedicoEspecialista.name()));
+        rolDAO.agregar(new Rol(RolesMedico.Cirujano.name()));
+        rolDAO.agregar(new Rol(RolesMedico.Anestesiologo.name()));
+        rolDAO.agregar(new Rol(RolesMedico.Radiologo.name()));
+        rolDAO.agregar(new Rol(RolesMedico.Psiquiatra.name()));
+        rolDAO.agregar(new Rol(RolesMedico.MedicoCuidadosIntensivos.name()));
+        rolDAO.agregar(new Rol(RolesMedico.Geriatra.name()));
+        rolDAO.agregar(new Rol(RolesMedico.Pediatra.name()));
+        rolDAO.agregar(new Rol(RolesMedico.MedicoAtencionPrimaria.name()));
+        //ROLES ENFERMERO
+        rolDAO.agregar(new Rol(RolesEnfermeros.CuidadosGenerales.name()));
+        rolDAO.agregar(new Rol(RolesEnfermeros.CuidadosIntensivos.name()));
+        rolDAO.agregar(new Rol(RolesEnfermeros.Emergencias.name()));
+        rolDAO.agregar(new Rol(RolesEnfermeros.Pediatrico.name()));
+        rolDAO.agregar(new Rol(RolesEnfermeros.AtencionPrimaria.name()));
+        rolDAO.agregar(new Rol(RolesEnfermeros.SaludMental.name()));
+        rolDAO.agregar(new Rol(RolesEnfermeros.Oncologia.name()));
 
 
 //************************************************* Usuarios ****************************************************//

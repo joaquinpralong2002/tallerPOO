@@ -21,12 +21,12 @@ public class Funcionario extends Persona{
 
 
     @ToString.Exclude
-    @ManyToOne(cascade = CascadeType.ALL, optional = false)
+    @ManyToOne( optional = false)
     @JoinColumn(name = "idSector", nullable = false)
     private Sector sector;
 
     @ToString.Exclude
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(cascade = CascadeType.ALL,orphanRemoval = true)
     @JoinColumn(name = "idUsuario")
     private Usuario usuario;
 

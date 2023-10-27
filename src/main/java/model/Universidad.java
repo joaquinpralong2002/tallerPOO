@@ -23,7 +23,6 @@ public class Universidad {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUniversidad;
 
-    @NaturalId
     private String nombre;
 
     @OneToMany(mappedBy = "universidad", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
