@@ -32,7 +32,6 @@ public class LoginController {
     private FXMLLoader loaderFuncionario;
     private FuncionarioProController funcionarioProController;
 
-
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -55,46 +54,20 @@ public class LoginController {
             if (validarUsuario(user, username, password)) {
                 switch (user.getRoles().get(0).getNombre()) {
                     case "Sistemas":
-
                         loaderFuncionario = new FXMLLoader();
                         loaderFuncionario.setLocation(getClass().getResource("/views/FuncionarioViews/FuncionarioEma.fxml"));
                         root = loaderFuncionario.load();
                         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                         scene = new Scene(root);
                         stage.setScene(scene);
-
                         var funciorioSistemas = usuarioDAO.obtenerFuncionarioPorIdUsuario(user.getIdUsuario());
-
                         funcionarioProController = loaderFuncionario.getController();
-
                         if(funciorioSistemas.getClass() == AdministradorSistemas.class){
-                            System.out.println(funciorioSistemas);
                             funcionarioProController.recibirDatos((AdministradorSistemas) funciorioSistemas);
                         }
-
                         stage.show();
                         break;
 
-                    //FuncionarioAdministrativo funcionarioAdministrativo = usuarioDAO.obtenerFuncionarioAdministrativoPorIdUsuario(user.getIdUsuario());
-                    //RegistroEntradaController;
-                    //funcionarioController.recibirDatos(user.getRoles(), user, funcionarioAdministrativo);
-
-
-                        /**
-                        FXMLLoader loaderSistemas = new FXMLLoader();
-                        loaderSistemas.setLocation(getClass().getResource("/views/SistemasViews/Sistemas.fxml"));
-                        Parent rootSistemas = loaderSistemas.load();
-
-                        AdministradorSistemas administradorSistemas = (AdministradorSistemas) usuarioDAO.obtenerFuncionarioPorIdUsuario(user.getIdUsuario());
-
-                        SistemasController controladorSistemas = loaderSistemas.getController();
-                        controladorSistemas.recibirDatos(user.getRoles(), user, administradorSistemas);
-
-                        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                        scene = new Scene(rootSistemas);
-                        stage.setScene(scene);
-                        stage.show();
-                        break;**/
                     case "Medico":
                         // Carga la escena de médico
                         FXMLLoader loader = new FXMLLoader();
@@ -115,28 +88,22 @@ public class LoginController {
                         stage.setScene(scene);
                         stage.show();
                         break;
+
                     case "Funcionario":
                         loaderFuncionario = new FXMLLoader();
                         loaderFuncionario.setLocation(getClass().getResource("/views/FuncionarioViews/FuncionarioEma.fxml"));
                         root = loaderFuncionario.load();
-
-                        //FuncionarioAdministrativo funcionarioAdministrativo = usuarioDAO.obtenerFuncionarioAdministrativoPorIdUsuario(user.getIdUsuario());
                         var funciorio = usuarioDAO.obtenerFuncionarioPorIdUsuario(user.getIdUsuario());
-
                         FuncionarioProController funcionarioProController = loaderFuncionario.getController();
-
                         if (funciorio.getClass() == FuncionarioAdministrativo.class) {
                             funcionarioProController.recibirDatos((FuncionarioAdministrativo) funciorio);
                         }
-
-                        //funcionarioController.recibirDatos(user.getRoles(), user, funcionarioAdministrativo);
-
-                        //RegistroEntradaController
                         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                         scene = new Scene(root);
                         stage.setScene(scene);
                         stage.show();
                         break;
+
                     case "Enfermero":
                         FXMLLoader loaderEnfermero = new FXMLLoader();
                         loaderEnfermero.setLocation(getClass().getResource("/views/EnfermeroViews/Enfermero.fxml"));
