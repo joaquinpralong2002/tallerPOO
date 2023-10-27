@@ -1,5 +1,6 @@
 package controllers.Sistemas;
 
+import controllers.FuncionarioProController;
 import datasource.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -115,8 +116,11 @@ public class CrearUsuarioController {
     private String password;
     private String passwordConfirm;
 
+    private FuncionarioProController controllerPrincipal;
+
     @FXML
     public void initialize(){
+        controllerPrincipal = FuncionarioProController.getControladorPrimario();
         this.cboxEstadoCivil.getItems().addAll(EstadoCivil.values());
         this.cboxTipoPersonal.getItems().addAll(List.of("Funcionario Administrativo","Administrador de Sistemas","Medico","Enfermero"));
         cargarSectores();
@@ -213,9 +217,6 @@ public class CrearUsuarioController {
                     usuario.setFuncionario(funcionarioAdministrativo);
                     sector.setFuncionarios(Set.of(funcionarioAdministrativo));
 
-                    usuarioDAO.actualizar(usuario);
-                    sectorDAO.actualizar(sector);
-
                     break;
                 case "Administrador de Sistemas":
                     AdministradorSistemasDAO administradorSistemasDAO = new AdministradorSistemasDAO();
@@ -226,10 +227,12 @@ public class CrearUsuarioController {
                     usuario.setFuncionario(administradorSistemas);
                     sector.setFuncionarios(Set.of(administradorSistemas));
 
-                    usuarioDAO.actualizar(usuario);
-                    sectorDAO.actualizar(sector);
                     break;
                 case "Medico":
+                    String matricula = this.txtMatricula.getText();
+                    if(!matricula.matches("^[^s]+$")){
+                        throw new Exception("La matricula no puede estar vacia");
+                    }
                     MedicoDAO medicoDAO = new MedicoDAO();
                     UniversidadDAO universidadDAO = new UniversidadDAO();
                     EspecialidadDAO especialidadDAO = new EspecialidadDAO();
@@ -240,16 +243,15 @@ public class CrearUsuarioController {
                     Especialidad especialidad = new Especialidad(this.txtEspecialidad.getText(),this.dateFechaObt.getValue(),universidad);
                     especialidadDAO.agregar(especialidad);
 
-                    Medico medico = new Medico(nombreFunc,apellidoFun,fechaNaci,domicilio,Integer.parseInt(dni),Integer.parseInt(telefonoFijo),Long.parseLong(telefonoCelular),estadoCivil,correo,usuario,sector,this.txtMatricula.getText(),List.of(especialidad));
+                    Medico medico = new Medico(nombreFunc,apellidoFun,fechaNaci,domicilio,Integer.parseInt(dni),Integer.parseInt(telefonoFijo),Long.parseLong(telefonoCelular),estadoCivil,correo,usuario,sector,matricula,List.of(especialidad));
                     medicoDAO.agregar(medico);
 
                     usuario.setFuncionario(medico);
                     especialidad.setMedico(medico);
                     sector.setFuncionarios(Set.of(medico));
 
-                    usuarioDAO.actualizar(usuario);
-                    sectorDAO.actualizar(sector);
                     especialidadDAO.actualizar(especialidad);
+
                     break;
                 case "Enfermero":
                     EnfermeroDAO enfermeroDAO = new EnfermeroDAO();
@@ -260,10 +262,15 @@ public class CrearUsuarioController {
                     usuario.setFuncionario(enfermero);
                     sector.setFuncionarios(Set.of(enfermero));
 
-                    usuarioDAO.actualizar(usuario);
-                    sectorDAO.actualizar(sector);
                     break;
             }
+            usuarioDAO.actualizar(usuario);
+            sectorDAO.actualizar(sector);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Información");
+            alert.setHeaderText("Personal creado y añadido exitosamente");
+            alert.show();
+
         }catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -274,67 +281,68 @@ public class CrearUsuarioController {
     }
 
     public void GuardarRoles(){
+        RolDAO rolDAO = new RolDAO();
         //ROLES FUNCIONARIO ADMINISTRATIVO
-        if(ckboxAdminHosp.isSelected()){roles.add(new Rol(RolesFuncionarios.AdministradorHospitalario.name()));}
-        if(ckboxDircMed.isSelected()){roles.add(new Rol(RolesFuncionarios.DirectorMedico.name()));}
-        if(ckboxDircEnf.isSelected()){roles.add(new Rol(RolesFuncionarios.DirectorEnfermeria.name()));}
-        if(ckboxRRHH.isSelected()){roles.add(new Rol(RolesFuncionarios.GerenteRecursosHumanos.name()));}
-        if(ckboxDircFinan.isSelected()){roles.add(new Rol(RolesFuncionarios.DirectorFinanciero.name()));}
-        if(ckboxGertGeneral.isSelected()){roles.add(new Rol(RolesFuncionarios.GerenteGeneral.name()));}
-        if(ckboxGertOpe.isSelected()){roles.add(new Rol(RolesFuncionarios.GerenteOperaciones.name()));}
-        if(ckboxGertServ.isSelected()){roles.add(new Rol(RolesFuncionarios.GerenteServiciosPaciente.name()));}
-        if(ckboxCordSegu.isSelected()){roles.add(new Rol(RolesFuncionarios.CoordinadorSeguridadHospitalaria.name()));}
-        if(ckboxJefeAlm.isSelected()){roles.add(new Rol(RolesFuncionarios.JefeAlmacen.name()));}
+        if(ckboxAdminHosp.isSelected()){roles.add(rolDAO.obtenerPorNombre(RolesFuncionarios.AdministradorHospitalario.name()));}
+        if(ckboxDircMed.isSelected()){roles.add(rolDAO.obtenerPorNombre(RolesFuncionarios.DirectorMedico.name()));}
+        if(ckboxDircEnf.isSelected()){roles.add(rolDAO.obtenerPorNombre(RolesFuncionarios.DirectorEnfermeria.name()));}
+        if(ckboxRRHH.isSelected()){roles.add(rolDAO.obtenerPorNombre(RolesFuncionarios.GerenteRecursosHumanos.name()));}
+        if(ckboxDircFinan.isSelected()){roles.add(rolDAO.obtenerPorNombre(RolesFuncionarios.DirectorFinanciero.name()));}
+        if(ckboxGertGeneral.isSelected()){roles.add(rolDAO.obtenerPorNombre(RolesFuncionarios.GerenteGeneral.name()));}
+        if(ckboxGertOpe.isSelected()){roles.add(rolDAO.obtenerPorNombre(RolesFuncionarios.GerenteOperaciones.name()));}
+        if(ckboxGertServ.isSelected()){roles.add(rolDAO.obtenerPorNombre(RolesFuncionarios.GerenteServiciosPaciente.name()));}
+        if(ckboxCordSegu.isSelected()){roles.add(rolDAO.obtenerPorNombre(RolesFuncionarios.CoordinadorSeguridadHospitalaria.name()));}
+        if(ckboxJefeAlm.isSelected()){roles.add(rolDAO.obtenerPorNombre(RolesFuncionarios.JefeAlmacen.name()));}
         //ROLES ADMINISTRADOR SISTEMAS
-        if(ckboxAdminSist1.isSelected()){roles.add(new Rol(RolesFuncionarios.AdministradorSistema.name()));}
-        if(ckboxDircTecn.isSelected()){roles.add(new Rol(RolesFuncionarios.DirectorTecnologia.name()));}
-        if(ckboxAnalDatos.isSelected()){roles.add(new Rol(RolesFuncionarios.AnalistaDatos.name()));}
-        if(ckboxSegrInf.isSelected()){roles.add(new Rol(RolesFuncionarios.SeguridadInformatica.name()));}
-        if(ckboxRedes.isSelected()){roles.add(new Rol(RolesFuncionarios.Redes.name()));}
+        if(ckboxAdminSist1.isSelected()){roles.add(rolDAO.obtenerPorNombre(RolesFuncionarios.AdministradorSistema.name()));}
+        if(ckboxDircTecn.isSelected()){roles.add(rolDAO.obtenerPorNombre(RolesFuncionarios.DirectorTecnologia.name()));}
+        if(ckboxAnalDatos.isSelected()){roles.add(rolDAO.obtenerPorNombre(RolesFuncionarios.AnalistaDatos.name()));}
+        if(ckboxSegrInf.isSelected()){roles.add(rolDAO.obtenerPorNombre(RolesFuncionarios.SeguridadInformatica.name()));}
+        if(ckboxRedes.isSelected()){roles.add(rolDAO.obtenerPorNombre(RolesFuncionarios.Redes.name()));}
         //ROLES MEDICO
-        if(ckboxTriage.isSelected()){roles.add(new Rol(RolesMedico.Triage.name()));}
-        if(ckboxMedEmer.isSelected()){roles.add(new Rol(RolesMedico.MedicoEmergencias.name()));}
-        if(ckboxMedGen.isSelected()){roles.add(new Rol(RolesMedico.MedicoGeneral.name()));}
-        if(ckboxMedEsp.isSelected()){roles.add(new Rol(RolesMedico.MedicoEspecialista.name()));}
-        if(ckboxCirujano.isSelected()){roles.add(new Rol(RolesMedico.Cirujano.name()));}
-        if(ckboxAnestesiologo.isSelected()){roles.add(new Rol(RolesMedico.Anestesiologo.name()));}
-        if(ckboxRadiologo.isSelected()){roles.add(new Rol(RolesMedico.Radiologo.name()));}
-        if(ckboxPsiquiatra.isSelected()){roles.add(new Rol(RolesMedico.Psiquiatra.name()));}
-        if(ckboxMedCuidInts.isSelected()){roles.add(new Rol(RolesMedico.MedicoCuidadosIntensivos.name()));}
-        if(ckboxGeriatra.isSelected()){roles.add(new Rol(RolesMedico.Geriatra.name()));}
-        if(ckboxPediatra.isSelected()){roles.add(new Rol(RolesMedico.Pediatra.name()));}
-        if(ckboxMedAtencPrim.isSelected()){roles.add(new Rol(RolesMedico.MedicoAtencionPrimaria.name()));}
+        if(ckboxTriage.isSelected()){roles.add(rolDAO.obtenerPorNombre(RolesMedico.Triage.name()));}
+        if(ckboxMedEmer.isSelected()){roles.add(rolDAO.obtenerPorNombre(RolesMedico.MedicoEmergencias.name()));}
+        if(ckboxMedGen.isSelected()){roles.add(rolDAO.obtenerPorNombre(RolesMedico.MedicoGeneral.name()));}
+        if(ckboxMedEsp.isSelected()){roles.add(rolDAO.obtenerPorNombre(RolesMedico.MedicoEspecialista.name()));}
+        if(ckboxCirujano.isSelected()){roles.add(rolDAO.obtenerPorNombre(RolesMedico.Cirujano.name()));}
+        if(ckboxAnestesiologo.isSelected()){roles.add(rolDAO.obtenerPorNombre(RolesMedico.Anestesiologo.name()));}
+        if(ckboxRadiologo.isSelected()){roles.add(rolDAO.obtenerPorNombre(RolesMedico.Radiologo.name()));}
+        if(ckboxPsiquiatra.isSelected()){roles.add(rolDAO.obtenerPorNombre(RolesMedico.Psiquiatra.name()));}
+        if(ckboxMedCuidInts.isSelected()){roles.add(rolDAO.obtenerPorNombre(RolesMedico.MedicoCuidadosIntensivos.name()));}
+        if(ckboxGeriatra.isSelected()){roles.add(rolDAO.obtenerPorNombre(RolesMedico.Geriatra.name()));}
+        if(ckboxPediatra.isSelected()){roles.add(rolDAO.obtenerPorNombre(RolesMedico.Pediatra.name()));}
+        if(ckboxMedAtencPrim.isSelected()){roles.add(rolDAO.obtenerPorNombre(RolesMedico.MedicoAtencionPrimaria.name()));}
         //ROLES ENFERMERO
-        if(ckboxTriage2.isSelected()){roles.add(new Rol(RolesEnfermeros.Triage.name()));}
-        if(ckboxCuidGenr.isSelected()){roles.add(new Rol(RolesEnfermeros.CuidadosGenerales.name()));}
-        if(ckboxCuidInt.isSelected()){roles.add(new Rol(RolesEnfermeros.CuidadosIntensivos.name()));}
-        if(ckboxEmergencias.isSelected()){roles.add(new Rol(RolesEnfermeros.Emergencias.name()));}
-        if(ckboxPediatra2.isSelected()){roles.add(new Rol(RolesEnfermeros.Pediatrico.name()));}
-        if(ckboxAtenPrim.isSelected()){roles.add(new Rol(RolesEnfermeros.AtencionPrimaria.name()));}
-        if(ckboxSaludMental.isSelected()){roles.add(new Rol(RolesEnfermeros.SaludMental.name()));}
-        if(ckboxOncologia.isSelected()){roles.add(new Rol(RolesEnfermeros.Oncologia.name()));}
+        if(ckboxTriage2.isSelected()){roles.add(rolDAO.obtenerPorNombre(RolesEnfermeros.Triage.name()));}
+        if(ckboxCuidGenr.isSelected()){roles.add(rolDAO.obtenerPorNombre(RolesEnfermeros.CuidadosGenerales.name()));}
+        if(ckboxCuidInt.isSelected()){roles.add(rolDAO.obtenerPorNombre(RolesEnfermeros.CuidadosIntensivos.name()));}
+        if(ckboxEmergencias.isSelected()){roles.add(rolDAO.obtenerPorNombre(RolesEnfermeros.Emergencias.name()));}
+        if(ckboxPediatra2.isSelected()){roles.add(rolDAO.obtenerPorNombre(RolesEnfermeros.Pediatrico.name()));}
+        if(ckboxAtenPrim.isSelected()){roles.add(rolDAO.obtenerPorNombre(RolesEnfermeros.AtencionPrimaria.name()));}
+        if(ckboxSaludMental.isSelected()){roles.add(rolDAO.obtenerPorNombre(RolesEnfermeros.SaludMental.name()));}
+        if(ckboxOncologia.isSelected()){roles.add(rolDAO.obtenerPorNombre(RolesEnfermeros.Oncologia.name()));}
     }
 
     private void comprobarCampos() throws Exception {
         boolean comprobarNombreFun = nombreFunc.matches("^[^s]+$");
         boolean comprobarApellidoFun = apellidoFun.matches("^[^s]+$");
-        boolean comprobarDni = dni.matches("^[^s]+$") && dni.matches("\\d+");
+        boolean comprobarDni =  dni.matches("\\d+");
         boolean comprobarDomicilio = domicilio.matches("^[^s]+$");
-        boolean comprobarfechaNaci = fechaNaci != null;
-        boolean comprobarEstadoCivil = estadoCivil != null;
+        boolean comprobarfechaNaci = fechaNaci == null;
+        boolean comprobarEstadoCivil = estadoCivil == null;
         boolean comprobarCorreo = correo.matches("^[A-Z-a-z0-9+_.-]+@(.+)$");
-        boolean comprobarTelFijo = telefonoFijo.matches("^[^s]+$") && telefonoFijo.matches("\\d+");
-        boolean comprobarTelCelular = telefonoCelular.matches("^[^s]+$") && telefonoCelular.matches("\\d+");
+        boolean comprobarTelFijo =  telefonoFijo.matches("\\d+");
+        boolean comprobarTelCelular =  telefonoCelular.matches("\\d+");
 
         boolean comprobarNombreUsu = nombreUsu.matches("^[^s]+$");
         boolean comprobarContrasenia = password.matches("^[^s]+$");
         boolean comprobarContraseniaConfirm = passwordConfirm.matches("^[^s]+$") && passwordConfirm.equals(password);
 
-        if (!comprobarNombreFun){
+        if (comprobarNombreFun){
             throw new Exception("El nombre del funcionario no puede estar vacío");
         }
 
-       if (!comprobarApellidoFun){
+       if (comprobarApellidoFun){
            throw new Exception("El apellido no puede estar vacío");
        }
 
@@ -342,15 +350,15 @@ public class CrearUsuarioController {
            throw new Exception("El DNI no puede estar vacío, y debe ser llenado con números");
        }
 
-       if (!comprobarDomicilio){
+       if (comprobarDomicilio){
            throw new Exception("El domicilio no puede estar vacío");
        }
 
-       if (!comprobarfechaNaci){
+       if (comprobarfechaNaci){
            throw new Exception("La fecha de nacimiento no puede estar vacío");
        }
 
-       if (!comprobarEstadoCivil){
+       if (comprobarEstadoCivil){
            throw new Exception("Debe seleccionar una opción como estado civil");
        }
 
@@ -366,19 +374,21 @@ public class CrearUsuarioController {
            throw new Exception("El telefono celular no puede estar vacío");
        }
 
-        if (!comprobarNombreUsu){
+        if (comprobarNombreUsu){
             throw new Exception("El nombre de usuario no puede estar vacío");
         }
-       if (!comprobarContrasenia){
+       if (comprobarContrasenia){
            throw new Exception("La contraseña no puede estar vacía");
        }
 
-       if (!comprobarContraseniaConfirm){
+       if (comprobarContraseniaConfirm){
            throw new Exception("La contraseña no puede estar vacía, y debe ser igual a la anterior propuesta");
        }
     }
 
     public void Volver(ActionEvent event) throws IOException {
+        controllerPrincipal.cargarEscena("/views/SistemasViews/Sistemas.fxml");
+        /**
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/views/SistemasViews/Sistemas.fxml"));
         Parent rootFuncionario = loader.load();
@@ -386,6 +396,6 @@ public class CrearUsuarioController {
         Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(rootFuncionario);
         stage.setScene(scene);
-        stage.show();
+        stage.show();**/
     }
 }

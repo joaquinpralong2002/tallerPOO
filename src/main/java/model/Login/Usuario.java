@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import model.Funcionario;
+import org.hibernate.annotations.NaturalId;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -25,7 +26,7 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
     private Long idUsuario;
-
+    @NaturalId
     private String nombreUsuario;
     private String contrasenia;
 
@@ -35,7 +36,7 @@ public class Usuario {
             inverseJoinColumns = @JoinColumn(name = "idRol"))
     private List<Rol> roles = new LinkedList<>();
 
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(cascade = CascadeType.ALL,orphanRemoval = true)
     @JoinColumn(name = "id_funcionario")
     private Funcionario funcionario;
 

@@ -1,6 +1,7 @@
 package model;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.Objects;
 
 import jakarta.persistence.*;
@@ -32,6 +33,7 @@ public class Persona {
     @Enumerated(EnumType.STRING)
     private EstadoCivil estadoCivil;
     private String correo;
+    private int edad;
 
     public Persona(String nombre, String apellido, LocalDate fechaNacimiento, String domicilio,
                    int DNI, int telefonoFijo, long telefonoCelular, EstadoCivil estadoCivil, String correo) {
@@ -44,6 +46,15 @@ public class Persona {
         this.telefonoCelular = telefonoCelular;
         this.estadoCivil = estadoCivil;
         this.correo = correo;
+        this.edad = añosEdad();
+    }
+
+    public int añosEdad(){
+        LocalDate fechaActual = LocalDate.now();
+        LocalDate fechaNacimiento = this.fechaNacimiento;
+        Period periodo = Period.between(fechaNacimiento, fechaActual);
+        int añosEdad = periodo.getYears();
+        return añosEdad;
     }
 
     @Override

@@ -12,19 +12,19 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="900.0" maxWidth="1600.0" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Sistemas.CrearUsuarioController">
+<AnchorPane maxHeight="900.0" maxWidth="1600.0" prefHeight="768.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Sistemas.CrearUsuarioController">
    <children>
-      <Button fx:id="bttmVolver" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#Volver" prefHeight="50.0" prefWidth="150.0" text="Volver">
+      <Button fx:id="bttmVolver" layoutX="20.0" layoutY="20.0" mnemonicParsing="false" onAction="#Volver" prefHeight="50.0" prefWidth="150.0" text="Volver">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Label layoutX="559.0" layoutY="119.0" text="Ingreso de Personal">
+      <Label layoutX="469.0" layoutY="43.0" text="Ingreso de Personal">
          <font>
             <Font size="30.0" />
          </font>
       </Label>
-      <Pane layoutX="42.0" layoutY="205.0" prefHeight="518.0" prefWidth="739.0">
+      <Pane layoutX="14.0" layoutY="125.0" prefHeight="518.0" prefWidth="701.0">
          <children>
             <Label layoutX="207.0" layoutY="14.0" text="Datos del Personal">
                <font>
@@ -127,7 +127,7 @@
             </Pane>
          </children>
       </Pane>
-      <Pane layoutX="830.0" layoutY="209.0" prefHeight="510.0" prefWidth="521.0">
+      <Pane layoutX="715.0" layoutY="125.0" prefHeight="510.0" prefWidth="484.0">
          <children>
             <Label layoutX="167.0" layoutY="14.0" text="Datos del Usuario">
                <font>

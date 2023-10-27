@@ -26,7 +26,7 @@ public class Sector {
 
     private String nombre;
 
-    @OneToMany(mappedBy = "sector", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "sector", orphanRemoval = true)
     private Set<Funcionario> funcionarios = new LinkedHashSet<>();
 
     public Sector(String nombre){

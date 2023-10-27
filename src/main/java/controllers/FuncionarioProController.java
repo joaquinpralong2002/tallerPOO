@@ -10,12 +10,16 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import lombok.Getter;
 import model.FuncionarioAdministrativo;
 import model.Login.AdministradorSistemas;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -24,7 +28,8 @@ public class FuncionarioProController implements Initializable {
 
 
     //Declaraciones
-
+    @Getter
+    private static FuncionarioProController controladorPrimario;
 
     private FuncionarioAdministrativo funcionarioAdministrativo;
 
@@ -56,6 +61,8 @@ public class FuncionarioProController implements Initializable {
     //Inicializador
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        controladorPrimario = this;
+
         bttnNomina.setVisible(false);
         bttmVacio.setVisible(false);
 
@@ -104,10 +111,16 @@ public class FuncionarioProController implements Initializable {
         stage.show();
     }
 
-    private void cargarEscena(String fxmlResource) {
+    public void cargarEscena(String fxmlResource) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlResource));
+
+            // Verificar si el controlador secundario tiene un método setControladorPrincipal
+            // y, si es así, asignar la referencia al controlador principal
+
+
             Node escenaNode = loader.load();
+
             paneTrasero.getChildren().clear();
             paneTrasero.getChildren().add(escenaNode);
         } catch (IOException e) {
@@ -116,11 +129,6 @@ public class FuncionarioProController implements Initializable {
     }
 
     //validaciones
-
-    private void chequearRol(){
-
-    }
-
 
     public void recibirDatos(FuncionarioAdministrativo funcionario){
         funcionarioAdministrativo = funcionario;
