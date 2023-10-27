@@ -51,6 +51,7 @@ public class SistemasController {
     @FXML
     public void initialize(){
         controllerPrincipal = FuncionarioProController.getControladorPrimario();
+
         this.colNombUsu.setCellValueFactory(new PropertyValueFactory<>("nombreUsuario"));
         this.colRoles.setCellValueFactory(new PropertyValueFactory<>("roles"));
         this.colNombFunc.setCellValueFactory(new PropertyValueFactory<>("nombreFuncionario"));
@@ -132,6 +133,8 @@ public class SistemasController {
             alert.setTitle("Error");
             alert.setContentText("Debe seleccionar un usuario de la tabla.");
             alert.showAndWait();
+        }else  {
+            controllerPrincipal.cargarEscena("/views/SistemasViews/EditarUsuario.fxml");
         }
 
         //setear 2da parte de la ventana

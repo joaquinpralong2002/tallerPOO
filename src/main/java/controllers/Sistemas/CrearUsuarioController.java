@@ -384,14 +384,5 @@ public class CrearUsuarioController {
 
     public void Volver(ActionEvent event) throws IOException {
         controllerPrincipal.cargarEscena("/views/SistemasViews/Sistemas.fxml");
-        /**
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/views/SistemasViews/Sistemas.fxml"));
-        Parent rootFuncionario = loader.load();
-
-        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(rootFuncionario);
-        stage.setScene(scene);
-        stage.show();**/
     }
 }

@@ -114,13 +114,7 @@ public class FuncionarioProController implements Initializable {
     public void cargarEscena(String fxmlResource) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlResource));
-
-            // Verificar si el controlador secundario tiene un método setControladorPrincipal
-            // y, si es así, asignar la referencia al controlador principal
-
-
             Node escenaNode = loader.load();
-
             paneTrasero.getChildren().clear();
             paneTrasero.getChildren().add(escenaNode);
         } catch (IOException e) {
