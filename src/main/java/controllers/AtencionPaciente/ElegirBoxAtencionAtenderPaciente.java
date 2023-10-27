@@ -2,6 +2,7 @@ package controllers.AtencionPaciente;
 
 import controllers.AtencionPaciente.AtenderPacienteController;
 import controllers.MedicoController;
+import controllers.Singletons.SingletonMedico;
 import datasource.RegistroEntradaDAO;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -41,10 +42,10 @@ public class ElegirBoxAtencionAtenderPaciente {
     private LugarAtencion lugarAtencionSeleccionada;
     private Stage medicoStage;
     private ColorTriage colorTriage;
-    private Medico medico;
+    private Medico medico = SingletonMedico.getInstance().getMedico();
     private Paciente paciente;
     private RegistroEntrada registroEntrada;
-    private List<Rol> roles;
+    private List<Rol> roles = SingletonMedico.getInstance().getRoles();
 
     @FXML
     public void initialize(){
@@ -129,7 +130,6 @@ public class ElegirBoxAtencionAtenderPaciente {
         System.out.println("roles en elegirbox" + roles);
         this.paciente = paciente;
         this.registroEntrada = registroEntrada;
-        this.roles = roles;
     }
 
     public void BotonAtras(ActionEvent event) throws Exception {

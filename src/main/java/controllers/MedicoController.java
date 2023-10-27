@@ -2,6 +2,8 @@ package controllers;
 
 
 import controllers.AtencionPaciente.ElegirBoxAtencionAtenderPaciente;
+import controllers.Singletons.SingletonFuncionario;
+import controllers.Singletons.SingletonMedico;
 import controllers.Triage.TriageController;
 import datasource.PacienteDAO;
 import datasource.RegistroEntradaDAO;
@@ -55,8 +57,6 @@ public class MedicoController {
         }
     }
 
-    private List<Rol> roles;
-    private Medico medico;
     @FXML
     private TableColumn<Paciente, String> colNomPac;
     @FXML
@@ -79,14 +79,25 @@ public class MedicoController {
     private TextField txtDNIPac;
     @FXML
     private Button bttmRealTriage;
-    @FXML
-    private Button bttmAtender;
-    @FXML
-    private Button bttmCerrarSesion;
+    private Medico medico;
+    private List<Rol> roles;
 
     private ObservableList<PacienteTableClass> datosTabla = FXCollections.observableArrayList();
 
-    @FXML
+    public void iniciarMedico(){
+        //Verifica que el médico tenga el rol que le permita realizar triages.
+        medico = SingletonMedico.getInstance().getMedico();
+        roles = SingletonMedico.getInstance().getRoles();
+        boolean contieneTriage = false;
+        for (int i = 0; i < roles.size(); i++) {
+            if (roles.get(i).getNombre().equals("Triage")) contieneTriage = true;
+        }
+        if (!contieneTriage) {
+            bttmRealTriage.setVisible(false);
+        }
+    }
+
+
     public void initialize() {
         this.cmboxTriage.getItems().addAll(ColorTriage.values());
         this.colNomPac.setCellValueFactory(new PropertyValueFactory<>("nombre"));
@@ -100,21 +111,6 @@ public class MedicoController {
         txtDNIPac.textProperty().addListener((observable,oldValue,newValue) -> filtrarPacientes());
         cmboxTriage.valueProperty().addListener((observable,oldValue,newValue) -> filtrarPacientes());
     }
-
-    @FXML
-    public void recibirDatos(List<Rol> roles, Medico medico) {
-        this.roles = roles;
-        this.medico = medico;
-        System.out.println("Medico de medicoController" + medico);
-        boolean contieneTriage = false;
-        for (int i = 0; i < roles.size(); i++) {
-            if (roles.get(i).getNombre().equals("Triage")) contieneTriage = true;
-        }
-        if (!contieneTriage) {
-            bttmRealTriage.setVisible(false);
-        }
-    }
-
 
     private void iniciarTabla() {
 
@@ -186,7 +182,7 @@ public class MedicoController {
             return;
         }
         RegistroEntrada registroEntrada = paciente.getRegistrosEntradas().get(paciente.getRegistrosEntradas().size() - 1);
-        controller.recibirDatos(registroEntrada, medico, roles);
+        controller.recibirDatos(registroEntrada);
         // Cambia a la nueva escena
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
