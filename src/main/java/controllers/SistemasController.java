@@ -1,5 +1,6 @@
 package controllers;
 
+import controllers.Singletons.SingletonAdministradorSistema;
 import datasource.UsuarioDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -38,7 +39,12 @@ public class SistemasController {
     private ObservableList<UsuarioTableClass> datosTabla = FXCollections.observableArrayList();
     private List<Rol> roles;
     private AdministradorSistemas adminSistemas;
-    private Usuario usuarioInicio;
+
+    public void iniciarAdministradorSistemas(){
+        this.roles = SingletonAdministradorSistema.getInstance().getRoles();
+        this.adminSistemas = SingletonAdministradorSistema.getInstance().getAdministradorSistemas();
+    }
+
     @FXML
     public void initialize(){
         this.colNombUsu.setCellValueFactory(new PropertyValueFactory<>("nombreUsuario"));
@@ -69,11 +75,6 @@ public class SistemasController {
         this.tblUsuarios.setItems(datosTabla);
     }
 
-    public void recibirDatos(List<Rol> roles, Usuario user,AdministradorSistemas adminSistemas) {
-        this.roles = roles;
-        this.usuarioInicio = user;
-        this.adminSistemas = adminSistemas;
-    }
 
     public void BuscarUsuario(ActionEvent actionEvent) {
         String nombreUsuario = this.txtNombUsu.getText();
@@ -157,6 +158,5 @@ public class SistemasController {
         String nombreFuncionario;
         String apellidoFuncionario;
         String sectorFuncionario;
-
     }
 }

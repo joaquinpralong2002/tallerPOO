@@ -2,6 +2,7 @@ package controllers.Enfermero.TriageEnfermero;
 
 import controllers.Enfermero.EnfermeroController;
 import controllers.MedicoController;
+import controllers.Singletons.SingletonEnfermero;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,9 +28,8 @@ import java.util.Optional;
 public class TriageEnfermeroController {
     private ColorTriage colorTriageAsignado = ColorTriage.Ninguno;
     private RegistroEntrada registroEntrada;
-    private Medico medico;
-    private Enfermero enfermero;
-    private List<Rol> roles;
+    private Enfermero enfermero = SingletonEnfermero.getInstance().getEnfermero();
+    private List<Rol> roles = SingletonEnfermero.getInstance().getRoles();
     @Setter
     private DatosTriageEnfermero datosTriageEnfermero;
     @FXML
