@@ -133,11 +133,26 @@ public class EditarUsuarioController {
     private Usuario usuario = SingletonUsuario.getInstance().getUsuario();
     List<Rol> rolesNuevos = new ArrayList<Rol>();
     private FuncionarioProController controllerPrincipal;
+
+    /**
+     * Inicializa la vista y establece una referencia al controlador principal de la aplicación.
+     *
+     * Este método se llama durante la inicialización de la vista y se utiliza para establecer una referencia
+     * al controlador principal de la aplicación (controllerPrincipal). Esta referencia permite la comunicación
+     * entre esta vista y el controlador principal para coordinar la funcionalidad de la aplicación.
+     */
     @FXML
     public void initialize(){
         controllerPrincipal = FuncionarioProController.getControladorPrimario();
     }
 
+    /**
+     * Inicia la vista de edición del usuario con los datos del usuario actual.
+     *
+     * Este método se utiliza para iniciar la vista de edición del usuario con los datos del usuario
+     * actualmente seleccionado. Obtiene el usuario actual desde una instancia Singleton y luego llama
+     * al método "IniciarVentana()" para mostrar la información del usuario en la vista de edición.
+     */
     public void iniciarUsuario(){
         usuario = SingletonUsuario.getInstance().getUsuario();
         IniciarVentana();
