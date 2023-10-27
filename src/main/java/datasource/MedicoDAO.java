@@ -28,6 +28,15 @@ public class MedicoDAO implements GenericoDAO<Medico>{
         return medico;
     }
 
+    public Medico obtener(String nombre, String apellido){
+        Session session = sessionFactory.openSession();
+        String query = "FROM Medico m WHERE m.nombre = :nombreParam AND m.apellido = :apellidoParam";
+        Medico medico = session.createQuery(query, Medico.class).setParameter("nombreParam",nombre)
+                .setParameter("apellidoParam",apellido).getSingleResultOrNull();
+        session.close();
+        return medico;
+    }
+
     @Override
     public List<Medico> obtenerTodos(){
         Session session = sessionFactory.openSession();
@@ -42,7 +51,7 @@ public class MedicoDAO implements GenericoDAO<Medico>{
 
         Map<ColorTriage, Long> triageRangoFechas = new HashMap<>();
 
-        String query = "SELECT colorTriageRecomendado, COUNT(*) AS cantidad FROM Triage WHERE registroEntrada.fecha BETWEEN :fechaInicio AND :fechaFin GROUP BY colorTriageRecomendado";
+        String query = "SELECT colorTriageFinal, COUNT(*) AS cantidad FROM Triage WHERE registroEntrada.fecha BETWEEN :fechaInicio AND :fechaFin GROUP BY colorTriageFinal";
 
         List<Object[]> triages = session.createQuery(query)
                 .setParameter("fechaInicio", fechaInicio)
@@ -84,27 +93,30 @@ public class MedicoDAO implements GenericoDAO<Medico>{
         return pacientes;
     }
 
-    public List<Medico> obtenerMedicoConMasPacientesAtendidosEnRango(LocalDate fechaInicio, LocalDate fechaFin) {
+    public Map<Long, Long> obtenerMedicoConMasPacientesAtendidosEnRango(LocalDate fechaInicio, LocalDate fechaFin) {
+        Map<Long, Long> medicosMasConsultas = new HashMap<>();
+
         Session session = sessionFactory.openSession();
-        String query = "SELECT r.medico.id " +
+        String query = "SELECT r.medico " +
                 "FROM Registro r " +
                 "WHERE r.fechaRegistro >= :fechaInicio AND r.fechaRegistro <= :fechaFin " +
-                "GROUP BY r.medico.id " +
+                "GROUP BY r.medico " +
                 "ORDER BY COUNT(DISTINCT r.paciente.id) DESC";
 
-        List<Long> idsMedico = session.createQuery(query, Long.class)
+        List<Medico> medicos = session.createQuery(query, Medico.class)
                 .setParameter("fechaInicio", fechaInicio)
                 .setParameter("fechaFin", fechaFin)
                 .getResultList();
 
-        List<Medico> medicos = new ArrayList<>();
-        for (Long idMedico : idsMedico) {
-            Medico medico = session.get(Medico.class, idMedico);
-            medicos.add(medico);
-        }
 
+        for (int i = 0; i < medicos.size(); i++) {
+            Long cantidadConsultas = (Long) session.createQuery("SELECT COUNT(re) FROM Registro re WHERE re.medico = :medico")
+                    .setParameter("medico", medicos.get(i))
+                    .getSingleResult();
+            medicosMasConsultas.put(medicos.get(i).getId(), cantidadConsultas);
+        }
         session.close();
-        return medicos;
+        return medicosMasConsultas;
     }
 
 

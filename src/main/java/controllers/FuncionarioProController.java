@@ -57,7 +57,12 @@ public class FuncionarioProController implements Initializable {
     private Pane paneTrasero;
 
 
-
+    /**
+     * Inicializa el controlador al cargar la vista relacionada con el funcionario.
+     *
+     * @param url           La URL de la ubicación de la vista.
+     * @param resourceBundle El conjunto de recursos asociados con la vista.
+     */
     //Inicializador
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -71,27 +76,53 @@ public class FuncionarioProController implements Initializable {
 
 
     //ActionEvents
-
+    /**
+     * Maneja la acción de carga de la vista de registro de entrada.
+     *
+     * @param event El evento de acción que desencadena la carga de la vista.
+     */
     @FXML
     void RegistroEntradadaAction(ActionEvent event) {
         cargarEscena("/views/FuncionarioViews/RegistroEntrada.fxml");
     }
 
+    /**
+     * Maneja la acción de carga de la vista de búsqueda de pacientes.
+     *
+     * @param event El evento de acción que desencadena la carga de la vista.
+     */
     @FXML
     void BuscarPaciente(ActionEvent event) {
         cargarEscena("/views/FuncionarioViews/BuscarPaciente.fxml");
     }
 
+    /**
+     * Maneja la acción de carga de la vista de visualización de estadísticas.
+     *
+     * @param event El evento de acción que desencadena la carga de la vista.
+     */
     @FXML
     void EstadisticasAction(ActionEvent event) {
         cargarEscena("/views/FuncionarioViews/Estadisticas.fxml");
     }
 
+    /**
+     * Maneja la acción de carga de la vista nóminas.
+     *
+     * @param event El evento de acción que desencadena la carga de la vista.
+     */
     @FXML
     void NominaAction(ActionEvent event) {
         cargarEscena("/views/SistemasViews/Sistemas.fxml");
     }
 
+    /**
+     * Maneja la acción de cierre de sesión del funcionario. Muestra una confirmación al usuario
+     * y, si el usuario confirma, vuelve a la escena de inicio de sesión.
+     *
+     * @param event El evento de acción que desencadena el cierre de sesión.
+     * @throws IOException Si ocurre un error al cargar la escena de inicio de sesión.
+     */
     @FXML
     void CerrarSesion(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -111,6 +142,11 @@ public class FuncionarioProController implements Initializable {
         stage.show();
     }
 
+    /**
+     * Carga una nueva escena en el panel trasero de la vista principal, reemplazando la escena actual.
+     *
+     * @param fxmlResource La ruta al archivo FXML de la escena que se va a cargar.
+     */
     public void cargarEscena(String fxmlResource) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlResource));
@@ -129,12 +165,21 @@ public class FuncionarioProController implements Initializable {
     }
 
     //validaciones
-
+    /**
+     * Recibe y almacena información del tipo de funcionario como un Funcionario Administrativo.
+     *
+     * @param funcionario El objeto FuncionarioAdministrativo que se va a almacenar.
+     */
     public void recibirDatos(FuncionarioAdministrativo funcionario){
         funcionarioAdministrativo = funcionario;
     }
 
-
+    /**
+     * Recibe y almacena información del tipo de funcionario como un Administrador de Sistemas.
+     * Además, hace visibles ciertos botones relacionados con las funciones de administrador.
+     *
+     * @param funcionario El objeto AdministradorSistemas que se va a almacenar.
+     */
     public void recibirDatos(AdministradorSistemas funcionario){
         administradorSistemas = funcionario;
         bttmVacio.setVisible(true);

@@ -49,6 +49,11 @@ public class Persona {
         this.edad = añosEdad();
     }
 
+    /**
+     * Calcula la edad en años basada en la fecha de nacimiento y la fecha actual.
+     *
+     * @return La edad del individuo en años.
+     */
     public int añosEdad(){
         LocalDate fechaActual = LocalDate.now();
         LocalDate fechaNacimiento = this.fechaNacimiento;

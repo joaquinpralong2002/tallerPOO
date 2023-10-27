@@ -40,6 +40,10 @@ public class SistemasController {
     private List<Rol> roles;
     private AdministradorSistemas adminSistemas;
 
+    /**
+     * Inicia la información del administrador de sistemas cargando los roles y el administrador desde
+     * una instancia única de SingletonAdministradorSistema.
+     */
     public void iniciarAdministradorSistemas(){
         this.roles = SingletonAdministradorSistema.getInstance().getRoles();
         this.adminSistemas = SingletonAdministradorSistema.getInstance().getAdministradorSistemas();
@@ -57,6 +61,10 @@ public class SistemasController {
         txtNombUsu.textProperty().addListener((observable,oldValue,newValue) -> filtrarUsuario());
     }
 
+    /**
+     * Filtra los elementos en la tabla de usuarios basándose en el nombre de usuario ingresado en el campo de texto.
+     * Los elementos que contienen el nombre de usuario ingresado se muestran en la tabla.
+     */
     private void filtrarUsuario() {
         Predicate<UsuarioTableClass> predicate = usuario ->{
           String nombreUsuarioFiltro = txtNombUsu.getText();
@@ -65,6 +73,10 @@ public class SistemasController {
         tblUsuarios.setItems(datosTabla.filtered(predicate));
     }
 
+    /**
+     * Inicia la tabla de usuarios cargando los datos de usuarios desde la base de datos
+     * y mostrándolos en la tabla.
+     */
     public void iniciarTabla(){
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         List<Usuario> usuarios = usuarioDAO.obtenerTodos();
@@ -75,7 +87,13 @@ public class SistemasController {
         this.tblUsuarios.setItems(datosTabla);
     }
 
-
+    /**
+     * Busca un usuario en la base de datos según el nombre de usuario ingresado en el campo de texto.
+     * Si se encuentra un usuario con el nombre especificado, se muestra en la tabla.
+     * Si no se encuentra ningún usuario, se muestra un mensaje de error.
+     *
+     * @param actionEvent El evento de acción que desencadena la búsqueda.
+     */
     public void BuscarUsuario(ActionEvent actionEvent) {
         String nombreUsuario = this.txtNombUsu.getText();
         UsuarioDAO usuarioDAO = new UsuarioDAO();
@@ -99,12 +117,25 @@ public class SistemasController {
         }
     }
 
+    /**
+     * Comprueba si el nombre de usuario ingresado es válido, asegurando que no esté vacío.
+     *
+     * @param nombreUsuario El nombre de usuario a verificar.
+     * @throws Exception Si el nombre de usuario está vacío, se arroja una excepción con un mensaje de error.
+     */
     public void ComprobarCampo(String nombreUsuario) throws Exception {
         if(!nombreUsuario.matches("^[^\s]+$")){
             throw new Exception("Los campos no pueden estar vacios");
         }
     }
 
+    /**
+     * Abre la vista para crear un nuevo usuario. Carga la interfaz de usuario desde el archivo FXML correspondiente
+     * y muestra la ventana para la creación de usuario.
+     *
+     * @param event El evento de acción que desencadena la creación de usuario.
+     * @throws IOException Si ocurre un error al cargar la interfaz de usuario desde el archivo FXML.
+     */
     public void CrearUsuario(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/views/SistemasViews/CrearUsuario.fxml"));
@@ -116,6 +147,12 @@ public class SistemasController {
         stage.show();
     }
 
+    /**
+     * Abre la vista para editar un usuario existente. Esta función se encarga de preparar la ventana
+     * y realizar la selección de un usuario de la tabla antes de la edición.
+     *
+     * @param actionEvent El evento de acción que desencadena la edición de usuario.
+     */
     public void EditarUsuario(ActionEvent actionEvent) {
         //setear ventana primero
 
@@ -131,6 +168,12 @@ public class SistemasController {
         //setear 2da parte de la ventana
     }
 
+    /**
+     * Elimina un usuario seleccionado de la tabla y de la base de datos después de confirmación.
+     * Antes de eliminar, muestra una confirmación al usuario.
+     *
+     * @param actionEvent El evento de acción que desencadena la eliminación de usuario.
+     */
     public void EliminarUsuario(ActionEvent actionEvent) {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         UsuarioTableClass usuarioTableClass = (UsuarioTableClass) this.tblUsuarios.getSelectionModel().getSelectedItem();
