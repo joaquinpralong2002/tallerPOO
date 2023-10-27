@@ -1,6 +1,8 @@
 package controllers;
 
 import controllers.Singletons.SingletonAdministradorSistema;
+import controllers.Singletons.SingletonUsuario;
+import controllers.Sistemas.EditarUsuarioController;
 import datasource.UsuarioDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -75,36 +77,6 @@ public class SistemasController {
         this.tblUsuarios.setItems(datosTabla);
     }
 
-
-    public void BuscarUsuario(ActionEvent actionEvent) {
-        String nombreUsuario = this.txtNombUsu.getText();
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
-        ObservableList usuarioTabla = FXCollections.observableArrayList();
-        try {
-            ComprobarCampo(nombreUsuario);
-            Usuario usuario = usuarioDAO.obtenerUsuarioPorNombre(nombreUsuario);
-            if(usuario != null){
-                usuarioTabla.add(new UsuarioTableClass(usuario.getNombreUsuario(), usuario.getNombreRoles(), usuario.getFuncionario().getNombre(), usuario.getFuncionario().getApellido(), usuario.getFuncionario().getSector().getNombre()));
-            }else{
-                throw new Exception("Usuario no encontrado revise los datos ingresados");
-            }
-
-            this.tblUsuarios.setItems(usuarioTabla);
-        }catch (Exception e){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Datos Invalidos");
-            alert.setContentText(e.getMessage());
-            alert.show();
-        }
-    }
-
-    public void ComprobarCampo(String nombreUsuario) throws Exception {
-        if(!nombreUsuario.matches("^[^\s]+$")){
-            throw new Exception("Los campos no pueden estar vacios");
-        }
-    }
-
     public void CrearUsuario(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/views/SistemasViews/CrearUsuario.fxml"));
@@ -116,7 +88,7 @@ public class SistemasController {
         stage.show();
     }
 
-    public void EditarUsuario(ActionEvent actionEvent) {
+    public void EditarUsuario(ActionEvent event) throws IOException {
         //setear ventana primero
 
         //seleccion de usuario
@@ -128,7 +100,21 @@ public class SistemasController {
             alert.showAndWait();
         }
 
-        //setear 2da parte de la ventana
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/views/SistemasViews/EditarUsuario.fxml"));
+        Parent rootSistemas = loader.load();
+
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+
+        SingletonUsuario.getInstance().setUsuario(usuarioDAO.obtenerUsuarioPorNombre(usuarioTableClass.nombreUsuario));
+        EditarUsuarioController controllerEditar = loader.getController();
+        controllerEditar.iniciarUsuario();
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(rootSistemas);
+        stage.setScene(scene);
+        stage.show();
     }
 
     public void EliminarUsuario(ActionEvent actionEvent) {
