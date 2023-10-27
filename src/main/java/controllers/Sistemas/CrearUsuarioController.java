@@ -305,6 +305,7 @@ public class CrearUsuarioController {
             LimpiarCheckBoxs();
             roles.clear();
             Volver();
+            //EMA cuando lo guarda debe volver a la ventana de Sistemas
 
         }catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
