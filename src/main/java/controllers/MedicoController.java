@@ -212,7 +212,7 @@ public class MedicoController {
         Long id = ((PacienteTableClass) tblPacientes.getSelectionModel().getSelectedItem()).getId();
         Paciente paciente = pacienteTableClass.obtenerPaciente(id);
 
-        controller.recibirDatos(medico,paciente,paciente.getRegistrosEntradas().get(paciente.getRegistrosEntradas().size() - 1), roles);
+        controller.recibirDatos(paciente,paciente.getRegistrosEntradas().get(paciente.getRegistrosEntradas().size() - 1));
 
         if (paciente.getRegistrosEntradas().get(paciente.getRegistrosEntradas().size() - 1).isTriagiado()) {
             //Verifica el Color de triage del Paciente y lo envia a la siguiente escecna.
@@ -239,7 +239,7 @@ public class MedicoController {
         loader.setLocation(getClass().getResource("/views/MedicoViews/BuscarPacienteVisualizarRegistros.fxml"));
         Parent root = loader.load();
         BuscarPacienteVisualizarRegistroController controller = loader.getController();
-        controller.recibirDatos(roles, medico);
+
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);

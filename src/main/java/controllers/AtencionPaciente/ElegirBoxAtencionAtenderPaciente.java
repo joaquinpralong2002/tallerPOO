@@ -74,10 +74,8 @@ public class ElegirBoxAtencionAtenderPaciente {
                         // Establece la opción seleccionada en la siguiente escena
                         AtenderPacienteController controller = loader.getController();
                         controller.setLugarAtencionSeleccionada(lugarAtencionSeleccionada);
-                        controller.recibirDatos(medico,paciente,colorTriage,registroEntrada,roles);
+                        controller.recibirDatos(paciente,colorTriage,registroEntrada);
 
-                        //Metodo para cerrar la pestaña de Medico
-                        medicoStage.close();
 
                         // Cambia a la siguiente escena
                         if (resultado.get() == ButtonType.OK) {
@@ -124,10 +122,7 @@ public class ElegirBoxAtencionAtenderPaciente {
 
 
     @FXML
-    public void recibirDatos(Medico medico, Paciente paciente, RegistroEntrada registroEntrada, List<Rol> roles){
-        this.medico = medico;
-        System.out.println("medico en elegirbox" + medico);
-        System.out.println("roles en elegirbox" + roles);
+    public void recibirDatos(Paciente paciente, RegistroEntrada registroEntrada){
         this.paciente = paciente;
         this.registroEntrada = registroEntrada;
     }
@@ -142,7 +137,6 @@ public class ElegirBoxAtencionAtenderPaciente {
         alert.setContentText("¿Estás seguro de que deseas volver a la pestaña anterior?");
         Optional<ButtonType> resultado = alert.showAndWait();
         MedicoController controller = loader.getController();
-        controller.recibirDatos(roles, medico);
 
         //Metodo para cerrar la pestaña de Medico
         medicoStage.close();
@@ -154,7 +148,4 @@ public class ElegirBoxAtencionAtenderPaciente {
         }
     }
 
-    public void setMedicoStage(Stage medicoStage) {
-        this.medicoStage = medicoStage;
-    }
 }

@@ -82,10 +82,10 @@ public class EnfermeroController {
 
     private ObservableList<PacienteTableClass> datosTabla = FXCollections.observableArrayList();
 
-    @FXML
-    public void recibirDatos(List<Rol> roles, Enfermero enfermero) {
-        this.roles = roles;
-        this.enfermero = enfermero;
+
+    public void iniciarEnfermero(){
+        enfermero = SingletonEnfermero.getInstance().getEnfermero();
+        roles = SingletonEnfermero.getInstance().getRoles();
         boolean contieneTriage = false;
         for (int i = 0; i < roles.size(); i++) {
             if (roles.get(i).getNombre().equals("Triage")) contieneTriage = true;
@@ -94,6 +94,7 @@ public class EnfermeroController {
             bttmRealTriage.setVisible(false);
         }
     }
+
     @FXML
     public void initialize() {
         this.cmboxTriage.getItems().addAll(ColorTriage.values());
@@ -156,7 +157,7 @@ public class EnfermeroController {
             return;
         }
         RegistroEntrada registroEntrada = paciente.getRegistrosEntradas().get(paciente.getRegistrosEntradas().size() - 1);
-        controller.recibirDatos(registroEntrada,enfermero,roles);
+        controller.recibirDatos(registroEntrada);
         // Cambia a la nueva escena
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);

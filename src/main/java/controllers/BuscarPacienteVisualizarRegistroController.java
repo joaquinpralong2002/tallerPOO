@@ -45,11 +45,6 @@ public class BuscarPacienteVisualizarRegistroController {
         this.lbTelCont.setText("Sin Datos");
     }
 
-    public void recibirDatos(List<Rol> roles, Medico medico) {
-        this.rolesUsuario = roles;
-        this.medico = medico;
-    }
-
     public void BuscarPaciente(ActionEvent actionEvent) {
         String dni = this.txtDni.getText();
         try {
