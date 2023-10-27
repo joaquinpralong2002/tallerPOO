@@ -309,10 +309,11 @@ public class EstadisticasController {
         columnaColorTriage.setCellValueFactory(new PropertyValueFactory<>("colorTriage"));
         cantidadDeTriages.setCellValueFactory(new PropertyValueFactory<>("cantidadColor"));
 
-        tablaEstadisticas.getColumns().addAll(columnaColorTriage, cantidadDeTriages);
-
         // Crea una lista con los elementos que se agregarán a la tabla
         ObservableList<TriageClass> datosTabla = FXCollections.observableArrayList();
+
+        tablaEstadisticas.getColumns().addAll(columnaColorTriage, cantidadDeTriages);
+
 
         // Obtiene los datos de la base de datos
         Map<ColorTriage, Long> triages = medicoDAO.TriageRangoFechas(fechaInicial, fechaFinal);

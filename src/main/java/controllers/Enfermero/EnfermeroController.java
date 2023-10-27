@@ -1,16 +1,11 @@
 package controllers.Enfermero;
 
-import controllers.AtencionPaciente.ElegirBoxAtencionAtenderPaciente;
-import controllers.BuscarPacienteVisualizarRegistroController;
 import controllers.Enfermero.TriageEnfermero.TriageEnfermeroController;
-import controllers.MedicoController;
 import controllers.Singletons.SingletonEnfermero;
-import controllers.Triage.TriageController;
 import datasource.PacienteDAO;
 import datasource.RegistroEntradaDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -19,7 +14,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -218,9 +212,9 @@ public class EnfermeroController {
      */
     public void verHistorialClinico(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/views/MedicoViews/BuscarPacienteVisualizarRegistros.fxml"));
+        loader.setLocation(getClass().getResource("/views/EnfermeroViews/BuscarPacienteVisualizarRegistrosEnfermero.fxml"));
         Parent root = loader.load();
-        BuscarPacienteVisualizarRegistroController controller = loader.getController();
+        BuscarPacienteVisualizarRegistroEnfermeroController controller = loader.getController();
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);

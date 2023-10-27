@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="900.0" maxWidth="1600.0" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Enfermero.BuscarPacienteVisualizarRegistroEnfermeroController">
+   <children>
+      <Button fx:id="bttmVolver" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#Volver" prefHeight="40.0" prefWidth="150.0" text="Volver">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+      <BorderPane layoutX="311.0" layoutY="173.0" prefHeight="562.0" prefWidth="824.0">
+         <left>
+            <VBox prefHeight="524.0" prefWidth="203.0" spacing="15.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label prefHeight="27.0" prefWidth="139.0" text="DNI del paciente:">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txtDni" prefHeight="40.0" prefWidth="260.0" promptText="Ingrese Texto" />
+                  <Button fx:id="bttmBuscar" mnemonicParsing="false" onAction="#BuscarPaciente" prefHeight="50.0" prefWidth="200.0" text="Buscar">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  <Label underline="true">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </VBox>
+         </left>
+         <right>
+            <Pane prefHeight="524.0" prefWidth="222.0" BorderPane.alignment="CENTER_RIGHT">
+               <children>
+                  <Button fx:id="verRegistrosButton" layoutX="1.0" layoutY="83.0" mnemonicParsing="false" onAction="#verRegistros" prefHeight="50.0" prefWidth="220.0" text="Ver registros">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Pane>
+         </right>
+         <top>
+            <Label text="Buscar Paciente" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="30.0" />
+               </font>
+               <BorderPane.margin>
+                  <Insets bottom="50.0" />
+               </BorderPane.margin>
+            </Label>
+         </top>
+         <center>
+            <Pane prefHeight="485.0" prefWidth="398.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label alignment="TOP_CENTER" layoutX="61.0" layoutY="1.0" text="               Datos Paciente                 " textAlignment="CENTER" underline="true">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <VBox alignment="CENTER" layoutX="24.0" layoutY="34.0" prefHeight="242.0" prefWidth="354.0" spacing="10.0">
+                     <children>
+                        <HBox prefHeight="19.0" prefWidth="350.0">
+                           <children>
+                              <Label prefHeight="18.0" prefWidth="154.0" text="Nombre:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lbNombre" text="Label">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="45.0" prefHeight="19.0" prefWidth="350.0">
+                           <children>
+                              <Label prefHeight="18.0" prefWidth="154.0" text="Apellido:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lbApellido" text="Label">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="100.0" prefHeight="19.0" prefWidth="350.0">
+                           <children>
+                              <Label prefHeight="18.0" prefWidth="154.0" text="Telefono Fijo:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lbTelFijo" text="Label">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="127.0" prefHeight="19.0" prefWidth="350.0">
+                           <children>
+                              <Label prefHeight="18.0" prefWidth="154.0" text="Telefono Celular:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lbTelCel" text="Label">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="154.0" prefHeight="19.0" prefWidth="350.0">
+                           <children>
+                              <Label prefHeight="18.0" prefWidth="154.0" text="Telefono Contacto:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lbTelCont" text="Label">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </Pane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
