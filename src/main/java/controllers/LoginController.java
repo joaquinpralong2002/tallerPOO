@@ -77,7 +77,7 @@ public class LoginController {
                 } else if (funcionario.getClass() == Medico.class) {
                     // Carga la escena de médico
                     FXMLLoader loader = new FXMLLoader();
-                    loader.setLocation(getClass().getResource("/views/MedicoViews/Medico.fxml"));
+                    loader.setLocation(getClass().getResource("/views/SaludView.fxml"));
                     Parent rootMedico = loader.load();
 
                     //Se busca el objeto de médico para pasarlo al controlador
@@ -86,27 +86,27 @@ public class LoginController {
                     SingletonMedico.getInstance().setRoles(user.getRoles());
 
                     //Carga el controlador de médico, y le envía el médico y sus roles
-                    MedicoController controller = loader.getController();
-                    controller.iniciarMedico();
-
+                    SaludController controller = loader.getController();
+                    controller.iniciarDatosMedico();
 
                     // Cambia a la nueva escena
                     stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     scene = new Scene(rootMedico);
                     stage.setScene(scene);
-                    stage.show();
+                    stage.setScene(scene);
                 } else {
+                    // Carga la escena de enfermero
                     FXMLLoader loaderEnfermero = new FXMLLoader();
-                    loaderEnfermero.setLocation(getClass().getResource("/views/EnfermeroViews/Enfermero.fxml"));
+                    loaderEnfermero.setLocation(getClass().getResource("/views/SaludView.fxml"));
                     Parent rootEnfermero = loaderEnfermero.load();
 
+                    //Se busca el objeto de médico para pasarlo al controlador
                     Enfermero enfermero = usuarioDAO.obtenerEnfermeroPorIdUsuario(user.getIdUsuario());
-
                     SingletonEnfermero.getInstance().setEnfermero(enfermero);
                     SingletonEnfermero.getInstance().setRoles(user.getRoles());
 
-                    EnfermeroController enfermeroController = loaderEnfermero.getController();
-                    enfermeroController.iniciarEnfermero();
+                    SaludController enfermeroController = loaderEnfermero.getController();
+                    enfermeroController.iniciarDatosEnfermero();
 
                     stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     scene = new Scene(rootEnfermero);

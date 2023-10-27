@@ -60,36 +60,40 @@ public class AtenderPacienteController {
         // Llena el TextField
         String diagnostico = campoDeTexto.getText();
 
-        realizarDiagnosticoButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                // Lanza una alerta para confirmar la acción
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Confirmar acción");
-                alert.setContentText("¿Estás seguro de que deseas realizar el diagnóstico?");
-                Optional<ButtonType> resultado = alert.showAndWait();
+        // Verifica si el diagnóstico no está vacío
+        if (diagnostico.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("El diagnóstico no puede estar vacío.");
+            alert.showAndWait();
+            return;
+        }
 
-                // Si el usuario hace clic en el botón "Aceptar", entonces se realiza la acción
-                if (resultado.get() == ButtonType.OK) {
-                    medico.asignarBox(registroEntrada, lugarAtencionSeleccionada);
-                    medico.atenderPaciente(persona,boxAtencion,diagnostico);
+        // Lanza una alerta para confirmar la acción
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmar acción");
+        alert.setContentText("¿Estás seguro de que deseas realizar el diagnóstico?");
+        Optional<ButtonType> resultado = alert.showAndWait();
 
-                    FXMLLoader loader = new FXMLLoader();
-                    loader.setLocation(getClass().getResource("/views/MedicoViews/Medico.fxml"));
-                    Parent root = null;
-                    try {
-                        root = loader.load();
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                    MedicoController medicoController = loader.getController();
-                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    Scene scene = new Scene(root);
-                    stage.setScene(scene);
-                    stage.show();
-                }
+        // Si el usuario hace clic en el botón "Aceptar", entonces se realiza la acción
+        if (resultado.get() == ButtonType.OK) {
+            medico.asignarBox(registroEntrada, lugarAtencionSeleccionada);
+            medico.atenderPaciente(persona, boxAtencion, diagnostico);
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/views/MedicoViews/Medico.fxml"));
+            Parent root = null;
+            try {
+                root = loader.load();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
-        });
+            MedicoController medicoController = loader.getController();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
     }
 
     /**
