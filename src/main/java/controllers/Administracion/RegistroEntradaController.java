@@ -50,6 +50,12 @@ public class RegistroEntradaController {
         controllerPrincipal = FuncionarioProController.getControladorPrimario();
         this.cboxEstCivilPac.getItems().addAll(EstadoCivil.values());
     }
+
+    /**
+     * Crea un nuevo registro para un paciente con los datos proporcionados y realiza la persistencia de los datos.
+     *
+     * @param actionEvent El evento de acción que desencadena la creación del registro.
+     */
     public void CrearRegistro(ActionEvent actionEvent) {
         String nombrePac = this.txtNomPac.getText();
         String apellidoPac = this.txtApePac.getText();
@@ -98,6 +104,22 @@ public class RegistroEntradaController {
 
     }
 
+    /**
+     * Valida los datos de un paciente antes de crear un registro. Lanza una excepción si algún dato es inválido.
+     *
+     * @param nombrePac                El nombre del paciente.
+     * @param apellidoPac              El apellido del paciente.
+     * @param fechaNaciPac             La fecha de nacimiento del paciente.
+     * @param domicilioPac             El domicilio del paciente.
+     * @param dniPac                   El número de DNI del paciente.
+     * @param telefonoFijoPac          El número de teléfono fijo del paciente.
+     * @param telefonoCelPac           El número de teléfono celular del paciente.
+     * @param estadoCivilPac           El estado civil del paciente.
+     * @param correoPac                El correo electrónico del paciente.
+     * @param telefonoPersonaContactoPac  El número de teléfono de la persona de contacto del paciente.
+     * @param motivoConsulta           El motivo de la consulta del paciente.
+     * @throws IllegalArgumentException  Si algún dato es inválido.
+     */
     public void validarDatosPaciente(String nombrePac, String apellidoPac, LocalDate fechaNaciPac, String domicilioPac, String dniPac, String telefonoFijoPac, String telefonoCelPac, EstadoCivil estadoCivilPac, String correoPac, String telefonoPersonaContactoPac, String motivoConsulta) {
        String patron = "^(?![0-9 ]{6,})[A-Za-z0-9 ]{6,}$";
        String patron2 = "^(?![0-9-]{3,})[A-Za-z0-9-]{3,}$";

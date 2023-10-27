@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import model.Funcionario;
+import org.hibernate.annotations.NaturalId;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -25,7 +26,7 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
     private Long idUsuario;
-
+    @NaturalId
     private String nombreUsuario;
     private String contrasenia;
 
@@ -35,7 +36,7 @@ public class Usuario {
             inverseJoinColumns = @JoinColumn(name = "idRol"))
     private List<Rol> roles = new LinkedList<>();
 
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(cascade = CascadeType.ALL,orphanRemoval = true)
     @JoinColumn(name = "id_funcionario")
     private Funcionario funcionario;
 
@@ -61,79 +62,6 @@ public class Usuario {
         this.nombreUsuario = nombreUsuario;
         this.contrasenia = contrasenia;
         this.funcionario = funcionario;
-    }
-
-
-    /**
-     * Establece la contraseña del usuario
-     * @param contraseña La nueva contraseña del usuario.
-     * @return True si la contraseña se estableció correctamente, false en caso contrario.
-     */
-    public boolean setContrasenia(String contraseña) {
-        if (contraseña.length() >= 8 &&
-                contieneLetraMayuscula(contraseña) &&
-                contieneLetraMinuscula(contraseña) &&
-                contieneSimbolo(contraseña)) {
-            this.contrasenia = contraseña;
-            return true;
-        } else {
-            return false;
-        }
-    }
-    /**
-     * Controla que la contraseña pasada por parámetro contenga mayúsculas
-     * @param contraseña
-     * @return
-     */
-    private boolean contieneLetraMayuscula(String contraseña) {
-        for (char c : contraseña.toCharArray()) {
-            if (Character.isUpperCase(c)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Controla que la contraseña pasada por parámetro contenga minúsculas
-     * @param contraseña
-     * @return
-     */
-    private boolean contieneLetraMinuscula(String contraseña) {
-        for (char c : contraseña.toCharArray()) {
-            if (Character.isLowerCase(c)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Controla que la contraseña pasada por parámetro contenga símbolos
-     * @param contraseña
-     * @return
-     */
-    private boolean contieneSimbolo(String contraseña) {
-        String simbolos = "!@#$%^&*()_+-=[]{}|;:,.<>?";
-        for (char c : contraseña.toCharArray()) {
-            if (simbolos.contains(String.valueOf(c))) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-
-    /**
-     * Establece el nombre de usuario del médico.
-     * @param nombreUsuario El nuevo nombre de usuario del médico.
-     * @return True si el nombre de usuario se estableció correctamente, false en caso contrario.
-     */
-    public boolean setNombreUsuario(String nombreUsuario) {
-        if(nombreUsuario.length() >= 10){
-            this.nombreUsuario = nombreUsuario;
-            return true;
-        } else return false;
     }
 
     public List<String> getNombreRoles(){

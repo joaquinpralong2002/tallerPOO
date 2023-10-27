@@ -52,6 +52,10 @@ public class HistorialClinicoController {
     private Medico medico = SingletonMedico.getInstance().getMedico();
     private List<Rol> roles = SingletonMedico.getInstance().getRoles();
 
+    /**
+     * Inicializa la interfaz de usuario y configura las propiedades de las columnas de la tabla de registros.
+     * También establece un manejador de eventos para mostrar el resultado de diagnóstico cuando se selecciona un elemento en la tabla.
+     */
     @FXML
     public void initialize() {
         this.fechaColumn.setCellValueFactory(new PropertyValueFactory<>("fecha"));
@@ -74,6 +78,10 @@ public class HistorialClinicoController {
         this.iniciarTabla();
     }
 
+    /**
+     * Inicia la tabla de registros del paciente, cargando los registros existentes del paciente
+     * y mostrándolos en la tabla de visualización.
+     */
     private void iniciarTabla() {
         List<Registro> registrosPaciente = paciente.getRegistros();
 
@@ -87,6 +95,12 @@ public class HistorialClinicoController {
         registrosTableView.setItems(datosTabla);
     }
 
+    /**
+     * Vuelve a la vista de búsqueda de pacientes.
+     *
+     * @param event El evento de acción que desencadena el regreso.
+     * @throws IOException Si ocurre un error al cargar la vista.
+     */
     public void volver(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/views/MedicoViews/BuscarPacienteVisualizarRegistros.fxml"));

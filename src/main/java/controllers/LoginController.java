@@ -37,6 +37,13 @@ public class LoginController {
     @FXML
     private TextField passwordTextField;
 
+    /**
+     * Maneja el evento de inicio de sesión del usuario. Verifica las credenciales de inicio de sesión
+     * y carga la interfaz de usuario correspondiente según el tipo de funcionario o usuario.
+     *
+     * @param event El evento de acción que desencadena el inicio de sesión.
+     * @throws Exception Si ocurre un error durante el proceso de inicio de sesión.
+     */
     public void handleLoginButtonAction(ActionEvent event) throws Exception {
         // Obtén los datos de inicio de sesión
         String username = usernameTextField.getText();
@@ -111,6 +118,13 @@ public class LoginController {
 
     }
 
+    /**
+     * Comprueba si los campos de nombre de usuario y contraseña están vacíos.
+     * Si al menos uno de los campos está vacío, muestra un mensaje de información y devuelve false.
+     * En caso contrario, devuelve true.
+     *
+     * @return true si los campos no están vacíos, false en caso contrario.
+     */
     private boolean controlarCampos(){
         // Comprueba si alguno de los campos está vacío
         if (usernameTextField.getText().isEmpty() || passwordTextField.getText().isEmpty()) {
@@ -124,6 +138,14 @@ public class LoginController {
         return true;
     }
 
+    /**
+     * Valida las credenciales de inicio de sesión del usuario.
+     *
+     * @param user El usuario obtenido de la base de datos.
+     * @param u El nombre de usuario ingresado.
+     * @param c La contraseña ingresada.
+     * @return true si las credenciales son válidas, false si no lo son.
+     */
     private boolean validarUsuario(Usuario user, String u, String c) {
         if(user == null){
             Alert alert = new Alert(Alert.AlertType.ERROR);

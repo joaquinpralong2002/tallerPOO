@@ -1,8 +1,183 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="paneFondo" prefHeight="768.0" prefWidth="1200.0" styleClass="marco-color-primario" stylesheets="@../../Styless/Styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Administracion.EstadisticasController">
-
+   <children>
+      <Pane layoutX="17.0" layoutY="591.0" prefHeight="154.0" prefWidth="500.0">
+         <children>
+            <Label layoutX="14.0" layoutY="14.0" prefHeight="39.0" prefWidth="317.0" text="Triage realizado en un rango de fechas">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Button layoutX="280.0" layoutY="73.0" mnemonicParsing="false" onAction="#triagesRealizadosRangoFechas" text="Triage por Fechas" />
+            <Label layoutX="14.0" layoutY="52.0" text="Fecha Incial">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Label>
+            <DatePicker fx:id="fechaInicialPane5" layoutX="14.0" layoutY="73.0" prefHeight="25.0" prefWidth="100.0" />
+            <Label layoutX="131.0" layoutY="52.0" text="Fecha Final">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Label>
+            <DatePicker fx:id="fechaFinalPane5" layoutX="131.0" layoutY="73.0" prefHeight="25.0" prefWidth="100.0" />
+         </children>
+      </Pane>
+      <Pane layoutX="17.0" layoutY="475.0" prefHeight="124.0" prefWidth="500.0">
+         <children>
+            <Label layoutX="14.0" layoutY="14.0" prefHeight="39.0" prefWidth="338.0" text="Médico/s que más pacientes haya atendido en un">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="343.0" layoutY="14.0" prefHeight="39.0" prefWidth="130.0" text="rango de fechas">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Button layoutX="280.0" layoutY="75.0" mnemonicParsing="false" onAction="#medicosMasPacientesRangoFechas" text="Paciente por Médico por Fechas" />
+            <Label layoutX="14.0" layoutY="53.0" text="Fecha Incial">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Label>
+            <DatePicker fx:id="fechaInicialPane4" layoutX="14.0" layoutY="75.0" prefHeight="25.0" prefWidth="100.0" />
+            <Label layoutX="124.0" layoutY="53.0" text="Fecha Final">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Label>
+            <DatePicker fx:id="fechaFinalPane4" layoutX="124.0" layoutY="75.0" prefHeight="25.0" prefWidth="100.0" />
+         </children>
+      </Pane>
+      <Pane layoutX="15.0" layoutY="339.0" prefHeight="138.0" prefWidth="500.0">
+         <children>
+            <Label layoutX="14.0" layoutY="14.0" prefHeight="39.0" prefWidth="308.0" text="Paciente/s que más consultaron en un">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="270.0" layoutY="14.0" prefHeight="39.0" prefWidth="110.0" text="rango de fechas">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Button layoutX="280.0" layoutY="76.0" mnemonicParsing="false" onAction="#pacientesMasConsultasRangoFechas" text="Pacientes por fecha" />
+            <Label layoutX="14.0" layoutY="53.0" text="Fecha Incial">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Label>
+            <DatePicker fx:id="fechaInicialPane3" layoutX="14.0" layoutY="76.0" prefHeight="25.0" prefWidth="100.0" />
+            <Label layoutX="130.0" layoutY="53.0" text="Fecha Final">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Label>
+            <DatePicker fx:id="fechaFinalPane3" layoutX="130.0" layoutY="76.0" prefHeight="25.0" prefWidth="100.0" />
+         </children>
+      </Pane>
+      <Pane layoutX="17.0" layoutY="197.0" prefHeight="163.0" prefWidth="500.0">
+         <children>
+            <Label layoutX="14.0" layoutY="14.0" prefHeight="39.0" prefWidth="285.0" text="Cantidad de pacientes atendidos en">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="250.0" layoutY="14.0" prefHeight="39.0" prefWidth="250.0" text="rango de fechas y edades dadas">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <DatePicker fx:id="fechaInicialPane2" layoutX="13.0" layoutY="72.0" prefHeight="25.0" prefWidth="100.0" />
+            <DatePicker fx:id="fechaFinalPane2" layoutX="125.0" layoutY="72.0" prefHeight="25.0" prefWidth="100.0" />
+            <Label layoutX="14.0" layoutY="53.0" text="Fecha Incial">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="125.0" layoutY="53.0" text="Fecha Final">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="13.0" layoutY="107.0" text="Edad 1">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Label>
+            <TextField fx:id="edad1Pane2" layoutX="14.0" layoutY="125.0" prefHeight="25.0" prefWidth="49.0" />
+            <Label layoutX="85.0" layoutY="107.0" text="Edad 2">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Label>
+            <TextField fx:id="edad2Pane2" layoutX="78.0" layoutY="125.0" prefHeight="25.0" prefWidth="49.0" />
+            <Button layoutX="280.0" layoutY="85.0" mnemonicParsing="false" onAction="#cantidadPacientesAtendidosPorFechasYEdades" text="Pacientes por fechas y edades" />
+            <Label fx:id="cantidadPacientesInvisibleLabelPane2" layoutX="146.0" layoutY="129.0" text="Cantidad pacientes:" />
+            <Label fx:id="cantidadPacientesPane2Label" layoutX="258.0" layoutY="129.0">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutX="15.0" layoutY="59.0" prefHeight="138.0" prefWidth="500.0">
+         <children>
+            <Label layoutX="14.0" layoutY="-5.0" prefHeight="39.0" prefWidth="326.0" text="Cantidad de pacientes atendidos por un médico">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Button layoutX="280.0" layoutY="58.0" mnemonicParsing="false" onAction="#cantidadPacientesPorMedico" text="Pacientes por médico" />
+            <TextField fx:id="nombreMedicoTextField" layoutX="14.0" layoutY="58.0" prefHeight="25.0" prefWidth="104.0" promptText="Nombre" />
+            <Label layoutX="14.0" layoutY="34.0" text="Ingrese nombre y apellido del médico:">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="cantidadPacientesInvisibleLabelPane1" layoutX="280.0" layoutY="104.0" text="Cantidad pacientes:" />
+            <Label fx:id="cantidadPacientesPane1Label" layoutX="398.0" layoutY="104.0">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <TextField fx:id="apellidoMedicoTextField" layoutX="128.0" layoutY="58.0" prefHeight="25.0" prefWidth="119.0" promptText="Apellido" />
+            <DatePicker fx:id="fechaInicialPane1" layoutX="14.0" layoutY="112.0" prefHeight="25.0" prefWidth="100.0" />
+            <Label layoutX="14.0" layoutY="93.0" text="Fecha Incial">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="132.0" layoutY="92.0" text="Fecha Final">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Label>
+            <DatePicker fx:id="fechaFinalPane1" layoutX="128.0" layoutY="112.0" prefHeight="25.0" prefWidth="100.0" />
+         </children>
+      </Pane>
+      <Label layoutX="535.0" layoutY="20.0" prefHeight="39.0" prefWidth="130.0" text="Estadísticas">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tablaEstadisticas" layoutX="535.0" layoutY="123.0" prefHeight="609.0" prefWidth="616.0">
+        <columns>
+          <TableColumn prefWidth="308.0" text="Color Triage" />
+          <TableColumn prefWidth="307.0" text="Cantidad" />
+        </columns>
+      </TableView>
+   </children>
 </AnchorPane>

@@ -31,4 +31,11 @@ public class RolDAO implements GenericoDAO<Rol> {
         session.close();
         return roles;
     }
+
+    public Rol obtenerPorNombre(String nombre){
+        Session session = sessionFactory.openSession();
+        String query = "SELECT rol FROM Rol rol WHERE rol.nombre = :nombre";
+        Rol rol = session.createQuery(query, Rol.class).setParameter("nombre",nombre).getSingleResultOrNull();
+        return rol;
+    }
 }

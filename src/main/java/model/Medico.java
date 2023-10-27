@@ -7,6 +7,7 @@ import model.Enum.EstadoCivil;
 import model.Enum.LugarAtencion;
 import model.EnumeracionesVariablesTriage.*;
 import model.Login.Usuario;
+import org.hibernate.annotations.NaturalId;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ import java.util.List;
 
 @Entity
 public class Medico extends Funcionario implements CapacitadoTriage{
+    @Column(unique = true)
     private String numMatricula;
 
     @OneToMany(mappedBy = "medico", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -69,6 +71,7 @@ public class Medico extends Funcionario implements CapacitadoTriage{
         especializaciones.remove(especialidad);
     }
 
+
     @Override
     public Triage realizarTriage(Respiracion respiracion, Pulso pulso, int valorPulso, EstadoMental estadoMental,
                                  Conciencia conciencia, DolorPecho dolorPecho, LecionesGraves lecionesGraves, Edad edad,
@@ -105,6 +108,13 @@ public class Medico extends Funcionario implements CapacitadoTriage{
         return true;
     }
 
+    /**
+     * Realiza la atención médica a un paciente en un box de atención, registra la atención y los diagnósticos correspondientes.
+     *
+     * @param paciente             El paciente que está siendo atendido.
+     * @param box                  El box de atención donde se realiza la atención médica.
+     * @param descripcionDiagnostico La descripción del diagnóstico médico.
+     */
     public void atenderPaciente(Paciente paciente, BoxAtencion box, String descripcionDiagnostico){
         RegistroDAO registroDAO = new RegistroDAO();
         ResultadoDiagnosticoDAO resultadoDiagnosticoDAO = new ResultadoDiagnosticoDAO();

@@ -21,7 +21,6 @@ public class Especialidad {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idEspecialidad;
 
-    @NaturalId
     private String nombre;
     private LocalDate fecha;
 
