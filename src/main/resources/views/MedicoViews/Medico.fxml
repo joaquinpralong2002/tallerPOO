@@ -11,18 +11,18 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="900.0" maxWidth="1600.0" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MedicoController">
+<AnchorPane maxHeight="900.0" maxWidth="1600.0" prefHeight="768.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MedicoController">
    <children>
-      <Button fx:id="bttmCerrarSesion" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#CerrarSesion" prefHeight="40.0" prefWidth="150.0" text="Cerrar Sesion">
+      <Button fx:id="bttmCerrarSesion" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#CerrarSesion" prefHeight="40.0" prefWidth="150.0" text="Cerrar Sesion" visible="false">
          <font>
             <Font size="18.0" />
          </font></Button>
-      <Label layoutX="740.0" layoutY="95.0" text="Listado de Pacientes">
+      <Label layoutX="672.0" layoutY="95.0" text="Listado de Pacientes">
          <font>
             <Font size="30.0" />
          </font>
       </Label>
-      <TableView fx:id="tblPacientes" layoutX="494.0" layoutY="173.0" prefHeight="558.0" prefWidth="762.0">
+      <TableView fx:id="tblPacientes" layoutX="426.0" layoutY="162.0" prefHeight="558.0" prefWidth="762.0">
          <columns>
             <TableColumn fx:id="colNomPac" prefWidth="130.0" text="Nombre" />
             <TableColumn fx:id="colApePac" prefWidth="150.0" text="Apellido" />
@@ -31,9 +31,9 @@
             <TableColumn fx:id="colMotivo" prefWidth="259.9999755859375" text="Motivo de Consulta" />
          </columns>
       </TableView>
-      <Pane layoutX="28.0" layoutY="140.0" prefHeight="534.0" prefWidth="442.0">
+      <Pane layoutX="-16.0" layoutY="140.0" prefHeight="534.0" prefWidth="442.0">
          <children>
-            <Label layoutX="35.0" layoutY="25.0" text="              Filtrar Pacientes               " underline="true">
+            <Label layoutX="42.0" layoutY="24.0" text="              Filtrar Pacientes               " underline="true">
                <font>
                   <Font size="24.0" />
                </font>
