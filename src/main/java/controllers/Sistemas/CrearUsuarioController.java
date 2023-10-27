@@ -270,6 +270,9 @@ public class CrearUsuarioController {
             alert.setTitle("Información");
             alert.setHeaderText("Personal creado y añadido exitosamente");
             alert.show();
+            LimpiarCheckBoxs();
+            roles.clear();
+            Volver();
 
         }catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -278,6 +281,48 @@ public class CrearUsuarioController {
             alert.setContentText(e.getMessage());
             alert.show();
         }
+    }
+
+    private void LimpiarCheckBoxs() {
+        //ROLES FUNCIONARIO ADMINISTRATIVO
+        ckboxAdminHosp.setSelected(false);
+        ckboxDircMed.setSelected(false);
+        ckboxDircEnf.setSelected(false);
+        ckboxRRHH.setSelected(false);
+        ckboxDircFinan.setSelected(false);
+        ckboxGertGeneral.setSelected(false);
+        ckboxGertOpe.setSelected(false);
+        ckboxGertServ.setSelected(false);
+        ckboxCordSegu.setSelected(false);
+        ckboxJefeAlm.setSelected(false);
+        //ROLES ADMINISTRADOR SISTEMAS
+        ckboxAdminSist1.setSelected(false);
+        ckboxDircTecn.setSelected(false);
+        ckboxAnalDatos.setSelected(false);
+        ckboxSegrInf.setSelected(false);
+        ckboxRedes.setSelected(false);
+        //ROLES MEDICO
+        ckboxTriage.setSelected(false);
+        ckboxMedEmer.setSelected(false);
+        ckboxMedGen.setSelected(false);
+        ckboxMedEsp.setSelected(false);
+        ckboxCirujano.setSelected(false);
+        ckboxAnestesiologo.setSelected(false);
+        ckboxRadiologo.setSelected(false);
+        ckboxPsiquiatra.setSelected(false);
+        ckboxMedCuidInts.setSelected(false);
+        ckboxGeriatra.setSelected(false);
+        ckboxPediatra.setSelected(false);
+        ckboxMedAtencPrim.setSelected(false);
+        //ROLES ENFERMERO
+        ckboxTriage2.setSelected(false);
+        ckboxCuidGenr.setSelected(false);
+        ckboxCuidInt.setSelected(false);
+        ckboxEmergencias.setSelected(false);
+        ckboxPediatra2.setSelected(false);
+        ckboxAtenPrim.setSelected(false);
+        ckboxSaludMental.setSelected(false);
+        ckboxOncologia.setSelected(false);
     }
 
     public void GuardarRoles(){
@@ -324,69 +369,60 @@ public class CrearUsuarioController {
     }
 
     private void comprobarCampos() throws Exception {
-        boolean comprobarNombreFun = nombreFunc.matches("^[^s]+$");
-        boolean comprobarApellidoFun = apellidoFun.matches("^[^s]+$");
-        boolean comprobarDni =  dni.matches("\\d+");
-        boolean comprobarDomicilio = domicilio.matches("^[^s]+$");
-        boolean comprobarfechaNaci = fechaNaci == null;
-        boolean comprobarEstadoCivil = estadoCivil == null;
-        boolean comprobarCorreo = correo.matches("^[A-Z-a-z0-9+_.-]+@(.+)$");
-        boolean comprobarTelFijo =  telefonoFijo.matches("\\d+");
-        boolean comprobarTelCelular =  telefonoCelular.matches("\\d+");
 
-        boolean comprobarNombreUsu = nombreUsu.matches("^[^s]+$");
-        boolean comprobarContrasenia = password.matches("^[^s]+$");
-        boolean comprobarContraseniaConfirm = passwordConfirm.matches("^[^s]+$") && passwordConfirm.equals(password);
-
-        if (comprobarNombreFun){
+        if (nombreFunc.isEmpty()){
             throw new Exception("El nombre del funcionario no puede estar vacío");
         }
 
-       if (comprobarApellidoFun){
+       if (apellidoFun.isEmpty()){
            throw new Exception("El apellido no puede estar vacío");
        }
 
-       if (!comprobarDni){
+       if (!dni.matches("\\d+")){
            throw new Exception("El DNI no puede estar vacío, y debe ser llenado con números");
        }
 
-       if (comprobarDomicilio){
+       if (domicilio.isEmpty()){
            throw new Exception("El domicilio no puede estar vacío");
        }
 
-       if (comprobarfechaNaci){
+       if (fechaNaci == null){
            throw new Exception("La fecha de nacimiento no puede estar vacío");
        }
 
-       if (comprobarEstadoCivil){
+       if (estadoCivil == null){
            throw new Exception("Debe seleccionar una opción como estado civil");
        }
 
-       if (!comprobarCorreo){
+       if (!correo.matches("^[A-Z-a-z0-9+_.-]+@(.+)$")){
            throw new Exception("El correo no puede estar vacío");
        }
 
-       if (!comprobarTelFijo){
+       if (!telefonoFijo.matches("\\d+")){
            throw new Exception("El telefono fijo no puede estar vacío");
        }
 
-       if (!comprobarTelCelular){
+       if (!telefonoCelular.matches("\\d+")){
            throw new Exception("El telefono celular no puede estar vacío");
        }
 
-        if (comprobarNombreUsu){
+        if (nombreUsu.isEmpty()){
             throw new Exception("El nombre de usuario no puede estar vacío");
         }
-       if (comprobarContrasenia){
+       if (password.isEmpty()){
            throw new Exception("La contraseña no puede estar vacía");
        }
 
-       if (comprobarContraseniaConfirm){
-           throw new Exception("La contraseña no puede estar vacía, y debe ser igual a la anterior propuesta");
+       if (passwordConfirm.isEmpty()){
+           throw new Exception("La contraseña no puede estar vacía");
+       }
+
+       if (!passwordConfirm.equals(password)){
+           throw new Exception("La contraseña no son iguales revise los datos");
        }
     }
 
-    public void Volver(ActionEvent event) throws IOException {
+    public void Volver(){
         controllerPrincipal.cargarEscena("/views/SistemasViews/Sistemas.fxml");
         /**
         FXMLLoader loader = new FXMLLoader();
