@@ -13,7 +13,17 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
+import model.Enum.ColorTriage;
+import model.Paciente;
+import model.Medico;
+import model.Triage;
+
+import java.time.LocalDate;
+import java.util.Map;
 
 public class EstadisticasController {
 

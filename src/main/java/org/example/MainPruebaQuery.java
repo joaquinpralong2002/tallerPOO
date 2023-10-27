@@ -34,7 +34,7 @@ public class MainPruebaQuery {
                 LocalDate.of(2023, 10, 26));
 
         System.out.println(pacientes);
-        */
+
 
         //4º Médico/s que más pacientes haya atendido en un rango de fechas
         System.out.println(medicoDAO.obtenerMedicoConMasPacientesAtendidosEnRango(LocalDate.of(2023, 01, 01),
@@ -44,6 +44,8 @@ public class MainPruebaQuery {
         //5º Triage realizado en un rango de fechas, indicándose la cantidad de cada color
         System.out.println(medicoDAO.TriageRangoFechas(LocalDate.of(2023, 01, 01),
                 LocalDate.of(2023, 12, 26)));
+
+
 
     }
 }
