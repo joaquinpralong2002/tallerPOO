@@ -49,10 +49,8 @@ public class FuncionarioProController implements Initializable {
     private  Button bttmVacio;
     @FXML
     private Button bttnNomina;
-
     @FXML
     private Button bttmCerrarSesion;
-
     @FXML
     private Pane paneTrasero;
 

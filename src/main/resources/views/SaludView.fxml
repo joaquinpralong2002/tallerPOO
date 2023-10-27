@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FuncionarioProController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SaludController">
    <children>
       <BorderPane layoutY="-2.0" prefHeight="768.0" prefWidth="160.0" styleClass="fondo-color-primario" stylesheets="@../Styless/StylesSalud.css">
          <top>
@@ -36,12 +36,12 @@
             <VBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="202.0" prefWidth="160.0" BorderPane.alignment="CENTER">
                <children>
                   <Separator prefHeight="2.0" prefWidth="160.0" />
-                  <Button fx:id="bttmRegistroEntrada" mnemonicParsing="false" onAction="#RegistroEntradadaAction" prefHeight="40.0" prefWidth="160.0" stylesheets="@../Styless/StylesSalud.css" text="Inicio">
+                  <Button fx:id="inicioButton" mnemonicParsing="false" onAction="#Inicio" prefHeight="40.0" prefWidth="160.0" stylesheets="@../Styless/StylesSalud.css" text="Inicio">
                      <styleClass>
                         <String fx:value="boton-basico" />
                         <String fx:value="boton-basico-encima" />
                      </styleClass></Button>
-                  <Button fx:id="bttmBuscarPaciente" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#BuscarPaciente" prefHeight="40.0" prefWidth="160.0" stylesheets="@../Styless/StylesSalud.css" text="Historial clínico">
+                  <Button fx:id="historialClinicoButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#HistorialClinico" prefHeight="40.0" prefWidth="160.0" stylesheets="@../Styless/StylesSalud.css" text="Historial clínico">
                      <styleClass>
                         <String fx:value="boton-basico" />
                         <String fx:value="boton-basico-encima" />
@@ -52,7 +52,7 @@
          <bottom>
             <VBox alignment="BOTTOM_CENTER" prefHeight="395.0" prefWidth="160.0" styleClass="fondo-color-primario" stylesheets="@../Styless/StylesSalud.css" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="bttmCerrarSesion" mnemonicParsing="false" onAction="#CerrarSesion" prefHeight="40.0" prefWidth="160.0" stylesheets="@../Styless/StylesSalud.css" text="Cerrar Sesion">
+                  <Button fx:id="cerrarSesionButton" mnemonicParsing="false" onAction="#CerrarSesion" prefHeight="40.0" prefWidth="160.0" stylesheets="@../Styless/StylesSalud.css" text="Cerrar Sesion">
                      <styleClass>
                         <String fx:value="boton-cerrar" />
                         <String fx:value="boton-cerrar-encima" />
