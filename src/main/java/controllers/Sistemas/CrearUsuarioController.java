@@ -1,5 +1,6 @@
 package controllers.Sistemas;
 
+import controllers.FuncionarioProController;
 import datasource.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -115,8 +116,11 @@ public class CrearUsuarioController {
     private String password;
     private String passwordConfirm;
 
+    private FuncionarioProController controllerPrincipal;
+
     @FXML
     public void initialize(){
+        controllerPrincipal = FuncionarioProController.getControladorPrimario();
         this.cboxEstadoCivil.getItems().addAll(EstadoCivil.values());
         this.cboxTipoPersonal.getItems().addAll(List.of("Funcionario Administrativo","Administrador de Sistemas","Medico","Enfermero"));
         cargarSectores();
@@ -379,6 +383,8 @@ public class CrearUsuarioController {
     }
 
     public void Volver(ActionEvent event) throws IOException {
+        controllerPrincipal.cargarEscena("/views/SistemasViews/Sistemas.fxml");
+        /**
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/views/SistemasViews/Sistemas.fxml"));
         Parent rootFuncionario = loader.load();
@@ -386,6 +392,6 @@ public class CrearUsuarioController {
         Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(rootFuncionario);
         stage.setScene(scene);
-        stage.show();
+        stage.show();**/
     }
 }

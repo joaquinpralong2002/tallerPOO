@@ -1,5 +1,6 @@
 package controllers.Administracion;
 
+import controllers.FuncionarioProController;
 import datasource.FuncionarioAdministrativoDAO;
 import datasource.PacienteDAO;
 import datasource.RegistroEntradaDAO;
@@ -11,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import lombok.Setter;
 import model.Enum.EstadoCivil;
 import model.FuncionarioAdministrativo;
 import model.Login.Rol;
@@ -40,8 +42,12 @@ public class RegistroEntradaController {
     public TextField txtDomiPac;
     public TextArea txtMotivoConsulta;
 
+    @Setter
+    private FuncionarioProController controllerPrincipal;
+
     @FXML
     public void initialize(){
+        controllerPrincipal = FuncionarioProController.getControladorPrimario();
         this.cboxEstCivilPac.getItems().addAll(EstadoCivil.values());
     }
     public void CrearRegistro(ActionEvent actionEvent) {
@@ -161,12 +167,4 @@ public class RegistroEntradaController {
         this.funcionarioAdministrativoIniciado = funcionarioAdministrativo;
     }
 
-    public void Volver(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/views/FuncionarioViews/Funcionario.fxml"));
-        // Cambia a la escena
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
 }
