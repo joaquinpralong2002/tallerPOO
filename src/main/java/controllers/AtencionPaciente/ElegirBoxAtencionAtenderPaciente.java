@@ -75,9 +75,6 @@ public class ElegirBoxAtencionAtenderPaciente {
                         controller.setLugarAtencionSeleccionada(lugarAtencionSeleccionada);
                         controller.recibirDatos(medico,paciente,colorTriage,registroEntrada,roles);
 
-                        //Metodo para cerrar la pestaña de Medico
-                        medicoStage.close();
-
                         // Cambia a la siguiente escena
                         if (resultado.get() == ButtonType.OK) {
                             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -144,8 +141,6 @@ public class ElegirBoxAtencionAtenderPaciente {
         MedicoController controller = loader.getController();
         controller.recibirDatos(roles, medico);
 
-        //Metodo para cerrar la pestaña de Medico
-        medicoStage.close();
         if (resultado.isPresent() && resultado.get() == ButtonType.OK) {
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
@@ -154,7 +149,4 @@ public class ElegirBoxAtencionAtenderPaciente {
         }
     }
 
-    public void setMedicoStage(Stage medicoStage) {
-        this.medicoStage = medicoStage;
-    }
 }
