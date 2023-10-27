@@ -33,4 +33,11 @@ public class SectorDAO implements GenericoDAO<Sector> {
         session.close();
         return sectores;
     }
+
+    public Sector obtenerPorNombre(String nombre){
+        Session session = sessionFactory.openSession();
+        String query = "SELECT sector FROM Sector sector WHERE sector.nombre = :nombre";
+        Sector sector = session.createQuery(query, Sector.class).setParameter("nombre",nombre).getSingleResultOrNull();
+        return sector;
+    }
 }
