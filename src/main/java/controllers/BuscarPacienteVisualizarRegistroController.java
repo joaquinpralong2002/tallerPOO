@@ -45,6 +45,12 @@ public class BuscarPacienteVisualizarRegistroController {
         this.lbTelCont.setText("Sin Datos");
     }
 
+    /**
+     * Maneja la acción de búsqueda de un paciente utilizando el número de DNI ingresado.
+     * Verifica la existencia del paciente en la base de datos y muestra sus datos en la vista si se encuentra.
+     *
+     * @param actionEvent El evento de acción que desencadena la búsqueda del paciente.
+     */
     public void BuscarPaciente(ActionEvent actionEvent) {
         String dni = this.txtDni.getText();
         try {
@@ -73,6 +79,12 @@ public class BuscarPacienteVisualizarRegistroController {
         }
     }
 
+    /**
+     * Establece el texto de un objeto Label con un valor de cadena especificado, mostrando "Sin datos" si el valor es nulo.
+     *
+     * @param label El objeto Label al que se le establecerá el texto.
+     * @param dato El valor de cadena que se mostrará en el Label o "Sin datos" si es nulo.
+     */
     public void SetearLabels(Label label, String dato){
         if(dato == null){
             label.setText("Sin datos");
@@ -81,12 +93,24 @@ public class BuscarPacienteVisualizarRegistroController {
         }
     }
 
+    /**
+     * Comprueba la validez del número de DNI ingresado, asegurando que sea un número entero.
+     *
+     * @param dni El número de DNI a verificar.
+     * @throws IllegalArgumentException Si el número de DNI no es un número entero.
+     */
     public void ComprobarDni(String dni){
         if (!dni.matches("\\d+")){
             throw new IllegalArgumentException("El DNI debe ser un número entero");
         }
     }
 
+    /**
+     * Maneja la acción de regreso a la vista principal del médico.
+     *
+     * @param event El evento de acción que desencadena el regreso.
+     * @throws IOException Si ocurre un error al cargar la vista principal del médico.
+     */
     public void Volver(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/views/MedicoViews/Medico.fxml"));
@@ -99,6 +123,13 @@ public class BuscarPacienteVisualizarRegistroController {
         stage.show();
     }
 
+    /**
+     * Maneja la acción de visualización de los registros de historial clínico del paciente.
+     * Carga la vista del historial clínico y envía los datos del paciente al controlador correspondiente.
+     *
+     * @param event El evento de acción que desencadena la visualización del historial clínico.
+     * @throws IOException Si ocurre un error al cargar la vista del historial clínico.
+     */
     public void verRegistros(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/views/MedicoViews/HistorialClinico.fxml"));

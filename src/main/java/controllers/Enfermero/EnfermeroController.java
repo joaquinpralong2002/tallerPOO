@@ -82,7 +82,14 @@ public class EnfermeroController {
 
     private ObservableList<PacienteTableClass> datosTabla = FXCollections.observableArrayList();
 
-
+    /**
+     * Inicializa la vista del controlador de enfermero.
+     * - Obtiene la instancia de la clase Enfermero desde SingletonEnfermero y la almacena en la variable enfermero.
+     * - Obtiene los roles del enfermero desde SingletonEnfermero y los almacena en la variable roles.
+     * - Inicializa una variable booleana llamada contieneTriage con el valor false para verificar si el enfermero tiene el rol "Triage".
+     * - Itera a través de los roles en la lista roles y compara el nombre de cada rol con "Triage". Si se encuentra el rol "Triage", cambia el valor de contieneTriage a true.
+     * - Verifica el valor de contieneTriage y si es false, oculta el botón bttmRealTriage, lo que significa que el botón "Triage" no se mostrará en la vista.
+     */
     public void iniciarEnfermero(){
         enfermero = SingletonEnfermero.getInstance().getEnfermero();
         roles = SingletonEnfermero.getInstance().getRoles();
@@ -110,6 +117,15 @@ public class EnfermeroController {
         cmboxTriage.valueProperty().addListener((observable,oldValue,newValue) -> filtrarPacientes());
     }
 
+    /**
+     * Inicializa la tabla de pacientes en la vista del controlador de enfermero.
+     * - Obtiene una instancia de RegistroEntradaDAO para acceder a los registros de entrada.
+     * - Obtiene una lista de todos los registros de entrada desde RegistroEntradaDAO.
+     * - Itera a través de los registros de entrada y agrega información a la tabla de pacientes si el registro no ha sido atendido.
+     * - Verifica si el registro está triageado y, si es así, comprueba si tiene un color de triage final o recomendado.
+     * - Agrega una instancia de PacienteTableClass a los datos de la tabla con información del paciente y el registro.
+     * - Finalmente, establece los datos de la tabla de pacientes con los datos recopilados.
+     */
     private void iniciarTabla() {
 
         RegistroEntradaDAO registroEntradaDAO = new RegistroEntradaDAO();
@@ -134,6 +150,12 @@ public class EnfermeroController {
         }
     }
 
+    /**
+     * Abre la ventana para realizar el triaje de un paciente seleccionado desde la tabla de pacientes en la vista de enfermero.
+     *
+     * @param event El evento que desencadenó la acción (pulsación del botón "Realizar Triaje").
+     * @throws Exception Si ocurre un error durante el proceso.
+     */
     public void RealizarTriage(ActionEvent event) throws Exception {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/views/EnfermeroViews/TriageEnfermero/TriageEnfermero.fxml"));
@@ -165,6 +187,10 @@ public class EnfermeroController {
         stage.show();
     }
 
+    /**
+     * Filtra y muestra los pacientes en la tabla de pacientes según los criterios especificados en los campos de búsqueda.
+     * Los pacientes se filtran por nombre, apellido, DNI y color de triaje.
+     */
     public void filtrarPacientes(){
         Predicate<PacienteTableClass> predicate = paciente -> {
             String nombreFilter = txtNombPac.getText().toLowerCase();
@@ -184,7 +210,12 @@ public class EnfermeroController {
         tblPacientes.setItems(datosTabla.filtered(predicate));
     }
 
-
+    /**
+     * Carga la vista para visualizar el historial clínico del paciente seleccionado.
+     *
+     * @param event El evento de acción que desencadena esta operación.
+     * @throws IOException Si se produce un error al cargar la vista del historial clínico.
+     */
     public void verHistorialClinico(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/views/MedicoViews/BuscarPacienteVisualizarRegistros.fxml"));
@@ -197,6 +228,12 @@ public class EnfermeroController {
         stage.show();
     }
 
+    /**
+     * Cierra la sesión actual del médico y regresa a la pantalla de inicio de sesión.
+     *
+     * @param event El evento de acción que desencadena esta operación.
+     * @throws Exception Si se produce un error al cargar la vista de inicio de sesión.
+     */
     public void CerrarSesion(ActionEvent event) throws Exception {
         // Cierra la sesión del médico
         Parent root = FXMLLoader.load(getClass().getResource("/views/Login.fxml"));
@@ -212,6 +249,10 @@ public class EnfermeroController {
             stage.show();
         }
     }
+    /**
+     * Borra la selección del ComboBox de color de triaje.
+     * Esto restablece el ComboBox de color de triaje a su valor predeterminado (ninguno).
+     */
     public void borrarColorTriageSeleccionado(){
         cmboxTriage.setValue(null);
     }

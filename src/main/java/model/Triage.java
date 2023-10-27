@@ -234,6 +234,13 @@ public class Triage{
         }
     }
 
+    /**
+     * Comprueba si un cambio de color de triage es válido en función de la diferencia permitida.
+     *
+     * @param colorAntes   El color de triage antes del cambio.
+     * @param colorDespues El nuevo color de triage después del cambio.
+     * @return `true` si el cambio de triage es válido, de lo contrario `false`.
+     */
     public static boolean controlarTriage(ColorTriage colorAntes, ColorTriage colorDespues){
         return Math.abs(colorDespues.getValor() - colorAntes.getValor()) <= 2;
     }

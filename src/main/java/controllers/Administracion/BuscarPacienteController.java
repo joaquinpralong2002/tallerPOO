@@ -40,6 +40,10 @@ public class BuscarPacienteController {
 
     private FuncionarioProController controllerPrincipal;
 
+    /**
+     * Inicializa la interfaz de usuario cuando se carga la vista del controlador. Establece una referencia al controlador principal,
+     * y establece etiquetas de información en la interfaz con valores predeterminados "Sin Datos" para el nombre, apellido y números de contacto.
+     */
     @FXML
     public void initialize(){
         controllerPrincipal = FuncionarioProController.getControladorPrimario();
@@ -50,6 +54,12 @@ public class BuscarPacienteController {
         this.lbTelCont.setText("Sin Datos");
     }
 
+    /**
+     * Busca un paciente por su número de DNI y muestra su información en la interfaz de usuario si se encuentra.
+     * Si el paciente no se encuentra en la base de datos, se muestra un mensaje informativo.
+     *
+     * @param actionEvent El evento de acción que desencadenó la búsqueda del paciente.
+     */
     public void BuscarPaciente(ActionEvent actionEvent) {
         String dni = this.txtDni.getText();
         try {
@@ -80,6 +90,12 @@ public class BuscarPacienteController {
 
     }
 
+    /**
+     * Establece el texto de un objeto Label con el valor proporcionado, o muestra "Sin datos" si el valor es nulo.
+     *
+     * @param label El objeto Label al que se le establecerá el texto.
+     * @param dato  El valor que se establecerá en el Label o nulo si no hay datos disponibles.
+     */
     public void SetearLabels(Label label, String dato){
         if(dato == null){
             label.setText("Sin datos");
@@ -88,12 +104,24 @@ public class BuscarPacienteController {
         }
     }
 
+    /**
+     * Comprueba si el valor del DNI es un número entero.
+     *
+     * @param dni El valor del Documento Nacional de Identidad (DNI) a comprobar.
+     * @throws IllegalArgumentException Si el DNI no es un número entero.
+     */
     public void ComprobarDni(String dni){
         if (!dni.matches("\\d+")){
             throw new IllegalArgumentException("El DNI debe ser un número entero");
         }
     }
 
+    /**
+     * Crea un registro de entrada para un paciente con el motivo de consulta especificado.
+     *
+     * @param event El evento que desencadena la creación del registro de entrada.
+     * @throws IOException Si se produce un error al cargar la interfaz de usuario.
+     */
     public void CrearRegistroEntrada(ActionEvent event) throws IOException {
         if(paciente == null){
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -120,6 +148,12 @@ public class BuscarPacienteController {
 
     }
 
+    /**
+     * Carga la interfaz de usuario para registrar un nuevo paciente.
+     *
+     * @param event El evento que desencadena la carga de la interfaz.
+     * @throws IOException Si se produce un error al cargar la interfaz de registro de paciente.
+     */
     public void CrearPaciente(ActionEvent event) throws IOException {
         controllerPrincipal.cargarEscena("/views/FuncionarioViews/RegistroEntrada.fxml");
     }

@@ -25,6 +25,7 @@ public class Paciente extends Persona{
     @OneToMany(mappedBy = "paciente", orphanRemoval = true, fetch = FetchType.EAGER)
     private List<ResultadoDiagnostico> resultadosDiagnosticos = new ArrayList<>();
 
+
     @ToString.Exclude
     @OneToMany(mappedBy = "paciente", orphanRemoval = true, fetch = FetchType.EAGER)
     private List<RegistroEntrada> registrosEntradas = new ArrayList<>();
