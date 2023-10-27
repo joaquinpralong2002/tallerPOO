@@ -7,6 +7,8 @@ import model.Triage;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import util.GlobalSessionFactory;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import java.time.LocalDate;
