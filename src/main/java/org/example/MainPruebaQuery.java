@@ -16,7 +16,7 @@ public class MainPruebaQuery {
         GlobalSessionFactory globalSessionFactory = new GlobalSessionFactory();
         globalSessionFactory.InitGlobalSessionFactory();
         MedicoDAO medicoDAO = new MedicoDAO();
-        /*
+
         //1ºCantidad de pacientes atendidos por un médico para un rango de fechas dadas
         System.out.println("Cantidad pacientes atendidos dadas fechas y médico:"
                 + medicoDAO.cantidadPacientesAtendidos(medicoDAO.obtener(6L), LocalDate.of(2023, 04, 12),
@@ -34,12 +34,12 @@ public class MainPruebaQuery {
                 LocalDate.of(2023, 10, 26));
 
         System.out.println(pacientes);
-        */
+
 
         //4º Médico/s que más pacientes haya atendido en un rango de fechas
         System.out.println(medicoDAO.obtenerMedicoConMasPacientesAtendidosEnRango(LocalDate.of(2023, 01, 01),
                 LocalDate.of(2023, 12, 26)));
-        */
+
 
         //5º Triage realizado en un rango de fechas, indicándose la cantidad de cada color
         System.out.println(medicoDAO.TriageRangoFechas(LocalDate.of(2023, 01, 01),

@@ -36,7 +36,7 @@ public class MedicoDAO implements GenericoDAO<Medico>{
         session.close();
         return medicos;
     }
-    
+
     public Map<ColorTriage, Long> TriageRangoFechas(LocalDate fechaInicio, LocalDate fechaFin) {
         Session session = sessionFactory.openSession();
 
@@ -106,6 +106,8 @@ public class MedicoDAO implements GenericoDAO<Medico>{
         session.close();
         return medicos;
     }
+
+
 
 
 
