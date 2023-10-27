@@ -47,6 +47,7 @@ public class LoginController {
 
         // Comprueba si alguno de los campos está vacío
         if (controlarCampos()) {
+            //comprueba que el valor de los campos sean correctos
             if (validarUsuario(user, username, password)) {
                 var funcionario = usuarioDAO.obtenerFuncionarioPorIdUsuario(user.getIdUsuario());
                 if (funcionario.getClass() == FuncionarioAdministrativo.class || funcionario.getClass() == AdministradorSistemas.class) {
