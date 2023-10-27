@@ -291,7 +291,7 @@ public class EstadisticasController {
      * Además, se establece el ancho de las columnas y se popula la tabla con los datos obtenidos del DAO de Médico.
      * Si no se especifican fechas, la tabla estará vacía. Los resultados se muestran en orden ascendente por color de triage.
      */
-    public void triagesRealizadosRangoFechas(){
+    public void triagesRealizadosRangoFechas() {
         MedicoDAO medicoDAO = new MedicoDAO();
 
         LocalDate fechaInicial = fechaInicialPane5.getValue();
@@ -300,30 +300,30 @@ public class EstadisticasController {
         tablaEstadisticas.getColumns().clear();
 
         // Crea nuevas columnas
-        TableColumn<Triage, String> columnaColorTriage = new TableColumn<>("Color de triage");
-        TableColumn<Triage, Long> cantidadDeTriages = new TableColumn<>("Cantidad de triages");
+        TableColumn<TriageClass, ColorTriage> columnaColorTriage = new TableColumn<>("Color de triage");
+        TableColumn<TriageClass, Long> cantidadDeTriages = new TableColumn<>("Cantidad de triages");
 
-        //Reacomoda el tamaño de las columnas
         columnaColorTriage.setPrefWidth(308);
         cantidadDeTriages.setPrefWidth(307);
 
         columnaColorTriage.setCellValueFactory(new PropertyValueFactory<>("colorTriage"));
         cantidadDeTriages.setCellValueFactory(new PropertyValueFactory<>("cantidadColor"));
 
-        //Crea una lista con los elementos que se agregarán a la tabla
-        ObservableList<TriageClass> datosTabla = FXCollections.observableArrayList();
-
-        // Agrega las nuevas columnas a la tabla
         tablaEstadisticas.getColumns().addAll(columnaColorTriage, cantidadDeTriages);
 
-        Map<ColorTriage, Long>  triages = medicoDAO.TriageRangoFechas(fechaInicial, fechaFinal);
-        System.out.println(triages);
+        // Crea una lista con los elementos que se agregarán a la tabla
+        ObservableList<TriageClass> datosTabla = FXCollections.observableArrayList();
 
-        for(ColorTriage key : triages.keySet()){
-            datosTabla.add(new TriageClass(key, triages.get(key)));
+        // Obtiene los datos de la base de datos
+        Map<ColorTriage, Long> triages = medicoDAO.TriageRangoFechas(fechaInicial, fechaFinal);
+
+        // Verifica si triages tiene datos
+        if (triages != null && !triages.isEmpty()) {
+            for (ColorTriage key : triages.keySet()) {
+                datosTabla.add(new TriageClass(key, triages.get(key)));
+            }
         }
 
-        //Setea los elementos en la tabla
         tablaEstadisticas.setItems(datosTabla);
     }
 
