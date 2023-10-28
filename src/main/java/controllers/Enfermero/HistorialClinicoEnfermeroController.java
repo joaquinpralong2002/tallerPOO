@@ -1,6 +1,7 @@
-package controllers;
+package controllers.Enfermero;
 
 import controllers.Singletons.SingletonControladorPrimarioSalud;
+import controllers.Singletons.SingletonEnfermero;
 import controllers.Singletons.SingletonMedico;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,7 +28,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
-public class HistorialClinicoController {
+public class HistorialClinicoEnfermeroController {
     @AllArgsConstructor
     @Getter
     @ToString
@@ -48,10 +49,10 @@ public class HistorialClinicoController {
     private TableColumn<LugarAtencion, String> lugarAtencionColumn;
     @FXML
     private Label resultadoDiagnosticoLabel;
-    private Paciente paciente = SingletonControladorPrimarioSalud.getInstance().getController().getPaciente();
+    private Paciente paciente;
     private ObservableList<DatosRegistro> datosTabla = FXCollections.observableArrayList();
-    private Medico medico = SingletonMedico.getInstance().getMedico();
-    private List<Rol> roles = SingletonMedico.getInstance().getRoles();
+    private Enfermero enfermero = SingletonEnfermero.getInstance().getEnfermero();
+    private List<Rol> roles = SingletonEnfermero.getInstance().getRoles();
 
     /**
      * Inicializa la interfaz de usuario y configura las propiedades de las columnas de la tabla de registros.
@@ -98,7 +99,7 @@ public class HistorialClinicoController {
      * @param event El evento de acción que desencadena el regreso.
      * @throws IOException Si ocurre un error al cargar la vista.
      */
-    public void Atras(ActionEvent event) throws IOException {
-        SingletonControladorPrimarioSalud.getInstance().getController().cargarEscena("/views/MedicoViews/BuscarPacienteVisualizarRegistros.fxml");
+    public void volver(ActionEvent event) throws IOException {
+        SingletonControladorPrimarioSalud.getInstance().getController().cargarEscena("/views/EnfermeroViews/BuscarPacienteVisualizarRegistrosEnfermero.fxml");
     }
 }

@@ -1,5 +1,7 @@
 package controllers.Triage;
 
+import controllers.Singletons.SingletonControladorPrimarioSalud;
+import controllers.Singletons.SingletonMedico;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -35,6 +37,7 @@ public class ModificarTriageController {
     public void initialize() {
         nuevoColorTriageComboBox.getItems().addAll(ColorTriage.Rojo, ColorTriage.Naranja, ColorTriage.Amarillo,
                 ColorTriage.Verde, ColorTriage.Azul);
+        this.datosTriage = SingletonControladorPrimarioSalud.getInstance().getController().getDatosTriage();
     }
 
     /**
@@ -88,14 +91,7 @@ public class ModificarTriageController {
      * @throws IOException Si ocurre un error al cargar la vista original.
      */
     public void volverCambioTriage(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/views/MedicoViews/Triage/Triage.fxml"));
-        Parent root = loader.load();
-        TriageController controller = loader.getController();
-        controller.setDatosTriage(this.datosTriage);
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        SingletonControladorPrimarioSalud.getInstance().getController().setDatosTriage(this.datosTriage);
+        SingletonControladorPrimarioSalud.getInstance().getController().cargarEscena("/views/MedicoViews/Triage/Triage.fxml", true);
     }
 }

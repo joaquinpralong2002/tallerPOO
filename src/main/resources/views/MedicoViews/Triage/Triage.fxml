@@ -8,15 +8,15 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="1080.0" maxWidth="1920.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Triage.TriageController">
+<AnchorPane maxHeight="1080.0" maxWidth="1920.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Triage.TriageController">
    <children>
-      <Label layoutX="474.0" layoutY="35.0" text="Ingrese los valores correspondientes a cada atributo:">
+      <Label layoutX="391.0" layoutY="35.0" text="Ingrese los valores correspondientes a cada atributo:">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Button fx:id="atrasButton" layoutX="15.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleAtrasButtonAction" text="Atrás" />
-      <Pane layoutX="247.0" layoutY="97.0" prefHeight="290.0" prefWidth="872.0">
+      <Button fx:id="atrasButton" layoutX="15.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleAtrasButtonAction" text="Atrás" visible="false" />
+      <Pane layoutX="164.0" layoutY="94.0" prefHeight="290.0" prefWidth="872.0">
          <children>
             <ComboBox fx:id="concienciaComboBox" layoutX="12.0" layoutY="40.0" prefHeight="54.0" prefWidth="161.0" promptText="Conciencia" />
             <ComboBox fx:id="lesionGraveComboBox" layoutX="183.0" layoutY="40.0" prefHeight="54.0" prefWidth="161.0" promptText="Lesión grave" />
@@ -42,7 +42,7 @@
             <Label layoutX="697.0" layoutY="108.0" text="Dolores abdominales" />
          </children>
       </Pane>
-      <Pane layoutX="291.0" layoutY="401.0" prefHeight="290.0" prefWidth="784.0">
+      <Pane layoutX="208.0" layoutY="384.0" prefHeight="290.0" prefWidth="784.0">
          <children>
             <Label layoutX="220.0" layoutY="109.0" text="El color asignado es:">
                <font>

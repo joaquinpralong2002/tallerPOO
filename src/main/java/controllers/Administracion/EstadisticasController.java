@@ -1,10 +1,7 @@
 package controllers.Administracion;
 
 import controllers.FuncionarioProController;
-import datasource.FuncionarioAdministrativoDAO;
-import datasource.FuncionarioDAO;
-import datasource.MedicoDAO;
-import datasource.PacienteDAO;
+import datasource.*;
 import javafx.beans.Observable;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -17,12 +14,15 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import model.Enfermero;
 import model.Enum.ColorTriage;
 import model.Paciente;
 import model.Medico;
 import model.Triage;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class EstadisticasController {
@@ -115,16 +115,32 @@ public class EstadisticasController {
     @FXML
     private DatePicker fechaFinalPane5;
 
+    //PANEL 6
+    @FXML
+    private ChoiceBox chboxTriages;
+
     //TABLA
     @FXML
     private TableView tablaEstadisticas;
 
-    @AllArgsConstructor
     @ToString
     @Getter
     protected class TriageClass{
+
         ColorTriage colorTriage;
         Long cantidadColor;
+
+        ColorTriage colorTriageRecomendado;
+        ColorTriage colorTriageFinal;
+
+        public TriageClass(ColorTriage key, Long cantidadColor) {
+            this.colorTriage = key;
+            this.cantidadColor = cantidadColor;
+        }
+        public TriageClass(ColorTriage recomendado, ColorTriage cambiado){
+            this.colorTriageRecomendado = recomendado;
+            this.colorTriageFinal = cambiado;
+        }
     }
 
 
@@ -137,6 +153,8 @@ public class EstadisticasController {
         controllerPrincipal = FuncionarioProController.getControladorPrimario();
         cantidadPacientesInvisibleLabelPane1.setVisible(false);
         cantidadPacientesInvisibleLabelPane2.setVisible(false);
+
+        InicializarChoiceBox();
     }
 
     /**
@@ -323,6 +341,74 @@ public class EstadisticasController {
             for (ColorTriage key : triages.keySet()) {
                 datosTabla.add(new TriageClass(key, triages.get(key)));
             }
+        }
+
+        tablaEstadisticas.setItems(datosTabla);
+    }
+
+    private void InicializarChoiceBox() {
+        MedicoDAO medicoDAO = new MedicoDAO();
+        EnfermeroDAO enfermeroDAO = new EnfermeroDAO();
+
+        List<Medico> medicos = medicoDAO.obtenerTodos();
+        List<Enfermero> enfermeros = enfermeroDAO.obtenerTodos();
+        List<String> lista = new ArrayList<>();
+
+        for (Medico medico: medicos){
+            if (medico.getUsuario().getNombreRoles().contains("Triage")){
+                lista.add(medico.getNombre()+" "+medico.getApellido());
+            }
+        }
+        for (Enfermero enfermero: enfermeros){
+            if(enfermero.getUsuario().getNombreRoles().contains("Triage")){
+                lista.add(enfermero.getNombre()+" "+enfermero.getApellido());
+            }
+        }
+        this.chboxTriages.getItems().addAll(lista);
+
+    }
+
+    public void CantidadTriagesCambiadosPor(){
+        MedicoDAO medicoDAO = new MedicoDAO();
+        EnfermeroDAO enfermeroDAO = new EnfermeroDAO();
+
+        String triagiador = this.chboxTriages.getValue().toString();
+        String [] nombreTriagiador = triagiador.split(" ");
+        List<Triage> triagesCambiados = new ArrayList<>();
+
+        tablaEstadisticas.getColumns().clear();
+
+        TableColumn<TriageClass, ColorTriage> columnaColorTriageRecomendado = new TableColumn<>("Color de triage recomendado por el sistema");
+        TableColumn<TriageClass, ColorTriage> columnColorTriageFinal = new TableColumn<>("Color de triage modificado por el triagiador");
+
+        columnaColorTriageRecomendado.setPrefWidth(308);
+        columnColorTriageFinal.setPrefWidth(307);
+
+        columnaColorTriageRecomendado.setCellValueFactory(new PropertyValueFactory<>("colorTriageRecomendado"));
+        columnColorTriageFinal.setCellValueFactory(new PropertyValueFactory<>("colorTriageFinal"));
+
+        tablaEstadisticas.getColumns().addAll(columnaColorTriageRecomendado, columnColorTriageFinal);
+
+        // Crea una lista con los elementos que se agregarán a la tabla
+        ObservableList<TriageClass> datosTabla = FXCollections.observableArrayList();
+
+        // Obtiene los datos de la base de datos
+        Medico medico = medicoDAO.obtener(nombreTriagiador[0],nombreTriagiador[1]);
+        Enfermero enfermero = enfermeroDAO.obtener(nombreTriagiador[0],nombreTriagiador[1]);
+
+        if(medico != null){
+            triagesCambiados = medicoDAO.TriagesCambiados(medico.getId());
+        }else{
+            triagesCambiados = enfermeroDAO.TriagesCambiados(enfermero.getId());
+        }
+
+        // Verifica si triages tiene datos
+        if (triagesCambiados != null && !triagesCambiados.isEmpty()) {
+            for (Triage triage : triagesCambiados) {
+                datosTabla.add(new TriageClass(triage.getColorTriageRecomendado(),triage.getColorTriageFinal()));
+            }
+        }else{
+            datosTabla.add(new TriageClass(ColorTriage.Ninguno,ColorTriage.Ninguno));
         }
 
         tablaEstadisticas.setItems(datosTabla);

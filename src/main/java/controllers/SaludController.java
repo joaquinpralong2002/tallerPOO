@@ -1,7 +1,12 @@
 package controllers;
 
 import controllers.Enfermero.EnfermeroController;
+import controllers.Enfermero.TriageEnfermero.DatosTriageEnfermero;
+import controllers.Enfermero.TriageEnfermero.TriageEnfermeroController;
+import controllers.Singletons.SingletonControladorPrimarioSalud;
 import controllers.Singletons.SingletonMedico;
+import controllers.Triage.DatosTriage;
+import controllers.Triage.TriageController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,8 +19,14 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import lombok.Getter;
+import lombok.Setter;
 import model.Enfermero;
+import model.Enum.ColorTriage;
+import model.Enum.LugarAtencion;
 import model.Medico;
+import model.Paciente;
+import model.RegistroEntrada;
+import model.Triage;
 
 
 import java.io.IOException;
@@ -28,8 +39,26 @@ public class SaludController {
     @Getter
     private static SaludController controladorPrimario;
 
+    @Setter
+    @Getter
+    private Paciente paciente;
+    @Setter
+    @Getter
+    private RegistroEntrada registroEntrada;
+    @Setter
+    @Getter
+    private ColorTriage colorTriage;
+    @Setter
+    @Getter
+    private DatosTriage datosTriage;
+    @Setter
+    @Getter
+    private DatosTriageEnfermero datosTriageEnfermero;
     private Enfermero enfermero;
     private Medico medico;
+    @Setter
+    @Getter
+    private LugarAtencion lugarAtencion;
     private Stage stage;
     private Scene scene;
 
@@ -53,8 +82,9 @@ public class SaludController {
         stage.show();
     }
 
+    @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        controladorPrimario = this;
+        controladorPrimario = SingletonControladorPrimarioSalud.getInstance().getController();
     }
 
     public void cargarEscena(String fxmlResource) {
@@ -66,6 +96,28 @@ public class SaludController {
 
             Node escenaNode = loader.load();
 
+            paneTrasero.getChildren().clear();
+            paneTrasero.getChildren().add(escenaNode);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void cargarEscena(String fxmlResource, boolean restaurarDatosTriage) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlResource));
+
+            // Verificar si el controlador secundario tiene un método setControladorPrincipal
+            // y, si es así, asignar la referencia al controlador principal
+
+            Node escenaNode = loader.load();
+            if(restaurarDatosTriage) {
+                TriageController triageController = loader.getController();
+                triageController.restaurarEstado();
+            } else {
+                TriageEnfermeroController triageEnfermeroController = loader.getController();
+                triageEnfermeroController.restaurarEstado();
+            }
             paneTrasero.getChildren().clear();
             paneTrasero.getChildren().add(escenaNode);
         } catch (IOException e) {
@@ -92,12 +144,13 @@ public class SaludController {
     }
 
     public void Inicio(javafx.event.ActionEvent event) throws IOException {
-        if(SingletonMedico.getInstance().getMedico() == null) iniciarDatosEnfermero();
+        if(SingletonMedico.getInstance().getMedico().getNombre() == null) iniciarDatosEnfermero();
         else iniciarDatosMedico();
     }
 
     public void HistorialClinico(javafx.event.ActionEvent event) {
-        cargarEscena("/views/MedicoViews/BuscarPacienteVisualizarRegistros.fxml");
+        if(SingletonMedico.getInstance().getMedico().getNombre() != null) cargarEscena("/views/MedicoViews/BuscarPacienteVisualizarRegistros.fxml");
+        else cargarEscena("/views/EnfermeroViews/BuscarPacienteVisualizarRegistrosEnfermero.fxml");
     }
 
     public void CerrarSesion(javafx.event.ActionEvent event) throws IOException {

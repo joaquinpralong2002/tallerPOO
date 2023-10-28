@@ -1,6 +1,7 @@
 package controllers.Triage;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import model.Enum.ColorTriage;
 import model.EnumeracionesVariablesTriage.*;
@@ -54,5 +55,9 @@ public class DatosTriage {
         this.colorTriageAsignado = colorTriageAsignado;
         this.registroEntrada = registroEntrada;
         this.medico = medico;
+    }
+
+    public DatosTriage(ColorTriage colorTriageAsignado) {
+        this.colorTriageAsignado = colorTriageAsignado;
     }
 }

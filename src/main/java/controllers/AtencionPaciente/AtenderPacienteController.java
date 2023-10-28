@@ -1,6 +1,7 @@
 package controllers.AtencionPaciente;
 
 import controllers.MedicoController;
+import controllers.Singletons.SingletonControladorPrimarioSalud;
 import controllers.Singletons.SingletonMedico;
 import datasource.BoxAtencionDAO;
 import datasource.RegistroEntradaDAO;
@@ -47,6 +48,16 @@ public class AtenderPacienteController {
     @FXML
     private Label LabalTipoBox;
 
+    @FXML
+    public void initialize(){
+        this.persona = SingletonControladorPrimarioSalud.getInstance().getController().getPaciente();
+        this.lugarAtencionSeleccionada = SingletonControladorPrimarioSalud.getInstance().getController().getLugarAtencion();
+        this.registroEntrada = SingletonControladorPrimarioSalud.getInstance().getController().getRegistroEntrada();
+        this.colorTriage = SingletonControladorPrimarioSalud.getInstance().getController().getColorTriage();
+
+        setLugarAtencionSeleccionada(SingletonControladorPrimarioSalud.getInstance().getController().getLugarAtencion());
+    }
+
 
     /**
      * Maneja el evento de presionar el botón "Realizar Registro".
@@ -88,11 +99,7 @@ public class AtenderPacienteController {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            MedicoController medicoController = loader.getController();
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+            SingletonControladorPrimarioSalud.getInstance().getController().cargarEscena("/views/MedicoViews/Medico.fxml");
         }
     }
 
@@ -109,13 +116,5 @@ public class AtenderPacienteController {
         boxAtencion = boxAtencionDAO.obtenerDisponible(lugarAtencionSeleccionada);
     }
 
-
-
-    @FXML
-    public void recibirDatos(Paciente persona, ColorTriage colorTriage, RegistroEntrada registroEntrada){
-        this.persona = persona;
-        this.colorTriage = colorTriage;
-        this.registroEntrada = registroEntrada;
-    }
 
 }

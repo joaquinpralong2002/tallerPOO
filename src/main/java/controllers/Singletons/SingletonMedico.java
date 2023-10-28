@@ -1,9 +1,12 @@
 package controllers.Singletons;
 
+import controllers.Triage.DatosTriage;
 import lombok.Getter;
 import lombok.Setter;
+import model.Enum.ColorTriage;
 import model.Login.Rol;
 import model.Medico;
+import model.RegistroEntrada;
 
 import java.util.ArrayList;
 import java.util.List;

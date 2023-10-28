@@ -2,6 +2,7 @@ package controllers;
 
 
 import controllers.Enfermero.EnfermeroController;
+import controllers.Singletons.SingletonControladorPrimarioSalud;
 import controllers.Singletons.SingletonEnfermero;
 import controllers.Singletons.SingletonMedico;
 import datasource.UsuarioDAO;
@@ -87,6 +88,7 @@ public class LoginController {
 
                     //Carga el controlador de médico, y le envía el médico y sus roles
                     SaludController controller = loader.getController();
+                    SingletonControladorPrimarioSalud.getInstance().setController(controller);
                     controller.iniciarDatosMedico();
 
                     // Cambia a la nueva escena
@@ -106,6 +108,7 @@ public class LoginController {
                     SingletonEnfermero.getInstance().setRoles(user.getRoles());
 
                     SaludController enfermeroController = loaderEnfermero.getController();
+                    SingletonControladorPrimarioSalud.getInstance().setController(enfermeroController);
                     enfermeroController.iniciarDatosEnfermero();
 
                     stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

@@ -1,6 +1,9 @@
-package controllers;
+package controllers.Enfermero;
 
+import controllers.HistorialClinicoController;
+import controllers.MedicoController;
 import controllers.Singletons.SingletonControladorPrimarioSalud;
+import controllers.Singletons.SingletonEnfermero;
 import controllers.Singletons.SingletonMedico;
 import datasource.PacienteDAO;
 import javafx.event.ActionEvent;
@@ -13,6 +16,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Enfermero;
 import model.Login.Rol;
 import model.Medico;
 import model.Paciente;
@@ -20,7 +24,7 @@ import model.Paciente;
 import java.io.IOException;
 import java.util.List;
 
-public class BuscarPacienteVisualizarRegistroController {
+public class BuscarPacienteVisualizarRegistroEnfermeroController {
     @FXML
     private TextField txtDni;
     @FXML
@@ -34,9 +38,8 @@ public class BuscarPacienteVisualizarRegistroController {
     @FXML
     private Label lbTelCont;
     private Paciente paciente;
-    private List<Rol> roles = SingletonMedico.getInstance().getRoles();
-    private Medico medico = SingletonMedico.getInstance().getMedico();
-    private SaludController saludController = SaludController.getControladorPrimario();
+    private List<Rol> roles = SingletonEnfermero.getInstance().getRoles();
+    private Enfermero enfermero = SingletonEnfermero.getInstance().getEnfermero();
 
     @FXML
     public void initialize(){
@@ -115,9 +118,9 @@ public class BuscarPacienteVisualizarRegistroController {
      */
     public void Volver(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/views/MedicoViews/Medico.fxml"));
+        loader.setLocation(getClass().getResource("/views/EnfermeroViews/Enfermero.fxml"));
         Parent rootFuncionario = loader.load();
-        MedicoController controller = loader.getController();
+        EnfermeroController controller = loader.getController();
 
         Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(rootFuncionario);
@@ -134,6 +137,6 @@ public class BuscarPacienteVisualizarRegistroController {
      */
     public void verRegistros(ActionEvent event) throws IOException {
         SingletonControladorPrimarioSalud.getInstance().getController().setPaciente(this.paciente);
-        SingletonControladorPrimarioSalud.getInstance().getController().cargarEscena("/views/MedicoViews/HistorialClinico.fxml");
+        SingletonControladorPrimarioSalud.getInstance().getController().cargarEscena("/views/EnfermeroViews/HistorialClinicoEnfermero.fxml");
     }
 }

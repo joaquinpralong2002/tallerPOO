@@ -157,7 +157,7 @@ public class FuncionarioProController implements Initializable {
         }
     }
 
-    //validaciones
+   
     /**
      * Recibe y almacena información del tipo de funcionario como un Funcionario Administrativo.
      *
