@@ -4,6 +4,7 @@ import controllers.Enfermero.EnfermeroController;
 import controllers.Enfermero.TriageEnfermero.DatosTriageEnfermero;
 import controllers.Enfermero.TriageEnfermero.TriageEnfermeroController;
 import controllers.Singletons.SingletonControladorPrimarioSalud;
+import controllers.Singletons.SingletonEnfermero;
 import controllers.Singletons.SingletonMedico;
 import controllers.Triage.DatosTriage;
 import controllers.Triage.TriageController;
@@ -178,7 +179,7 @@ public class SaludController {
      * @throws IOException Si ocurre un error durante la carga de la escena.
      */
     public void Inicio(javafx.event.ActionEvent event) throws IOException {
-        if(SingletonMedico.getInstance().getMedico().getNombre() == null) iniciarDatosEnfermero();
+        if(SingletonMedico.getInstance().getMedico() == null) iniciarDatosEnfermero();
         else iniciarDatosMedico();
     }
 
@@ -188,7 +189,7 @@ public class SaludController {
      * @param event El evento que desencadenó esta acción.
      */
     public void HistorialClinico(javafx.event.ActionEvent event) {
-        if(SingletonMedico.getInstance().getMedico().getNombre() != null) cargarEscena("/views/MedicoViews/BuscarPacienteVisualizarRegistros.fxml");
+        if(SingletonMedico.getInstance().getMedico() != null) cargarEscena("/views/MedicoViews/BuscarPacienteVisualizarRegistros.fxml");
         else cargarEscena("/views/EnfermeroViews/BuscarPacienteVisualizarRegistrosEnfermero.fxml");
     }
 
@@ -203,6 +204,11 @@ public class SaludController {
         alert.setTitle("Cerrar sesión");
         alert.setContentText("¿Estás seguro de que deseas cerrar sesión?");
         Optional<ButtonType> resultado = alert.showAndWait();
-        if(resultado.get() == ButtonType.OK)SwitchToLoginScene(event);
+
+        SingletonMedico.getInstance().setMedico(null);
+        SingletonEnfermero.getInstance().setEnfermero(null);
+        if(resultado.get() == ButtonType.OK) {
+            SwitchToLoginScene(event);
+        }
     }
 }
