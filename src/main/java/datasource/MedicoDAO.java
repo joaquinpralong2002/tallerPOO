@@ -28,6 +28,13 @@ public class MedicoDAO implements GenericoDAO<Medico>{
         return medico;
     }
 
+    /**
+     * Obtiene un médico por su nombre y apellido.
+     *
+     * @param nombre El nombre del médico a buscar.
+     * @param apellido El apellido del médico a buscar.
+     * @return El médico correspondiente al nombre y apellido proporcionados, o null si no se encuentra ningún médico con esa combinación.
+     */
     public Medico obtener(String nombre, String apellido){
         Session session = sessionFactory.openSession();
         String query = "FROM Medico m WHERE m.nombre = :nombreParam AND m.apellido = :apellidoParam";

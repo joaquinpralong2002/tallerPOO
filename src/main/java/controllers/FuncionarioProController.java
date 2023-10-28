@@ -14,8 +14,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import lombok.Getter;
+import lombok.Setter;
 import model.FuncionarioAdministrativo;
 import model.Login.AdministradorSistemas;
+import model.Login.Usuario;
+import model.Paciente;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
@@ -34,6 +37,14 @@ public class FuncionarioProController implements Initializable {
     private FuncionarioAdministrativo funcionarioAdministrativo;
 
     private AdministradorSistemas administradorSistemas;
+
+    @Getter
+    @Setter
+    private Paciente paciente;
+
+    @Getter
+    @Setter
+    private Usuario usuario;
 
     private Stage stage;
     private Scene scene;

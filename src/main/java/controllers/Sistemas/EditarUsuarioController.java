@@ -7,6 +7,8 @@ import datasource.UsuarioDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import lombok.Getter;
+import lombok.Setter;
 import model.Enfermero;
 import model.Enum.Roles.RolesEnfermeros;
 import model.Enum.Roles.RolesFuncionarios;
@@ -130,8 +132,12 @@ public class EditarUsuarioController {
     private String password;
     private String passwordConfirm;
     UsuarioDAO usuarioDAO = new UsuarioDAO();
-    private Usuario usuario = SingletonUsuario.getInstance().getUsuario();
+
+    @Getter
+    @Setter
+    private Usuario usuario;
     List<Rol> rolesNuevos = new ArrayList<Rol>();
+
     private FuncionarioProController controllerPrincipal;
 
     /**
@@ -142,19 +148,9 @@ public class EditarUsuarioController {
      * entre esta vista y el controlador principal para coordinar la funcionalidad de la aplicación.
      */
     @FXML
-    public void initialize(){
+    public void initialize() {
         controllerPrincipal = FuncionarioProController.getControladorPrimario();
-    }
-
-    /**
-     * Inicia la vista de edición del usuario con los datos del usuario actual.
-     *
-     * Este método se utiliza para iniciar la vista de edición del usuario con los datos del usuario
-     * actualmente seleccionado. Obtiene el usuario actual desde una instancia Singleton y luego llama
-     * al método "IniciarVentana()" para mostrar la información del usuario en la vista de edición.
-     */
-    public void iniciarUsuario(){
-        usuario = SingletonUsuario.getInstance().getUsuario();
+        usuario = controllerPrincipal.getUsuario();
         IniciarVentana();
     }
 
@@ -252,7 +248,7 @@ public class EditarUsuarioController {
         try{
             GuardarRoles();
             ComprobarCampos();
-
+            ValidacionUsuario();
             if(!nombreUsu.equals(usuario.getNombreUsuario())){
                 usuario.setNombreUsuario(nombreUsu);
             }
@@ -271,7 +267,7 @@ public class EditarUsuarioController {
                 alert.setTitle("Información");
                 alert.setContentText("Usuario actualizado exitosamente");
                 alert.show();
-                //EMA cuando confirma el cambio debe volver a la ventana de Sistemas
+                controllerPrincipal.cargarEscena("/views/SistemasViews/Sistemas.fxml");
             }
 
 
@@ -281,6 +277,15 @@ public class EditarUsuarioController {
             alert.setHeaderText("Campos vacíos o valores incorrectos");
             alert.setContentText(e.getMessage());
             alert.show();
+        }
+    }
+
+    private void ValidacionUsuario() throws Exception {
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        Usuario usuario = usuarioDAO.obtenerUsuarioPorNombre(txtNombUsu.getText());
+
+        if (usuario != null){
+            throw new Exception("Este nombre de usuario no esta disponible, vuelva a ingresar otro nombre");
         }
     }
 

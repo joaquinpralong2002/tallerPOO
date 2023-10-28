@@ -26,7 +26,7 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
     private Long idUsuario;
-    @NaturalId
+    @Column(unique = true)
     private String nombreUsuario;
     private String contrasenia;
 

@@ -236,9 +236,14 @@ public class CrearUsuarioController {
         try{
             comprobarCampos();
 
-            Usuario usuario = new Usuario(nombreUsu,password,roles);
-            usuarioDAO.agregar(usuario);
+            if(!pacienteAPersonal) {
+                if (comprobarExistencia(txtDni.getText())) {
+                    return;
+                }
+            }
+            ValidacionUsuario();
 
+            Usuario usuario = new Usuario(nombreUsu,password,roles);
             switch (tipo){
                 case "Funcionario Administrativo":
                     FuncionarioAdministrativoDAO funcionarioAdministrativoDAO = new FuncionarioAdministrativoDAO();
@@ -265,7 +270,12 @@ public class CrearUsuarioController {
                     if(!matricula.matches("^[^s]+$")){
                         throw new Exception("La matricula no puede estar vacia");
                     }
+
                     MedicoDAO medicoDAO = new MedicoDAO();
+                    if (medicoDAO.obtener(txtNombreFun.getText(),txtApellido.getText()) != null){
+                        throw  new Exception("Ya existe un medico con esta matricula, revise los datos ingresados");
+                    }
+
                     UniversidadDAO universidadDAO = new UniversidadDAO();
                     EspecialidadDAO especialidadDAO = new EspecialidadDAO();
 
@@ -296,16 +306,16 @@ public class CrearUsuarioController {
 
                     break;
             }
-            usuarioDAO.actualizar(usuario);
+            usuarioDAO.agregar(usuario);
+            //usuarioDAO.actualizar(usuario);
             sectorDAO.actualizar(sector);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Información");
             alert.setHeaderText("Personal creado y añadido exitosamente");
             alert.show();
-            LimpiarCheckBoxs();
+            LimpiarVentana();
             roles.clear();
-            Volver();
-            //EMA cuando lo guarda debe volver a la ventana de Sistemas
+            controllerPrincipal.cargarEscena("/views/SistemasViews/Sistemas.fxml");
 
         }catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -361,6 +371,40 @@ public class CrearUsuarioController {
         ckboxAtenPrim.setSelected(false);
         ckboxSaludMental.setSelected(false);
         ckboxOncologia.setSelected(false);
+    }
+
+    /**
+     * Metodo encargado de restablecer todos los componentes de la ventana
+     */
+    public void LimpiarVentana(){
+        txtNombreFun.clear();
+        txtNombreFun.setEditable(true);
+        txtApellido.clear();
+        txtApellido.setEditable(true);
+        txtDni.clear();
+        txtDni.setEditable(true);
+        txtCorreo.clear();
+        txtDomicilio.clear();
+        txtDomicilio.setEditable(true);
+        dateFechaNaci.setValue(null);
+        dateFechaNaci.setDisable(true);
+        dateFechaNaci.getEditor().setDisable(true);
+        dateFechaNaci.getEditor().setEditable(true);
+        txtTelFijo.clear();
+        txtTelCelular.clear();
+        cboxEstadoCivil.setValue(null);
+        cboxEstadoCivil.setDisable(true);
+        cboxEstadoCivil.setEditable(true);
+        cboxSector.setValue(null);
+        cboxTipoPersonal.setValue(null);
+        txtEspecialidad.clear();
+        dateFechaObt.setValue(null);
+        txtUniversidad.clear();
+        txtMatricula.clear();
+        txtNombUsu.clear();
+        txtPass.clear();
+        txtConfirmPass.clear();
+        LimpiarCheckBoxs();
     }
 
     /**

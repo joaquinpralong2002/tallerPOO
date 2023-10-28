@@ -2,6 +2,7 @@ package controllers.Administracion;
 
 import controllers.FuncionarioProController;
 import datasource.FuncionarioAdministrativoDAO;
+import datasource.FuncionarioDAO;
 import datasource.PacienteDAO;
 import datasource.RegistroEntradaDAO;
 import javafx.event.ActionEvent;
@@ -12,8 +13,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import lombok.Getter;
 import lombok.Setter;
 import model.Enum.EstadoCivil;
+import model.Funcionario;
 import model.FuncionarioAdministrativo;
 import model.Login.Rol;
 import model.Login.Usuario;
@@ -23,12 +26,12 @@ import model.RegistroEntrada;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 public class RegistroEntradaController {
 
     private List<Rol> rolesUsuario;
     private Usuario usuarioIniciado;
-    private FuncionarioAdministrativo funcionarioAdministrativoIniciado;
 
     public TextField txtNomPac;
     public TextField txtApePac;
@@ -36,57 +39,60 @@ public class RegistroEntradaController {
     public TextField txtTelFijoPac;
     public TextField txtTelCelPac;
     public DatePicker dateFechaNaciPac;
-    public ComboBox cboxEstCivilPac;
+    public ComboBox<EstadoCivil> cboxEstCivilPac;
     public TextField txtCorreoPac;
     public TextField txtNumPerContPac;
     public TextField txtDomiPac;
-    public TextArea txtMotivoConsulta;
-
     @Setter
     private FuncionarioProController controllerPrincipal;
+    @Getter
+    private FuncionarioAdministrativo funcionarioAdministrativoIniciado;
+
+    private boolean personalAPaciente;
 
     @FXML
     public void initialize(){
         controllerPrincipal = FuncionarioProController.getControladorPrimario();
+        funcionarioAdministrativoIniciado = controllerPrincipal.getFuncionarioAdministrativo();
         this.cboxEstCivilPac.getItems().addAll(EstadoCivil.values());
+        personalAPaciente = false;
     }
 
-    /**
-     * Crea un nuevo registro para un paciente con los datos proporcionados y realiza la persistencia de los datos.
-     *
-     * @param actionEvent El evento de acción que desencadena la creación del registro.
-     */
-    public void CrearRegistro(ActionEvent actionEvent) {
-        String nombrePac = this.txtNomPac.getText();
-        String apellidoPac = this.txtApePac.getText();
-        LocalDate fechaNaciPac = this.dateFechaNaciPac.getValue();
-        String domicilioPac = this.txtDomiPac.getText();
-        String dniPac = this.txtDNIPac.getText();
-        String telefonoFijoPac = this.txtTelFijoPac.getText();
-        String telefonoCelPac = this.txtTelCelPac.getText();
-        EstadoCivil estadoCivilPac = (EstadoCivil) this.cboxEstCivilPac.getValue();
-        String correoPac = this.txtCorreoPac.getText();
-        String teleonoPersonaContactoPac = this.txtNumPerContPac.getText();
-        String motivoConsulta = this.txtMotivoConsulta.getText();
+
+    public void RegistrarPaciente(ActionEvent actionEvent) {
 
         try {
-            validarDatosPaciente(nombrePac,apellidoPac,fechaNaciPac,domicilioPac,dniPac,telefonoFijoPac,telefonoCelPac,estadoCivilPac,correoPac,teleonoPersonaContactoPac,motivoConsulta);
-
-            if (ComprobarExistenciaPaciente(dniPac)) {
-                return; // Salir del método si el paciente ya existe
+            validarDatosPaciente();
+            System.out.println(personalAPaciente);
+            if (personalAPaciente == false){
+                if (ComprobarExistenciaPaciente(txtDNIPac.getText())) {
+                    return; // Salir del método si el paciente ya existe
+                }
             }
             PacienteDAO pacienteDAO = new PacienteDAO();
 
-            Paciente paciente = new Paciente(nombrePac,apellidoPac,fechaNaciPac,domicilioPac,Integer.parseInt(dniPac),Integer.parseInt(telefonoFijoPac),Long.parseLong(telefonoCelPac),estadoCivilPac,correoPac,Integer.parseInt(teleonoPersonaContactoPac));
+            Paciente paciente = new Paciente(txtNomPac.getText(),txtApePac.getText(),dateFechaNaciPac.getValue(),txtDomiPac.getText(),
+                    Integer.parseInt(txtDNIPac.getText()),Long.parseLong(txtTelFijoPac.getText()),Long.parseLong(txtTelCelPac.getText()),
+                    (EstadoCivil) cboxEstCivilPac.getValue(),txtCorreoPac.getText(),Long.parseLong(txtNumPerContPac.getText()));
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Informacion");
-            alert.setHeaderText("Registro Creado Exitosamente");
-            alert.show();
+            alert.setHeaderText("Paciente Registrado Correctamente");
+            alert.setContentText("¿Desea crear un registro de entrada con este paciente?");
+            alert.setAlertType(Alert.AlertType.CONFIRMATION);
+            Optional<ButtonType> resultado = alert.showAndWait();
+
+            if (resultado.get() == ButtonType.OK) {
+                personalAPaciente = false;
+                controllerPrincipal.setPaciente(paciente);
+                controllerPrincipal.cargarEscena("/views/FuncionarioViews/BuscarPaciente.fxml");
+            }else{
+                RestablecerCampos();
+                personalAPaciente = false;
+            }
 
             //persistencia de los datos
             pacienteDAO.agregar(paciente);
-            funcionarioAdministrativoIniciado.RealizarRegistroEntrada(paciente,this.txtMotivoConsulta.getText());
 
         }catch (IllegalArgumentException e) {
             // Mostrar un mensaje de error al usuario
@@ -96,73 +102,42 @@ public class RegistroEntradaController {
             alert.setContentText(e.getMessage());
             alert.show();
         }
-
     }
-
-
-    private boolean ComprobarExistenciaPaciente(String dni) {
-        PacienteDAO pacienteDAO = new PacienteDAO();
-        Paciente pacienteExistente = pacienteDAO.obtenerPorDni(dni);
-        if (pacienteExistente != null) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Paciente ya registrado");
-            alert.setContentText("Un paciente con el DNI que ah ingresado ya esta registrado, verifique el dato ingresado");
-            alert.show();
-            return true; // Indica que el paciente ya existe
-        }
-        return false; // Indica que el paciente no existe
-    }
-
 
     /**
      * Valida los datos de un paciente antes de crear un registro. Lanza una excepción si algún dato es inválido.
      *
-     * @param nombrePac                El nombre del paciente.
-     * @param apellidoPac              El apellido del paciente.
-     * @param fechaNaciPac             La fecha de nacimiento del paciente.
-     * @param domicilioPac             El domicilio del paciente.
-     * @param dniPac                   El número de DNI del paciente.
-     * @param telefonoFijoPac          El número de teléfono fijo del paciente.
-     * @param telefonoCelPac           El número de teléfono celular del paciente.
-     * @param estadoCivilPac           El estado civil del paciente.
-     * @param correoPac                El correo electrónico del paciente.
-     * @param telefonoPersonaContactoPac  El número de teléfono de la persona de contacto del paciente.
-     * @param motivoConsulta           El motivo de la consulta del paciente.
      * @throws IllegalArgumentException  Si algún dato es inválido.
      */
-    public void validarDatosPaciente(String nombrePac, String apellidoPac, LocalDate fechaNaciPac, String domicilioPac, String dniPac, String telefonoFijoPac, String telefonoCelPac, EstadoCivil estadoCivilPac, String correoPac, String telefonoPersonaContactoPac, String motivoConsulta) {
-       String patron = "^[A-Za-z0-9 ]+$";
-       String espacioBlanco = "\\s.*";
+    public void validarDatosPaciente() {
+        String patron = "^[A-Za-z0-9 ]+$";
+        String espacioBlanco = "\\s.*";
 
         // Validar que los campos obligatorios no sean nulos
-        if(nombrePac.matches(espacioBlanco) || !nombrePac.matches(patron)){
+        if(txtNomPac.getText().matches(espacioBlanco) || !txtNomPac.getText().matches(patron)){
             throw new IllegalArgumentException("El nombre no puede estar vacio");
         }
 
-        if(apellidoPac.matches(espacioBlanco) || !apellidoPac.matches(patron)){
+        if(txtApePac.getText().matches(espacioBlanco) || !txtApePac.getText().matches(patron)){
             throw new IllegalArgumentException("El apellido no puede estar vacio");
         }
 
-        if(domicilioPac.matches(espacioBlanco) || !domicilioPac.matches(patron)){
+        if(txtDomiPac.getText().matches(espacioBlanco) || !txtDomiPac.getText().matches(patron)){
             throw new IllegalArgumentException("El domicilio no puede estar vacio");
         }
 
-        if(estadoCivilPac == null){
+        if(cboxEstCivilPac.getValue() == null){
             throw new IllegalArgumentException("El estado civil no puede estar vacio");
         }
 
-        if(correoPac.matches(espacioBlanco) || !correoPac.matches("^[A-Z-a-z0-9+_.-]+@(.+)$")){
+        if(txtCorreoPac.getText().matches(espacioBlanco) || !txtCorreoPac.getText().matches("^[A-Z-a-z0-9+_.-]+@(.+)$")){
             throw new IllegalArgumentException("El correo no puede estar vacio");
         }
 
-        if(fechaNaciPac == null){
+        if(dateFechaNaciPac.getValue() == null){
             throw new IllegalArgumentException("La fecha de nacimiento no puede estar vacia");
         }
 
-        if(motivoConsulta.matches(espacioBlanco) || !motivoConsulta.matches(patron)){
-            throw new IllegalArgumentException("El motivo de la consulta no puede estar vacio");
-        }
 
         /*
         El método matches() de la clase String se utiliza para verificar si una cadena de texto coincide con una expresión regular.
@@ -174,31 +149,110 @@ public class RegistroEntradaController {
         */
 
         // Validar que el DNI sea un número entero
-        if (!dniPac.matches("\\d+")) {
+        if (!txtDNIPac.getText().matches("\\d+")) {
             throw new IllegalArgumentException("El DNI debe ser un número entero");
         }
 
         // Validar que el teléfono fijo sea un número entero
-        if (!telefonoFijoPac.matches("\\d+")) {
+        if (!txtTelFijoPac.getText().matches("\\d+")) {
             throw new IllegalArgumentException("El teléfono fijo debe ser un número entero");
         }
 
         // Validar que el teléfono celular sea un número entero
-        if (!telefonoCelPac.matches("\\d+")) {
+        if (!txtTelCelPac.getText().matches("\\d+")) {
             throw new IllegalArgumentException("El teléfono celular debe ser un número entero");
         }
 
         // Validar que el teléfono de la Persona de Conctacto sea un número entero
-        if (!telefonoPersonaContactoPac.matches("\\d+")) {
+        if (!txtNumPerContPac.getText().matches("\\d+")) {
             throw new IllegalArgumentException("El teléfono de la persona de contacto debe ser un número entero");
         }
     }
 
+    public void RestablecerCampos(){
+        txtNomPac.clear();
+        txtNomPac.setEditable(true);
+        txtApePac.clear();
+        txtApePac.setEditable(true);
+        txtDNIPac.clear();
+        txtDomiPac.setEditable(true);
+        txtCorreoPac.clear();
+        txtTelCelPac.clear();
+        txtDomiPac.clear();
+        txtNumPerContPac.clear();
+        txtTelFijoPac.clear();
+        dateFechaNaciPac.setValue(null);
+        dateFechaNaciPac.setDisable(true);
+        dateFechaNaciPac.getEditor().setDisable(true);
+        cboxEstCivilPac.setValue(null);
+        cboxEstCivilPac.setEditable(true);
+        cboxEstCivilPac.setDisable(true);
+    }
+
+    private boolean ComprobarExistenciaPaciente(String dni) {
+        PacienteDAO pacienteDAO = new PacienteDAO();
+        FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
+
+        Funcionario funcionario = funcionarioDAO.obtenerPorDni(dni);
+        if (funcionario != null){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Advertencia");
+            alert.setHeaderText("DNI encontrado como personal del hospital");
+            alert.setContentText("¿Quiere ingresar este personal como paciente?");
+            alert.setAlertType(Alert.AlertType.CONFIRMATION);
+            Optional<ButtonType> resultado = alert.showAndWait();
+
+            if (resultado.get() == ButtonType.OK){
+                SetearPersonalComoPAciente(funcionario);
+                personalAPaciente = true;
+            }else{
+                txtDNIPac.clear();
+            }
+            return true;
+        }
+
+        Paciente pacienteExistente = pacienteDAO.obtenerPorDni(dni);
+
+        if (pacienteExistente != null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Paciente ya registrado");
+            alert.setContentText("Un paciente con el DNI que ah ingresado ya esta registrado, verifique el dato ingresado");
+            alert.show();
+            return true; // Indica que el paciente ya existe
+        }
+        return false; // Indica que el paciente no existe
+    }
+
+    private void SetearPersonalComoPAciente(Funcionario funcionario) {
+
+        txtNomPac.setText(funcionario.getNombre());
+        txtNomPac.setEditable(false);
+
+        txtApePac.setText(funcionario.getApellido());
+        txtApePac.setEditable(false);
+
+        txtDomiPac.setText(funcionario.getDomicilio());
+        txtDomiPac.setEditable(false);
+
+        txtCorreoPac.setText(funcionario.getCorreo());
+
+        txtTelFijoPac.setText(String.valueOf(funcionario.getTelefonoFijo()));
+
+        txtTelCelPac.setText(String.valueOf(funcionario.getTelefonoCelular()));
+
+        dateFechaNaciPac.setValue(funcionario.getFechaNacimiento());
+        dateFechaNaciPac.setDisable(false);
+        dateFechaNaciPac.getEditor().setDisable(false);
+
+        cboxEstCivilPac.setValue(funcionario.getEstadoCivil());
+        cboxEstCivilPac.setEditable(false);
+        cboxEstCivilPac.setDisable(false);
+
+    }
 
     public void recibirDatos(List<Rol> roles, Usuario usuario, FuncionarioAdministrativo funcionarioAdministrativo) {
         this.rolesUsuario = roles;
         this.usuarioIniciado = usuario;
-        this.funcionarioAdministrativoIniciado = funcionarioAdministrativo;
     }
-
 }

@@ -28,7 +28,7 @@ public class Persona {
     private String domicilio;
     @NaturalId
     private int DNI;
-    private int telefonoFijo;
+    private long telefonoFijo;
     private long telefonoCelular;
     @Enumerated(EnumType.STRING)
     private EstadoCivil estadoCivil;
@@ -36,7 +36,7 @@ public class Persona {
     private int edad;
 
     public Persona(String nombre, String apellido, LocalDate fechaNacimiento, String domicilio,
-                   int DNI, int telefonoFijo, long telefonoCelular, EstadoCivil estadoCivil, String correo) {
+                   int DNI, long telefonoFijo, long telefonoCelular, EstadoCivil estadoCivil, String correo) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.fechaNacimiento = fechaNacimiento;

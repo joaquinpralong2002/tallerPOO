@@ -18,7 +18,7 @@ import java.util.*;
 
 @Entity
 public class Paciente extends Persona{
-    private int personaContacto;
+    private long personaContacto;
 
 
     @ToString.Exclude
@@ -36,8 +36,8 @@ public class Paciente extends Persona{
 
     //sugerir cambiar tipo de persona de contacto a int q sea un numero de telefono
     public Paciente(String nombre, String apellido, LocalDate fechaNacimiento, String domicilio, int DNI,
-                    int telefonoFijo, long telefonoCelular, EstadoCivil estadoCivil, String correo,
-                    int personaContacto) {
+                    long telefonoFijo, long telefonoCelular, EstadoCivil estadoCivil, String correo,
+                    long personaContacto) {
         super(nombre, apellido, fechaNacimiento, domicilio, DNI, telefonoFijo, telefonoCelular, estadoCivil, correo);
         this.personaContacto = personaContacto;
         this.resultadosDiagnosticos = new ArrayList<>();
@@ -45,8 +45,8 @@ public class Paciente extends Persona{
     }
 
     public Paciente(String nombre, String apellido, LocalDate fechaNacimiento, String domicilio, int DNI,
-                    int telefonoFijo, long telefonoCelular, EstadoCivil estadoCivil, String correo,
-                    int personaContacto, List<ResultadoDiagnostico> resultadosDiagnosticos) {
+                    long telefonoFijo, long telefonoCelular, EstadoCivil estadoCivil, String correo,
+                    long personaContacto, List<ResultadoDiagnostico> resultadosDiagnosticos) {
         super(nombre, apellido, fechaNacimiento, domicilio, DNI, telefonoFijo, telefonoCelular, estadoCivil, correo);
         this.personaContacto = personaContacto;
         this.resultadosDiagnosticos = resultadosDiagnosticos;
@@ -54,8 +54,8 @@ public class Paciente extends Persona{
     }
 
     public Paciente(String nombre, String apellido, LocalDate fechaNacimiento, String domicilio, int DNI,
-                    int telefonoFijo, long telefonoCelular, EstadoCivil estadoCivil, String correo,
-                    int personaContacto, List<ResultadoDiagnostico> resultadosDiagnosticos, List<RegistroEntrada> registrosEntradas) {
+                    long telefonoFijo, long telefonoCelular, EstadoCivil estadoCivil, String correo,
+                    long personaContacto, List<ResultadoDiagnostico> resultadosDiagnosticos, List<RegistroEntrada> registrosEntradas) {
         super(nombre, apellido, fechaNacimiento, domicilio, DNI, telefonoFijo, telefonoCelular, estadoCivil, correo);
         this.personaContacto = personaContacto;
         this.resultadosDiagnosticos = resultadosDiagnosticos;
@@ -63,8 +63,8 @@ public class Paciente extends Persona{
     }
 
     public Paciente(String nombre, String apellido, LocalDate fechaNacimiento, String domicilio, int DNI,
-                    int telefonoFijo, long telefonoCelular, EstadoCivil estadoCivil, String correo,
-                    int personaContacto, List<ResultadoDiagnostico> resultadosDiagnosticos,
+                    long telefonoFijo, long telefonoCelular, EstadoCivil estadoCivil, String correo,
+                    long personaContacto, List<ResultadoDiagnostico> resultadosDiagnosticos,
                     List<RegistroEntrada> registrosEntradas, List<Registro> registros) {
         super(nombre, apellido, fechaNacimiento, domicilio, DNI, telefonoFijo, telefonoCelular, estadoCivil, correo);
         this.personaContacto = personaContacto;

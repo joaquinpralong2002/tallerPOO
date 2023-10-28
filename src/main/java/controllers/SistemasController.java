@@ -41,8 +41,10 @@ public class SistemasController {
     private ObservableList<UsuarioTableClass> datosTabla = FXCollections.observableArrayList();
     private List<Rol> roles;
     private AdministradorSistemas adminSistemas;
+    private FuncionarioProController controllerPrincipal;
 
     public void iniciarAdministradorSistemas(){
+        controllerPrincipal = FuncionarioProController.getControladorPrimario();
         this.roles = SingletonAdministradorSistema.getInstance().getRoles();
         this.adminSistemas = SingletonAdministradorSistema.getInstance().getAdministradorSistemas();
     }
@@ -52,6 +54,7 @@ public class SistemasController {
      */
     @FXML
     public void initialize(){
+        controllerPrincipal = FuncionarioProController.getControladorPrimario();
         this.colNombUsu.setCellValueFactory(new PropertyValueFactory<>("nombreUsuario"));
         this.colRoles.setCellValueFactory(new PropertyValueFactory<>("roles"));
         this.colNombFunc.setCellValueFactory(new PropertyValueFactory<>("nombreFuncionario"));
@@ -135,21 +138,11 @@ public class SistemasController {
             alert.showAndWait();
         }
 
-
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/views/SistemasViews/EditarUsuario.fxml"));
-        Parent rootSistemas = loader.load();
-
         UsuarioDAO usuarioDAO = new UsuarioDAO();
 
-        SingletonUsuario.getInstance().setUsuario(usuarioDAO.obtenerUsuarioPorNombre(usuarioTableClass.nombreUsuario));
-        EditarUsuarioController controllerEditar = loader.getController();
-        controllerEditar.iniciarUsuario();
+        controllerPrincipal.cargarEscena("/views/SistemasViews/EditarUsuario.fxml");
+        controllerPrincipal.setUsuario(usuarioDAO.obtenerUsuarioPorNombre(usuarioTableClass.nombreUsuario));
 
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(rootSistemas);
-        stage.setScene(scene);
-        stage.show();
     }
 
     /**
