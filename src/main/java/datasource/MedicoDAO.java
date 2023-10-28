@@ -68,6 +68,13 @@ public class MedicoDAO implements GenericoDAO<Medico>{
         return triageRangoFechas;
     }
 
+    public List<Triage> TriagesCambiados(Long id){
+        Session session = sessionFactory.openSession();
+        String query = "SELECT triage FROM Triage triage WHERE triage.colorTriageRecomendado != colorTriageFinal AND triage.medico.id = :id";
+        List<Triage> triages = session.createQuery(query, Triage.class).setParameter("id",id).getResultList();
+        return triages;
+    }
+
     public Long cantidadPacientesAtendidos(Medico medico, LocalDate fecha, LocalDate fecha2){
         Session session = sessionFactory.openSession();
         String query = "SELECT COUNT(DISTINCT r.paciente) FROM Registro r WHERE r.medico = :medico AND r.fechaRegistro >= :fechaInicio " +
