@@ -2,6 +2,7 @@ package controllers.Enfermero;
 
 import controllers.HistorialClinicoController;
 import controllers.MedicoController;
+import controllers.Singletons.SingletonEnfermero;
 import controllers.Singletons.SingletonMedico;
 import datasource.PacienteDAO;
 import javafx.event.ActionEvent;
@@ -14,6 +15,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Enfermero;
 import model.Login.Rol;
 import model.Medico;
 import model.Paciente;
@@ -35,8 +37,8 @@ public class BuscarPacienteVisualizarRegistroEnfermeroController {
     @FXML
     private Label lbTelCont;
     private Paciente paciente;
-    private List<Rol> roles = SingletonMedico.getInstance().getRoles();
-    private Medico enfermero = SingletonMedico.getInstance().getMedico();
+    private List<Rol> roles = SingletonEnfermero.getInstance().getRoles();
+    private Enfermero enfermero = SingletonEnfermero.getInstance().getEnfermero();
 
     @FXML
     public void initialize(){
