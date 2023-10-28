@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.control.ChoiceBox?>
 <AnchorPane fx:id="paneFondo" prefHeight="768.0" prefWidth="1200.0" styleClass="marco-color-primario" stylesheets="@../../Styless/Styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Administracion.EstadisticasController">
    <children>
       <Pane layoutX="17.0" layoutY="591.0" prefHeight="154.0" prefWidth="500.0">
@@ -179,5 +180,16 @@
           <TableColumn prefWidth="307.0" text="Cantidad" />
         </columns>
       </TableView>
+      <Pane layoutX="15.0" layoutY="667.0" prefHeight="150.0" prefWidth="500.0">
+         <children>
+            <Label layoutX="14.0" prefHeight="39.0" prefWidth="404.0" text="Cantidad de triages cambiados por un Medico/Enfermero">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <ChoiceBox fx:id="chboxTriages" layoutX="14.0" layoutY="39.0" prefHeight="31.0" prefWidth="144.0" />
+            <Button layoutX="282.0" layoutY="42.0" mnemonicParsing="false" onAction="#CantidadTriagesCambiadosPor" text="Triages cambiados" />
+         </children>
+      </Pane>
    </children>
 </AnchorPane>
