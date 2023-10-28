@@ -1,5 +1,6 @@
 package controllers.Enfermero;
 
+import controllers.Singletons.SingletonEnfermero;
 import controllers.Singletons.SingletonMedico;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -49,8 +50,8 @@ public class HistorialClinicoEnfermeroController {
     private Label resultadoDiagnosticoLabel;
     private Paciente paciente;
     private ObservableList<DatosRegistro> datosTabla = FXCollections.observableArrayList();
-    private Medico medico = SingletonMedico.getInstance().getMedico();
-    private List<Rol> roles = SingletonMedico.getInstance().getRoles();
+    private Enfermero enfermero = SingletonEnfermero.getInstance().getEnfermero();
+    private List<Rol> roles = SingletonEnfermero.getInstance().getRoles();
 
     /**
      * Inicializa la interfaz de usuario y configura las propiedades de las columnas de la tabla de registros.
