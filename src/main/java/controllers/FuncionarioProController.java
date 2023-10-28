@@ -34,6 +34,7 @@ public class FuncionarioProController implements Initializable {
     @Getter
     private static FuncionarioProController controladorPrimario;
 
+    @Getter
     private FuncionarioAdministrativo funcionarioAdministrativo;
 
     private AdministradorSistemas administradorSistemas;
@@ -57,8 +58,6 @@ public class FuncionarioProController implements Initializable {
     @FXML
     private Button bttmEstadistica;
     @FXML
-    private  Button bttmVacio;
-    @FXML
     private Button bttnNomina;
     @FXML
     private Button bttmCerrarSesion;
@@ -78,7 +77,6 @@ public class FuncionarioProController implements Initializable {
         controladorPrimario = this;
 
         bttnNomina.setVisible(false);
-        bttmVacio.setVisible(false);
 
         cargarEscena("/views/FuncionarioViews/RegistroEntrada.fxml");
     }
@@ -190,8 +188,16 @@ public class FuncionarioProController implements Initializable {
      * @param funcionario El objeto AdministradorSistemas que se va a almacenar.
      */
     public void recibirDatos(AdministradorSistemas funcionario){
+        cargarEscena("/views/FuncionarioViews/Estadisticas.fxml");
         administradorSistemas = funcionario;
-        bttmVacio.setVisible(true);
+
+        bttmRegistroEntrada.setVisible(false);
+        bttmBuscarPaciente.setVisible(false);
+
+        bttmBuscarPaciente.setLayoutY(162);
+        bttmEstadistica.setLayoutY(2);
+        bttmRegistroEntrada.setLayoutY(82);
+        bttnNomina.setLayoutY(42);
         bttnNomina.setVisible(true);
     }
 

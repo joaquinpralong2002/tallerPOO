@@ -53,11 +53,13 @@ public class BuscarPacienteController {
     @FXML
     public void initialize(){
         controllerPrincipal = FuncionarioProController.getControladorPrimario();
-        this.lbNombre.setText("Sin Datos");
-        this.lbApellido.setText("Sin Datos");
-        this.lbTelFijo.setText("Sin Datos");
-        this.lbTelCel.setText("Sin Datos");
-        this.lbTelCont.setText("Sin Datos");
+        funcionarioAdministrativoIniciado = controllerPrincipal.getFuncionarioAdministrativo();
+        if(controllerPrincipal.getPaciente() != null){
+            paciente = controllerPrincipal.getPaciente();
+            BuscarPaciente();
+            controllerPrincipal.setPaciente(null);
+        }
+
     }
 
     /**
@@ -187,6 +189,5 @@ public class BuscarPacienteController {
     public void recibirDatos(List<Rol> roles, Usuario user, FuncionarioAdministrativo funcionarioAdministrativo) {
         this.rolesUsuario = roles;
         this.usuarioIniciado = user;
-        this.funcionarioAdministrativoIniciado = funcionarioAdministrativo;
     }
 }

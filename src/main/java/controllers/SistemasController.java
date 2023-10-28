@@ -108,14 +108,7 @@ public class SistemasController {
      * @throws IOException Si ocurre un error al cargar la vista "CrearUsuario.fxml".
      */
     public void CrearUsuario(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/views/SistemasViews/CrearUsuario.fxml"));
-        Parent rootSistemas = loader.load();
-
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(rootSistemas);
-        stage.setScene(scene);
-        stage.show();
+        controllerPrincipal.cargarEscena("/views/SistemasViews/CrearUsuario.fxml");
     }
 
     /**
@@ -129,6 +122,7 @@ public class SistemasController {
      * @param event El evento que desencadenó la edición del usuario.
      * @throws IOException Si ocurre un error al cargar la vista "EditarUsuario.fxml".
      */
+
     public void EditarUsuario(ActionEvent event) throws IOException {
         UsuarioTableClass usuarioTableClass = (UsuarioTableClass) tblUsuarios.getSelectionModel().getSelectedItem();
         if(usuarioTableClass == null){
