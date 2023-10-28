@@ -418,12 +418,13 @@ public class CrearUsuarioController {
      * @throws Exception Si alguno de los campos requeridos está vacío o si las contraseñas no coinciden.
      */
     private void comprobarCampos() throws Exception {
+        String patron = "^[A-Za-z0-9]+$";
 
-        if (nombreFunc.isEmpty()){
+        if (nombreFunc.matches(patron)){
             throw new Exception("El nombre del funcionario no puede estar vacío");
         }
 
-       if (apellidoFun.isEmpty()){
+       if (apellidoFun.matches(patron)){
            throw new Exception("El apellido no puede estar vacío");
        }
 
@@ -431,7 +432,7 @@ public class CrearUsuarioController {
            throw new Exception("El DNI no puede estar vacío, y debe ser llenado con números");
        }
 
-       if (domicilio.isEmpty()){
+       if (domicilio.matches(patron)){
            throw new Exception("El domicilio no puede estar vacío");
        }
 
@@ -455,7 +456,7 @@ public class CrearUsuarioController {
            throw new Exception("El telefono celular no puede estar vacío");
        }
 
-        if (nombreUsu.isEmpty()){
+        if (nombreUsu.matches(patron)){
             throw new Exception("El nombre de usuario no puede estar vacío");
         }
        if (password.isEmpty()){

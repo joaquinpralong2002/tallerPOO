@@ -72,10 +72,10 @@ public class RegistroEntradaController {
         try {
             validarDatosPaciente(nombrePac,apellidoPac,fechaNaciPac,domicilioPac,dniPac,telefonoFijoPac,telefonoCelPac,estadoCivilPac,correoPac,teleonoPersonaContactoPac,motivoConsulta);
 
-            PacienteDAO pacienteDAO = new PacienteDAO();
-            if(pacienteDAO.obtenerPorDni(dniPac) != null){
-                throw new Exception();
+            if (ComprobarExistenciaPaciente(dniPac)) {
+                return; // Salir del método si el paciente ya existe
             }
+            PacienteDAO pacienteDAO = new PacienteDAO();
 
             Paciente paciente = new Paciente(nombrePac,apellidoPac,fechaNaciPac,domicilioPac,Integer.parseInt(dniPac),Integer.parseInt(telefonoFijoPac),Long.parseLong(telefonoCelPac),estadoCivilPac,correoPac,Integer.parseInt(teleonoPersonaContactoPac));
 
@@ -95,14 +95,24 @@ public class RegistroEntradaController {
             alert.setHeaderText("Datos Invalidos");
             alert.setContentText(e.getMessage());
             alert.show();
-        } catch (Exception e) {
+        }
+
+    }
+
+
+    private boolean ComprobarExistenciaPaciente(String dni) {
+        PacienteDAO pacienteDAO = new PacienteDAO();
+        Paciente pacienteExistente = pacienteDAO.obtenerPorDni(dni);
+        if (pacienteExistente != null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Paciente ya registrado");
             alert.show();
+            return true; // Indica que el paciente ya existe
         }
-
+        return false; // Indica que el paciente no existe
     }
+
 
     /**
      * Valida los datos de un paciente antes de crear un registro. Lanza una excepción si algún dato es inválido.
@@ -121,14 +131,14 @@ public class RegistroEntradaController {
      * @throws IllegalArgumentException  Si algún dato es inválido.
      */
     public void validarDatosPaciente(String nombrePac, String apellidoPac, LocalDate fechaNaciPac, String domicilioPac, String dniPac, String telefonoFijoPac, String telefonoCelPac, EstadoCivil estadoCivilPac, String correoPac, String telefonoPersonaContactoPac, String motivoConsulta) {
-       String patron = "^(?![0-9 ]{6,})[A-Za-z0-9 ]{6,}$";
-       String patron2 = "^(?![0-9-]{3,})[A-Za-z0-9-]{3,}$";
+       String patron = "^[A-Za-z0-9]+$";
+
         // Validar que los campos obligatorios no sean nulos
-        if(!nombrePac.matches(patron2)){
+        if(!nombrePac.matches(patron)){
             throw new IllegalArgumentException("El nombre no puede estar vacio");
         }
 
-        if(!apellidoPac.matches(patron2)){
+        if(!apellidoPac.matches(patron)){
             throw new IllegalArgumentException("El apellido no puede estar vacio");
         }
 
