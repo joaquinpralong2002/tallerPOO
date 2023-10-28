@@ -38,6 +38,13 @@ public class FuncionarioAdministrativoDAO implements  GenericoDAO<FuncionarioAdm
         return funcionarioAdministrativos;
     }
 
+    /**
+     * Obtiene un mapeo de pacientes con la cantidad de consultas realizadas dentro de un rango de fechas.
+     *
+     * @param fecha     La fecha de inicio del rango.
+     * @param fecha2    La fecha de fin del rango.
+     * @return Un mapa donde las claves son IDs de pacientes y los valores son la cantidad de consultas realizadas por cada paciente dentro del rango de fechas.
+     */
     public Map<Long, Long> pacientesMasConsultas(LocalDate fecha, LocalDate fecha2){
         Session session = sessionFactory.openSession();
 
