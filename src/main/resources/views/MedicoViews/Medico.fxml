@@ -33,7 +33,7 @@
       </TableView>
       <Pane layoutX="-16.0" layoutY="140.0" prefHeight="534.0" prefWidth="442.0">
          <children>
-            <Label layoutX="42.0" layoutY="24.0" text="              Filtrar Pacientes               " underline="true">
+            <Label layoutX="42.0" layoutY="24.0" text="              Filtrar Pacientes               ">
                <font>
                   <Font size="24.0" />
                </font>
@@ -79,5 +79,6 @@
             <Button fx:id="vaciarButton" layoutX="379.0" layoutY="208.0" mnemonicParsing="false" onAction="#borrarColorTriageSeleccionado" text="Vaciar" />
          </children>
       </Pane>
+      <Label layoutX="1148.0" layoutY="14.0" text="Médico" />
    </children>
 </AnchorPane>
