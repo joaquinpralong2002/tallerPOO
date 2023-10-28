@@ -247,14 +247,15 @@ public class EditarUsuarioController {
     }
 
     private void ComprobarCampos() throws Exception {
-        String patron = "^[A-Za-z0-9]+$";
-        if (nombreUsu.matches(patron)){
+        String patron = "^[A-Za-z0-9 ]+$";
+        String espacioBlanco = "\\s.*";
+        if (nombreUsu.matches(espacioBlanco) || !nombreUsu.matches(patron)){
             throw  new Exception("El nombre de usuario no puede estar vacío");
         }
-        if (password.matches(patron)){
+        if (password.isEmpty() || password.matches(espacioBlanco)){
             throw  new Exception("La contrasenñ no puede estar vacío");
         }
-        if (passwordConfirm.isEmpty()){
+        if (passwordConfirm.isEmpty() || passwordConfirm.matches(espacioBlanco)){
             throw new Exception("La contraseña no puede estar vacía");
         }
 

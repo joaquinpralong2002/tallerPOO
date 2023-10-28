@@ -108,6 +108,7 @@ public class RegistroEntradaController {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Paciente ya registrado");
+            alert.setContentText("Un paciente con el DNI que ah ingresado ya esta registrado, verifique el dato ingresado");
             alert.show();
             return true; // Indica que el paciente ya existe
         }
@@ -132,18 +133,19 @@ public class RegistroEntradaController {
      * @throws IllegalArgumentException  Si algún dato es inválido.
      */
     public void validarDatosPaciente(String nombrePac, String apellidoPac, LocalDate fechaNaciPac, String domicilioPac, String dniPac, String telefonoFijoPac, String telefonoCelPac, EstadoCivil estadoCivilPac, String correoPac, String telefonoPersonaContactoPac, String motivoConsulta) {
-       String patron = "^[A-Za-z0-9]+$";
+       String patron = "^[A-Za-z0-9 ]+$";
+       String espacioBlanco = "\\s.*";
 
         // Validar que los campos obligatorios no sean nulos
-        if(!nombrePac.matches(patron)){
+        if(nombrePac.matches(espacioBlanco) || !nombrePac.matches(patron)){
             throw new IllegalArgumentException("El nombre no puede estar vacio");
         }
 
-        if(!apellidoPac.matches(patron)){
+        if(apellidoPac.matches(espacioBlanco) || !apellidoPac.matches(patron)){
             throw new IllegalArgumentException("El apellido no puede estar vacio");
         }
 
-        if(!domicilioPac.matches(patron)){
+        if(domicilioPac.matches(espacioBlanco) || !domicilioPac.matches(patron)){
             throw new IllegalArgumentException("El domicilio no puede estar vacio");
         }
 
@@ -151,7 +153,7 @@ public class RegistroEntradaController {
             throw new IllegalArgumentException("El estado civil no puede estar vacio");
         }
 
-        if(!correoPac.matches("^[A-Z-a-z0-9+_.-]+@(.+)$")){
+        if(correoPac.matches(espacioBlanco) || !correoPac.matches("^[A-Z-a-z0-9+_.-]+@(.+)$")){
             throw new IllegalArgumentException("El correo no puede estar vacio");
         }
 
@@ -159,7 +161,7 @@ public class RegistroEntradaController {
             throw new IllegalArgumentException("La fecha de nacimiento no puede estar vacia");
         }
 
-        if(!motivoConsulta.matches(patron)){
+        if(motivoConsulta.matches(espacioBlanco) || !motivoConsulta.matches(patron)){
             throw new IllegalArgumentException("El motivo de la consulta no puede estar vacio");
         }
 

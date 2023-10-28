@@ -132,7 +132,7 @@ public class BuscarPacienteController {
             alert.setContentText("Debe buscar el paciente primeramente");
             alert.show();
         }else{
-            if(this.txtMotivo.getText().matches("^(?![0-9 ]{6,})[A-Za-z0-9 ]{6,}$")){
+            if(!this.txtMotivo.getText().matches("\\s.*") || this.txtMotivo.getText().matches("^(?![0-9 ]{6,})[A-Za-z0-9 ]{6,}$")){
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Informacion");
                 alert.setHeaderText("Registro Creado Exitosamente");
