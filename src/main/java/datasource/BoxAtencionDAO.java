@@ -59,18 +59,4 @@ public class BoxAtencionDAO implements GenericoDAO<BoxAtencion> {
         session.close();
         return boxAtencion.get(0);
     }
-
-    /**
-     * Metodo para solicitar una lista de boxes de atencion segun su area
-     * @param lugarAtencion enum que puede ser Consultorio, Emergencia, Internaciones
-     * @return de tipo List<BoxAtencion>
-     */
-    public BoxAtencion obtenerDisponibles(LugarAtencion lugarAtencion){
-        Session session = sessionFactory.openSession();
-        String query = "SELECT box FROM BoxAtencion box WHERE box.lugarAtencion = :lugarAtencion";
-        BoxAtencion boxAtencion = session.createQuery(query, BoxAtencion.class)
-                .setParameter("lugarAtencion", lugarAtencion).getSingleResultOrNull();
-        session.close();
-        return boxAtencion;
-    }
 }

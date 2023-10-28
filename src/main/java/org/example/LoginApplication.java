@@ -18,6 +18,7 @@ public class LoginApplication extends Application {
         init.InitGlobalSessionFactory();
         Image icono = new Image(getClass().getResourceAsStream("/images/signo-de-hospital.png"));
 
+        primaryStage.setResizable(false);
         primaryStage.getIcons().add(icono);
         Parent root = FXMLLoader.load(getClass().getResource("/views/Login.fxml"));
         Scene scene = new Scene(root);

@@ -28,6 +28,15 @@ public class MedicoDAO implements GenericoDAO<Medico>{
         return medico;
     }
 
+    @Override
+    public List<Medico> obtenerTodos(){
+        Session session = sessionFactory.openSession();
+        String query = "SELECT medico FROM Medico medico";
+        List<Medico> medicos = session.createQuery(query, Medico.class).getResultList();
+        session.close();
+        return medicos;
+    }
+
     /**
      * Obtiene un médico por su nombre y apellido.
      *

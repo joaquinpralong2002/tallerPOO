@@ -32,6 +32,23 @@ public class EnfermeroDAO implements  GenericoDAO<Enfermero>{
     }
 
     /**
+     * Obtiene un objeto de tipo Enfermero basado en su nombre y apellido.
+     *
+     * @param nombre    El nombre del enfermero a buscar.
+     * @param apellido  El apellido del enfermero a buscar.
+     * @return          Un objeto Enfermero que coincide con el nombre y apellido proporcionados,
+     *                  o null si no se encuentra ninguna coincidencia.
+     */
+    public Enfermero obtener(String nombre, String apellido){
+        Session session = sessionFactory.openSession();
+        String query = "FROM Enfermero e WHERE e.nombre = :nombreParam AND e.apellido = :apellidoParam";
+        Enfermero enfermero = session.createQuery(query, Enfermero.class).setParameter("nombreParam",nombre)
+                .setParameter("apellidoParam",apellido).getSingleResultOrNull();
+        session.close();
+        return enfermero;
+    }
+
+    /**
      * Obtiene una lista de objetos de tipo Triage donde el color de triaje recomendado es diferente
      * al color de triaje final y el ID del enfermero coincide.
      *
