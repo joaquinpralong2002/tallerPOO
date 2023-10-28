@@ -179,7 +179,7 @@ public class SaludController {
      * @throws IOException Si ocurre un error durante la carga de la escena.
      */
     public void Inicio(javafx.event.ActionEvent event) throws IOException {
-        if(SingletonMedico.getInstance().getMedico() == null) iniciarDatosEnfermero();
+        if(medico == null) iniciarDatosEnfermero();
         else iniciarDatosMedico();
     }
 
@@ -189,8 +189,8 @@ public class SaludController {
      * @param event El evento que desencadenó esta acción.
      */
     public void HistorialClinico(javafx.event.ActionEvent event) {
-        if(SingletonMedico.getInstance().getMedico() != null) cargarEscena("/views/MedicoViews/BuscarPacienteVisualizarRegistros.fxml");
-        else cargarEscena("/views/EnfermeroViews/BuscarPacienteVisualizarRegistrosEnfermero.fxml");
+        if(medico == null) cargarEscena("/views/EnfermeroViews/BuscarPacienteVisualizarRegistrosEnfermero.fxml");
+        else cargarEscena("/views/MedicoViews/BuscarPacienteVisualizarRegistros.fxml");
     }
 
     /**
@@ -210,5 +210,17 @@ public class SaludController {
         if(resultado.get() == ButtonType.OK) {
             SwitchToLoginScene(event);
         }
+    }
+
+    public void recibirFuncionario(Enfermero enfermero){
+        this.enfermero = enfermero;
+        this.medico = null;
+        SingletonEnfermero.getInstance().setEnfermero(enfermero);
+    }
+
+    public void recibirFuncionario(Medico medico) {
+        this.medico = medico;
+        this.enfermero = null;
+        SingletonMedico.getInstance().setMedico(medico);
     }
 }
