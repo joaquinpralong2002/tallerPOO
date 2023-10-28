@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="900.0" maxWidth="1600.0" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Enfermero.EnfermeroController">
+<AnchorPane prefHeight="768.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Enfermero.EnfermeroController">
    <children>
       <Label layoutX="740.0" layoutY="95.0" text="Listado de Pacientes">
          <font>
@@ -70,7 +70,7 @@
             </Button>
          </children>
       </Pane>
-      <Label layoutX="1268.0" layoutY="14.0" text="Enfermero" textAlignment="CENTER">
+      <Label layoutX="1177.0" layoutY="14.0" text="Enfermero" textAlignment="CENTER" textFill="#0f00b9">
          <font>
             <Font size="14.0" />
          </font>

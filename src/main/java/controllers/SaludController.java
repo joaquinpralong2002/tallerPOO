@@ -149,7 +149,7 @@ public class SaludController {
     }
 
     public void HistorialClinico(javafx.event.ActionEvent event) {
-        if(SingletonMedico.getInstance().getMedico() != null) cargarEscena("/views/MedicoViews/BuscarPacienteVisualizarRegistros.fxml");
+        if(SingletonMedico.getInstance().getMedico().getNombre() != null) cargarEscena("/views/MedicoViews/BuscarPacienteVisualizarRegistros.fxml");
         else cargarEscena("/views/EnfermeroViews/BuscarPacienteVisualizarRegistrosEnfermero.fxml");
     }
 
