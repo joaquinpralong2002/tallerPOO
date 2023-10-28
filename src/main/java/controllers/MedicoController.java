@@ -2,6 +2,7 @@ package controllers;
 
 
 import controllers.AtencionPaciente.ElegirBoxAtencionAtenderPaciente;
+import controllers.Singletons.SingletonControladorPrimarioSalud;
 import controllers.Singletons.SingletonFuncionario;
 import controllers.Singletons.SingletonMedico;
 import controllers.Triage.TriageController;
@@ -189,7 +190,6 @@ public class MedicoController {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/views/MedicoViews/Triage/Triage.fxml"));
         Parent root = loader.load();
-
         TriageController controller = loader.getController();
         PacienteTableClass pacienteTableClass = (PacienteTableClass) tblPacientes.getSelectionModel().getSelectedItem();
         if (pacienteTableClass == null) {
@@ -208,12 +208,9 @@ public class MedicoController {
             return;
         }
         RegistroEntrada registroEntrada = paciente.getRegistrosEntradas().get(paciente.getRegistrosEntradas().size() - 1);
-        controller.recibirDatos(registroEntrada);
+        SingletonControladorPrimarioSalud.getInstance().getController().setRegistroEntrada(registroEntrada);
         // Cambia a la nueva escena
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        SingletonControladorPrimarioSalud.getInstance().getController().cargarEscena("/views/MedicoViews/Triage/Triage.fxml");
     }
 
 
@@ -227,9 +224,6 @@ public class MedicoController {
     public void AtenderPaciente(ActionEvent event) throws Exception {
 
         // Atiende al paciente
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/views/MedicoViews/ElegirBoxAtencion_AtenderPaciente.fxml"));
-        Parent root = loader.load();
         PacienteTableClass pacienteTableClass = (PacienteTableClass) tblPacientes.getSelectionModel().getSelectedItem();
         if (pacienteTableClass == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -239,26 +233,18 @@ public class MedicoController {
             return;
         }
 
-        // Pasa el escenario de la ventana Medico al controlador de ElegirBoxAtencion_AtenderPaciente
-        ElegirBoxAtencionAtenderPaciente controller = loader.getController();
-
         //Se verifica que el paciente tenga un triage asociado para atenderlo
         Long id = ((PacienteTableClass) tblPacientes.getSelectionModel().getSelectedItem()).getId();
         Paciente paciente = pacienteTableClass.obtenerPaciente(id);
 
-        controller.recibirDatos(paciente,paciente.getRegistrosEntradas().get(paciente.getRegistrosEntradas().size() - 1));
-
+        SingletonControladorPrimarioSalud.getInstance().getController().setPaciente(paciente);
+        SingletonControladorPrimarioSalud.getInstance().getController().setRegistroEntrada(paciente.getRegistrosEntradas().get(paciente.getRegistrosEntradas().size() - 1));
         if (paciente.getRegistrosEntradas().get(paciente.getRegistrosEntradas().size() - 1).isTriagiado()) {
-            //Verifica el Color de triage del Paciente y lo envia a la siguiente escecna.
+            //Verifica el Color de triage del Paciente y lo envia a la siguiente escena.
             ColorTriage colorTriage = paciente.getRegistrosEntradas().get(paciente.getRegistrosEntradas().size() - 1).getTriage().getColorTriageFinal();
-            controller.setBoxRecomendadoApp(colorTriage);
+            SingletonControladorPrimarioSalud.getInstance().getController().setColorTriage(colorTriage);
             
-            // Cambia a la nueva escena
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-
+            SingletonControladorPrimarioSalud.getInstance().getController().cargarEscena("/views/MedicoViews/ElegirBoxAtencion_AtenderPaciente.fxml");
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -267,26 +253,6 @@ public class MedicoController {
             return;
         }
     }
-
-    /**
-     * Abre la ventana para visualizar el historial clínico de un paciente.
-     *
-     * @param event El evento que desencadena la apertura de la ventana.
-     * @throws IOException Si ocurre un error durante la apertura de la ventana.
-     */
-    public void verHistorialClinico(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/views/MedicoViews/BuscarPacienteVisualizarRegistros.fxml"));
-        Parent root = loader.load();
-        BuscarPacienteVisualizarRegistroController controller = loader.getController();
-
-
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
 
     /**
      * Cierra la sesión del médico y muestra una confirmación al usuario.

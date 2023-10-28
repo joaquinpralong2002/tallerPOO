@@ -7,16 +7,11 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="900.0" maxWidth="1600.0" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Enfermero.EnfermeroController">
+<AnchorPane maxHeight="900.0" maxWidth="1600.0" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Enfermero.EnfermeroController">
    <children>
-      <Button fx:id="bttmCerrarSesion" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#CerrarSesion" prefHeight="40.0" prefWidth="150.0" text="Cerrar Sesion">
-         <font>
-            <Font size="18.0" />
-         </font></Button>
       <Label layoutX="740.0" layoutY="95.0" text="Listado de Pacientes">
          <font>
             <Font size="30.0" />
@@ -62,31 +57,22 @@
             <TextField fx:id="txtDNIPac" layoutX="221.0" layoutY="110.0" prefHeight="35.0" prefWidth="150.0" promptText="Ingrese Texto" />
             <TextField fx:id="txtApellPac" layoutX="51.0" layoutY="203.0" prefHeight="35.0" prefWidth="150.0" promptText="Ingrese Texto" />
             <ComboBox fx:id="cmboxTriage" layoutX="221.0" layoutY="203.0" prefHeight="35.0" prefWidth="150.0" promptText="Seleccionar" />
-            <HBox layoutX="26.0" layoutY="410.0" prefHeight="116.0" prefWidth="375.0" spacing="15.0">
-               <children>
-                  <Button fx:id="bttmRealTriage" mnemonicParsing="false" onAction="#RealizarTriage" prefHeight="50.0" prefWidth="180.0" text="Realizar Triage">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="historialClinicoButton" mnemonicParsing="false" onAction="#verHistorialClinico" prefHeight="50.0" prefWidth="180.0" text="Ver historial clínico">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Button>
-               </children>
-            </HBox>
             <Button fx:id="filtrarButton" layoutX="124.0" layoutY="267.0" mnemonicParsing="false" onAction="#filtrarPacientes" prefHeight="40.0" prefWidth="180.0" text="Filtrar">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
             <Button fx:id="vaciarButton" layoutX="379.0" layoutY="208.0" mnemonicParsing="false" onAction="#borrarColorTriageSeleccionado" text="Vaciar" />
+            <Button fx:id="bttmRealTriage" layoutX="124.0" layoutY="369.0" mnemonicParsing="false" onAction="#RealizarTriage" prefHeight="40.0" prefWidth="180.0" text="Realizar Triage">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
-      <Label layoutX="343.0" layoutY="14.0" text="Bienvenido Enfermero" textAlignment="CENTER" textFill="RED" underline="true">
+      <Label layoutX="1268.0" layoutY="14.0" text="Enfermero" textAlignment="CENTER">
          <font>
-            <Font size="30.0" />
+            <Font size="14.0" />
          </font>
       </Label>
    </children>

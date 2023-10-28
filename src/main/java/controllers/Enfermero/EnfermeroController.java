@@ -1,6 +1,7 @@
 package controllers.Enfermero;
 
 import controllers.Enfermero.TriageEnfermero.TriageEnfermeroController;
+import controllers.Singletons.SingletonControladorPrimarioSalud;
 import controllers.Singletons.SingletonEnfermero;
 import datasource.PacienteDAO;
 import datasource.RegistroEntradaDAO;
@@ -85,6 +86,7 @@ public class EnfermeroController {
      * - Verifica el valor de contieneTriage y si es false, oculta el botón bttmRealTriage, lo que significa que el botón "Triage" no se mostrará en la vista.
      */
     public void iniciarEnfermero(){
+        //Verifica que el enfermero tenga el rol que le permita realizar triages.
         enfermero = SingletonEnfermero.getInstance().getEnfermero();
         roles = SingletonEnfermero.getInstance().getRoles();
         boolean contieneTriage = false;
@@ -154,9 +156,9 @@ public class EnfermeroController {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/views/EnfermeroViews/TriageEnfermero/TriageEnfermero.fxml"));
         Parent root = loader.load();
-
         TriageEnfermeroController controller = loader.getController();
         PacienteTableClass pacienteTableClass = (PacienteTableClass) tblPacientes.getSelectionModel().getSelectedItem();
+
         if (pacienteTableClass == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -173,12 +175,10 @@ public class EnfermeroController {
             return;
         }
         RegistroEntrada registroEntrada = paciente.getRegistrosEntradas().get(paciente.getRegistrosEntradas().size() - 1);
-        controller.recibirDatos(registroEntrada);
+        SingletonControladorPrimarioSalud.getInstance().getController().setRegistroEntrada(registroEntrada);
         // Cambia a la nueva escena
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        SingletonControladorPrimarioSalud.getInstance().getController().cargarEscena("/views/EnfermeroViews/TriageEnfermero/TriageEnfermero.fxml");
+
     }
 
     /**
@@ -204,23 +204,6 @@ public class EnfermeroController {
         tblPacientes.setItems(datosTabla.filtered(predicate));
     }
 
-    /**
-     * Carga la vista para visualizar el historial clínico del paciente seleccionado.
-     *
-     * @param event El evento de acción que desencadena esta operación.
-     * @throws IOException Si se produce un error al cargar la vista del historial clínico.
-     */
-    public void verHistorialClinico(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/views/EnfermeroViews/BuscarPacienteVisualizarRegistrosEnfermero.fxml"));
-        Parent root = loader.load();
-        BuscarPacienteVisualizarRegistroEnfermeroController controller = loader.getController();
-
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
 
     /**
      * Cierra la sesión actual del médico y regresa a la pantalla de inicio de sesión.
@@ -251,4 +234,7 @@ public class EnfermeroController {
         cmboxTriage.setValue(null);
     }
 
+    public void verHistorialClinico(){
+
+    }
 }

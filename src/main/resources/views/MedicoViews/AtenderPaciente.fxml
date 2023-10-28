@@ -6,25 +6,25 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AtencionPaciente.AtenderPacienteController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AtencionPaciente.AtenderPacienteController">
    <children>
-      <Button fx:id="realizarDiagnosticoButton" layoutX="551.0" layoutY="664.0" mnemonicParsing="false" onAction="#BotonRealizarRegistro" prefHeight="90.0" prefWidth="265.0" text="Realizar Diagnostico">
+      <Button fx:id="realizarDiagnosticoButton" layoutX="468.0" layoutY="664.0" mnemonicParsing="false" onAction="#BotonRealizarRegistro" prefHeight="90.0" prefWidth="265.0" text="Realizar Diagnostico">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Label layoutX="236.0" layoutY="27.0" prefHeight="82.0" prefWidth="133.0" text="Descripción">
+      <Label layoutX="153.0" layoutY="29.0" prefHeight="82.0" prefWidth="133.0" text="Descripción">
          <font>
             <Font size="25.0" />
          </font>
       </Label>
-      <TextArea fx:id="campoDeTexto" layoutX="236.0" layoutY="123.0" prefHeight="523.0" prefWidth="894.0" />
-      <Label layoutX="860.0" layoutY="60.0" text="Usted está en ">
+      <TextArea fx:id="campoDeTexto" layoutX="153.0" layoutY="129.0" prefHeight="523.0" prefWidth="894.0" />
+      <Label layoutX="857.0" layoutY="61.0" text="Usted está en ">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="LabalTipoBox" layoutX="960.0" layoutY="57.0" prefHeight="17.0" prefWidth="118.0" text="Label" textFill="#610000">
+      <Label fx:id="LabalTipoBox" layoutX="959.0" layoutY="58.0" prefHeight="17.0" prefWidth="118.0" text="Label" textFill="#610000">
          <font>
             <Font size="18.0" />
          </font></Label>
