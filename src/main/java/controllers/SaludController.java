@@ -103,6 +103,12 @@ public class SaludController {
         }
     }
 
+    /**
+     * Carga una nueva escena en el panel trasero de la vista principal, reemplazando la escena actual.
+     *
+     * @param fxmlResource de tipo String, hace referencia a la ruta al archivo FXML de la escena que se va a cargar.
+     * @param restaurarDatosTriage de tipo boolean sirve para idicar de el estado en el controlador de TriageController
+     */
     public void cargarEscena(String fxmlResource, boolean restaurarDatosTriage) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlResource));
