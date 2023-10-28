@@ -20,10 +20,27 @@ import java.util.Set;
 
 
 public class Main {
+
     public static void main(String[] args) {
+
+
+
+
 
         //Se inicializa el Session Factory de la clase GlobalSessionFactory.
         GlobalSessionFactory init = new GlobalSessionFactory();
+
+        /*
+        boolean crearDatosDefecto = Integer.parseInt(args[0]);
+        String url = args[1];
+        String nombreUsuario = args[2];
+        String contrasenia = args[3];
+        String driver = args[4];
+
+        init.InitGlobalSessionFactory(url, nombreUsuario, contrasenia, driver);
+
+        if(crearDatosDefecto == 1){
+        */
         init.InitGlobalSessionFactory();
 
 //**************************************************************** DATOS del Programa *******************************************************//
@@ -236,7 +253,7 @@ public class Main {
 //************************************************* Medicos ******************************************************//
 
         //Creacion Medicos
-        Medico medico = new Medico("Ramirez","Juan", LocalDate.of(1955,3,21),"La ferre",11345433,11054332, 3455321243L, EstadoCivil.Casado, "juancarlosramirez@gmail.com",usuarioMedico, sectorMedico,"123456789", List.of(especialidad));
+        Medico medico = new Medico("Juan","Ramirez", LocalDate.of(1955,3,21),"La ferre",11345433,11054332, 3455321243L, EstadoCivil.Casado, "juancarlosramirez@gmail.com",usuarioMedico, sectorMedico,"123456789", List.of(especialidad));
 
         Medico medico2 = new Medico("Esteban","Blanco", LocalDate.of(1980,10,5),"Lamadrid 666",12498532,4231248, 345698754, EstadoCivil.Soltero, "blancoesteban@gmail.com",usuarioMedico2, sectorEmergencias,"J4C83N45", List.of(especialidad1));
 
@@ -463,11 +480,5 @@ public class Main {
 //        medico4.atenderPaciente(paciente9,box8,"Contucion cerebral por golpe");
 //        medico.atenderPaciente(paciente10,box11,"Coma Alcholico");
 
-
-
-
-
-
-        //HICE CAGADA
     }
 }

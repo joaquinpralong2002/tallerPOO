@@ -31,6 +31,12 @@ public class TriageDAO implements GenericoDAO<Triage> {
         return triages;
     }
 
+    /**
+     * Obtiene una lista de triages por su color.
+     *
+     * @param color El color de triage por el cual se desea filtrar.
+     * @return Una lista de triages que tienen el color especificado.
+     */
     public List<Triage> obtenerPorColor(ColorTriage color){
         Session session = sessionFactory.openSession();
         String query = "SELECT triage FROM Triage triage WHERE triage.color :color";

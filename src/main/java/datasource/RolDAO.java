@@ -32,6 +32,12 @@ public class RolDAO implements GenericoDAO<Rol> {
         return roles;
     }
 
+    /**
+     * Obtiene un rol por su nombre.
+     *
+     * @param nombre El nombre del rol que se desea buscar.
+     * @return El rol que tiene el nombre especificado o null si no se encuentra.
+     */
     public Rol obtenerPorNombre(String nombre){
         Session session = sessionFactory.openSession();
         String query = "SELECT rol FROM Rol rol WHERE rol.nombre = :nombre";

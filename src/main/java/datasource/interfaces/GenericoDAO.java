@@ -8,10 +8,7 @@ import util.GlobalSessionFactory;
 import java.util.List;
 
 public interface GenericoDAO<T> {
-    /*-ESTA INTERFAZ, GENERA TODOS LOS METODOS BASICOS DE LOS DAO
-    AGREGAR, OBTENER, OBTENER TODOS, ACTUALIZAR y BORRAR.
-    -LUEGO IMPLEMENTAR EN LAS CLASES CORRESPONDIENTE A CADA DAO
-    -SE SOBREESCRIBEN LOS METODOS OBTENER Y OBTENERTODOS*/
+
 
     default void agregar(T entity){
         SessionFactory sessionFactory = GlobalSessionFactory.getSessionFactory();

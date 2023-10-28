@@ -44,6 +44,12 @@ public class PacienteDAO implements GenericoDAO<Paciente> {
         return paciente;
     }
 
+    /**
+     * Obtiene un paciente por su número de DNI.
+     *
+     * @param dni El número de DNI del paciente que se desea buscar.
+     * @return El paciente cuyo número de DNI coincide con el valor especificado, o null si no se encuentra ninguno.
+     */
     public Paciente obtenerPorDni(String dni) {
         Session session = sessionFactory.openSession();
         String query = "SELECT paciente FROM Paciente paciente WHERE paciente.DNI = :dni";
@@ -53,6 +59,7 @@ public class PacienteDAO implements GenericoDAO<Paciente> {
         session.close();
         return paciente;
     }
+
 
     public List<Paciente> obtenerPorApellido(String apellido) {
         Session session = sessionFactory.openSession();

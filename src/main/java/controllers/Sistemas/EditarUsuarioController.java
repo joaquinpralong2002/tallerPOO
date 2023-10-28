@@ -7,6 +7,8 @@ import datasource.UsuarioDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import lombok.Getter;
+import lombok.Setter;
 import model.Enfermero;
 import model.Enum.Roles.RolesEnfermeros;
 import model.Enum.Roles.RolesFuncionarios;
@@ -130,8 +132,12 @@ public class EditarUsuarioController {
     private String password;
     private String passwordConfirm;
     UsuarioDAO usuarioDAO = new UsuarioDAO();
-    private Usuario usuario = SingletonUsuario.getInstance().getUsuario();
+
+    @Getter
+    @Setter
+    private Usuario usuario;
     List<Rol> rolesNuevos = new ArrayList<Rol>();
+
     private FuncionarioProController controllerPrincipal;
 
     /**
@@ -142,22 +148,20 @@ public class EditarUsuarioController {
      * entre esta vista y el controlador principal para coordinar la funcionalidad de la aplicación.
      */
     @FXML
-    public void initialize(){
+    public void initialize() {
         controllerPrincipal = FuncionarioProController.getControladorPrimario();
+        usuario = controllerPrincipal.getUsuario();
+        IniciarVentana();
     }
 
     /**
      * Inicia la vista de edición del usuario con los datos del usuario actual.
      *
-     * Este método se utiliza para iniciar la vista de edición del usuario con los datos del usuario
-     * actualmente seleccionado. Obtiene el usuario actual desde una instancia Singleton y luego llama
-     * al método "IniciarVentana()" para mostrar la información del usuario en la vista de edición.
+     * Este método se utiliza para inicializar la vista de edición del usuario con los datos del usuario
+     * actualmente seleccionado. Configura los componentes de la vista, como etiquetas de nombre, apellido,
+     * DNI, sector, roles y el nombre de usuario, con la información del usuario y su función. También establece
+     * la visibilidad de ciertos elementos de acuerdo a la función del usuario.
      */
-    public void iniciarUsuario(){
-        usuario = SingletonUsuario.getInstance().getUsuario();
-        IniciarVentana();
-    }
-
     private void IniciarVentana() {
        Funcionario funcionario = usuario.getFuncionario();
 
@@ -184,7 +188,20 @@ public class EditarUsuarioController {
         this.txtNombUsu.setText(usuario.getNombreUsuario());
     }
 
-
+    /**
+     * Establece la visibilidad de componentes en función del tipo de personal.
+     *
+     * Este método se utiliza para controlar la visibilidad de componentes en la vista de edición del usuario
+     * según el tipo de personal al que pertenece. Permite mostrar u ocultar ciertos elementos de la vista,
+     * como paneles y etiquetas, en función de la función del usuario.
+     *
+     * @param bol1      Indica si se debe mostrar el panel de Funcionario Administrativo.
+     * @param bol2      Indica si se debe mostrar el panel de Administrador de Sistemas.
+     * @param bol3      Indica si se debe mostrar el panel de Médico.
+     * @param bol4      Indica si se debe mostrar el panel de Enfermero.
+     * @param bol5      Indica si se debe mostrar la etiqueta de tipo de personal.
+     * @param personal  El nombre del tipo de personal a mostrar en la etiqueta.
+     */
     public void SetearVisibilidadRoles(boolean bol1, boolean bol2, boolean bol3, boolean bol4, boolean bol5, String personal){
         this.scpaneFuncionario.setVisible(bol1);
         this.scpaneFuncionario2.setVisible(bol2);
@@ -194,6 +211,13 @@ public class EditarUsuarioController {
         this.lbTipoPersonal.setText(personal);
     }
 
+    /**
+     * Establece el contenido de la etiqueta de roles del usuario.
+     *
+     * Este método se utiliza para configurar el contenido de la etiqueta que muestra los roles del usuario.
+     * Obtiene la lista de roles del usuario y crea una cadena que los enumera, separados por comas, para mostrar
+     * en la etiqueta.
+     */
     public void SetearLebelRoles(){
         String roles = "";
         for (int x=0; x < usuario.getRoles().size(); x++){
@@ -206,6 +230,16 @@ public class EditarUsuarioController {
         this.lbRoles.setText(roles);
     }
 
+    /**
+     * Realiza la edición de un usuario con los cambios especificados.
+     *
+     * Este método se utiliza para editar un usuario con los cambios especificados en la vista de edición. Primero,
+     * obtiene los valores ingresados para el nombre de usuario y las contraseñas, y realiza comprobaciones de los
+     * campos y roles. Luego, si se confirma la edición, actualiza el usuario en la base de datos a través de la
+     * clase UsuarioDAO. Muestra una notificación de éxito después de la edición.
+     *
+     * @param actionEvent El evento que desencadenó la edición del usuario.
+     */
     public void Editar(ActionEvent actionEvent) {
         nombreUsu = this.txtNombUsu.getText();
         password = this.txtPassw.getText();
@@ -214,7 +248,7 @@ public class EditarUsuarioController {
         try{
             GuardarRoles();
             ComprobarCampos();
-
+            ValidacionUsuario();
             if(!nombreUsu.equals(usuario.getNombreUsuario())){
                 usuario.setNombreUsuario(nombreUsu);
             }
@@ -233,7 +267,7 @@ public class EditarUsuarioController {
                 alert.setTitle("Información");
                 alert.setContentText("Usuario actualizado exitosamente");
                 alert.show();
-                //EMA cuando confirma el cambio debe volver a la ventana de Sistemas
+                controllerPrincipal.cargarEscena("/views/SistemasViews/Sistemas.fxml");
             }
 
 
@@ -246,6 +280,25 @@ public class EditarUsuarioController {
         }
     }
 
+    private void ValidacionUsuario() throws Exception {
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        Usuario usuario = usuarioDAO.obtenerUsuarioPorNombre(txtNombUsu.getText());
+
+        if (usuario != null){
+            throw new Exception("Este nombre de usuario no esta disponible, vuelva a ingresar otro nombre");
+        }
+    }
+
+    /**
+     * Realiza comprobaciones de los campos de nombre de usuario y contraseñas.
+     *
+     * Este método se utiliza para comprobar los campos de nombre de usuario y contraseñas en la vista de edición.
+     * Verifica si el nombre de usuario, la contraseña y la confirmación de contraseña están vacíos, y si la
+     * confirmación de contraseña coincide con la contraseña ingresada. Si se encuentran problemas en alguno de
+     * estos campos, se lanza una excepción con un mensaje de error.
+     *
+     * @throws Exception Si se encuentran problemas en los campos, se lanza una excepción con un mensaje de error.
+     */
     private void ComprobarCampos() throws Exception {
         String patron = "^[A-Za-z0-9 ]+$";
         String espacioBlanco = "\\s.*";
@@ -264,6 +317,13 @@ public class EditarUsuarioController {
         }
     }
 
+    /**
+     * Guarda los roles seleccionados por el usuario.
+     *
+     * Este método se utiliza para guardar los roles seleccionados por el usuario en la vista de edición. Verifica
+     * qué roles han sido marcados a través de los CheckBox y obtiene los objetos de rol correspondientes a partir
+     * de una instancia de RolDAO. Los roles seleccionados se almacenan en la lista de rolesNuevos.
+     */
     public void GuardarRoles(){
         RolDAO rolDAO = new RolDAO();
         //ROLES FUNCIONARIO ADMINISTRATIVO

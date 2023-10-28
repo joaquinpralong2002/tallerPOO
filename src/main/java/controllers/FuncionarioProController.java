@@ -14,10 +14,15 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import lombok.Getter;
+import lombok.Setter;
 import model.FuncionarioAdministrativo;
 import model.Login.AdministradorSistemas;
+import model.Login.Usuario;
+import model.Paciente;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -28,11 +33,19 @@ public class FuncionarioProController implements Initializable {
     //Declaraciones
     @Getter
     private static FuncionarioProController controladorPrimario;
+
     @Getter
     private FuncionarioAdministrativo funcionarioAdministrativo;
 
-    @Getter
     private AdministradorSistemas administradorSistemas;
+
+    @Getter
+    @Setter
+    private Paciente paciente;
+
+    @Getter
+    @Setter
+    private Usuario usuario;
 
     private Stage stage;
     private Scene scene;
@@ -66,11 +79,6 @@ public class FuncionarioProController implements Initializable {
         bttnNomina.setVisible(false);
 
         cargarEscena("/views/FuncionarioViews/RegistroEntrada.fxml");
-
-        System.out.println(bttmRegistroEntrada.getBoundsInParent());
-        System.out.println(bttmBuscarPaciente.getBoundsInParent());
-        System.out.println(bttmEstadistica.getBoundsInParent());
-        System.out.println(bttnNomina.getBoundsInParent());
     }
 
 
@@ -149,7 +157,13 @@ public class FuncionarioProController implements Initializable {
     public void cargarEscena(String fxmlResource) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlResource));
+
+            // Verificar si el controlador secundario tiene un método setControladorPrincipal
+            // y, si es así, asignar la referencia al controlador principal
+
+
             Node escenaNode = loader.load();
+
             paneTrasero.getChildren().clear();
             paneTrasero.getChildren().add(escenaNode);
         } catch (IOException e) {
@@ -164,7 +178,6 @@ public class FuncionarioProController implements Initializable {
      * @param funcionario El objeto FuncionarioAdministrativo que se va a almacenar.
      */
     public void recibirDatos(FuncionarioAdministrativo funcionario){
-
         funcionarioAdministrativo = funcionario;
     }
 
@@ -186,7 +199,6 @@ public class FuncionarioProController implements Initializable {
         bttmRegistroEntrada.setLayoutY(82);
         bttnNomina.setLayoutY(42);
         bttnNomina.setVisible(true);
-
     }
 
 }

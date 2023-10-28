@@ -41,19 +41,25 @@ public class BuscarPacienteController {
     private FuncionarioProController controllerPrincipal;
 
     /**
-     * Inicializa la interfaz de usuario cuando se carga la vista del controlador. Establece una referencia al controlador principal,
-     * y establece etiquetas de información en la interfaz con valores predeterminados "Sin Datos" para el nombre, apellido y números de contacto.
+     * Inicializa la funcionalidad del controlador.
+     * Este método se llama automáticamente cuando se inicializa el controlador y se conecta a su vista correspondiente.
+     * Realiza las siguientes tareas:
+     * 1. Obtiene una referencia al controlador principal (FuncionarioProController) y al Funcionario Administrativo asociado.
+     * 2. Comprueba si se ha proporcionado un paciente desde el controlador principal.
+     *    - Si se proporciona un paciente, lo asigna a la variable de clase "paciente" y realiza la búsqueda del paciente.
+     *    - Si no se proporciona un paciente, la variable "paciente" se mantiene como nula.
+     * 3. Limpia la referencia al paciente en el controlador principal para evitar su uso repetido.
      */
     @FXML
     public void initialize(){
         controllerPrincipal = FuncionarioProController.getControladorPrimario();
-        funcionarioAdministrativoIniciado = FuncionarioProController.getControladorPrimario().getFuncionarioAdministrativo();
+        funcionarioAdministrativoIniciado = controllerPrincipal.getFuncionarioAdministrativo();
+        if(controllerPrincipal.getPaciente() != null){
+            paciente = controllerPrincipal.getPaciente();
+            BuscarPaciente();
+            controllerPrincipal.setPaciente(null);
+        }
 
-        this.lbNombre.setText("Sin Datos");
-        this.lbApellido.setText("Sin Datos");
-        this.lbTelFijo.setText("Sin Datos");
-        this.lbTelCel.setText("Sin Datos");
-        this.lbTelCont.setText("Sin Datos");
     }
 
     /**
@@ -74,6 +80,11 @@ public class BuscarPacienteController {
                 alert.setHeaderText("Paciente no encontrado");
                 alert.setContentText("Revise los datos ingresados, y vuelva a llenar el campo");
                 alert.show();
+                this.lbNombre.setText("Sin Datos");
+                this.lbApellido.setText("Sin Datos");
+                this.lbTelFijo.setText("Sin Datos");
+                this.lbTelCel.setText("Sin Datos");
+                this.lbTelCont.setText("Sin Datos");
             }else{
                 SetearLabels(this.lbNombre, paciente.getNombre());
                 SetearLabels(this.lbApellido, paciente.getApellido());
@@ -90,6 +101,21 @@ public class BuscarPacienteController {
             alert.show();
         }
 
+    }
+
+    /**
+     * Busca y muestra la información del paciente en la vista.
+     * Este método recupera los datos del paciente proporcionado y los muestra en los campos correspondientes de la vista.
+     * Los datos incluyen el DNI, nombre, apellido, teléfono fijo, teléfono celular y teléfono de contacto del paciente.
+     */
+    public void BuscarPaciente(){
+        this.txtDni.setText(String.valueOf(paciente.getDNI()));
+
+        SetearLabels(this.lbNombre, paciente.getNombre());
+        SetearLabels(this.lbApellido, paciente.getApellido());
+        SetearLabels(this.lbTelFijo,String.valueOf(paciente.getTelefonoFijo()));
+        SetearLabels(this.lbTelCel, String.valueOf(paciente.getTelefonoCelular()));
+        SetearLabels(this.lbTelCont, String.valueOf(paciente.getPersonaContacto()));
     }
 
     /**
@@ -138,13 +164,12 @@ public class BuscarPacienteController {
                 alert.setHeaderText("Registro Creado Exitosamente");
                 alert.show();
                 funcionarioAdministrativoIniciado.RealizarRegistroEntrada(paciente,this.txtMotivo.getText());
-            }else{
-                if (txtMotivo.getText().isEmpty()){
+            }else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
                 alert.setHeaderText("Datos Incompletos");
                 alert.setContentText("Debe escribir el motivo de consulta");
-                alert.show();}
+                alert.show();
             }
 
         }
@@ -161,4 +186,8 @@ public class BuscarPacienteController {
         controllerPrincipal.cargarEscena("/views/FuncionarioViews/RegistroEntrada.fxml");
     }
 
+    public void recibirDatos(List<Rol> roles, Usuario user, FuncionarioAdministrativo funcionarioAdministrativo) {
+        this.rolesUsuario = roles;
+        this.usuarioIniciado = user;
+    }
 }

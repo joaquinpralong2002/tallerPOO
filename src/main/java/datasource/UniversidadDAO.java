@@ -15,7 +15,6 @@ public class UniversidadDAO implements GenericoDAO<Universidad> {
         this.sessionFactory = GlobalSessionFactory.getSessionFactory();
     }
 
-    //************** BASICOS DE UNIVERSIDAD*******************
     @Override
     public Universidad obtener(Long id) {
         Session session = sessionFactory.openSession();
@@ -32,7 +31,6 @@ public class UniversidadDAO implements GenericoDAO<Universidad> {
         session.close();
         return universidad;
     }
-    //**************************************************************************
 
     public Universidad obtenerUniversidadPorNombre(String nombre){
         Session session = sessionFactory.openSession();
@@ -43,8 +41,5 @@ public class UniversidadDAO implements GenericoDAO<Universidad> {
         session.close();
         return universidad;
     }
-
-
-
 }
 

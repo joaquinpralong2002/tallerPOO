@@ -36,6 +36,7 @@ public class RegistroEntradaDAO implements GenericoDAO<RegistroEntrada> {
                 return registrosEntrada;
         }
 
+
         public List<RegistroEntrada> obtenerPorFecha(LocalDate fecha){
                 Session session = sessionFactory.openSession();
                 String query = "SELECT registroEntrada FROM RegistroEntrada registroEntrada WHERE registroEntrada.fecha = :fecha";

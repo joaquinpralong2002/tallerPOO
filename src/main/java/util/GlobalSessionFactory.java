@@ -14,7 +14,6 @@ import static java.lang.Boolean.TRUE;
 /**
  * Configuración de Hibernate
  */
-
 public class GlobalSessionFactory {
 
     @Getter
@@ -22,6 +21,7 @@ public class GlobalSessionFactory {
     /**
      * Inicializa la SessionFactory global de Hibernate.
      */
+    //public void InitGlobalSessionFactory(String url, String nombreUsuario, String contrasenia, String driver){
     public void InitGlobalSessionFactory(){
         sessionFactory = new Configuration()
                 //Clases mapeadas
@@ -46,11 +46,14 @@ public class GlobalSessionFactory {
                 //url
                 .setProperty(AvailableSettings.URL, "jdbc:mysql://localhost:3306/tallerdb")
                 //.setProperty(AvailableSettings.URL, "jdbc:mysql://root:jqoflvUUll8Tx8j5FMGb@containers-us-west-154.railway.app:7795/railway")
+                //.setProperty(AvailableSettings.URL, url)
                 // Credenciales
                 .setProperty(AvailableSettings.USER, "usuario")
                 //.setProperty(AvailableSettings.USER, "root")
-                //.setProperty(AvailableSettings.PASS, "jqoflvUUll8Tx8j5FMGb")
+                //.setProperty(AvailableSettings.USER, nombreUsuario)
                 .setProperty(AvailableSettings.PASS, "basededatostallerpoo123")
+                //.setProperty(AvailableSettings.PASS, "jqoflvUUll8Tx8j5FMGb")
+                //.setProperty(AvailableSettings.PASS, contrasenia)
                 .setProperty(AvailableSettings.DIALECT, "org.hibernate.dialect.MySQLDialect")
                 .setProperty(AvailableSettings.DRIVER, "com.mysql.cj.jdbc.Driver")
                 // Automatic schema export
@@ -63,5 +66,4 @@ public class GlobalSessionFactory {
                 // Creación de SessionFactory
                 .buildSessionFactory();
     }
-
 }

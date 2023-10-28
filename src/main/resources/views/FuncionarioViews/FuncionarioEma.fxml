@@ -20,7 +20,7 @@
                <center>
                   <ImageView fitHeight="126.0" fitWidth="118.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                      <image>
-                        <Image url="@../../images/only-logo%20.jpg" />
+                        <Image url="@../../images/only-logo.jpg" />
                      </image></ImageView>
                </center>
                <bottom>

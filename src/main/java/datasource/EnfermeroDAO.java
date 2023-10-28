@@ -22,15 +22,6 @@ public class EnfermeroDAO implements  GenericoDAO<Enfermero>{
         return enfermero;
     }
 
-    public Enfermero obtener(String nombre, String apellido){
-        Session session = sessionFactory.openSession();
-        String query = "FROM Enfermero e WHERE e.nombre = :nombreParam AND e.apellido = :apellidoParam";
-        Enfermero enfermero = session.createQuery(query, Enfermero.class).setParameter("nombreParam",nombre)
-                .setParameter("apellidoParam",apellido).getSingleResultOrNull();
-        session.close();
-        return enfermero;
-    }
-
     @Override
     public List<Enfermero> obtenerTodos(){
         Session session = sessionFactory.openSession();
@@ -40,6 +31,30 @@ public class EnfermeroDAO implements  GenericoDAO<Enfermero>{
         return enfermeros;
     }
 
+    /**
+     * Obtiene un objeto de tipo Enfermero basado en su nombre y apellido.
+     *
+     * @param nombre    El nombre del enfermero a buscar.
+     * @param apellido  El apellido del enfermero a buscar.
+     * @return          Un objeto Enfermero que coincide con el nombre y apellido proporcionados,
+     *                  o null si no se encuentra ninguna coincidencia.
+     */
+    public Enfermero obtener(String nombre, String apellido){
+        Session session = sessionFactory.openSession();
+        String query = "FROM Enfermero e WHERE e.nombre = :nombreParam AND e.apellido = :apellidoParam";
+        Enfermero enfermero = session.createQuery(query, Enfermero.class).setParameter("nombreParam",nombre)
+                .setParameter("apellidoParam",apellido).getSingleResultOrNull();
+        session.close();
+        return enfermero;
+    }
+
+    /**
+     * Obtiene una lista de objetos de tipo Triage donde el color de triaje recomendado es diferente
+     * al color de triaje final y el ID del enfermero coincide.
+     *
+     * @param id El ID del enfermero para filtrar los triajes.
+     * @return Una lista de triajes que cumplen con las condiciones especificadas.
+     */
     public List<Triage> TriagesCambiados(Long id){
         Session session = sessionFactory.openSession();
         String query = "SELECT triage FROM Triage triage WHERE triage.colorTriageRecomendado != colorTriageFinal AND triage.enfermero.id = :id";

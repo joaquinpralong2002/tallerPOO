@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDate;
+import java.util.Optional;
 import java.util.Set;
 
 public class CrearUsuarioController {
@@ -37,7 +38,7 @@ public class CrearUsuarioController {
     public TextField txtCorreo;
     public TextField txtTelFijo;
     public TextField txtTelCelular;
-    public ComboBox cboxEstadoCivil;
+    public ComboBox<EstadoCivil> cboxEstadoCivil;
     public ComboBox cboxTipoPersonal;
     public ComboBox cboxSector;
     //COSAS DE LA ESPECIALIDAD DEL MEDICO
@@ -118,6 +119,8 @@ public class CrearUsuarioController {
 
     private FuncionarioProController controllerPrincipal;
 
+    private boolean pacienteAPersonal;
+
     /**
      * Inicializa la vista y configura las opciones iniciales para la creación de usuarios.
      * Carga valores en las listas desplegables, oculta secciones específicas y establece escuchadores de cambios en el tipo de personal.
@@ -125,6 +128,8 @@ public class CrearUsuarioController {
     @FXML
     public void initialize(){
         controllerPrincipal = FuncionarioProController.getControladorPrimario();
+        pacienteAPersonal = false;
+
         this.cboxEstadoCivil.getItems().addAll(EstadoCivil.values());
         this.cboxTipoPersonal.getItems().addAll(List.of("Funcionario Administrativo","Administrador de Sistemas","Medico","Enfermero"));
         cargarSectores();
@@ -224,6 +229,7 @@ public class CrearUsuarioController {
         correo = this.txtCorreo.getText();
         telefonoFijo = this.txtTelFijo.getText();
         telefonoCelular = this.txtTelCelular.getText();
+
         sector = sectorDAO.obtenerPorNombre(this.cboxSector.getValue().toString());
 
         nombreUsu = this.txtNombUsu.getText();
@@ -236,9 +242,14 @@ public class CrearUsuarioController {
         try{
             comprobarCampos();
 
-            Usuario usuario = new Usuario(nombreUsu,password,roles);
-            usuarioDAO.agregar(usuario);
+            if(!pacienteAPersonal) {
+                if (comprobarExistencia(txtDni.getText())) {
+                    return;
+                }
+            }
+            ValidacionUsuario();
 
+            Usuario usuario = new Usuario(nombreUsu,password,roles);
             switch (tipo){
                 case "Funcionario Administrativo":
                     FuncionarioAdministrativoDAO funcionarioAdministrativoDAO = new FuncionarioAdministrativoDAO();
@@ -265,7 +276,12 @@ public class CrearUsuarioController {
                     if(!matricula.matches("^[^s]+$")){
                         throw new Exception("La matricula no puede estar vacia");
                     }
+
                     MedicoDAO medicoDAO = new MedicoDAO();
+                    if (medicoDAO.obtener(txtNombreFun.getText(),txtApellido.getText()) != null){
+                        throw  new Exception("Ya existe un medico con esta matricula, revise los datos ingresados");
+                    }
+
                     UniversidadDAO universidadDAO = new UniversidadDAO();
                     EspecialidadDAO especialidadDAO = new EspecialidadDAO();
 
@@ -296,16 +312,16 @@ public class CrearUsuarioController {
 
                     break;
             }
-            usuarioDAO.actualizar(usuario);
+            usuarioDAO.agregar(usuario);
+            //usuarioDAO.actualizar(usuario);
             sectorDAO.actualizar(sector);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Información");
             alert.setHeaderText("Personal creado y añadido exitosamente");
             alert.show();
-            LimpiarCheckBoxs();
+            LimpiarVentana();
             roles.clear();
-            Volver();
-            //EMA cuando lo guarda debe volver a la ventana de Sistemas
+            controllerPrincipal.cargarEscena("/views/SistemasViews/Sistemas.fxml");
 
         }catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -314,6 +330,73 @@ public class CrearUsuarioController {
             alert.setContentText(e.getMessage());
             alert.show();
         }
+    }
+
+    private void ValidacionUsuario() throws Exception {
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        Usuario usuario = usuarioDAO.obtenerUsuarioPorNombre(txtNombUsu.getText());
+
+        if (usuario != null){
+            throw new Exception("Este nombre de usuario no esta disponible, vuelva a ingresar otro nombre");
+        }
+    }
+
+    private boolean comprobarExistencia(String dni) {
+        PacienteDAO pacienteDAO = new PacienteDAO();
+        FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
+
+        Funcionario f = funcionarioDAO.obtenerPorDni(dni);
+        if(f != null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Funcionario ya registrado");
+            alert.setContentText("Un Funcionario con el DNI que ah ingresado ya esta registrado, verifique el dato ingresado");
+            alert.show();
+            return true; // Indica que el paciente ya existe
+        }
+
+        Paciente p = pacienteDAO.obtenerPorDni(dni);
+        if(p != null){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Advertencia");
+            alert.setHeaderText("DNI encontrado como pasiente del hospital");
+            alert.setContentText("¿Quiere ingresar este paciente como un personal?");
+            alert.setAlertType(Alert.AlertType.CONFIRMATION);
+            Optional<ButtonType> resultado = alert.showAndWait();
+
+            if (resultado.get() == ButtonType.OK){
+                cargarpacienteAPersonal(p);
+                pacienteAPersonal = true;
+            }else{
+                txtDni.clear();
+            }
+            return true;
+        }
+        return false;
+    }
+
+    private void cargarpacienteAPersonal(Paciente paciente) {
+        txtDni.setText(String.valueOf(paciente.getDNI()));
+        txtDni.setEditable(false);
+
+        txtNombreFun.setText(paciente.getNombre());
+        txtNombreFun.setEditable(false);
+
+        txtApellido.setText(paciente.getApellido());
+        txtApellido.setEditable(false);
+
+        txtDomicilio.setText(paciente.getDomicilio());
+        txtDomicilio.setEditable(false);
+
+        dateFechaNaci.setValue(paciente.getFechaNacimiento());
+        dateFechaNaci.setDisable(false);
+        dateFechaNaci.getEditor().setDisable(false);
+        dateFechaNaci.getEditor().setEditable(false);
+
+        cboxEstadoCivil.setValue(paciente.getEstadoCivil());
+        cboxEstadoCivil.setEditable(false);
+        cboxEstadoCivil.setDisable(false);
+
     }
 
     /**
@@ -361,6 +444,40 @@ public class CrearUsuarioController {
         ckboxAtenPrim.setSelected(false);
         ckboxSaludMental.setSelected(false);
         ckboxOncologia.setSelected(false);
+    }
+
+    /**
+     * Metodo encargado de restablecer todos los componentes de la ventana
+     */
+    public void LimpiarVentana(){
+        txtNombreFun.clear();
+        txtNombreFun.setEditable(true);
+        txtApellido.clear();
+        txtApellido.setEditable(true);
+        txtDni.clear();
+        txtDni.setEditable(true);
+        txtCorreo.clear();
+        txtDomicilio.clear();
+        txtDomicilio.setEditable(true);
+        dateFechaNaci.setValue(null);
+        dateFechaNaci.setDisable(true);
+        dateFechaNaci.getEditor().setDisable(true);
+        dateFechaNaci.getEditor().setEditable(true);
+        txtTelFijo.clear();
+        txtTelCelular.clear();
+        cboxEstadoCivil.setValue(null);
+        cboxEstadoCivil.setDisable(true);
+        cboxEstadoCivil.setEditable(true);
+        cboxSector.setValue(null);
+        cboxTipoPersonal.setValue(null);
+        txtEspecialidad.clear();
+        dateFechaObt.setValue(null);
+        txtUniversidad.clear();
+        txtMatricula.clear();
+        txtNombUsu.clear();
+        txtPass.clear();
+        txtConfirmPass.clear();
+        LimpiarCheckBoxs();
     }
 
     /**

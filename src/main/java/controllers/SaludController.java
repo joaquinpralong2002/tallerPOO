@@ -72,7 +72,12 @@ public class SaludController {
     private Button cerrarSesionButton;
 
 
-
+    /**
+     * Cambia a la escena de inicio de sesión.
+     *
+     * @param event El evento que desencadenó el cambio de escena.
+     * @throws IOException Si ocurre un error al cargar la escena de inicio de sesión.
+     */
     private void SwitchToLoginScene(ActionEvent event) throws IOException {
         //Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/Login.fxml")));
         Parent root = FXMLLoader.load(getClass().getResource("/views/Login.fxml"));
@@ -87,6 +92,11 @@ public class SaludController {
         controladorPrimario = SingletonControladorPrimarioSalud.getInstance().getController();
     }
 
+    /**
+     * Carga una nueva escena desde un archivo FXML en el panel trasero del controlador actual.
+     *
+     * @param fxmlResource La ubicación del recurso FXML que define la nueva escena.
+     */
     public void cargarEscena(String fxmlResource) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlResource));
@@ -103,11 +113,13 @@ public class SaludController {
         }
     }
 
+
     /**
-     * Carga una nueva escena en el panel trasero de la vista principal, reemplazando la escena actual.
+     * Carga una nueva escena desde un archivo FXML en el panel trasero del controlador actual.
      *
-     * @param fxmlResource de tipo String, hace referencia a la ruta al archivo FXML de la escena que se va a cargar.
-     * @param restaurarDatosTriage de tipo boolean sirve para idicar de el estado en el controlador de TriageController
+     * @param fxmlResource        La ubicación del recurso FXML que define la nueva escena.
+     * @param restaurarDatosTriage Un indicador booleano que determina si se deben restaurar datos relacionados con el triage.
+     *                            Si es verdadero, se intentará restaurar el estado de triage; de lo contrario, se restaurará el estado de triage de enfermero.
      */
     public void cargarEscena(String fxmlResource, boolean restaurarDatosTriage) {
         try {
@@ -131,6 +143,11 @@ public class SaludController {
         }
     }
 
+    /**
+     * Inicia los datos del controlador Medico y carga la escena principal del médico.
+     *
+     * @throws IOException Si ocurre un error durante la carga de la escena.
+     */
     public void iniciarDatosMedico() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/views/MedicoViews/Medico.fxml"));
@@ -140,6 +157,11 @@ public class SaludController {
         cargarEscena("/views/MedicoViews/Medico.fxml");
     }
 
+    /**
+     * Inicia los datos del controlador Enfermero y carga la escena principal del enfermero.
+     *
+     * @throws IOException Si ocurre un error durante la carga de la escena.
+     */
     public void iniciarDatosEnfermero() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/views/EnfermeroViews/Enfermero.fxml"));
@@ -149,16 +171,33 @@ public class SaludController {
         cargarEscena("/views/EnfermeroViews/Enfermero.fxml");
     }
 
+    /**
+     * Inicia la sesión, redirigiendo al usuario al panel correspondiente basado en su rol.
+     *
+     * @param event El evento que desencadenó esta acción.
+     * @throws IOException Si ocurre un error durante la carga de la escena.
+     */
     public void Inicio(javafx.event.ActionEvent event) throws IOException {
         if(SingletonMedico.getInstance().getMedico().getNombre() == null) iniciarDatosEnfermero();
         else iniciarDatosMedico();
     }
 
+    /**
+     * Abre la vista del historial clínico del paciente según el rol del usuario.
+     *
+     * @param event El evento que desencadenó esta acción.
+     */
     public void HistorialClinico(javafx.event.ActionEvent event) {
         if(SingletonMedico.getInstance().getMedico().getNombre() != null) cargarEscena("/views/MedicoViews/BuscarPacienteVisualizarRegistros.fxml");
         else cargarEscena("/views/EnfermeroViews/BuscarPacienteVisualizarRegistrosEnfermero.fxml");
     }
 
+    /**
+     * Cierra la sesión actual y muestra una confirmación al usuario.
+     *
+     * @param event El evento que desencadenó esta acción.
+     * @throws IOException Si ocurre un error durante la carga de la escena de inicio de sesión.
+     */
     public void CerrarSesion(javafx.event.ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Cerrar sesión");

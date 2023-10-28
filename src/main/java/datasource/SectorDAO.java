@@ -34,6 +34,12 @@ public class SectorDAO implements GenericoDAO<Sector> {
         return sectores;
     }
 
+    /**
+     * Obtiene un sector por su nombre.
+     *
+     * @param nombre El nombre del sector que se desea buscar.
+     * @return El sector que tiene el nombre especificado o null si no se encuentra.
+     */
     public Sector obtenerPorNombre(String nombre){
         Session session = sessionFactory.openSession();
         String query = "SELECT sector FROM Sector sector WHERE sector.nombre = :nombre";

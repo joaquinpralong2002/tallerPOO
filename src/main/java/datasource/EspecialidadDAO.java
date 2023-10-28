@@ -36,6 +36,13 @@ public class EspecialidadDAO implements GenericoDAO<Especialidad> {
     }
     //**************************************************************************
 
+    /**
+     * Obtiene una instancia de la clase Especialidad con el nombre y la fecha especificados.
+     *
+     * @param nombre El nombre de la especialidad que se desea buscar.
+     * @param fecha  La fecha asociada a la especialidad que se desea buscar.
+     * @return Una instancia de Especialidad que coincide con el nombre y la fecha proporcionados o null si no se encuentra ninguna coincidencia.
+     */
     public Especialidad obtenerEspecialidadNombreYFecha(String nombre, LocalDate fecha){
         Session session = sessionFactory.openSession();
         String query = "SELECT especialidad FROM Especialidad especialidad WHERE especialidad.fecha = :fecha AND especialidad.nombre = :nombre";

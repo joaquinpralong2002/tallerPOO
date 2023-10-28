@@ -89,7 +89,7 @@
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="lbNombre" text="Label">
+                              <Label fx:id="lbNombre" text="Sin datos...">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -106,7 +106,7 @@
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="lbApellido" text="Label">
+                              <Label fx:id="lbApellido" text="Sin datos...">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -123,7 +123,7 @@
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="lbTelFijo" text="Label">
+                              <Label fx:id="lbTelFijo" text="Sin datos...">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -140,7 +140,7 @@
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="lbTelCel" text="Label">
+                              <Label fx:id="lbTelCel" text="Sin datos...">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -157,7 +157,7 @@
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="lbTelCont" text="Label">
+                              <Label fx:id="lbTelCont" text="Sin datos...">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
