@@ -1,5 +1,6 @@
 package controllers.Enfermero.TriageEnfermero;
 
+import controllers.Singletons.SingletonControladorPrimarioSalud;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,6 +33,7 @@ public class ModificarTriageEnfermeroController {
     public void initialize() {
         nuevoColorTriageComboBox.getItems().addAll(ColorTriage.Rojo, ColorTriage.Naranja, ColorTriage.Amarillo,
                 ColorTriage.Verde, ColorTriage.Azul);
+        this.datosTriageEnfermero = SingletonControladorPrimarioSalud.getInstance().getController().getDatosTriageEnfermero();
     }
 
     /**

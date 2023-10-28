@@ -1,6 +1,8 @@
 package controllers;
 
 import controllers.Enfermero.EnfermeroController;
+import controllers.Enfermero.TriageEnfermero.DatosTriageEnfermero;
+import controllers.Enfermero.TriageEnfermero.TriageEnfermeroController;
 import controllers.Singletons.SingletonControladorPrimarioSalud;
 import controllers.Singletons.SingletonMedico;
 import controllers.Triage.DatosTriage;
@@ -49,6 +51,9 @@ public class SaludController {
     @Setter
     @Getter
     private DatosTriage datosTriage;
+    @Setter
+    @Getter
+    private DatosTriageEnfermero datosTriageEnfermero;
     private Enfermero enfermero;
     private Medico medico;
     @Setter
@@ -106,8 +111,13 @@ public class SaludController {
             // y, si es así, asignar la referencia al controlador principal
 
             Node escenaNode = loader.load();
-            TriageController triageController = loader.getController();
-            triageController.restaurarEstado();
+            if(restaurarDatosTriage) {
+                TriageController triageController = loader.getController();
+                triageController.restaurarEstado();
+            } else {
+                TriageEnfermeroController triageEnfermeroController = loader.getController();
+                triageEnfermeroController.restaurarEstado();
+            }
             paneTrasero.getChildren().clear();
             paneTrasero.getChildren().add(escenaNode);
         } catch (IOException e) {
@@ -134,12 +144,13 @@ public class SaludController {
     }
 
     public void Inicio(javafx.event.ActionEvent event) throws IOException {
-        if(SingletonMedico.getInstance().getMedico() == null) iniciarDatosEnfermero();
+        if(SingletonMedico.getInstance().getMedico().getNombre() == null) iniciarDatosEnfermero();
         else iniciarDatosMedico();
     }
 
     public void HistorialClinico(javafx.event.ActionEvent event) {
-        cargarEscena("/views/MedicoViews/BuscarPacienteVisualizarRegistros.fxml");
+        if(SingletonMedico.getInstance().getMedico() != null) cargarEscena("/views/MedicoViews/BuscarPacienteVisualizarRegistros.fxml");
+        else cargarEscena("/views/EnfermeroViews/BuscarPacienteVisualizarRegistrosEnfermero.fxml");
     }
 
     public void CerrarSesion(javafx.event.ActionEvent event) throws IOException {

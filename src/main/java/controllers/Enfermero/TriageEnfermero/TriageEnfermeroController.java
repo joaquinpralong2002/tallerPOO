@@ -2,6 +2,7 @@ package controllers.Enfermero.TriageEnfermero;
 
 import controllers.Enfermero.EnfermeroController;
 import controllers.MedicoController;
+import controllers.Singletons.SingletonControladorPrimarioSalud;
 import controllers.Singletons.SingletonEnfermero;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -76,6 +77,7 @@ public class TriageEnfermeroController {
         signoShockComboBox.getItems().addAll(SignoShock.values());
         vomitosComboBox.getItems().addAll(Vomitos.values());
         colorRecomendadoLabel.setText(ColorTriage.Ninguno.toString());
+        this.registroEntrada = SingletonControladorPrimarioSalud.getInstance().getController().getRegistroEntrada();
     }
 
     /**
@@ -157,18 +159,10 @@ public class TriageEnfermeroController {
      * el mensaje de error.
      */
     public void handleModificarColorButtonAction(ActionEvent event) throws Exception {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/views/EnfermeroViews/TriageEnfermero/ModificarTriageEnfermero.fxml"));
-        Parent root = loader.load();
-        ModificarTriageEnfermeroController controller = loader.getController();
-        System.out.println("enfermo en triage" + enfermero);
         if(this.colorTriageAsignado != ColorTriage.Ninguno){
-            controller.setDatosTriageEnfermero(this.datosTriageEnfermero);
+            SingletonControladorPrimarioSalud.getInstance().getController().setDatosTriageEnfermero(this.datosTriageEnfermero);
             // Cambia a la nueva escena
-            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+            SingletonControladorPrimarioSalud.getInstance().getController().cargarEscena("/views/EnfermeroViews/TriageEnfermero/ModificarTriageEnfermero.fxml");
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");

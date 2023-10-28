@@ -85,6 +85,7 @@ public class EnfermeroController {
      * - Verifica el valor de contieneTriage y si es false, oculta el botón bttmRealTriage, lo que significa que el botón "Triage" no se mostrará en la vista.
      */
     public void iniciarEnfermero(){
+        //Verifica que el enfermero tenga el rol que le permita realizar triages.
         enfermero = SingletonEnfermero.getInstance().getEnfermero();
         roles = SingletonEnfermero.getInstance().getRoles();
         boolean contieneTriage = false;
@@ -251,4 +252,7 @@ public class EnfermeroController {
         cmboxTriage.setValue(null);
     }
 
+    public void verHistorialClinico(){
+
+    }
 }
