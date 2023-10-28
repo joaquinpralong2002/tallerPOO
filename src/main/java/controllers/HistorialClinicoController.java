@@ -48,7 +48,7 @@ public class HistorialClinicoController {
     private TableColumn<LugarAtencion, String> lugarAtencionColumn;
     @FXML
     private Label resultadoDiagnosticoLabel;
-    private Paciente paciente;
+    private Paciente paciente = SingletonControladorPrimarioSalud.getInstance().getController().getPaciente();
     private ObservableList<DatosRegistro> datosTabla = FXCollections.observableArrayList();
     private Medico medico = SingletonMedico.getInstance().getMedico();
     private List<Rol> roles = SingletonMedico.getInstance().getRoles();

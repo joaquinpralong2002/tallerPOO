@@ -19,7 +19,12 @@ import javafx.stage.Stage;
 import lombok.Getter;
 import lombok.Setter;
 import model.Enfermero;
+import model.Enum.ColorTriage;
+import model.Enum.LugarAtencion;
 import model.Medico;
+import model.Paciente;
+import model.RegistroEntrada;
+import model.Triage;
 
 
 import java.io.IOException;
@@ -46,6 +51,9 @@ public class SaludController {
     private DatosTriage datosTriage;
     private Enfermero enfermero;
     private Medico medico;
+    @Setter
+    @Getter
+    private LugarAtencion lugarAtencion;
     private Stage stage;
     private Scene scene;
 

@@ -237,8 +237,8 @@ public class MedicoController {
         Long id = ((PacienteTableClass) tblPacientes.getSelectionModel().getSelectedItem()).getId();
         Paciente paciente = pacienteTableClass.obtenerPaciente(id);
 
-        controller.recibirDatos(paciente,paciente.getRegistrosEntradas().get(paciente.getRegistrosEntradas().size() - 1));
-
+        SingletonControladorPrimarioSalud.getInstance().getController().setPaciente(paciente);
+        SingletonControladorPrimarioSalud.getInstance().getController().setRegistroEntrada(paciente.getRegistrosEntradas().get(paciente.getRegistrosEntradas().size() - 1));
         if (paciente.getRegistrosEntradas().get(paciente.getRegistrosEntradas().size() - 1).isTriagiado()) {
             //Verifica el Color de triage del Paciente y lo envia a la siguiente escena.
             ColorTriage colorTriage = paciente.getRegistrosEntradas().get(paciente.getRegistrosEntradas().size() - 1).getTriage().getColorTriageFinal();
@@ -295,5 +295,6 @@ public class MedicoController {
             stage.show();
         }
     }
+
 }
 

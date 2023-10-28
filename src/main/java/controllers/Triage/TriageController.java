@@ -32,6 +32,7 @@ public class TriageController {
     private RegistroEntrada registroEntrada;
     private Medico medico = SingletonMedico.getInstance().getMedico();
     private List<Rol> roles = SingletonMedico.getInstance().getRoles();
+
     @Setter
     private DatosTriage datosTriage;
     @FXML
@@ -148,7 +149,7 @@ public class TriageController {
      */
     public void handleModificarColorButtonAction(ActionEvent event) throws Exception {
         if(this.colorTriageAsignado != ColorTriage.Ninguno){
-            controller.setDatosTriage(this.datosTriage);
+            SingletonControladorPrimarioSalud.getInstance().getController().setDatosTriage(this.datosTriage);
             // Cambia a la nueva escena
             SingletonControladorPrimarioSalud.getInstance().getController().cargarEscena("/views/MedicoViews/Triage/ModificarTriage.fxml");
         } else {

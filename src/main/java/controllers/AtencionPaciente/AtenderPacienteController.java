@@ -99,11 +99,7 @@ public class AtenderPacienteController {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            MedicoController medicoController = loader.getController();
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+            SingletonControladorPrimarioSalud.getInstance().getController().cargarEscena("/views/MedicoViews/Medico.fxml");
         }
     }
 
@@ -120,13 +116,5 @@ public class AtenderPacienteController {
         boxAtencion = boxAtencionDAO.obtenerDisponible(lugarAtencionSeleccionada);
     }
 
-
-
-    @FXML
-    public void recibirDatos(Paciente persona, ColorTriage colorTriage, RegistroEntrada registroEntrada){
-        this.persona = persona;
-        this.colorTriage = colorTriage;
-        this.registroEntrada = registroEntrada;
-    }
 
 }

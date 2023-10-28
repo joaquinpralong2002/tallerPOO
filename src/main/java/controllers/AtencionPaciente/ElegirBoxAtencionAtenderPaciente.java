@@ -50,6 +50,12 @@ public class ElegirBoxAtencionAtenderPaciente {
 
     @FXML
     public void initialize(){
+        this.paciente = SingletonControladorPrimarioSalud.getInstance().getController().getPaciente();
+        this.registroEntrada = SingletonControladorPrimarioSalud.getInstance().getController().getRegistroEntrada();
+        this.colorTriage = SingletonControladorPrimarioSalud.getInstance().getController().getColorTriage();
+        setBoxRecomendadoApp(this.colorTriage);
+
+
         BotonRedondoEmergencia.setToggleGroup(grupoDeBotones);
         BotonRedondoConsultorio.setToggleGroup(grupoDeBotones);
         BotonRedondoInternaciones.setToggleGroup(grupoDeBotones);
@@ -132,32 +138,6 @@ public class ElegirBoxAtencionAtenderPaciente {
         this.registroEntrada = registroEntrada;
     }
 
-    /**
-     * Maneja el evento de presionar el botón "Atrás" para volver a la pestaña anterior.
-     * Carga la vista anterior y cierra la pestaña actual si se confirma.
-     *
-     * @param event El evento de clic en el botón "Atrás".
-     * @throws Exception Si ocurre un error al cargar la vista anterior.
-     */
-    public void BotonAtras(ActionEvent event) throws Exception {
-        // Volver atras a Médico
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/views/MedicoViews/Medico.fxml"));
-        Parent root = loader.load();
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Ir atrás");
-        alert.setContentText("¿Estás seguro de que deseas volver a la pestaña anterior?");
-        Optional<ButtonType> resultado = alert.showAndWait();
-        MedicoController controller = loader.getController();
-
-        //Metodo para cerrar la pestaña de Medico
-        medicoStage.close();
-        if (resultado.isPresent() && resultado.get() == ButtonType.OK) {
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        }
+    public void BotonAtras(ActionEvent event) {
     }
-
 }
