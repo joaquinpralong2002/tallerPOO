@@ -90,8 +90,6 @@ public class TriageController {
      * @throws Exception Si ocurre un error al cargar la vista o cambiar la escena.
      */
     public void handleAtrasButtonAction(ActionEvent event) throws Exception {
-        // Obtiene la vista inicial
-        Parent root = FXMLLoader.load(getClass().getResource("/views/MedicoViews/Medico.fxml"));
         // Cambia a la escena
         SingletonControladorPrimarioSalud.getInstance().getController().cargarEscena("/views/MedicoViews/Medico.fxml");
     }
@@ -223,17 +221,6 @@ public class TriageController {
         }
     }
 
-    /**
-     * Establece los datos de triaje para su visualización y posible modificación en la interfaz.
-     * Luego, restaura el estado de la interfaz con estos datos, lo que implica la actualización
-     * de los campos y elementos visuales según los datos proporcionados.
-     *
-     * @param datosTriage Los datos de triaje que se deben establecer en la interfaz.
-     */
-    public void setDatosTriage(DatosTriage datosTriage){
-        this.datosTriage = datosTriage;
-        restaurarEstado();
-    }
 
     /**
      * Restaura el estado de la interfaz con los datos de triaje proporcionados.
@@ -242,6 +229,7 @@ public class TriageController {
      */
     public void restaurarEstado(){
         this.datosTriage = SingletonControladorPrimarioSalud.getInstance().getController().getDatosTriage();
+
         this.colorTriageAsignado = datosTriage.getColorTriageAsignado();
         this.registroEntrada = datosTriage.getRegistroEntrada();
         this.medico = datosTriage.getMedico();

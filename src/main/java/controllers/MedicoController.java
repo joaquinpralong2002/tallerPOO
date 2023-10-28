@@ -255,26 +255,6 @@ public class MedicoController {
     }
 
     /**
-     * Abre la ventana para visualizar el historial clínico de un paciente.
-     *
-     * @param event El evento que desencadena la apertura de la ventana.
-     * @throws IOException Si ocurre un error durante la apertura de la ventana.
-     */
-    public void verHistorialClinico(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/views/MedicoViews/BuscarPacienteVisualizarRegistros.fxml"));
-        Parent root = loader.load();
-        BuscarPacienteVisualizarRegistroController controller = loader.getController();
-
-
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-
-    /**
      * Cierra la sesión del médico y muestra una confirmación al usuario.
      *
      * @param event Evento que desencadena la acción.
@@ -295,6 +275,5 @@ public class MedicoController {
             stage.show();
         }
     }
-
 }
 
