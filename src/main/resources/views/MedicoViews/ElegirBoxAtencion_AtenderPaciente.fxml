@@ -6,38 +6,38 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AtencionPaciente.ElegirBoxAtencionAtenderPaciente">
+<AnchorPane prefHeight="768.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AtencionPaciente.ElegirBoxAtencionAtenderPaciente">
    <children>
-      <Button fx:id="IrAlBoxButton" layoutX="484.0" layoutY="350.0" mnemonicParsing="false" onAction="#elegirBoxAtencion" text="Ir al Box" />
-      <Button fx:id="IrAtrasButton" layoutX="35.0" layoutY="350.0" mnemonicParsing="false" onAction="#BotonAtras" text="Atras" />
-      <Label layoutX="133.0" layoutY="103.0" text="Eliga el Box de Atención Correspondiente">
+      <Button fx:id="IrAlBoxButton" layoutX="498.0" layoutY="384.0" mnemonicParsing="false" onAction="#elegirBoxAtencion" prefHeight="50.0" prefWidth="180.0" text="Ir al Box" />
+      <Button fx:id="IrAtrasButton" layoutX="35.0" layoutY="350.0" mnemonicParsing="false" onAction="#BotonAtras" text="Atras" visible="false" />
+      <Label layoutX="353.0" layoutY="241.0" text="Seleccione el box de atención correspondiente">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <RadioButton fx:id="BotonRedondoEmergencia" layoutX="394.0" layoutY="322.0" mnemonicParsing="false" onAction="#elegirBoxAtencion" style="-fx-text-alignment: left;" text="Emergencia">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </RadioButton>
+      <RadioButton fx:id="BotonRedondoConsultorio" layoutX="532.0" layoutY="322.0" mnemonicParsing="false" onAction="#elegirBoxAtencion" text="Consultorio">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </RadioButton>
+      <RadioButton fx:id="BotonRedondoInternaciones" layoutX="664.0" layoutY="322.0" mnemonicParsing="false" onAction="#elegirBoxAtencion" text="Internaciones">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </RadioButton>
+      <Label layoutX="430.0" layoutY="169.0" text="El programa recomienda: ">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <RadioButton fx:id="BotonRedondoEmergencia" layoutX="94.0" layoutY="232.0" mnemonicParsing="false" onAction="#elegirBoxAtencion" style="-fx-text-alignment: left;" text="Emergencia">
+      <Label fx:id="BoxRecomendadoApp" layoutX="650.0" layoutY="165.0" text="Label" textFill="#650909">
          <font>
-            <Font size="15.0" />
-         </font>
-      </RadioButton>
-      <RadioButton fx:id="BotonRedondoConsultorio" layoutX="248.0" layoutY="232.0" mnemonicParsing="false" onAction="#elegirBoxAtencion" text="Consultorio">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </RadioButton>
-      <RadioButton fx:id="BotonRedondoInternaciones" layoutX="398.0" layoutY="232.0" mnemonicParsing="false" onAction="#elegirBoxAtencion" text="Internaciones">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </RadioButton>
-      <Label layoutX="35.0" layoutY="28.0" text="El programa recomienda: ">
-         <font>
-            <Font size="13.0" />
-         </font>
-      </Label>
-      <Label fx:id="BoxRecomendadoApp" layoutX="198.0" layoutY="24.0" text="Label" textFill="#650909">
-         <font>
-            <Font size="18.0" />
+            <Font size="24.0" />
          </font></Label>
    </children>
 </AnchorPane>

@@ -77,11 +77,6 @@
                </children>
             </HBox>
             <Button fx:id="vaciarButton" layoutX="379.0" layoutY="208.0" mnemonicParsing="false" onAction="#borrarColorTriageSeleccionado" text="Vaciar" />
-            <Button fx:id="historialClinicoButton" layoutX="124.0" layoutY="470.0" mnemonicParsing="false" onAction="#verHistorialClinico" prefHeight="50.0" prefWidth="180.0" text="Ver historial clínico">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Button>
          </children>
       </Pane>
    </children>

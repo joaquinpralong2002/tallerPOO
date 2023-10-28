@@ -1,7 +1,10 @@
 package controllers;
 
 import controllers.Enfermero.EnfermeroController;
+import controllers.Singletons.SingletonControladorPrimarioSalud;
 import controllers.Singletons.SingletonMedico;
+import controllers.Triage.DatosTriage;
+import controllers.Triage.TriageController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +17,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import lombok.Getter;
+import lombok.Setter;
 import model.Enfermero;
 import model.Medico;
 
@@ -28,6 +32,18 @@ public class SaludController {
     @Getter
     private static SaludController controladorPrimario;
 
+    @Setter
+    @Getter
+    private Paciente paciente;
+    @Setter
+    @Getter
+    private RegistroEntrada registroEntrada;
+    @Setter
+    @Getter
+    private ColorTriage colorTriage;
+    @Setter
+    @Getter
+    private DatosTriage datosTriage;
     private Enfermero enfermero;
     private Medico medico;
     private Stage stage;
@@ -53,8 +69,9 @@ public class SaludController {
         stage.show();
     }
 
+    @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        controladorPrimario = this;
+        controladorPrimario = SingletonControladorPrimarioSalud.getInstance().getController();
     }
 
     public void cargarEscena(String fxmlResource) {
@@ -66,6 +83,23 @@ public class SaludController {
 
             Node escenaNode = loader.load();
 
+            paneTrasero.getChildren().clear();
+            paneTrasero.getChildren().add(escenaNode);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void cargarEscena(String fxmlResource, boolean restaurarDatosTriage) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlResource));
+
+            // Verificar si el controlador secundario tiene un método setControladorPrincipal
+            // y, si es así, asignar la referencia al controlador principal
+
+            Node escenaNode = loader.load();
+            TriageController triageController = loader.getController();
+            triageController.restaurarEstado();
             paneTrasero.getChildren().clear();
             paneTrasero.getChildren().add(escenaNode);
         } catch (IOException e) {

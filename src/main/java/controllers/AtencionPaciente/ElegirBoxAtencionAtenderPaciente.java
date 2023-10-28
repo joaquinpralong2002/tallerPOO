@@ -2,6 +2,7 @@ package controllers.AtencionPaciente;
 
 import controllers.AtencionPaciente.AtenderPacienteController;
 import controllers.MedicoController;
+import controllers.Singletons.SingletonControladorPrimarioSalud;
 import controllers.Singletons.SingletonMedico;
 import datasource.RegistroEntradaDAO;
 import javafx.collections.ObservableList;
@@ -69,35 +70,21 @@ public class ElegirBoxAtencionAtenderPaciente {
             IrAlBoxButton.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-                    try {
-                        // Carga la siguiente escena
-                        FXMLLoader loader = new FXMLLoader();
-                        loader.setLocation(getClass().getResource("/views/MedicoViews/AtenderPaciente.fxml"));
-                        Parent root = loader.load();
-                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                        alert.setTitle("Ir al Box");
-                        alert.setContentText("¿Está seguro de que desea asignar el Box seleccionado?");
-                        Optional<ButtonType> resultado = alert.showAndWait();
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Ir al Box");
+                    alert.setContentText("¿Está seguro de que desea asignar el Box seleccionado?");
+                    Optional<ButtonType> resultado = alert.showAndWait();
 
-                        // Establece la opción seleccionada en la siguiente escena
-                        AtenderPacienteController controller = loader.getController();
-                        controller.setLugarAtencionSeleccionada(lugarAtencionSeleccionada);
-                        controller.recibirDatos(paciente,colorTriage,registroEntrada);
+                    // Establece la opción seleccionada en la siguiente escena
+                    SingletonControladorPrimarioSalud.getInstance().getController().setLugarAtencion(lugarAtencionSeleccionada);
+                    SingletonControladorPrimarioSalud.getInstance().getController().setPaciente(paciente);
+                    SingletonControladorPrimarioSalud.getInstance().getController().setColorTriage(colorTriage);
+                    SingletonControladorPrimarioSalud.getInstance().getController().setRegistroEntrada(registroEntrada);
 
 
-                        // Cambia a la siguiente escena
-                        if (resultado.get() == ButtonType.OK) {
-                            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                            Scene scene = new Scene(root);
-                            stage.setScene(scene);
-                            stage.show();
-                        }
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setTitle("Error");
-                        alert.setContentText("Error al cargar la escena AtenderPaciente.fxml");
-                        alert.showAndWait();
+                    // Cambia a la siguiente escena
+                    if (resultado.get() == ButtonType.OK) {
+                        SingletonControladorPrimarioSalud.getInstance().getController().cargarEscena("/views/MedicoViews/AtenderPaciente.fxml");
                     }
                 }
             });
@@ -125,9 +112,8 @@ public class ElegirBoxAtencionAtenderPaciente {
      *
      * @param colorTriage El color del triaje del paciente.
      */
-    public void setBoxRecomendadoApp(ColorTriage colorTriage) {
+    private void setBoxRecomendadoApp(ColorTriage colorTriage) {
         this.colorTriage = colorTriage;
-        System.out.println(colorTriage);
         if(colorTriage == ColorTriage.Rojo || colorTriage == ColorTriage.Naranja){
             BoxRecomendadoApp.setText("Internaciones");
         }

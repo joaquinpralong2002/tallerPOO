@@ -1,6 +1,7 @@
 package controllers.AtencionPaciente;
 
 import controllers.MedicoController;
+import controllers.Singletons.SingletonControladorPrimarioSalud;
 import controllers.Singletons.SingletonMedico;
 import datasource.BoxAtencionDAO;
 import datasource.RegistroEntradaDAO;
@@ -46,6 +47,16 @@ public class AtenderPacienteController {
     private TextArea campoDeTexto;
     @FXML
     private Label LabalTipoBox;
+
+    @FXML
+    public void initialize(){
+        this.persona = SingletonControladorPrimarioSalud.getInstance().getController().getPaciente();
+        this.lugarAtencionSeleccionada = SingletonControladorPrimarioSalud.getInstance().getController().getLugarAtencion();
+        this.registroEntrada = SingletonControladorPrimarioSalud.getInstance().getController().getRegistroEntrada();
+        this.colorTriage = SingletonControladorPrimarioSalud.getInstance().getController().getColorTriage();
+
+        setLugarAtencionSeleccionada(SingletonControladorPrimarioSalud.getInstance().getController().getLugarAtencion());
+    }
 
 
     /**

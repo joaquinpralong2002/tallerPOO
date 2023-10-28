@@ -1,5 +1,6 @@
 package controllers;
 
+import controllers.Singletons.SingletonControladorPrimarioSalud;
 import controllers.Singletons.SingletonMedico;
 import datasource.PacienteDAO;
 import javafx.event.ActionEvent;
@@ -35,6 +36,7 @@ public class BuscarPacienteVisualizarRegistroController {
     private Paciente paciente;
     private List<Rol> roles = SingletonMedico.getInstance().getRoles();
     private Medico medico = SingletonMedico.getInstance().getMedico();
+    private SaludController saludController = SaludController.getControladorPrimario();
 
     @FXML
     public void initialize(){
@@ -131,15 +133,7 @@ public class BuscarPacienteVisualizarRegistroController {
      * @throws IOException Si ocurre un error al cargar la vista del historial clínico.
      */
     public void verRegistros(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/views/MedicoViews/HistorialClinico.fxml"));
-        Parent rootFuncionario = loader.load();
-        HistorialClinicoController controller = loader.getController();
-        controller.recibirDatos(this.paciente);
-
-        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(rootFuncionario);
-        stage.setScene(scene);
-        stage.show();
+        SingletonControladorPrimarioSalud.getInstance().getController().setPaciente(this.paciente);
+        SingletonControladorPrimarioSalud.getInstance().getController().cargarEscena("/views/MedicoViews/HistorialClinico.fxml");
     }
 }

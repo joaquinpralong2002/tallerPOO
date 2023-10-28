@@ -1,5 +1,6 @@
 package controllers;
 
+import controllers.Singletons.SingletonControladorPrimarioSalud;
 import controllers.Singletons.SingletonMedico;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -61,7 +62,8 @@ public class HistorialClinicoController {
         this.fechaColumn.setCellValueFactory(new PropertyValueFactory<>("fecha"));
         this.medicoColumn.setCellValueFactory(new PropertyValueFactory<>("medico"));
         this.lugarAtencionColumn.setCellValueFactory(new PropertyValueFactory<>("lugarAtencion"));
-
+        this.paciente = SingletonControladorPrimarioSalud.getInstance().getController().getPaciente();
+        this.iniciarTabla();
         registrosTableView.setOnMouseClicked(mouseEvent -> {
             DatosRegistro datosRegistro = (DatosRegistro) registrosTableView.getSelectionModel().getSelectedItem();
             if(datosRegistro != null){
@@ -72,11 +74,6 @@ public class HistorialClinicoController {
         });
     }
 
-
-    public void recibirDatos(Paciente paciente){
-        this.paciente = paciente;
-        this.iniciarTabla();
-    }
 
     /**
      * Inicia la tabla de registros del paciente, cargando los registros existentes del paciente
@@ -101,15 +98,7 @@ public class HistorialClinicoController {
      * @param event El evento de acción que desencadena el regreso.
      * @throws IOException Si ocurre un error al cargar la vista.
      */
-    public void volver(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/views/MedicoViews/BuscarPacienteVisualizarRegistros.fxml"));
-        Parent rootFuncionario = loader.load();
-        MedicoController controller = loader.getController();
-
-        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(rootFuncionario);
-        stage.setScene(scene);
-        stage.show();
+    public void Atras(ActionEvent event) throws IOException {
+        SingletonControladorPrimarioSalud.getInstance().getController().cargarEscena("/views/MedicoViews/BuscarPacienteVisualizarRegistros.fxml");
     }
 }
