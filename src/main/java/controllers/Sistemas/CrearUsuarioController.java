@@ -418,13 +418,14 @@ public class CrearUsuarioController {
      * @throws Exception Si alguno de los campos requeridos está vacío o si las contraseñas no coinciden.
      */
     private void comprobarCampos() throws Exception {
-        String patron = "^[A-Za-z0-9]+$";
+        String patron = "^[A-Za-z0-9 ]+$";
+        String espacioBlanco = "\\s.*";
 
-        if (nombreFunc.matches(patron)){
+        if (nombreFunc.matches(espacioBlanco) || !nombreFunc.matches(patron)){
             throw new Exception("El nombre del funcionario no puede estar vacío");
         }
 
-       if (apellidoFun.matches(patron)){
+       if (apellidoFun.matches(espacioBlanco) || !apellidoFun.matches(patron)){
            throw new Exception("El apellido no puede estar vacío");
        }
 
@@ -432,7 +433,7 @@ public class CrearUsuarioController {
            throw new Exception("El DNI no puede estar vacío, y debe ser llenado con números");
        }
 
-       if (domicilio.matches(patron)){
+       if (domicilio.matches(espacioBlanco) || !domicilio.matches(patron)){
            throw new Exception("El domicilio no puede estar vacío");
        }
 
@@ -444,7 +445,7 @@ public class CrearUsuarioController {
            throw new Exception("Debe seleccionar una opción como estado civil");
        }
 
-       if (!correo.matches("^[A-Z-a-z0-9+_.-]+@(.+)$")){
+       if (correo.matches(espacioBlanco) || !correo.matches("^[A-Z-a-z0-9+_.-]+@(.+)$")){
            throw new Exception("El correo no puede estar vacío");
        }
 
@@ -456,14 +457,14 @@ public class CrearUsuarioController {
            throw new Exception("El telefono celular no puede estar vacío");
        }
 
-        if (nombreUsu.matches(patron)){
+        if (nombreUsu.matches(espacioBlanco) || !nombreUsu.matches(patron)){
             throw new Exception("El nombre de usuario no puede estar vacío");
         }
-       if (password.isEmpty()){
+       if (password.isEmpty() || password.matches(espacioBlanco)){
            throw new Exception("La contraseña no puede estar vacía");
        }
 
-       if (passwordConfirm.isEmpty()){
+       if (passwordConfirm.isEmpty() || passwordConfirm.matches(espacioBlanco)){
            throw new Exception("La contraseña no puede estar vacía");
        }
 
