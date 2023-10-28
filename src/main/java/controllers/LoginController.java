@@ -113,6 +113,8 @@ public class LoginController {
                     SingletonControladorPrimarioSalud.getInstance().setController(enfermeroController);
                     enfermeroController.iniciarDatosEnfermero();
 
+                    enfermeroController.recibirFuncionario(enfermero);
+
                     stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     scene = new Scene(rootEnfermero);
                     stage.setScene(scene);
