@@ -48,6 +48,7 @@ public class RegistroEntradaController {
     @FXML
     public void initialize(){
         controllerPrincipal = FuncionarioProController.getControladorPrimario();
+
         this.cboxEstCivilPac.getItems().addAll(EstadoCivil.values());
     }
 

@@ -3,6 +3,7 @@ package model;
 import datasource.RegistroEntradaDAO;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,7 +28,7 @@ import java.util.List;
 public class FuncionarioAdministrativo extends Funcionario{
 
 
-    @OneToMany(mappedBy = "funcionariosAdministrativo", orphanRemoval = true)
+    @OneToMany(mappedBy = "funcionariosAdministrativo", orphanRemoval = true, fetch = FetchType.EAGER)
     @ToString.Exclude
     private List<RegistroEntrada> registrosEntradas = new ArrayList<>();
 

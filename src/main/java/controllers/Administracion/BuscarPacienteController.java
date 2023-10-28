@@ -47,6 +47,8 @@ public class BuscarPacienteController {
     @FXML
     public void initialize(){
         controllerPrincipal = FuncionarioProController.getControladorPrimario();
+        funcionarioAdministrativoIniciado = FuncionarioProController.getControladorPrimario().getFuncionarioAdministrativo();
+
         this.lbNombre.setText("Sin Datos");
         this.lbApellido.setText("Sin Datos");
         this.lbTelFijo.setText("Sin Datos");
@@ -136,12 +138,13 @@ public class BuscarPacienteController {
                 alert.setHeaderText("Registro Creado Exitosamente");
                 alert.show();
                 funcionarioAdministrativoIniciado.RealizarRegistroEntrada(paciente,this.txtMotivo.getText());
-            }else {
+            }else{
+                if (txtMotivo.getText().isEmpty()){
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
                 alert.setHeaderText("Datos Incompletos");
                 alert.setContentText("Debe escribir el motivo de consulta");
-                alert.show();
+                alert.show();}
             }
 
         }
@@ -158,9 +161,4 @@ public class BuscarPacienteController {
         controllerPrincipal.cargarEscena("/views/FuncionarioViews/RegistroEntrada.fxml");
     }
 
-    public void recibirDatos(List<Rol> roles, Usuario user, FuncionarioAdministrativo funcionarioAdministrativo) {
-        this.rolesUsuario = roles;
-        this.usuarioIniciado = user;
-        this.funcionarioAdministrativoIniciado = funcionarioAdministrativo;
-    }
 }
