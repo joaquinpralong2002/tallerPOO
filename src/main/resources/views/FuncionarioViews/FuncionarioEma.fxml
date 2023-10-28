@@ -32,35 +32,6 @@
                </bottom>
             </BorderPane>
          </top>
-         <center>
-            <VBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="202.0" prefWidth="160.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Separator prefHeight="2.0" prefWidth="160.0" />
-                  <Button fx:id="bttmRegistroEntrada" mnemonicParsing="false" onAction="#RegistroEntradadaAction" prefHeight="40.0" prefWidth="160.0" stylesheets="@../../Styless/Styles.css" text="Registro Entrada">
-                     <styleClass>
-                        <String fx:value="boton-basico" />
-                        <String fx:value="boton-basico-encima" />
-                     </styleClass></Button>
-                  <Button fx:id="bttmBuscarPaciente" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#BuscarPaciente" prefHeight="40.0" prefWidth="160.0" stylesheets="@../../Styless/Styles.css" text="Buscar Paciente">
-                     <styleClass>
-                        <String fx:value="boton-basico" />
-                        <String fx:value="boton-basico-encima" />
-                     </styleClass></Button>
-                  <Button fx:id="bttmEstadistica" layoutX="10.0" layoutY="50.0" mnemonicParsing="false" onAction="#EstadisticasAction" prefHeight="40.0" prefWidth="160.0" stylesheets="@../../Styless/Styles.css" text="Estadisticas">
-                     <styleClass>
-                        <String fx:value="boton-basico" />
-                        <String fx:value="boton-basico-encima" />
-                     </styleClass></Button>
-                  <Button fx:id="bttmVacio" mnemonicParsing="false" prefHeight="40.0" prefWidth="160.0" styleClass="boton-vacio" stylesheets="@../../Styless/Styles.css" />
-                  <Button fx:id="bttnNomina" mnemonicParsing="false" onAction="#NominaAction" prefHeight="40.0" prefWidth="160.0" stylesheets="@../../Styless/Styles.css" text="Nómina">
-                     <styleClass>
-                        <String fx:value="boton-basico" />
-                        <String fx:value="boton-basico-encima" />
-                     </styleClass>
-                  </Button>
-               </children>
-            </VBox>
-         </center>
          <bottom>
             <VBox alignment="BOTTOM_CENTER" prefHeight="395.0" prefWidth="160.0" styleClass="fondo-color-primario" stylesheets="@../../Styless/Styles.css" BorderPane.alignment="CENTER">
                <children>
@@ -73,6 +44,37 @@
                </children>
             </VBox>
          </bottom>
+         <center>
+            <Pane prefHeight="202.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Separator fx:id="separator" layoutY="-1.0" prefHeight="2.0" prefWidth="160.0" />
+                  <Button fx:id="bttmBuscarPaciente" layoutY="2.0" mnemonicParsing="false" onAction="#BuscarPaciente" prefHeight="40.0" prefWidth="160.0" stylesheets="@../../Styless/Styles.css" text="Buscar Paciente">
+                     <styleClass>
+                        <String fx:value="boton-basico" />
+                        <String fx:value="boton-basico-encima" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="bttmRegistroEntrada" layoutY="42.0" mnemonicParsing="false" onAction="#RegistroEntradadaAction" prefHeight="40.0" prefWidth="160.0" stylesheets="@../../Styless/Styles.css" text="Registro Entrada">
+                     <styleClass>
+                        <String fx:value="boton-basico" />
+                        <String fx:value="boton-basico-encima" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="bttmEstadistica" layoutY="82.0" mnemonicParsing="false" onAction="#EstadisticasAction" prefHeight="40.0" prefWidth="160.0" stylesheets="@../../Styless/Styles.css" text="Estadisticas">
+                     <styleClass>
+                        <String fx:value="boton-basico" />
+                        <String fx:value="boton-basico-encima" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="bttnNomina" layoutY="122.0" mnemonicParsing="false" onAction="#NominaAction" prefHeight="40.0" prefWidth="160.0" stylesheets="@../../Styless/Styles.css" text="Nómina">
+                     <styleClass>
+                        <String fx:value="boton-basico" />
+                        <String fx:value="boton-basico-encima" />
+                     </styleClass>
+                  </Button>
+               </children>
+            </Pane>
+         </center>
       </BorderPane>
       <Separator layoutX="161.0" layoutY="-2.0" maxHeight="-Infinity" minHeight="-Infinity" orientation="VERTICAL" prefHeight="768.0" prefWidth="6.0" />
       <Pane fx:id="paneTrasero" layoutX="164.0" prefHeight="768.0" prefWidth="1200.0" stylesheets="@../../Styless/Styles.css">

@@ -51,6 +51,7 @@ public class SistemasController {
     @FXML
     public void initialize(){
         controllerPrincipal = FuncionarioProController.getControladorPrimario();
+
         this.colNombUsu.setCellValueFactory(new PropertyValueFactory<>("nombreUsuario"));
         this.colRoles.setCellValueFactory(new PropertyValueFactory<>("roles"));
         this.colNombFunc.setCellValueFactory(new PropertyValueFactory<>("nombreFuncionario"));
@@ -111,20 +112,9 @@ public class SistemasController {
 
     public void CrearUsuario(ActionEvent event) throws IOException {
         controllerPrincipal.cargarEscena("/views/SistemasViews/CrearUsuario.fxml");
-        /**
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/views/SistemasViews/CrearUsuario.fxml"));
-        Parent rootSistemas = loader.load();
-
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(rootSistemas);
-        stage.setScene(scene);
-        stage.show();**/
     }
 
     public void EditarUsuario(ActionEvent actionEvent) {
-        //setear ventana primero
-
         //seleccion de usuario
         UsuarioTableClass usuarioTableClass = (UsuarioTableClass) tblUsuarios.getSelectionModel().getSelectedItem();
         if(usuarioTableClass == null){
@@ -132,9 +122,8 @@ public class SistemasController {
             alert.setTitle("Error");
             alert.setContentText("Debe seleccionar un usuario de la tabla.");
             alert.showAndWait();
-        }
+        }else {controllerPrincipal.cargarEscena("/views/SistemasViews/EditarUsuario.fxml");}
 
-        //setear 2da parte de la ventana
     }
 
     public void EliminarUsuario(ActionEvent actionEvent) {

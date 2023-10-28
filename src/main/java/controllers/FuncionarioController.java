@@ -53,7 +53,6 @@ public class FuncionarioController {
         Parent rootFuncionario = loader.load();
 
         BuscarPacienteController buscarPacienteController = loader.getController();
-        buscarPacienteController.recibirDatos(rolesUsuario, usuarioIniciado, funcionarioAdministrativoIniciado);
 
         Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(rootFuncionario);
