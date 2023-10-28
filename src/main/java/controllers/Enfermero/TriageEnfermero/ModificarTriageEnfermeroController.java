@@ -88,14 +88,7 @@ public class ModificarTriageEnfermeroController {
      * @throws IOException Si ocurre un error al cargar la vista original.
      */
     public void volverCambioTriage(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/views/EnfermeroViews/TriageEnfermero/TriageEnfermero.fxml"));
-        Parent root = loader.load();
-        TriageEnfermeroController controller = loader.getController();
-        controller.setDatosTriage(this.datosTriageEnfermero);
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        SingletonControladorPrimarioSalud.getInstance().getController().setDatosTriageEnfermero(this.datosTriageEnfermero);
+        SingletonControladorPrimarioSalud.getInstance().getController().cargarEscena("/views/EnfermeroViews/TriageEnfermero/TriageEnfermero.fxml", false);
     }
 }

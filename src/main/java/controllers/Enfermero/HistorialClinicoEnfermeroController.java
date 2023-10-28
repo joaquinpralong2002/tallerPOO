@@ -1,5 +1,6 @@
 package controllers.Enfermero;
 
+import controllers.Singletons.SingletonControladorPrimarioSalud;
 import controllers.Singletons.SingletonEnfermero;
 import controllers.Singletons.SingletonMedico;
 import javafx.collections.FXCollections;
@@ -62,7 +63,8 @@ public class HistorialClinicoEnfermeroController {
         this.fechaColumn.setCellValueFactory(new PropertyValueFactory<>("fecha"));
         this.medicoColumn.setCellValueFactory(new PropertyValueFactory<>("medico"));
         this.lugarAtencionColumn.setCellValueFactory(new PropertyValueFactory<>("lugarAtencion"));
-
+        this.paciente = SingletonControladorPrimarioSalud.getInstance().getController().getPaciente();
+        this.iniciarTabla();
         registrosTableView.setOnMouseClicked(mouseEvent -> {
             DatosRegistro datosRegistro = (DatosRegistro) registrosTableView.getSelectionModel().getSelectedItem();
             if(datosRegistro != null){
@@ -73,11 +75,6 @@ public class HistorialClinicoEnfermeroController {
         });
     }
 
-
-    public void recibirDatos(Paciente paciente){
-        this.paciente = paciente;
-        this.iniciarTabla();
-    }
 
     /**
      * Inicia la tabla de registros del paciente, cargando los registros existentes del paciente
@@ -103,14 +100,6 @@ public class HistorialClinicoEnfermeroController {
      * @throws IOException Si ocurre un error al cargar la vista.
      */
     public void volver(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/views/EnfermeroViews/BuscarPacienteVisualizarRegistrosEnfermero.fxml"));
-        Parent rootFuncionario = loader.load();
-        EnfermeroController controller = loader.getController();
-
-        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(rootFuncionario);
-        stage.setScene(scene);
-        stage.show();
+        SingletonControladorPrimarioSalud.getInstance().getController().cargarEscena("/views/EnfermeroViews/BuscarPacienteVisualizarRegistrosEnfermero.fxml");
     }
 }

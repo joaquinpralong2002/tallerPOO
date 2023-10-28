@@ -98,13 +98,8 @@ public class TriageEnfermeroController {
      * @throws Exception Si ocurre un error al cargar la vista o cambiar la escena.
      */
     public void handleAtrasButtonAction(ActionEvent event) throws Exception {
-        // Obtiene la vista inicial
-        Parent root = FXMLLoader.load(getClass().getResource("/views/EnfermeroViews/Enfermero.fxml"));
         // Cambia a la escena
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        SingletonControladorPrimarioSalud.getInstance().getController().cargarEscena("/views/EnfermeroViews/Enfermero.fxml");
     }
 
     /**
@@ -229,15 +224,9 @@ public class TriageEnfermeroController {
                     enfermero.confirmarTriage(registroEntrada, triageEnfermero, this.datosTriageEnfermero.getColorTriageAsignado());
                 }
             }
+
             //Una vez realizado el triage, se vuelve a la escena inicial de médico
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/views/EnfermeroViews/Enfermero.fxml"));
-            Parent root = loader.load();
-            EnfermeroController enfermeroController = loader.getController();
-            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+            SingletonControladorPrimarioSalud.getInstance().getController().cargarEscena("/views/EnfermeroViews/Enfermero.fxml");
         }
     }
 
@@ -246,20 +235,16 @@ public class TriageEnfermeroController {
      * Luego, restaura el estado de la interfaz con estos datos, lo que implica la actualización
      * de los campos y elementos visuales según los datos proporcionados.
      *
-     * @param datosTriageEnfermero Los datos de triaje que se deben establecer en la interfaz.
      */
-    public void setDatosTriage(DatosTriageEnfermero datosTriageEnfermero){
-        this.datosTriageEnfermero = datosTriageEnfermero;
-        System.out.println("el enfermero es: " + datosTriageEnfermero.getEnfermero());
-        restaurarEstado();
-    }
 
     /**
      * Restaura el estado de la interfaz con los datos de triaje proporcionados.
      * Esto implica la actualización de los campos y elementos visuales con los valores
      * contenidos en los datos de triaje dados.
      */
-    private void restaurarEstado(){
+    public void restaurarEstado(){
+        this.datosTriageEnfermero = SingletonControladorPrimarioSalud.getInstance().getController().getDatosTriageEnfermero();
+
         this.colorTriageAsignado = datosTriageEnfermero.getColorTriageAsignado();
         this.registroEntrada = datosTriageEnfermero.getRegistroEntrada();
         this.enfermero = datosTriageEnfermero.getEnfermero();

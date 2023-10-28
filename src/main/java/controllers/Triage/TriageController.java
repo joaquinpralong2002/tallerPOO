@@ -229,6 +229,7 @@ public class TriageController {
      */
     public void restaurarEstado(){
         this.datosTriage = SingletonControladorPrimarioSalud.getInstance().getController().getDatosTriage();
+
         this.colorTriageAsignado = datosTriage.getColorTriageAsignado();
         this.registroEntrada = datosTriage.getRegistroEntrada();
         this.medico = datosTriage.getMedico();

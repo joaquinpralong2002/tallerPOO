@@ -2,6 +2,7 @@ package controllers.Enfermero;
 
 import controllers.HistorialClinicoController;
 import controllers.MedicoController;
+import controllers.Singletons.SingletonControladorPrimarioSalud;
 import controllers.Singletons.SingletonEnfermero;
 import controllers.Singletons.SingletonMedico;
 import datasource.PacienteDAO;
@@ -135,15 +136,7 @@ public class BuscarPacienteVisualizarRegistroEnfermeroController {
      * @throws IOException Si ocurre un error al cargar la vista del historial clínico.
      */
     public void verRegistros(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/views/EnfermeroViews/HistorialClinicoEnfermero.fxml"));
-        Parent rootFuncionario = loader.load();
-        HistorialClinicoEnfermeroController controller = loader.getController();
-        controller.recibirDatos(this.paciente);
-
-        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(rootFuncionario);
-        stage.setScene(scene);
-        stage.show();
+        SingletonControladorPrimarioSalud.getInstance().getController().setPaciente(this.paciente);
+        SingletonControladorPrimarioSalud.getInstance().getController().cargarEscena("/views/EnfermeroViews/HistorialClinicoEnfermero.fxml");
     }
 }
