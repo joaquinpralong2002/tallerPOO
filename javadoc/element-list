@@ -1,0 +1,17 @@
+controllers
+controllers.Administracion
+controllers.AtencionPaciente
+controllers.Enfermero
+controllers.Enfermero.TriageEnfermero
+controllers.Singletons
+controllers.Sistemas
+controllers.Triage
+datasource
+datasource.interfaces
+model
+model.Enum
+model.Enum.Roles
+model.EnumeracionesVariablesTriage
+model.Login
+org.example
+util

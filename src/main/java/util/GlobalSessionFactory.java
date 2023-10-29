@@ -21,7 +21,45 @@ public class GlobalSessionFactory {
     /**
      * Inicializa la SessionFactory global de Hibernate.
      */
-    //public void InitGlobalSessionFactory(String url, String nombreUsuario, String contrasenia, String driver){
+    public void InitGlobalSessionFactory(String url, String nombreUsuario, String contrasenia, String esquema){
+        sessionFactory = new Configuration()
+                //Clases mapeadas
+                .addAnnotatedClass(AdministradorSistemas.class)
+                .addAnnotatedClass(Rol.class)
+                .addAnnotatedClass(Usuario.class)
+                .addAnnotatedClass(Asignacion.class)
+                .addAnnotatedClass(BoxAtencion.class)
+                .addAnnotatedClass(Enfermero.class)
+                .addAnnotatedClass(Especialidad.class)
+                .addAnnotatedClass(Funcionario.class)
+                .addAnnotatedClass(FuncionarioAdministrativo.class)
+                .addAnnotatedClass(Medico.class)
+                .addAnnotatedClass(Paciente.class)
+                .addAnnotatedClass(Persona.class)
+                .addAnnotatedClass(Registro.class)
+                .addAnnotatedClass(RegistroEntrada.class)
+                .addAnnotatedClass(ResultadoDiagnostico.class)
+                .addAnnotatedClass(Sector.class)
+                .addAnnotatedClass(Triage.class)
+                .addAnnotatedClass(Universidad.class)
+                //url
+                .setProperty(AvailableSettings.URL, url)
+                // Credenciales
+                .setProperty(AvailableSettings.USER, nombreUsuario)
+                .setProperty(AvailableSettings.PASS, contrasenia)
+                .setProperty(AvailableSettings.DIALECT, "org.hibernate.dialect.MySQLDialect")
+                .setProperty(AvailableSettings.DRIVER, "com.mysql.cj.jdbc.Driver")
+                // Automatic schema export
+                // SQL logging
+                .setProperty(AvailableSettings.SHOW_SQL, TRUE.toString())
+                .setProperty(AvailableSettings.FORMAT_SQL, TRUE.toString())
+                .setProperty(AvailableSettings.HIGHLIGHT_SQL, TRUE.toString())
+                .setProperty(AvailableSettings.HBM2DDL_AUTO, esquema)
+                // Creación de SessionFactory
+                .buildSessionFactory();
+
+            System.out.println(esquema);
+    }
     public void InitGlobalSessionFactory(){
         sessionFactory = new Configuration()
                 //Clases mapeadas
@@ -45,15 +83,48 @@ public class GlobalSessionFactory {
                 .addAnnotatedClass(Universidad.class)
                 //url
                 .setProperty(AvailableSettings.URL, "jdbc:mysql://localhost:3306/tallerdb")
-                //.setProperty(AvailableSettings.URL, "jdbc:mysql://root:jqoflvUUll8Tx8j5FMGb@containers-us-west-154.railway.app:7795/railway")
-                //.setProperty(AvailableSettings.URL, url)
                 // Credenciales
                 .setProperty(AvailableSettings.USER, "usuario")
-                //.setProperty(AvailableSettings.USER, "root")
-                //.setProperty(AvailableSettings.USER, nombreUsuario)
                 .setProperty(AvailableSettings.PASS, "basededatostallerpoo123")
-                //.setProperty(AvailableSettings.PASS, "jqoflvUUll8Tx8j5FMGb")
-                //.setProperty(AvailableSettings.PASS, contrasenia)
+                .setProperty(AvailableSettings.DIALECT, "org.hibernate.dialect.MySQLDialect")
+                .setProperty(AvailableSettings.DRIVER, "com.mysql.cj.jdbc.Driver")
+                // Automatic schema export
+                // SQL logging
+                .setProperty(AvailableSettings.SHOW_SQL, TRUE.toString())
+                .setProperty(AvailableSettings.FORMAT_SQL, TRUE.toString())
+                .setProperty(AvailableSettings.HIGHLIGHT_SQL, TRUE.toString())
+                .setProperty(AvailableSettings.HBM2DDL_AUTO, "create-drop")
+                // Creación de SessionFactory
+                .buildSessionFactory();
+        System.out.println("init sin parametros");
+    }
+
+    public void cambiarEsquema(String url, String nombreUsuario, String contrasenia){
+        sessionFactory = new Configuration()
+                //Clases mapeadas
+                .addAnnotatedClass(AdministradorSistemas.class)
+                .addAnnotatedClass(Rol.class)
+                .addAnnotatedClass(Usuario.class)
+                .addAnnotatedClass(Asignacion.class)
+                .addAnnotatedClass(BoxAtencion.class)
+                .addAnnotatedClass(Enfermero.class)
+                .addAnnotatedClass(Especialidad.class)
+                .addAnnotatedClass(Funcionario.class)
+                .addAnnotatedClass(FuncionarioAdministrativo.class)
+                .addAnnotatedClass(Medico.class)
+                .addAnnotatedClass(Paciente.class)
+                .addAnnotatedClass(Persona.class)
+                .addAnnotatedClass(Registro.class)
+                .addAnnotatedClass(RegistroEntrada.class)
+                .addAnnotatedClass(ResultadoDiagnostico.class)
+                .addAnnotatedClass(Sector.class)
+                .addAnnotatedClass(Triage.class)
+                .addAnnotatedClass(Universidad.class)
+                //url
+                .setProperty(AvailableSettings.URL, url)
+                // Credenciales
+                .setProperty(AvailableSettings.USER, nombreUsuario)
+                .setProperty(AvailableSettings.PASS, contrasenia)
                 .setProperty(AvailableSettings.DIALECT, "org.hibernate.dialect.MySQLDialect")
                 .setProperty(AvailableSettings.DRIVER, "com.mysql.cj.jdbc.Driver")
                 // Automatic schema export
@@ -62,8 +133,8 @@ public class GlobalSessionFactory {
                 .setProperty(AvailableSettings.FORMAT_SQL, TRUE.toString())
                 .setProperty(AvailableSettings.HIGHLIGHT_SQL, TRUE.toString())
                 .setProperty(AvailableSettings.HBM2DDL_AUTO, "update")
-                //.setProperty(AvailableSettings.HBM2DDL_AUTO, "create-drop")
                 // Creación de SessionFactory
                 .buildSessionFactory();
+        System.out.println("init para update");
     }
 }

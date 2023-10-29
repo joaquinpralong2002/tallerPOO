@@ -1,14 +1,11 @@
 package controllers.Triage;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import model.Enum.ColorTriage;
 import model.EnumeracionesVariablesTriage.*;
 import model.Medico;
 import model.RegistroEntrada;
-
-import java.util.List;
 
 @Getter
 @Setter
@@ -21,7 +18,7 @@ public class DatosTriage {
     private DolorPecho dolorPecho;
     private LecionesGraves lecionesGraves;
     private Edad edad;
-    private int edadAños;
+    private int edadAnios;
     private float temperatura;
     private Fiebre fiebre;
     private Vomitos vomitos;
@@ -35,7 +32,7 @@ public class DatosTriage {
     private RegistroEntrada registroEntrada;
     private Medico medico;
 
-    public DatosTriage(Respiracion respiracion, int pulsoCardiaco, Pulso pulso, EstadoMental estadoMental, Conciencia conciencia, DolorPecho dolorPecho, LecionesGraves lecionesGraves, Edad edad, int edadAños, float temperatura, Fiebre fiebre, Vomitos vomitos, DolorAbdominal dolorAbdominal, SignoShock signoShock, LesionLeve lesionLeve, Sangrado sangrado, ColorTriage colorTriageAsignado, RegistroEntrada registroEntrada, Medico medico) {
+    public DatosTriage(Respiracion respiracion, int pulsoCardiaco, Pulso pulso, EstadoMental estadoMental, Conciencia conciencia, DolorPecho dolorPecho, LecionesGraves lecionesGraves, Edad edad, int edadAnios, float temperatura, Fiebre fiebre, Vomitos vomitos, DolorAbdominal dolorAbdominal, SignoShock signoShock, LesionLeve lesionLeve, Sangrado sangrado, ColorTriage colorTriageAsignado, RegistroEntrada registroEntrada, Medico medico) {
         this.respiracion = respiracion;
         this.pulsoCardiaco = pulsoCardiaco;
         this.pulso = pulso;
@@ -44,7 +41,7 @@ public class DatosTriage {
         this.dolorPecho = dolorPecho;
         this.lecionesGraves = lecionesGraves;
         this.edad = edad;
-        this.edadAños = edadAños;
+        this.edadAnios = edadAnios;
         this.temperatura = temperatura;
         this.fiebre = fiebre;
         this.vomitos = vomitos;

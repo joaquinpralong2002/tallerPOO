@@ -5,43 +5,50 @@ import model.Enum.*;
 import model.Enum.Roles.RolesEnfermeros;
 import model.Enum.Roles.RolesFuncionarios;
 import model.Enum.Roles.RolesMedico;
-import model.EnumeracionesVariablesTriage.*;
 import model.Login.*;
 
 import model.Login.Rol;
-import org.hibernate.SessionFactory;
 import util.GlobalSessionFactory;
 
-import javax.swing.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Set;
 
 
-public class Main {
+public class CreacionDatos {
 
-    public static void main(String[] args) {
-
-
-
-
+    public static void iniciarCarga(String[] args){
 
         //Se inicializa el Session Factory de la clase GlobalSessionFactory.
         GlobalSessionFactory init = new GlobalSessionFactory();
+        for(int i = 0; i < args.length; i++){
+            System.out.println(args[i]);
+        }
 
-        /*
-        boolean crearDatosDefecto = Integer.parseInt(args[0]);
         String url = args[1];
         String nombreUsuario = args[2];
         String contrasenia = args[3];
-        String driver = args[4];
 
-        init.InitGlobalSessionFactory(url, nombreUsuario, contrasenia, driver);
+        if(args.length == 4) {
+            String esquema;
+            int crearDatosDefecto = Integer.parseInt(args[0]);
+            System.out.println(crearDatosDefecto);
+            if(crearDatosDefecto == 0){
+                esquema = "update";
+                init.InitGlobalSessionFactory(url, nombreUsuario, contrasenia, esquema);
+            }
+            else {
+                esquema = "create-drop";
+                init.InitGlobalSessionFactory(url, nombreUsuario, contrasenia, esquema);
+                Crear();
+            }
 
-        if(crearDatosDefecto == 1){
-        */
-        init.InitGlobalSessionFactory();
+
+            init.cambiarEsquema(url, nombreUsuario, contrasenia);
+        } else init.InitGlobalSessionFactory();
+    }
+    private static void Crear() {
 
 //**************************************************************** DATOS del Programa *******************************************************//
 
@@ -420,65 +427,6 @@ public class Main {
 
         funAdmin.RealizarRegistroEntrada(paciente2, "Vómitos y diarrea");
 
-
-//************************************************* Realizacion de triages **************************************//
-        //medico.realizarTriage(Respiracion.Normal, Pulso.Normal,12, EstadoMental.Normal, Conciencia.Consciente,DolorPecho.NoPresnte, LecionesGraves.NoPresentes, Edad.NinioAnciano,81, Fiebre.Alta, 38, Vomitos.SinVomito,DolorAbdominal.NoPresente, SignoShock.NoPresente, LesionLeve.NoPresente, Sangrado.NoPresente);
-
-        /*Triage triage = new Triage(registroEntrada1, medico,Respiracion.Normal, Pulso.Normal,22, EstadoMental.Normal, Conciencia.Consciente,DolorPecho.NoPresnte, LecionesGraves.NoPresentes, Edad.Adulto,25, Fiebre.SinFiebre, 30, Vomitos.Moderado,DolorAbdominal.DolorAbdominalModerado, SignoShock.NoPresente, LesionLeve.NoPresente, Sangrado.NoPresente);
-
-        Triage triage3 = new Triage(registroEntrada3, enfermero,Respiracion.Normal,Pulso.Normal,15,EstadoMental.Normal,Conciencia.Consciente,DolorPecho.NoPresnte,LecionesGraves.NoPresentes,Edad.NinioAnciano,63,Fiebre.SinFiebre,28,Vomitos.SinVomito,DolorAbdominal.NoPresente,SignoShock.NoPresente,LesionLeve.NoPresente,Sangrado.NoPresente);
-
-        Triage triage4 = new Triage(registroEntrada4, medico3,Respiracion.Normal,Pulso.Anormal,60,EstadoMental.Leve,Conciencia.Consciente,DolorPecho.NoPresnte,LecionesGraves.Presentes,Edad.NinioAnciano,10,Fiebre.SinFiebre,28,Vomitos.SinVomito,DolorAbdominal.NoPresente,SignoShock.Presente,LesionLeve.Presente,Sangrado.SangradoModerado);
-
-        Triage triage5 = new Triage(registroEntrada5, medico,Respiracion.Normal,Pulso.Normal,20,EstadoMental.Normal,Conciencia.Consciente,DolorPecho.NoPresnte,LecionesGraves.NoPresentes,Edad.Adulto,30,Fiebre.SinFiebre,28,Vomitos.SinVomito,DolorAbdominal.DolorAbdominalModerado,SignoShock.NoPresente,LesionLeve.Presente,Sangrado.NoPresente);
-
-        Triage triage6 = new Triage(registroEntrada6, medico,Respiracion.Normal,Pulso.Normal,15,EstadoMental.Normal,Conciencia.Consciente,DolorPecho.NoPresnte,LecionesGraves.NoPresentes,Edad.Adulto,37,Fiebre.SinFiebre,28,Vomitos.SinVomito,DolorAbdominal.NoPresente,SignoShock.NoPresente,LesionLeve.NoPresente,Sangrado.NoPresente);
-
-        Triage triage7 = new Triage(registroEntrada7, enfermero,Respiracion.Normal,Pulso.Normal,30,EstadoMental.Normal,Conciencia.Consciente,DolorPecho.NoPresnte,LecionesGraves.NoPresentes,Edad.Adulto,15,Fiebre.SinFiebre,28,Vomitos.SinVomito,DolorAbdominal.NoPresente,SignoShock.NoPresente,LesionLeve.NoPresente,Sangrado.NoPresente);
-
-        Triage triage8 = new Triage(registroEntrada8, medico3,Respiracion.Normal,Pulso.Normal,25,EstadoMental.Leve,Conciencia.PerdidaConsciencia,DolorPecho.NoPresnte,LecionesGraves.NoPresentes,Edad.Adulto,19,Fiebre.SinFiebre,28,Vomitos.Intenso,DolorAbdominal.DolorAbdominalSevero,SignoShock.NoPresente,LesionLeve.NoPresente,Sangrado.NoPresente);
-
-        Triage triage9 = new Triage(registroEntrada9, enfermero,Respiracion.Normal,Pulso.Normal,15,EstadoMental.Normal,Conciencia.Consciente,DolorPecho.NoPresnte,LecionesGraves.NoPresentes,Edad.Adulto,28,Fiebre.SinFiebre,28,Vomitos.SinVomito,DolorAbdominal.NoPresente,SignoShock.NoPresente,LesionLeve.NoPresente,Sangrado.NoPresente);
-
-        //Seteo del Color Triage Recomendado
-        triage.calcularColorTriageRecomendado();
-        triage3.calcularColorTriageRecomendado();
-        triage4.calcularColorTriageRecomendado();
-        triage5.calcularColorTriageRecomendado();
-        triage6.calcularColorTriageRecomendado();
-        triage7.calcularColorTriageRecomendado();
-        triage8.calcularColorTriageRecomendado();
-        triage9.calcularColorTriageRecomendado();*/
-
-//************************************************* Confirmacion de triages **************************************//
-        /*//Confirmacion de Triages del Medico
-        medico.confirmarTriage(paciente.getRegistrosEntradas().get(paciente.getRegistrosEntradas().size() - 1),medico.getTriagesRealizados().get(medico.getTriagesRealizados().size() - 1),medico.getTriagesRealizados().get(medico.getTriagesRealizados().size() - 1).getColorTriageRecomendado());
-        medico.confirmarTriage(registroEntrada1, triage,triage.getColorTriageRecomendado());
-        medico.confirmarTriage(registroEntrada5, triage5,triage5.getColorTriageRecomendado());
-        medico.confirmarTriage(registroEntrada6, triage6,triage6.getColorTriageRecomendado());
-
-        //Confirmacion de Triages del Enfermero
-        enfermero.confirmarTriage(registroEntrada3,triage3,triage3.getColorTriageRecomendado());
-        enfermero.confirmarTriage(registroEntrada7,triage7,triage7.getColorTriageRecomendado());
-        enfermero.confirmarTriage(registroEntrada9,triage9,triage9.getColorTriageRecomendado());
-
-        //Confirmacion de Triages del Medico 3
-        medico3.confirmarTriage(registroEntrada4,triage4,triage4.getColorTriageRecomendado());
-        medico3.confirmarTriage(registroEntrada8,triage8,triage8.getColorTriageRecomendado());*/
-
-//************************************************* Atencion de Pacientes **************************************//
-        /*medico.atenderPaciente(paciente, boxAtencion, "CORONAVAIRUS");
-        medico4.atenderPaciente(paciente3,box1,"Parasitos");
-        medico2.atenderPaciente(paciente5,box2,"Sobreesfuerzo muscular");
-        medico3.atenderPaciente(paciente7,box3,"Sobreesfuerzo muscular");
-        medico5.atenderPaciente(paciente11,box2,"Sin resulados");
-        */
-        //no deja q un medico haga mas de 1 registro
-//        medico.atenderPaciente(paciente4,box6,"Corte en la cabeza");
-//        medico.atenderPaciente(paciente6,box7,"Corte en el antebrazo");
-//        medico2.atenderPaciente(paciente8,box4,"Migraña generada por estres");
-//        medico4.atenderPaciente(paciente9,box8,"Contucion cerebral por golpe");
-//        medico.atenderPaciente(paciente10,box11,"Coma Alcholico");
 
     }
 }

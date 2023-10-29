@@ -3,11 +3,9 @@ import datasource.interfaces.GenericoDAO;
 import model.*;
 
 import model.Enum.ColorTriage;
-import org.example.Main;
 import org.hibernate.*;
 import util.GlobalSessionFactory;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 

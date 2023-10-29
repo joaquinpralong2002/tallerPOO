@@ -91,6 +91,8 @@ public class LoginController {
                     SingletonControladorPrimarioSalud.getInstance().setController(controller);
                     controller.iniciarDatosMedico();
 
+                    controller.recibirFuncionario(medico);
+
                     // Cambia a la nueva escena
                     stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     scene = new Scene(rootMedico);
@@ -110,6 +112,8 @@ public class LoginController {
                     SaludController enfermeroController = loaderEnfermero.getController();
                     SingletonControladorPrimarioSalud.getInstance().setController(enfermeroController);
                     enfermeroController.iniciarDatosEnfermero();
+
+                    enfermeroController.recibirFuncionario(enfermero);
 
                     stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     scene = new Scene(rootEnfermero);
