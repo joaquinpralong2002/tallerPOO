@@ -15,3 +15,6 @@ Si no se pasa ningún comando, el programa intentará utilizar una base de datos
 - Usuario: "usuario"
 - Contraseña: "basededatostallerpoo123"
 - Driver: "com.mysql.cj.jdbc.Driver"
+## Aclaraciones sobre la interfaz gráfica
+Se utilizó el siguiente video de YouTube para configurar el entorno IDE de forma que pueda funcionar con la herramienta JavaFX.
+https://www.youtube.com/watch?v=IvsvjUq38Jc
