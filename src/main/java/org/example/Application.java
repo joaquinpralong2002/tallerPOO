@@ -1,21 +1,22 @@
 package org.example;
 
-import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import util.GlobalSessionFactory;
 
-public class LoginApplication extends Application {
+public class Application extends javafx.application.Application {
+    private static String[] argumentos;
+
+    public static void main(String[] args) {
+        argumentos = args;
+        Application.launch();
+    }
     @Override
     public void start(Stage primaryStage) throws Exception {
-        GlobalSessionFactory init = new GlobalSessionFactory();
-        init.InitGlobalSessionFactory();
+        CreacionDatos.iniciarCarga(argumentos);
         Image icono = new Image(getClass().getResourceAsStream("/images/signo-de-hospital.png"));
 
         primaryStage.setResizable(false);

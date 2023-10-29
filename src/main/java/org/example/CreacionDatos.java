@@ -5,43 +5,50 @@ import model.Enum.*;
 import model.Enum.Roles.RolesEnfermeros;
 import model.Enum.Roles.RolesFuncionarios;
 import model.Enum.Roles.RolesMedico;
-import model.EnumeracionesVariablesTriage.*;
 import model.Login.*;
 
 import model.Login.Rol;
-import org.hibernate.SessionFactory;
 import util.GlobalSessionFactory;
 
-import javax.swing.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Set;
 
 
-public class Main {
+public class CreacionDatos {
 
-    public static void main(String[] args) {
-
-
-
-
+    public static void iniciarCarga(String[] args){
 
         //Se inicializa el Session Factory de la clase GlobalSessionFactory.
         GlobalSessionFactory init = new GlobalSessionFactory();
+        for(int i = 0; i < args.length; i++){
+            System.out.println(args[i]);
+        }
 
-        /*
-        boolean crearDatosDefecto = Integer.parseInt(args[0]);
         String url = args[1];
         String nombreUsuario = args[2];
         String contrasenia = args[3];
-        String driver = args[4];
 
-        init.InitGlobalSessionFactory(url, nombreUsuario, contrasenia, driver);
+        if(args.length == 4) {
+            String esquema;
+            int crearDatosDefecto = Integer.parseInt(args[0]);
+            System.out.println(crearDatosDefecto);
+            if(crearDatosDefecto == 0){
+                esquema = "update";
+                init.InitGlobalSessionFactory(url, nombreUsuario, contrasenia, esquema);
+            }
+            else {
+                esquema = "create-drop";
+                init.InitGlobalSessionFactory(url, nombreUsuario, contrasenia, esquema);
+                Crear();
+            }
 
-        if(crearDatosDefecto == 1){
-        */
-        init.InitGlobalSessionFactory();
+
+            init.cambiarEsquema(url, nombreUsuario, contrasenia);
+        } else init.InitGlobalSessionFactory();
+    }
+    private static void Crear() {
 
 //**************************************************************** DATOS del Programa *******************************************************//
 

@@ -46,7 +46,7 @@ public class Persona {
         this.telefonoCelular = telefonoCelular;
         this.estadoCivil = estadoCivil;
         this.correo = correo;
-        this.edad = añosEdad();
+        this.edad = aniosEdad();
     }
 
     /**
@@ -54,12 +54,12 @@ public class Persona {
      *
      * @return La edad del individuo en años.
      */
-    public int añosEdad(){
+    public int aniosEdad(){
         LocalDate fechaActual = LocalDate.now();
         LocalDate fechaNacimiento = this.fechaNacimiento;
         Period periodo = Period.between(fechaNacimiento, fechaActual);
-        int añosEdad = periodo.getYears();
-        return añosEdad;
+        int aniosEdad = periodo.getYears();
+        return aniosEdad;
     }
 
     @Override

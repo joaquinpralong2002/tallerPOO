@@ -1,12 +1,10 @@
 package controllers.Enfermero.TriageEnfermero;
 
-import controllers.Singletons.SingletonEnfermero;
 import lombok.Getter;
 import lombok.Setter;
 import model.Enfermero;
 import model.Enum.ColorTriage;
 import model.EnumeracionesVariablesTriage.*;
-import model.Medico;
 import model.RegistroEntrada;
 
 @Getter
@@ -20,7 +18,7 @@ public class DatosTriageEnfermero {
     private DolorPecho dolorPecho;
     private LecionesGraves lecionesGraves;
     private Edad edad;
-    private int edadAños;
+    private int edadAnios;
     private float temperatura;
     private Fiebre fiebre;
     private Vomitos vomitos;
@@ -34,7 +32,7 @@ public class DatosTriageEnfermero {
     private RegistroEntrada registroEntrada;
     private Enfermero enfermero;
 
-    public DatosTriageEnfermero(Respiracion respiracion, int pulsoCardiaco, Pulso pulso, EstadoMental estadoMental, Conciencia conciencia, DolorPecho dolorPecho, LecionesGraves lecionesGraves, Edad edad, int edadAños, float temperatura, Fiebre fiebre, Vomitos vomitos, DolorAbdominal dolorAbdominal, SignoShock signoShock, LesionLeve lesionLeve, Sangrado sangrado, ColorTriage colorTriageAsignado, RegistroEntrada registroEntrada, Enfermero enfermero) {
+    public DatosTriageEnfermero(Respiracion respiracion, int pulsoCardiaco, Pulso pulso, EstadoMental estadoMental, Conciencia conciencia, DolorPecho dolorPecho, LecionesGraves lecionesGraves, Edad edad, int edadAnios, float temperatura, Fiebre fiebre, Vomitos vomitos, DolorAbdominal dolorAbdominal, SignoShock signoShock, LesionLeve lesionLeve, Sangrado sangrado, ColorTriage colorTriageAsignado, RegistroEntrada registroEntrada, Enfermero enfermero) {
         this.respiracion = respiracion;
         this.pulsoCardiaco = pulsoCardiaco;
         this.pulso = pulso;
@@ -43,7 +41,7 @@ public class DatosTriageEnfermero {
         this.dolorPecho = dolorPecho;
         this.lecionesGraves = lecionesGraves;
         this.edad = edad;
-        this.edadAños = edadAños;
+        this.edadAnios = edadAnios;
         this.temperatura = temperatura;
         this.fiebre = fiebre;
         this.vomitos = vomitos;

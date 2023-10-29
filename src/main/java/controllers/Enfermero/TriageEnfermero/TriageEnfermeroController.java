@@ -1,23 +1,15 @@
 package controllers.Enfermero.TriageEnfermero;
 
-import controllers.Enfermero.EnfermeroController;
-import controllers.MedicoController;
 import controllers.Singletons.SingletonControladorPrimarioSalud;
 import controllers.Singletons.SingletonEnfermero;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
 import lombok.Setter;
 import model.Enfermero;
 import model.Enum.ColorTriage;
 import model.EnumeracionesVariablesTriage.*;
 import model.Login.Rol;
-import model.Medico;
 import model.RegistroEntrada;
 import model.Triage;
 
@@ -123,7 +115,7 @@ public class TriageEnfermeroController {
         DolorPecho dolorPecho = dolorPechoComboBox.getSelectionModel().getSelectedItem();
         LecionesGraves lecionesGraves = lesionGraveComboBox.getSelectionModel().getSelectedItem();
         Edad edad = calcularEdadEnum();
-        int edadAños = calcularEdad();
+        int edadAnios = calcularEdad();
         float temperatura = Float.parseFloat(temperaturaTextField.getText());
         Fiebre fiebre = calcularFiebre(temperatura);
         Vomitos vomitos = vomitosComboBox.getSelectionModel().getSelectedItem();
@@ -134,9 +126,9 @@ public class TriageEnfermeroController {
 
 
         ColorTriage colorRecomendado = Triage.calcularColorTriageRecomendado(respiracion, pulso, pulsoCardiaco, estadoMental, conciencia, dolorPecho, lecionesGraves,
-                edad, edadAños, fiebre, temperatura, vomitos, dolorAbdominal, signoShock, lesionLeve, sangrado);
+                edad, edadAnios, fiebre, temperatura, vomitos, dolorAbdominal, signoShock, lesionLeve, sangrado);
         this.datosTriageEnfermero = new DatosTriageEnfermero(respiracion, pulsoCardiaco, pulso, estadoMental, conciencia, dolorPecho, lecionesGraves,
-                edad, edadAños, temperatura, fiebre, vomitos, dolorAbdominal, signoShock, lesionLeve, sangrado, colorRecomendado, this.registroEntrada, this.enfermero);
+                edad, edadAnios, temperatura, fiebre, vomitos, dolorAbdominal, signoShock, lesionLeve, sangrado, colorRecomendado, this.registroEntrada, this.enfermero);
         colorRecomendadoLabel.setText(colorRecomendado.toString());
         this.colorTriageAsignado = colorRecomendado;
     }
@@ -199,7 +191,7 @@ public class TriageEnfermeroController {
             DolorPecho dolorPecho = this.datosTriageEnfermero.getDolorPecho();
             LecionesGraves lecionesGraves = this.datosTriageEnfermero.getLecionesGraves();
             Edad edad = this.datosTriageEnfermero.getEdad();
-            int edadAños = this.datosTriageEnfermero.getEdadAños();
+            int edadAnios = this.datosTriageEnfermero.getEdadAnios();
             float temperatura = this.datosTriageEnfermero.getTemperatura();
             Fiebre fiebre = this.datosTriageEnfermero.getFiebre();
             Vomitos vomitos = this.datosTriageEnfermero.getVomitos();
@@ -210,7 +202,7 @@ public class TriageEnfermeroController {
 
             //El médico realiza el triage
             this.enfermero.realizarTriage(respiracion, pulso, pulsoCardiaco,  estadoMental, conciencia, dolorPecho, lecionesGraves,
-                    edad, edadAños, fiebre, temperatura, vomitos, dolorAbdominal, signoShock, lesionLeve, sangrado);
+                    edad, edadAnios, fiebre, temperatura, vomitos, dolorAbdominal, signoShock, lesionLeve, sangrado);
 
             Triage triageEnfermero = this.enfermero.getTriagesRealizados().get(enfermero.getTriagesRealizados().size() - 1);
 
@@ -307,9 +299,9 @@ public class TriageEnfermeroController {
      * @return La categoría de edad del paciente (Adulto o Niño/Anciano) según la diferencia en años.
      */
     private Edad calcularEdadEnum(){
-        int añosEdad = calcularEdad();
+        int aniosEdad = calcularEdad();
         Edad edad = Edad.Adulto;
-        if(añosEdad <= 12 || añosEdad >= 60) edad = Edad.NinioAnciano;
+        if(aniosEdad <= 12 || aniosEdad >= 60) edad = Edad.NinioAnciano;
         return edad;
     }
 
@@ -325,8 +317,8 @@ public class TriageEnfermeroController {
         LocalDate fechaActual = LocalDate.now();
         LocalDate fechaNacimiento = this.registroEntrada.getPaciente().getFechaNacimiento();
         Period periodo = Period.between(fechaNacimiento, fechaActual);
-        int añosEdad = periodo.getYears();
-        return añosEdad;
+        int aniosEdad = periodo.getYears();
+        return aniosEdad;
     }
 
     /**

@@ -1,19 +1,10 @@
 package controllers.Triage;
 
-import controllers.MedicoController;
 import controllers.Singletons.SingletonControladorPrimarioSalud;
 import controllers.Singletons.SingletonMedico;
-import datasource.PacienteDAO;
-import datasource.RegistroEntradaDAO;
-import datasource.TriageDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
 import lombok.Setter;
 import model.Enum.ColorTriage;
 import model.EnumeracionesVariablesTriage.*;
@@ -115,7 +106,7 @@ public class TriageController {
         DolorPecho dolorPecho = dolorPechoComboBox.getSelectionModel().getSelectedItem();
         LecionesGraves lecionesGraves = lesionGraveComboBox.getSelectionModel().getSelectedItem();
         Edad edad = calcularEdadEnum();
-        int edadAños = calcularEdad();
+        int edadAnios = calcularEdad();
         float temperatura = Float.parseFloat(temperaturaTextField.getText());
         Fiebre fiebre = calcularFiebre(temperatura);
         Vomitos vomitos = vomitosComboBox.getSelectionModel().getSelectedItem();
@@ -126,9 +117,9 @@ public class TriageController {
 
 
         ColorTriage colorRecomendado = Triage.calcularColorTriageRecomendado(respiracion, pulso, pulsoCardiaco, estadoMental, conciencia, dolorPecho, lecionesGraves,
-                edad, edadAños, fiebre, temperatura, vomitos, dolorAbdominal, signoShock, lesionLeve, sangrado);
+                edad, edadAnios, fiebre, temperatura, vomitos, dolorAbdominal, signoShock, lesionLeve, sangrado);
         this.datosTriage = new DatosTriage(respiracion, pulsoCardiaco, pulso, estadoMental, conciencia, dolorPecho, lecionesGraves,
-                edad, edadAños, temperatura, fiebre, vomitos, dolorAbdominal, signoShock, lesionLeve, sangrado, colorRecomendado, this.registroEntrada, this.medico);
+                edad, edadAnios, temperatura, fiebre, vomitos, dolorAbdominal, signoShock, lesionLeve, sangrado, colorRecomendado, this.registroEntrada, this.medico);
         colorRecomendadoLabel.setText(colorRecomendado.toString());
         this.colorTriageAsignado = colorRecomendado;
     }
@@ -191,7 +182,7 @@ public class TriageController {
             DolorPecho dolorPecho = this.datosTriage.getDolorPecho();
             LecionesGraves lecionesGraves = this.datosTriage.getLecionesGraves();
             Edad edad = this.datosTriage.getEdad();
-            int edadAños = this.datosTriage.getEdadAños();
+            int edadAnios = this.datosTriage.getEdadAnios();
             float temperatura = this.datosTriage.getTemperatura();
             Fiebre fiebre = this.datosTriage.getFiebre();
             Vomitos vomitos = this.datosTriage.getVomitos();
@@ -202,7 +193,7 @@ public class TriageController {
 
             //El médico realiza el triage
             this.medico.realizarTriage(respiracion, pulso, pulsoCardiaco,  estadoMental, conciencia, dolorPecho, lecionesGraves,
-                    edad, edadAños, fiebre, temperatura, vomitos, dolorAbdominal, signoShock, lesionLeve, sangrado);
+                    edad, edadAnios, fiebre, temperatura, vomitos, dolorAbdominal, signoShock, lesionLeve, sangrado);
 
             Triage triageMedico = this.medico.getTriagesRealizados().get(medico.getTriagesRealizados().size() - 1);
 
@@ -292,9 +283,9 @@ public class TriageController {
      * @return La categoría de edad del paciente (Adulto o Niño/Anciano) según la diferencia en años.
      */
     private Edad calcularEdadEnum(){
-        int añosEdad = calcularEdad();
+        int aniosEdad = calcularEdad();
         Edad edad = Edad.Adulto;
-        if(añosEdad <= 12 || añosEdad >= 60) edad = Edad.NinioAnciano;
+        if(aniosEdad <= 12 || aniosEdad >= 60) edad = Edad.NinioAnciano;
         return edad;
     }
 
@@ -310,8 +301,8 @@ public class TriageController {
         LocalDate fechaActual = LocalDate.now();
         LocalDate fechaNacimiento = this.registroEntrada.getPaciente().getFechaNacimiento();
         Period periodo = Period.between(fechaNacimiento, fechaActual);
-        int añosEdad = periodo.getYears();
-        return añosEdad;
+        int aniosEdad = periodo.getYears();
+        return aniosEdad;
     }
 
     /**
